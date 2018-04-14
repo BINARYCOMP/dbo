@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2018 at 05:28 PM
+-- Generation Time: Apr 14, 2018 at 05:53 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -73,7 +73,7 @@ CREATE TABLE `user` (
   `USER_PASSWORD` varchar(50) NOT NULL,
   `USER_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `USER_LEVE_ID` int(11) NOT NULL,
-  `USER_DAPE_ID` int(11) NOT NULL
+  `USER_PEGA_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
