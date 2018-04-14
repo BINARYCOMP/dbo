@@ -25,11 +25,13 @@
  		<tr>
  			<td>Level</td>
  			<td><select name="level">
- 					<option>Admin</option>
- 					<option>Keuangan</option>
- 					<option>Managerial</option>
- 					<option>Owner</option>
- 					<option>Super User</option>
+ 					<?php  
+ 					foreach ($dataLevel as $row){
+ 						echo "<option value='".$row['LEVE_ID']."'>";
+ 						echo $row ['LEVE_NAME'];
+ 					 echo "</option>";
+ 					}
+ 					 ?>
  				</select>
  			</td>
  		</tr>

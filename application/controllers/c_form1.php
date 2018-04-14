@@ -6,12 +6,19 @@ class C_form1 extends CI_Controller
 {
 	function __construct(){
 			parent::__construct();
-			
+			$this->load->model('m_form1');
 		}
 	public function index()
 	{
 		
-		$this->load->view('v_form1');
+
+		$getlevel="";
+		$dataLevel=$this->m_form1->getLevel($getlevel);
+		$data = array(
+			'dataLevel' =>$dataLevel );
+
+		$this->load->view('v_form1', $data);
+		
 	}
 	public function FormRegister()
 	{
@@ -26,6 +33,6 @@ class C_form1 extends CI_Controller
 			'password' =>$password ,
 			'level' =>$level   
 			);
-		var_dump($data);
+		
 	}
 }
