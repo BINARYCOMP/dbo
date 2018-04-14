@@ -33,6 +33,7 @@ class C_form1 extends CI_Controller
 			'USER_PASSWORD' =>$password ,
 			'USER_LEVE_ID' =>$level   
 			);
+		$dataLevel=$this->m_form1->Insert($data);
 		
 	}
 }
