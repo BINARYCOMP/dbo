@@ -3,7 +3,7 @@
 /**
 *
 */
-class C_dasboard extends CI_Controllwe
+class C_dasboard extends CI_Controller
 {
 
 	public function index(){
