@@ -11,16 +11,16 @@
  			<th>Register</th>
  		</tr>
  		<tr>
- 			<td>Email</td>
- 			<td><input type="email" name="txtemail"></td>
- 		</tr>
- 		<tr>
  			<td>Username</td>
  			<td><input type="text" name="txtusername"></td>
  		</tr>
  		<tr>
  			<td>Password</td>
  			<td><input type="password" name="txtpassword"></td>
+ 		<tr>
+ 			<td>ID Pegawai</td>
+ 			<td><input type="text" name="txtidpegawai"></td>
+ 		</tr>
  		</tr>
  		<tr>
  			<td>Level</td>
@@ -36,7 +36,7 @@
  			</td>
  		</tr>
  		<tr>
- 			<td><input type="submit" name="submit"></td>
+ 			<td><input type="submit" name="submit" value="Simpan"></td>
  		</tr>
 
  		</table>

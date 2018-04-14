@@ -22,16 +22,16 @@ class C_form1 extends CI_Controller
 	}
 	public function FormRegister()
 	{
-		$email = $_POST['txtemail'];
+		$idpegawai = $_POST['txtidpegawai'];
 		$username = $_POST['txtusername'];
 		$password = $_POST['txtpassword'];
 		$level = $_POST['level'];
 
 		$data = array(
-			'email' =>$email ,
-			'username' =>$username ,
-			'password' =>$password ,
-			'level' =>$level   
+			'USER_DAPE_ID' =>$idpegawai ,
+			'USER_NAME' =>$username ,
+			'USER_PASSWORD' =>$password ,
+			'USER_LEVE_ID' =>$level   
 			);
 		
 	}
