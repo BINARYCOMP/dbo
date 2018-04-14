@@ -14,21 +14,28 @@ class C_login extends CI_controller
 	{
 		$this->load->view('v_login');
 	}
-	public function login();
+	public function login()
 	{
 
 
 		$username 	= $_POST ["username"];
-		$password 	= $_POST ["password"];
+		$password 	= md5($_POST ["password"]);
 
 		$datalogin 	= $this->m_login->getlogin($username, $password);
 		$dbLevel	= "ADMIN";
 		$dbUsername = "BAGUS";
-		$dbPassword = "123";
-		if ($dbLevel == true ) {
+		$dbPassword = md5("123");
+		if ($username == $dbUsername && $password == $dbPassword) {
 			$_SESSION['level'] = $dbLevel;
-			header('Location:dashboard.php');
+			header('location:'.base_url().'c_dashboard');
 		}else{
-			header('Location:login.php')
+			header('Location:' .base_url().'c_login');
 		}
+	}
+	public function logout()
+	{
+		session_destroy();
+		header('Location:' .base_url().'c_login');
+	}
+}
 	?>

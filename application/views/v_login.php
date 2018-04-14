@@ -1,18 +1,13 @@
-<?php
-session_start(); 
-if (empty($_SESSION['level'])){ 
-	header('Location:dashboard.php');?>
-}else{
-	<?php echo $_SESSION["level"];
-	header('Location:login.php') ?>	
-}
+<?php if (!empty($_SESSION['level']))
+	header('location:'.base_url().'c_dashboard');
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>login</title>
 </head>
 <body>
-<form>
+<form action="<?php echo base_url() ?>c_login/login" method="POST">
 	<table>
 		<tr>
 			<td>Username</td>
@@ -23,7 +18,7 @@ if (empty($_SESSION['level'])){
 			<td><input type="password" name="password"></td>
 		</tr>
 		<tr>
-			<td><input type="button" name="login" value="Login"></td>
+			<td><input type="submit" name="login" value="Login"></td>
 		</tr>
 	</table>
 </form>
