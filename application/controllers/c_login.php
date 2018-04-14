@@ -18,13 +18,14 @@ class C_login extends CI_controller
 	{
 
 
-		$username 	= $_POST ["username"];
+		$username 	= $_POST["username"];
 		$password 	= md5($_POST ["password"]);
 
 		$datalogin 	= $this->m_login->getlogin($username, $password);
-		$dbLevel	= "ADMIN";
-		$dbUsername = "BAGUS";
-		$dbPassword = md5("123");
+
+		$dbLevel	= $datalogin[0]["USER_LEVE_ID"];
+		$dbUsername = $datalogin[0]["USER_NAME"];
+		$dbPassword = $datalogin[0]["USER_PASSWORD"];
 		if ($username == $dbUsername && $password == $dbPassword) {
 			$_SESSION['level'] = $dbLevel;
 			header('location:'.base_url().'c_dashboard');
