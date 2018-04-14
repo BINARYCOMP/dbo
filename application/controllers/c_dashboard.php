@@ -3,14 +3,14 @@
 /**
 *
 */
-class C_dasboard extends CI_Controller
+class C_dashboard extends CI_Controller
 {
 
 	public function index(){
 		$data = array(
 			'content' => 'tampilan/v_content',
 		);
-		$this->load->view('v_combine',$data);
+		$this->load->view('tampilan/v_combine',$data);
 	}
 }
 
