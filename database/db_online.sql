@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2018 at 12:13 AM
+-- Generation Time: Apr 15, 2018 at 12:11 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -47,6 +47,80 @@ INSERT INTO `agama` (`AGAM_ID`, `AGAM_NAME`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `barang_child`
+--
+
+CREATE TABLE `barang_child` (
+  `BACH_ID` int(11) NOT NULL,
+  `BACH_NAME` varchar(100) NOT NULL,
+  `BACH_HARGA` int(11) NOT NULL,
+  `BACH_TOTAL` int(11) NOT NULL,
+  `BACH_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `BACH_SATU_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `barang_parent`
+--
+
+CREATE TABLE `barang_parent` (
+  `BAPA_ID` int(11) NOT NULL,
+  `BAPA_NAME` varchar(100) NOT NULL,
+  `BAPA_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `BAPA_BACH_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gudang_jadi`
+--
+
+CREATE TABLE `gudang_jadi` (
+  `GUJA_ID` int(11) NOT NULL,
+  `GUJA_KELUAR` int(11) NOT NULL,
+  `GUJA_MASUK` int(11) NOT NULL,
+  `GUJA_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `GUJA_BAPA_ID` int(11) NOT NULL,
+  `GUJA_BACH_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gudang_tak_jadi`
+--
+
+CREATE TABLE `gudang_tak_jadi` (
+  `GUTA_ID` int(11) NOT NULL,
+  `GUTA_KELUAR` int(11) NOT NULL,
+  `GUTA_MASUK` int(11) NOT NULL,
+  `GUTA_TOTAL` int(11) NOT NULL,
+  `GUTA_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `GUTA_BAPA_ID` int(11) NOT NULL,
+  `GUTA_BACH_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `keuangan`
+--
+
+CREATE TABLE `keuangan` (
+  `KEUA_ID` int(11) NOT NULL,
+  `KEUA_MASUK` int(11) NOT NULL,
+  `KEUA_KELUAR` int(11) NOT NULL,
+  `KEUA_SALDO` int(11) NOT NULL,
+  `KEUA_RINCIAN` text NOT NULL,
+  `KEUA_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `level`
 --
 
@@ -86,6 +160,28 @@ CREATE TABLE `pegawai` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `satuan`
+--
+
+CREATE TABLE `satuan` (
+  `SATU_ID` int(11) NOT NULL,
+  `SATU_NAME` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `satuan`
+--
+
+INSERT INTO `satuan` (`SATU_ID`, `SATU_NAME`) VALUES
+(1, 'SET'),
+(2, 'BH'),
+(3, 'BTG'),
+(4, 'ROLL'),
+(5, 'UNIT');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -116,6 +212,36 @@ ALTER TABLE `agama`
   ADD PRIMARY KEY (`AGAM_ID`);
 
 --
+-- Indexes for table `barang_child`
+--
+ALTER TABLE `barang_child`
+  ADD PRIMARY KEY (`BACH_ID`);
+
+--
+-- Indexes for table `barang_parent`
+--
+ALTER TABLE `barang_parent`
+  ADD PRIMARY KEY (`BAPA_ID`);
+
+--
+-- Indexes for table `gudang_jadi`
+--
+ALTER TABLE `gudang_jadi`
+  ADD PRIMARY KEY (`GUJA_ID`);
+
+--
+-- Indexes for table `gudang_tak_jadi`
+--
+ALTER TABLE `gudang_tak_jadi`
+  ADD PRIMARY KEY (`GUTA_ID`);
+
+--
+-- Indexes for table `keuangan`
+--
+ALTER TABLE `keuangan`
+  ADD PRIMARY KEY (`KEUA_ID`);
+
+--
 -- Indexes for table `level`
 --
 ALTER TABLE `level`
@@ -127,6 +253,12 @@ ALTER TABLE `level`
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`PEGA_ID`),
   ADD UNIQUE KEY `PEGA_EMAIL` (`PEGA_EMAIL`);
+
+--
+-- Indexes for table `satuan`
+--
+ALTER TABLE `satuan`
+  ADD PRIMARY KEY (`SATU_ID`);
 
 --
 -- Indexes for table `user`
@@ -146,6 +278,36 @@ ALTER TABLE `agama`
   MODIFY `AGAM_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `barang_child`
+--
+ALTER TABLE `barang_child`
+  MODIFY `BACH_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `barang_parent`
+--
+ALTER TABLE `barang_parent`
+  MODIFY `BAPA_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `gudang_jadi`
+--
+ALTER TABLE `gudang_jadi`
+  MODIFY `GUJA_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `gudang_tak_jadi`
+--
+ALTER TABLE `gudang_tak_jadi`
+  MODIFY `GUTA_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `keuangan`
+--
+ALTER TABLE `keuangan`
+  MODIFY `KEUA_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `level`
 --
 ALTER TABLE `level`
@@ -156,6 +318,12 @@ ALTER TABLE `level`
 --
 ALTER TABLE `pegawai`
   MODIFY `PEGA_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `satuan`
+--
+ALTER TABLE `satuan`
+  MODIFY `SATU_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
