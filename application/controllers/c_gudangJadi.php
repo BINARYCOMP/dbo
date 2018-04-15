@@ -38,11 +38,10 @@ class C_gudangJadi extends CI_Controller
     $data = array(
       'GUJA_KELUAR'   => $keluar ,
       'GUJA_MASUK'    => $masuk ,
-      'GUJA_TOTAL'    => $saldoAkhir ,
       'GUJA_BAPA_ID'  => $parent ,
       'GUJA_BACH_ID'  => $child ,
     );
-    $simpanBarang = $this->m_gudangJadi->simpanBarang($data);
+    $simpanBarang = $this->m_gudangJadi->simpanBarang($data, $saldoAkhir);
     echo "<script> window.location='".base_url()."c_gudangJadi?message=1' </script>";
   }
 }
