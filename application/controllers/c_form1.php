@@ -17,13 +17,9 @@ class C_form1 extends CI_Controller
 			'dataLevel' =>$dataLevel,
 			'dataUser' =>$dataUser );
 
-		
-
 		$this->load->view('v_form1', $data);
 
-
-		
-		
+	
 	}
 	public function FormRegister()
 	{
@@ -40,5 +36,17 @@ class C_form1 extends CI_Controller
 			);
 		$dataLevel=$this->m_form1->Insert($data);
 		
+	}
+	public function FormUpdate($id){
+		$dataLevel=$this->m_form1->getLevel();
+		$dataUser=$this->m_form1->Update($id);
+		$data = array(
+			'dataLevel' =>$dataLevel,
+			'id'=>$id,
+			'dataUser'=>$dataUser );
+		$this->load->view('v_form2',$data);
+	}
+	public function UpdateData(){
+
 	}
 }

@@ -39,11 +39,13 @@
  			<td><input type="submit" name="submit" value="Simpan"></td>
  		</tr>
 
- 		</table>
+ 		</table >
  		<br>
  		<br>
  		<table border="">
+ 			
  			<tr>
+ 				<td>ID User</td>
  				<td>ID Pegawai</td>
  				<td>Username</td>
  				<td>Password</td>
@@ -52,14 +54,17 @@
  			<?php 
  				foreach ($dataUser as $row) {
  					echo "<tr>";
+ 					
  					echo "<td>".$row['USER_DAPE_ID']."</td>";
  					echo "<td>".$row['USER_NAME']."</td>";
  					echo "<td>".$row['USER_PASSWORD']."</td>";
  					echo "<td>".$row['USER_LEVE_ID']."</td>";
- 					echo "</tr>";
+ 					echo "<td><a href='".base_url()."C_form1/FormUpdate/".$row['USER_ID']."'>Edit</a></td>";
+ 			 		echo "</tr>";
  				}
  			 ?>
  		</table>
+ 		
 
  	</form>
  
