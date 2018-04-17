@@ -35,11 +35,13 @@ class C_gudangJadi extends CI_Controller
   {
     $parent     = $_POST['cmbParent'];
     $child      = $_POST['cmbChild'];
+    $uraian     = $_POST['txtUraian'];
     $masuk      = $_POST['txtMasuk'];
     $keluar     = $_POST['txtKeluar'];
     $saldoAkhir = $_POST['txtSaldoAwal'] + $masuk - $keluar;
     $data = array(
       'GUJA_KELUAR'   => $keluar ,
+      'GUJA_URAIAN'   => $uraian ,
       'GUJA_MASUK'    => $masuk ,
       'GUJA_BAPA_ID'  => $parent ,
       'GUJA_BACH_ID'  => $child ,
@@ -70,7 +72,7 @@ class C_gudangJadi extends CI_Controller
             echo $row ['BACH_NAME'];
            echo "</option>";
           }
-           ?>
+        ?>
       </select>
     <?php
   }

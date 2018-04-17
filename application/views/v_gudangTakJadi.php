@@ -2,19 +2,27 @@
   <a href="#"> List Barang </a><br>
       Nama Barang Parent
       <select name="cmbParent" onchange="showChild(this.value)">
+        <option value="0">== Pilih Induk Barang ==</option>
         <?php  
           foreach ($namaParent as $row){
             echo "<option value='".$row['BAPA_ID']."'>";
             echo $row ['BAPA_NAME'];
            echo "</option>";
           }
-           ?>
+        ?>
       </select> <br>
   <a href="#"> List Anak Barang </a><br>
       Nama Barang Child
-      <span id="txtChild"> </span><br>
+      <span id="txtChild">
+        <select>
+          <option>== Pilih Anak Barang ==</option>
+        </select>
+      </span><br>
       Saldo Awal <br>
-      <span id="txtStok"> </span><br><br>
+      <span id="txtStok"> 
+        <input type="text" name="txtSaldoAwal" required id="saldoAwal" readonly placeholder="0">  
+      </span><br><br>
+      Uraian <textarea name="txtUraian"></textarea><br>
       Masuk <input type="number" name="txtMasuk" id="brgMasuk" onkeyup="showSaldo()" onclick="showSaldo()" value="0"><br>
       Keluar <input type="number" name="txtKeluar" id="brgKeluar" onkeyup="showSaldo()" onclick="showSaldo()" value="0"><br>
       Saldo Akhir <input type="number" disabled name="txtSaldoAkhir" id="saldoAkhir"><br>

@@ -22,6 +22,7 @@
       <span id="txtStok"> 
         <input type="text" name="txtSaldoAwal" required id="saldoAwal" readonly placeholder="0">  
       </span><br><br>
+      Uraian <textarea name="txtUraian"></textarea><br>
       Masuk <input type="number" name="txtMasuk" id="brgMasuk" onkeyup="showSaldo()" onclick="showSaldo()" value="0"><br>
       Keluar <input type="number" name="txtKeluar" id="brgKeluar" onkeyup="showSaldo()" onclick="showSaldo()" value="0"><br>
       Saldo Akhir <input type="number" readonly name="txtSaldoAkhir" id="saldoAkhir"><br>
