@@ -45,7 +45,7 @@ class C_gudangJadi extends CI_Controller
       'GUJA_BACH_ID'  => $child ,
     );
     $simpanBarang = $this->m_gudangJadi->simpanBarang($data, $saldoAkhir, $child);
-    //echo "<script> window.location='".base_url()."c_gudangJadi?message=1' </script>";
+    echo "<script> window.location='".base_url()."c_gudangJadi?message=1' </script>";
   }
 
   // nama child
@@ -54,8 +54,17 @@ class C_gudangJadi extends CI_Controller
     $str = $_GET['q'];
     $namaChild  = $this->m_gudangJadi->getChildName($str);
     ?>
-      <select name="cmbChild" onchange="showStok(this.value);">
-        <?php  
+      <select required name="cmbChild" onchange="showStok(this.value);" onmousemove ="showStok(this.value);">
+        <?php
+          if ($str == 0) {
+            ?>
+              <option value='0' selected>== Pilih Anak Barang ==</option>
+            <?php
+          }else{
+            ?>
+              <option value='0'>== Pilih Anak Barang ==</option>
+            <?php
+          }
           foreach ($namaChild as $row){
             echo "<option value='".$row['BACH_ID']."'>";
             echo $row ['BACH_NAME'];
@@ -71,8 +80,14 @@ class C_gudangJadi extends CI_Controller
   {
     $str = $_GET['q'];
     $stokAwal = $this->m_gudangJadi->getFirstStock($str);
-    ?>
-      <input type="text" name="txtSaldoAwal" id="saldoAwal" readonly value="<?php echo $stokAwal[0]['BACH_GUJA_TOTAL'] ?>"> 
-    <?php
+    if ($str == 0) {
+      ?>
+        <input type="text" name="txtSaldoAwal" id="saldoAwal" required readonly placeholder="0"> 
+      <?php
+    }else{
+      ?>
+        <input type="text" name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['BACH_GUJA_TOTAL'] ?>"> 
+      <?php
+    }
   }
 }
