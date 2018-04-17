@@ -14,8 +14,11 @@ class C_excel_pegawai extends CI_Controller
 
 	public function index()
 	{
-		$data['pegawai'] = $this->m_excel_pegawai->view();
-		$this->load->view('v_excel_pegawai',$data);
+		$data = array(
+			'content' => 'v_excel_pegawai',
+			'pegawai' => $this->m_excel_pegawai->view()
+		);
+		$this->load->view('tampilan/v_combine',$data);
 	}
 
 	public function export()
