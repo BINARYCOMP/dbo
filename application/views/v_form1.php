@@ -45,7 +45,7 @@
  		<table border="">
  			
  			<tr>
- 				<td>ID User</td>
+ 				
  				<td>ID Pegawai</td>
  				<td>Username</td>
  				<td>Password</td>
