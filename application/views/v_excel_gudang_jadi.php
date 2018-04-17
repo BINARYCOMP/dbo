@@ -11,8 +11,19 @@
 	</tr>
 
 	<?php 
-	if (!empty($gudang_jadi)) {
-		foreach ($gudang_jadi as $data) {
+	if (!empty($barang_parent)) {
+		foreach ($barang_parent as $data) {
+	?>
+	<tr>
+		<td></td>
+		<td><?php echo $data->BAPA_NAME ?></td>
+		<td></td>
+		<td></td>
+	</tr>
+
+	<?php
+		$barang_child = $this->m_excel_gudang_jadi->view2($data->BAPA_ID);
+		foreach ($barang_child as $data) {
 	?>
 	<tr>
 		<td><?php echo $no++ ?></td>
@@ -21,6 +32,7 @@
 		<td><?php echo $data->BACH_GUJA_TOTAL ?></td>
 	</tr>
 	<?php
+			} 
 		}
 	}
 	else{

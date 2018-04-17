@@ -1,4 +1,5 @@
-<h1>Data Gudang Jadi</h1><hr>
+<h1>Data Gudang Tak Jadi</h1><hr>
+<a href="<?php echo base_url('index.php/c_excel_gudang_tak_jadi/export') ?>">Export ke Excel</a><br><br>
 <?php $no=1; ?>
 
 <table border="1" cellpadding="8">
@@ -21,14 +22,14 @@
 	</tr>
 
 	<?php
-		$barang_child = $this->m_excel_gudang_jadi->view2($data->BAPA_ID);
+		$barang_child = $this->m_excel_gudang_tak_jadi->view2($data->BAPA_ID);
 		foreach ($barang_child as $data) {
 	?>
 	<tr>
 		<td><?php echo $no++ ?></td>
 		<td><?php echo $data->BACH_NAME ?></td>
 		<td><?php echo $data->SATU_NAME ?></td>
-		<td><?php echo $data->BACH_GUJA_TOTAL ?></td>
+		<td><?php echo $data->BACH_GUTA_TOTAL ?></td>
 	</tr>
 	<?php
 			} 
