@@ -40,25 +40,28 @@ class C_form1 extends CI_Controller
 	public function FormUpdate($id){
 		$dataLevel=$this->m_form1->getLevel();
 		$dataUser=$this->m_form1->viewData($id);
+		var_dump($id);
 		$data = array(
 			'dataLevel' =>$dataLevel,
 			'id'=>$id,
 			'dataUser'=>$dataUser );
+
 		$this->load->view('v_form2',$data);
 	}
-	public function UpdateData(){
+	public function UpdateData($id){
 		$idpegawai = $_POST['txtidpegawai'];
 		$username = $_POST['txtusername'];
 		$password = $_POST['txtpassword'];
 		$level = $_POST['level'];
 
 		$data = array(
+			
 			'USER_DAPE_ID' =>$idpegawai ,
 			'USER_NAME' =>$username ,
 			'USER_PASSWORD' =>$password ,
 			'USER_LEVE_ID' =>$level   
 			);
-		$dataLevel=$this->m_form1->UpdateData($data);
+		$dataLevel=$this->m_form1->UpdateData($data,$id);
 
 	}
 }
