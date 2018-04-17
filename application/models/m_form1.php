@@ -13,8 +13,20 @@ class M_form1 extends CI_Model
 		return $return;
 
 	}
+	
+		public function getUser()
+	{
+		$sql="select * from user ";
+		$query=$this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+
+	}
+
+
 		public function Insert($data)
 	{
+		
 		$this->db->insert('user',$data);
 	}
 

@@ -40,6 +40,26 @@
  		</tr>
 
  		</table>
+ 		<br>
+ 		<br>
+ 		<table border="">
+ 			<tr>
+ 				<td>ID Pegawai</td>
+ 				<td>Username</td>
+ 				<td>Password</td>
+ 				<td>Level</td>
+ 			</tr>
+ 			<?php 
+ 				foreach ($dataUser as $row) {
+ 					echo "<tr>";
+ 					echo "<td>".$row['USER_DAPE_ID']."</td>";
+ 					echo "<td>".$row['USER_NAME']."</td>";
+ 					echo "<td>".$row['USER_PASSWORD']."</td>";
+ 					echo "<td>".$row['USER_LEVE_ID']."</td>";
+ 					echo "</tr>";
+ 				}
+ 			 ?>
+ 		</table>
 
  	</form>
  

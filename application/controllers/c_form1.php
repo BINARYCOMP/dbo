@@ -11,13 +11,18 @@ class C_form1 extends CI_Controller
 	public function index()
 	{
 		
-
-		$getlevel="";
-		$dataLevel=$this->m_form1->getLevel($getlevel);
+		$dataLevel=$this->m_form1->getLevel();
+		$dataUser=$this->m_form1->getUser();
 		$data = array(
-			'dataLevel' =>$dataLevel );
+			'dataLevel' =>$dataLevel,
+			'dataUser' =>$dataUser );
+
+		
 
 		$this->load->view('v_form1', $data);
+
+
+		
 		
 	}
 	public function FormRegister()
