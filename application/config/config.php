@@ -24,11 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-<<<<<<< HEAD
+
 $config['base_url'] = 'http://localhost:/dbo/';
-=======
-$config['base_url'] = 'http://localhost/dbo/';
->>>>>>> 2001a90ecb3fe8df7ed0d633e9497f8a53143316
 
 
 /*
