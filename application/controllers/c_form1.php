@@ -39,7 +39,7 @@ class C_form1 extends CI_Controller
 	}
 	public function FormUpdate($id){
 		$dataLevel=$this->m_form1->getLevel();
-		$dataUser=$this->m_form1->Update($id);
+		$dataUser=$this->m_form1->viewData($id);
 		$data = array(
 			'dataLevel' =>$dataLevel,
 			'id'=>$id,
