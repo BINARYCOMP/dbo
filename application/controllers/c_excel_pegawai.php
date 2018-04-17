@@ -14,7 +14,7 @@ class C_excel_pegawai extends CI_Controller
 
 	public function index()
 	{
-		$data = $this->m_excel_pegawai->getPegawai();
+		$data['pegawai'] = $this->m_excel_pegawai->view();
 		$this->load->view('v_excel_pegawai',$data);
 	}
 
@@ -23,7 +23,7 @@ class C_excel_pegawai extends CI_Controller
 		header("Content-type: application/vnd-ms-excel");
 		header("Content-Disposition: attachment; filename=Data_Pegawai.xls");
 
-		$data = $this->m_excel_pegawai->getPegawai();
+		$data['pegawai'] = $this->m_excel_pegawai->view();
 		$this->load->view('export_excel_pegawai', $data);
 	}
 }

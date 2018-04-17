@@ -14,16 +14,16 @@
 
 	<?php 
 	if (!empty($pegawai)) {
-		foreach ($$pegawai as $data) {
+		foreach ($pegawai as $data) {
 	?>
 	<tr>
-		<td><?php $no++ ?></td>
-		<td><?php $data->PEGA_NAME ?></td>
-		<td><?php $data->PEGA_EMAIL ?></td>
-		<td><?php $data->PEGA_ALAMAT ?></td>
-		<td><?php $data->PEGA_NO_TLP ?></td>
-		<td><?php $data->PEGA_JENKEL ?></td>
-		<td><?php $data->PEGA_AGAM_ID ?></td>
+		<td><?php echo $no++ ?></td>
+		<td><?php echo $data->PEGA_NAME ?></td>
+		<td><?php echo $data->PEGA_EMAIL ?></td>
+		<td><?php echo $data->PEGA_ALAMAT ?></td>
+		<td><?php echo $data->PEGA_NO_TLP ?></td>
+		<td><?php echo $data->PEGA_JENKEL ?></td>
+		<td><?php echo $data->AGAM_NAME ?></td>
 	</tr>
 	<?php
 		}
