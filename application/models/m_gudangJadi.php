@@ -45,6 +45,13 @@
       $return = $query->result_array();
       return $return;
     }
+    public function getDataGudang()
+    {
+      $sql    = "select * from gudang_jadi,barang_child,barang_parent where GUJA_BACH_ID = BACH_ID AND GUJA_BAPA_ID = BAPA_ID";
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
   }
 
  ?>

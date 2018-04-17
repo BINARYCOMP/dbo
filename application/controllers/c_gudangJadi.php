@@ -23,11 +23,13 @@ class C_gudangJadi extends CI_Controller
       $message ="";
     }
 
-      $namaParent = $this->m_gudangJadi->getParentName();
+      $namaParent       = $this->m_gudangJadi->getParentName();
+      $dataGudangJadi   = $this->m_gudangJadi->getDataGudang();
       $data = array(
-        'namaParent'  => $namaParent,
-        'content'     => 'v_gudangJadi',
-        'message'     => $message,
+        'namaParent'      => $namaParent,
+        'dataGudangJadi'  => $dataGudangJadi,
+        'content'         => 'v_gudangJadi',
+        'message'         => $message,
       );
       $this->load->view('tampilan/v_combine',$data);
   }

@@ -24,10 +24,12 @@ class C_gudangTakJadi extends CI_Controller
     }
 
       $namaParent = $this->m_gudangTakJadi->getParentName();
+      $dataGudangTakJadi   = $this->m_gudangTakJadi->getDataGudang();
       $data = array(
-        'namaParent'  => $namaParent,
-        'content'     => 'v_gudangTakJadi',
-        'message'     => $message,
+        'namaParent'        => $namaParent,
+        'dataGudangTakJadi' => $dataGudangTakJadi,
+        'content'           => 'v_gudangTakJadi',
+        'message'           => $message,
       );
       $this->load->view('tampilan/v_combine',$data);
   }
