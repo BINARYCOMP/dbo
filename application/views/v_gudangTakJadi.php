@@ -1,4 +1,4 @@
-<form action="<?php echo base_url()?>c_gudangJadi/inputStok" method="POST">
+<form action="<?php echo base_url()?>c_gudangTakJadi/inputStok" method="POST">
   <a href="#"> List Barang </a><br>
       Nama Barang Parent
       <select name="cmbParent" onchange="showChild(this.value)">
@@ -31,7 +31,7 @@ function showChild(str) {
       document.getElementById("txtChild").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchChild?q="+str, true);
+  xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/searchChild?q="+str, true);
   xhttp.send();   
 }
 </script>
@@ -45,7 +45,7 @@ function showStok(str) {
       document.getElementById("txtStok").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchStok?q="+str, true);
+  xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/searchStok?q="+str, true);
   xhttp.send();   
 }
 </script>
