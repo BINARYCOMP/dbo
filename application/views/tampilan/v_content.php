@@ -5,3 +5,5 @@
 <a href="<?php echo base_url() ?>c_auditKeuangan">Audit Keuangan</a>
 <hr>
 <a href="<?php echo base_url() ?>c_login/logout">Logout</a>
+<hr>
+<a href="<?php echo base_url() ?>c_viewAgama">input Agama</a>
