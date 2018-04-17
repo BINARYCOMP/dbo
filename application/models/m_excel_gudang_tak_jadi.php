@@ -3,7 +3,7 @@
 /**
 * 
 */
-class M_excel_gudang_jadi extends CI_Model
+class M_excel_gudang_tak_jadi extends CI_Model
 {
 	
 	public function view()
