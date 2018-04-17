@@ -11,10 +11,14 @@ class C_excel_gudang_tak_jadi extends CI_Controller
 		parent::__construct();
 		$this->load->model('m_excel_gudang_tak_jadi');
 	}
+
 	public function index()
 	{
-		$data['barang_parent'] = $this->m_excel_gudang_tak_jadi->view();
-		$this->load->view('v_excel_gudang_tak_jadi',$data);
+		$data = array(
+			'content' => 'v_excel_gudang_tak_jadi',
+			'barang_parent' => $this->m_excel_gudang_tak_jadi->view()
+		);
+		$this->load->view('tampilan/v_combine',$data);
 	}
 
 	public function export()

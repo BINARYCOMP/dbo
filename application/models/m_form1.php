@@ -28,13 +28,17 @@ class M_form1 extends CI_Model
 	{
 		$this->db->insert('user',$data);
 	}
-	public function Update($data){
+	public function viewData($data){
 		$sql="select * from user where USER_ID =".$data;
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function UpdateData(){
+		$sql="update user set where USER_ID =".$data;
+		$query=$this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
 
 	}
 
