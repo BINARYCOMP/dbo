@@ -8,7 +8,7 @@
     <div style="color: red;""><?php $this->load->library('form_validation');
     echo validation_errors();?></div>
 
-   <form action="<?=base_url()?>C_pegawai/Tambah" method="post">
+   <form action="<?php echo base_url(). 'C_pegawai/Tambah'; ?>" method="post">
       <table cellpadding="8">
         <tr>
           <td>Nama</td>
