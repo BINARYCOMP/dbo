@@ -29,7 +29,7 @@
  			  		<td><?php echo $row['KEUA_KELUAR']; ?></td>
  			  		<td><?php echo $row['KEUA_SALDO']; ?></td>
  			  		<td><a href="<?php echo base_url().'c_keuangan/formUpdate/'.$row['KEUA_ID']; ?>">Edit</a></td>
- 			  		<td><a href="<?php echo base_url().'c_keuangan/delete/'.$row['KEUA_ID']; ?>">Delete</a></td>
+ 			  		<td><a href="<?php echo base_url().'c_keuangan/delete/'.$row['KEUA_ID']; ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
  			  	</tr>
  			 <?php 
  			  	}
