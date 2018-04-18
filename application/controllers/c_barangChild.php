@@ -37,7 +37,7 @@ class C_barangChild extends CI_Controller
 			'BACH_GUTA_TOTAL' =>$guta ,
 			'BACH_SATU_ID' =>$satuan ,
 			);
-		$agama=$this->m_barangChild->Insert($data);
+		$child=$this->m_barangChild->Insert($data);
 		 redirect('c_barangChild');
 	}
 	public function FormUpdate($id){
@@ -61,7 +61,7 @@ class C_barangChild extends CI_Controller
 			'BACH_GUTA_TOTAL' =>$guta ,
 			'BACH_SATU_ID' =>$satuan , 
 			);
-		$agama=$this->m_barangChild->UpdateData($id, $data);
+		$child=$this->m_barangChild->UpdateData($id, $data);
 		redirect('C_barangChild');
 
 	}
