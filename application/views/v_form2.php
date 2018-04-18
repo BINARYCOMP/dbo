@@ -4,9 +4,9 @@
 	<title>update</title>
 </head>
 <body>
-	 	<form action="<?=base_url()?>C_form1/FormUpdate" method="post">
+	 	<form action="<?php echo base_url ()?>C_form1/UpdateData/<?php  echo $dataUser[0]['USER_ID'] ?>" method="post">
  		<table>
- 		<tr>
+ 		<tr> 
  			<th>Register</th>
  		</tr>
  		<tr>
@@ -32,7 +32,7 @@
  						echo $row['LEVE_NAME'];
  					 	echo "</option>";
  						} else{
- 							echo "<option value='".$row['LEVE_ID']."'s";
+ 							echo "<option value='".$row['LEVE_ID']."'>";
 	 						echo $row['LEVE_NAME'];
 	 					 	echo "</option>";
 
@@ -43,7 +43,7 @@
  			</td>
  		</tr>
  		<tr>
- 			<td><input type="submit" name="submit" value="Simpan"></td>
+ 			<td><input type="submit" name="submit"></td>
  		</tr>
 
  		</table>

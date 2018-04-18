@@ -1,7 +1,7 @@
-<form action="<?php echo base_url()?>c_gudangJadi/inputStok" method="POST">
+<form action="<?php echo base_url()?>c_gudangTakJadi/inputStok" method="POST">
   <a href="#"> List Barang </a><br>
       Nama Barang Parent
-      <select name="cmbParent" onchange="showChild(this.value)" onclick="showChild(this.value)">
+      <select name="cmbParent" onchange="showChild(this.value)">
         <option value="0">== Pilih Induk Barang ==</option>
         <?php  
           foreach ($namaParent as $row){
@@ -9,14 +9,14 @@
             echo $row ['BAPA_NAME'];
            echo "</option>";
           }
-           ?>
+        ?>
       </select> <br>
   <a href="#"> List Anak Barang </a><br>
       Nama Barang Child
       <span id="txtChild">
         <select>
           <option>== Pilih Anak Barang ==</option>
-        </select> 
+        </select>
       </span><br>
       Saldo Awal <br>
       <span id="txtStok"> 
@@ -25,11 +25,10 @@
       Uraian <textarea name="txtUraian"></textarea><br>
       Masuk <input type="number" name="txtMasuk" id="brgMasuk" onkeyup="showSaldo()" onclick="showSaldo()" value="0"><br>
       Keluar <input type="number" name="txtKeluar" id="brgKeluar" onkeyup="showSaldo()" onclick="showSaldo()" value="0"><br>
-      Saldo Akhir <input type="number" readonly name="txtSaldoAkhir" id="saldoAkhir"><br>
+      Saldo Akhir <input type="number" disabled name="txtSaldoAkhir" id="saldoAkhir"><br>
   <input type="submit" value="Simpan">
 </form>
 <hr>
-
 <table>
   <tr>
     <th>No.</th>
@@ -42,16 +41,16 @@
   </tr>
   <?php
   $no = 1;
-  foreach ($dataGudangJadi as $row) {
+  foreach ($dataGudangTakJadi as $row) {
     ?>
       <tr>
         <td><?php echo $no ?></td>
         <td><?php echo $row['BAPA_NAME'] ?></td>
         <td><?php echo $row['BACH_NAME'] ?></td>
-        <td><?php echo $row['GUJA_URAIAN'] ?></td>
-        <td><?php echo $row['GUJA_MASUK'] ?></td>
-        <td><?php echo $row['GUJA_KELUAR'] ?></td>
-        <td><?php echo $row['BACH_GUJA_TOTAL'] ?></td>
+        <td><?php echo $row['GUTA_URAIAN'] ?></td>
+        <td><?php echo $row['GUTA_MASUK'] ?></td>
+        <td><?php echo $row['GUTA_KELUAR'] ?></td>
+        <td><?php echo $row['BACH_GUTA_TOTAL'] ?></td>
       </tr>
     <?php
     $no++;
@@ -62,7 +61,7 @@
 
 
 
-<!-- SCRIPT -->
+
 <!-- javascript child -->
 <script>
 function showChild(str) {
@@ -73,7 +72,7 @@ function showChild(str) {
       document.getElementById("txtChild").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchChild?q="+str, true);
+  xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/searchChild?q="+str, true);
   xhttp.send();   
 }
 </script>
@@ -87,7 +86,7 @@ function showStok(str) {
       document.getElementById("txtStok").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchStok?q="+str, true);
+  xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/searchStok?q="+str, true);
   xhttp.send();   
 }
 </script>

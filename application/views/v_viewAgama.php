@@ -30,6 +30,8 @@
  					echo "<tr>";
  					echo "<td>".$row['AGAM_NAME']."</td>";
  					echo "<td>".$row['AGAM_ID']."</td>";
+ 					echo "<td><a href='".base_url()."c_viewAgama/FormUpdate/".$row['AGAM_ID']."'>Edit</a></td>";
+ 					echo "<td><a href='".base_url()."c_viewAgama/delete/".$row['AGAM_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a></td>";
  					echo "</tr>";
  				}
  			 ?>
