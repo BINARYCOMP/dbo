@@ -15,16 +15,16 @@
  			<td><input type="text" name="txtnama" value="<?php echo($barangChild[0]['BACH_NAME'])?>"></td>
  		</tr>
  		<tr>
- 			<td>Harga Barang</td>
- 			<td><input type="text" name="txtharga" value="<?php echo($barangChild[0]['BACH_HARGA'])?>"></td>
- 		</tr>
- 		<tr>
  			<td>Gudang Jadi</td>
  			<td><input type="text" name="txtguja" value="<?php echo($barangChild[0]['BACH_GUJA_TOTAL'])?>"></td>
  		</tr>
  		<tr>
  			<td>Gudang Tak Jadi</td>
  			<td><input type="text" name="txtguta" value="<?php echo($barangChild[0]['BACH_GUTA_TOTAL'])?>"></td>
+ 		</tr>
+ 		<tr>
+ 			<td>Barang Parent</td>
+ 			<td><input type="text" name="txtbapa" value="<?php echo($barangChild[0]['BACH_BAPA_ID'])?>"></td>
  		</tr>
  		<tr>
  			<td>Satuan</td>
