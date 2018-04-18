@@ -35,12 +35,13 @@ class C_form1 extends CI_Controller
 			'USER_LEVE_ID' =>$level   
 			);
 		$dataLevel=$this->m_form1->Insert($data);
+		redirect('c_form1','refresh');
 		
 	}
 	public function FormUpdate($id){
 		$dataLevel=$this->m_form1->getLevel();
 		$dataUser=$this->m_form1->viewData($id);
-		var_dump($id);
+	
 		$data = array(
 			'dataLevel' =>$dataLevel,
 			'id'=>$id,
@@ -64,7 +65,9 @@ class C_form1 extends CI_Controller
 		$dataLevel=$this->m_form1->UpdateData($data,$id);
 		redirect('c_form1','refresh');
 	}
-	public function Delete(){
-		
+	public function Delete($id){
+		var_dump($id);
+		$dataDelete=$this->m_form1->Delete($id);
+		redirect('c_form1','refresh');
 	}
 }
