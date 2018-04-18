@@ -1,8 +1,8 @@
 <form action="<?php echo base_url()?>c_gudangJadi/inputStok" method="POST">
-  <a href="#"> List Barang </a><br>
-      Nama Barang Parent
+  <a href="#"> List Inventaris </a><br>
+      Nama Induk Inventaris
       <select name="cmbParent" onchange="showChild(this.value)" onclick="showChild(this.value)">
-        <option value="0">== Pilih Induk Barang ==</option>
+        <option value="0">== Pilih Induk Inventaris ==</option>
         <?php  
           foreach ($namaParent as $row){
             echo "<option value='".$row['BAPA_ID']."'>";
@@ -11,21 +11,19 @@
           }
            ?>
       </select> <br>
-  <a href="#"> List Anak Barang </a><br>
-      Nama Barang Child
+  <a href="#"> List Anak Inventaris </a><br>
+      Nama Anak Inventaris
       <span id="txtChild">
         <select>
-          <option>== Pilih Anak Barang ==</option>
+          <option>== Pilih Anak Inventaris ==</option>
         </select> 
       </span><br>
-      Saldo Awal <br>
-      <span id="txtStok"> 
-        <input type="text" name="txtSaldoAwal" required id="saldoAwal" readonly placeholder="0">  
-      </span><br><br>
-      Uraian <textarea name="txtUraian"></textarea><br>
-      Masuk <input type="number" name="txtMasuk" id="brgMasuk" onkeyup="showSaldo()" onclick="showSaldo()" value="0"><br>
-      Keluar <input type="number" name="txtKeluar" id="brgKeluar" onkeyup="showSaldo()" onclick="showSaldo()" value="0"><br>
-      Saldo Akhir <input type="number" readonly name="txtSaldoAkhir" id="saldoAkhir"><br>
+      Qty <input type="number" name="txtQty" required placeholder="0">  
+      <br>
+      Keterangan <textarea name="txtKeterangan"></textarea><br>
+      Kondisi
+      <input type="radio" name="rbtBaik" value="Baik"> Baik
+      <input type="radio" name="rbtBaik" value="Rusak"> Rusak  <br>
   <input type="submit" value="Simpan">
 </form>
 <hr>
@@ -33,8 +31,8 @@
 <table>
   <tr>
     <th>No.</th>
-    <th>Induk Barang</th>
-    <th>Anak Barang</th>
+    <th>Induk Inventaris</th>
+    <th>Anak Inventaris</th>
     <th>Uraian</th>
     <th>Masuk</th>
     <th>Keluar</th>
@@ -42,7 +40,7 @@
   </tr>
   <?php
   $no = 1;
-  foreach ($dataGudangJadi as $row) {
+  foreach ($dataInventaris as $row) {
     ?>
       <tr>
         <td><?php echo $no ?></td>

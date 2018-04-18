@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2018 at 12:11 PM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Generation Time: Apr 18, 2018 at 02:56 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `db_online`
@@ -39,8 +39,8 @@ CREATE TABLE `agama` (
 
 INSERT INTO `agama` (`AGAM_ID`, `AGAM_NAME`) VALUES
 (1, 'ISLAM'),
-(2, 'ISLAM'),
-(3, 'KRSITEN'),
+(2, 'PROTESTAN'),
+(3, 'KRISTEN'),
 (4, 'HINDU'),
 (5, 'BUDHA');
 
@@ -53,10 +53,11 @@ INSERT INTO `agama` (`AGAM_ID`, `AGAM_NAME`) VALUES
 CREATE TABLE `barang_child` (
   `BACH_ID` int(11) NOT NULL,
   `BACH_NAME` varchar(100) NOT NULL,
-  `BACH_HARGA` int(11) NOT NULL,
-  `BACH_TOTAL` int(11) NOT NULL,
+  `BACH_GUJA_TOTAL` int(11) NOT NULL,
+  `BACH_GUTA_TOTAL` int(11) NOT NULL,
   `BACH_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `BACH_SATU_ID` int(11) NOT NULL
+  `BACH_SATU_ID` int(11) NOT NULL,
+  `BACH_BAPA_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -68,8 +69,7 @@ CREATE TABLE `barang_child` (
 CREATE TABLE `barang_parent` (
   `BAPA_ID` int(11) NOT NULL,
   `BAPA_NAME` varchar(100) NOT NULL,
-  `BAPA_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `BAPA_BACH_ID` int(11) NOT NULL
+  `BAPA_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -80,6 +80,7 @@ CREATE TABLE `barang_parent` (
 
 CREATE TABLE `gudang_jadi` (
   `GUJA_ID` int(11) NOT NULL,
+  `GUJA_URAIAN` text NOT NULL,
   `GUJA_KELUAR` int(11) NOT NULL,
   `GUJA_MASUK` int(11) NOT NULL,
   `GUJA_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -95,13 +96,54 @@ CREATE TABLE `gudang_jadi` (
 
 CREATE TABLE `gudang_tak_jadi` (
   `GUTA_ID` int(11) NOT NULL,
+  `GUTA_URAIAN` text NOT NULL,
   `GUTA_KELUAR` int(11) NOT NULL,
   `GUTA_MASUK` int(11) NOT NULL,
-  `GUTA_TOTAL` int(11) NOT NULL,
   `GUTA_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `GUTA_BAPA_ID` int(11) NOT NULL,
   `GUTA_BACH_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventaris`
+--
+
+CREATE TABLE `inventaris` (
+  `INVE_ID` int(11) NOT NULL,
+  `INVE_KEADAAN` varchar(25) NOT NULL,
+  `INVE_KETERANGAN` text NOT NULL,
+  `INVE_INPA_ID` int(11) NOT NULL,
+  `INVE_INCH_ID` int(11) NOT NULL,
+  `INVE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventaris_child`
+--
+
+CREATE TABLE `inventaris_child` (
+  `INCH_ID` int(11) NOT NULL,
+  `INCH_NAME` varchar(75) NOT NULL,
+  `INCH_QTY` int(11) NOT NULL,
+  `INCH_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `INCH_INPA_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventaris_parent`
+--
+
+CREATE TABLE `inventaris_parent` (
+  `INPA_ID` int(11) NOT NULL,
+  `INPA_NAME` varchar(75) NOT NULL,
+  `INPA_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -115,6 +157,7 @@ CREATE TABLE `keuangan` (
   `KEUA_KELUAR` int(11) NOT NULL,
   `KEUA_SALDO` int(11) NOT NULL,
   `KEUA_RINCIAN` text NOT NULL,
+  `KEUA_Tanggal` date NOT NULL,
   `KEUA_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -199,7 +242,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`USER_ID`, `USER_NAME`, `USER_PASSWORD`, `USER_TIMESTAMP`, `USER_LEVE_ID`, `USER_DAPE_ID`) VALUES
-(1, 'SUDO', '28a4437b86f15b3e4204252dd75327fe', '2018-04-14 18:48:30', 5, 0);
+(1, 'SUDO', '28a4437b86f15b3e4204252dd75327fe', '2018-04-17 23:19:15', 5, 0);
 
 --
 -- Indexes for dumped tables
@@ -234,6 +277,24 @@ ALTER TABLE `gudang_jadi`
 --
 ALTER TABLE `gudang_tak_jadi`
   ADD PRIMARY KEY (`GUTA_ID`);
+
+--
+-- Indexes for table `inventaris`
+--
+ALTER TABLE `inventaris`
+  ADD PRIMARY KEY (`INVE_ID`);
+
+--
+-- Indexes for table `inventaris_child`
+--
+ALTER TABLE `inventaris_child`
+  ADD PRIMARY KEY (`INCH_ID`);
+
+--
+-- Indexes for table `inventaris_parent`
+--
+ALTER TABLE `inventaris_parent`
+  ADD PRIMARY KEY (`INPA_ID`);
 
 --
 -- Indexes for table `keuangan`
@@ -300,6 +361,24 @@ ALTER TABLE `gudang_jadi`
 --
 ALTER TABLE `gudang_tak_jadi`
   MODIFY `GUTA_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inventaris`
+--
+ALTER TABLE `inventaris`
+  MODIFY `INVE_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inventaris_child`
+--
+ALTER TABLE `inventaris_child`
+  MODIFY `INCH_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inventaris_parent`
+--
+ALTER TABLE `inventaris_parent`
+  MODIFY `INPA_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `keuangan`

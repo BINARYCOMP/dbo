@@ -2,7 +2,7 @@
   /**
    *
    */
-  class M_gudangJadi extends CI_Model
+  class M_gudangTakJadi extends CI_Model
   {
 
     function __construct()
@@ -12,9 +12,9 @@
     
     public function simpanBarang($data, $saldo, $child)
     {
-      $this->db->insert("gudang_jadi", $data);
+      $this->db->insert("gudang_tak_jadi", $data);
       $data = array(
-              'BACH_GUJA_TOTAL' => $saldo,
+              'BACH_GUTA_TOTAL' => $saldo,
       );
       $this->db->where('bach_id', $child);
       $this->db->update('barang_child', $data);
@@ -47,7 +47,7 @@
     }
     public function getDataGudang()
     {
-      $sql    = "select * from gudang_jadi,barang_child,barang_parent where GUJA_BACH_ID = BACH_ID AND GUJA_BAPA_ID = BAPA_ID";
+      $sql    = "select * from gudang_tak_jadi,barang_child,barang_parent where GUTA_BACH_ID = BACH_ID AND GUTA_BAPA_ID = BAPA_ID";
       $query  = $this->db->query($sql);
       $return = $query->result_array();
       return $return;
