@@ -14,9 +14,7 @@ class M_excel_keuangan extends CI_Model
 		return $query->result();
 		
 	  }
-
-
-
+  		
 }
 
  ?>
