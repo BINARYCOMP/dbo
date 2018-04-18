@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Stock</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="../asset1/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../asset1/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../asset1/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- DataTables -->
+  <!-- <link rel="stylesheet" href="../asset1/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"> -->
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../asset1/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../asset1/dist/css/skins/_all-skins.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <style>
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+  </style>
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+
+  <header class="main-header" >
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="dashboard.php" class="navbar-brand"><b>CORPORATE</b></a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+
+      <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
+        <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <li class="active">
+                  <a href="stock.php">
+                    <i class="fa fa-industry"></i>
+                    Stock
+                  </a>
+                </li>
+                <!-- Keuangan -->
+                <li >
+                  <a href="finance.php">
+                    <i class="fa fa-balance-scale"></i>
+                    Finance
+                  </a>
+                </li>
+                <!-- Report -->
+                <li >
+                  <a href="report.php">
+                    <i class="fa fa-bar-chart-o"></i>
+                    Report
+                  </a>
+                </li>
+                <!-- User Account Menu -->
+                <li class="dropdown user user-menu">
+                  <!-- Menu Toggle Button -->
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <!-- The user image in the navbar-->
+                    <img src="../asset1/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                    <span class="hidden-xs">Krena Aji Hidayat</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <!-- The user image in the menu -->
+                    <li class="user-header">
+                      <img src="../asset1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+                      <p>
+                        Kresna Aji Hidayat - <span> Admin </span>
+                        <small>Member since Nov. 2012</small>
+                      </p>
+                    </li>
+
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                      <div class="pull-left">
+                        <a href="dashboard.php" class="btn btn-default btn-flat">Profile</a>
+                      </div>
+                      <div class="pull-right">
+                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+
+              </ul>
+            </div>
+        <!-- /.navbar-custom-menu -->
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+
+
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+    <div class="">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+            Stock
+          <small><i class="fa fa-info"></i></small>
+          <small>Admin</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Stock</a></li>
+          <li class="active">Dashboard</li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+
+          <div class="col-md-6">
+            <div class="box box-warning">
+              <div class="box-header with-border">
+                <h3 class="box-title">Input Stock Barang Setengah Jadi</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-md-12 ">
+                    <div class="form-group">
+                      <label class="control-label">Parent</label>
+                      <div class="input-group">
+                        <!-- /btn-group -->
+                        <input type="text" class="form-control">
+                        <div class="input-group-btn">
+                          <button type="button" class="btn btn-warning">Search</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Child</label>
+                        <div class="input-group">
+                          <!-- /btn-group -->
+                          <input type="text" class="form-control">
+                          <div class="input-group-btn">
+                            <button type="button" class="btn btn-warning">Search</button>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" control-label">Stock Awal</label>
+                        <div>
+                          <input type="text" class="form-control" name="" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Keterangan</label>
+                      <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" control-label">Masuk</label>
+                        <div>
+                          <input type="text" class="form-control" name="" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Keluar</label>
+                        <div class="">
+                          <input type="text" class="form-control" name="" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" control-label">Stock Akhir</label>
+                        <div>
+                          <input type="text" class="form-control" name="" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-10">
+                          <button type="submit" class="btn btn-default pull-right">Cancel</button>
+                        </div>
+                        <div class="col-md-2">
+                          <button type="submit" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-warning" >Input Data</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+
+                <div class="modal modal-warning fade" id="modal-warning">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Input Barang Setengah Jadi</h4>
+                      </div>
+                      <div class="modal-body">
+                        <h4>Parent </h4>
+                        <h4>Child  </h4>
+                        <h4>Masuk  </h4>
+                        <h4>keluar </h4>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline">Save changes</button>
+                      </div>
+                    </div>
+                    <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
+                the plugin.
+              </div>
+            </div>
+            <!-- /.box -->
+          </div> <!-- col-input -->
+
+          <div class="col-md-6">
+            <div class="box box-success">
+              <div class="box-header with-border">
+                <h3 class="box-title">Input Stock Barang Jadi</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-md-12 ">
+                    <div class="form-group">
+                      <label class="control-label">Parent</label>
+                      <div class="input-group">
+                        <!-- /btn-group -->
+                        <input type="text" class="form-control">
+                        <div class="input-group-btn">
+                          <button type="button" class="btn btn-success ">Search</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Child</label>
+                        <div class="input-group">
+                          <!-- /btn-group -->
+                          <input type="text" class="form-control">
+                          <div class="input-group-btn">
+                            <button type="button" class="btn btn-success">Search</button>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" control-label">Stock Awal</label>
+                        <div>
+                          <input type="text" class="form-control" name="" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Keterangan</label>
+                      <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" control-label">Masuk</label>
+                        <div>
+                          <input type="text" class="form-control" name="" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Keluar</label>
+                        <div class="">
+                          <input type="text" class="form-control" name="" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" control-label">Stock Akhir</label>
+                        <div>
+                          <input type="text" class="form-control" name="" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-10">
+                          <button type="submit" class="btn btn-default pull-right">Cancel</button>
+                        </div>
+                        <div class="col-md-2">
+                          <button type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success" >Input Data</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+
+                <div class="modal modal-success fade" id="modal-success">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Input Barang Jadi</h4>
+                      </div>
+                      <div class="modal-body">
+                        <h4>Parent </h4>
+                        <h4>Child  </h4>
+                        <h4>Masuk  </h4>
+                        <h4>keluar </h4>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline">Save changes</button>
+                      </div>
+                    </div>
+                    <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
+                the plugin.
+              </div>
+            </div>
+            <!-- /.box -->
+          </div> <!-- col-input -->
+
+        </div>  <!-- /Main content -->
+
+
+        <!-- SELECT2 EXAMPLE -->
+        <div class="box box-default">
+          <div class="box-header with-border">
+            <h3 class="box-title"><span class="text-center">Stock Report</span></h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+          </div>
+
+          <!-- /.box-header -->
+          <div class="box-body">
+            <table id="example1" class="table table-bordered table-hover">
+              <thead >
+              <tr>
+                <th scope="col" rowspan="2">N0</th>
+                <th scope="col" rowspan="2">NAMA BARANG</th>
+                <th scope="col" rowspan="2">SATUAN</th>
+                <th scope="col" colspan="5">GUDANG</th>
+                <th scope="col" rowspan="2">JUMLAH</th>
+              </tr>
+              <tr>
+                <th scope="1">2</th>
+                <th scope="1">3</th>
+                <th scope="1">7</th>
+                <th scope="1">8</th>
+                <th scope="1">9</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row"></th>
+                <td colspan="8"><b><a href="description.php">SEPATU</a></b></td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>Sepatu A</td>
+                <td>Pcs</td>
+                <td>6.234</td>
+                <td>1.980</td>
+                <td>2.0908</td>
+                <td>3.757</td>
+                <td>5.532</td>
+                <td>190</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Sepatu B</td>
+                <td>Pcs</td>
+                <td>8.264</td>
+                <td>6.920</td>
+                <td>5.008</td>
+                <td>1.234</td>
+                <td>1.532</td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Sepatu C</td>
+                <td>Pcs</td>
+                <td>2.264</td>
+                <td>4.480</td>
+                <td>6.090</td>
+                <td>8.757</td>
+                <td>5.538</td>
+                <td>120</td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td colspan="8"><b><a href="description.php">BAJU</a></b></td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>Baju A</td>
+                <td>Pcs</td>
+                <td>6.234</td>
+                <td>1.980</td>
+                <td>2.0908</td>
+                <td>3.757</td>
+                <td>5.532</td>
+                <td>190</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Baju B</td>
+                <td>Pcs</td>
+                <td>8.264</td>
+                <td>6.920</td>
+                <td>5.008</td>
+                <td>1.234</td>
+                <td>1.532</td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Baju C</td>
+                <td>Pcs</td>
+                <td>2.264</td>
+                <td>4.480</td>
+                <td>6.090</td>
+                <td>8.757</td>
+                <td>5.538</td>
+                <td>120</td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td colspan="8"><b><a href="description.php">JAKET</a></b></td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>Jaket A</td>
+                <td>Pcs</td>
+                <td>6.234</td>
+                <td>1.980</td>
+                <td>2.0908</td>
+                <td>3.757</td>
+                <td>5.532</td>
+                <td>190</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jaket B</td>
+                <td>Pcs</td>
+                <td>8.264</td>
+                <td>6.920</td>
+                <td>5.008</td>
+                <td>1.234</td>
+                <td>1.532</td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Jaket C</td>
+                <td>Pcs</td>
+                <td>2.264</td>
+                <td>4.480</td>
+                <td>6.090</td>
+                <td>8.757</td>
+                <td>5.538</td>
+                <td>120</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+          <!-- /.box-body -->
+          <div class="box-footer">
+            Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
+            the plugin.
+          </div>
+        </div>
+        <!-- /.box -->
+
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class=" pull-right">
+        <strong>Copyright &copy; BINARY CORPORATE 2018.</strong> All rights
+        reserved.
+      </div>
+    </div>
+    <!-- /.container -->
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="../asset1/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../asset1/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<!-- <script src="../asset1/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../asset1/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script> -->
+<!-- SlimScroll -->
+<script src="../asset1/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../asset1/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../asset1/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../asset1/dist/js/demo.js"></script>
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Description</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="../asset1/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../asset1/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../asset1/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- DataTables -->
+  <!-- <link rel="stylesheet" href="../asset1/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"> -->
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../asset1/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../asset1/dist/css/skins/_all-skins.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <style>
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+  </style>
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+
+  <header class="main-header" >
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="dashboard.php" class="navbar-brand"><b>CORPORATE</b></a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+
+      <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
+        <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <li class="active">
+                  <a href="stock.php">
+                    <i class="fa fa-industry"></i>
+                    Stock
+                  </a>
+                </li>
+                <!-- Keuangan -->
+                <li >
+                  <a href="finance.php">
+                    <i class="fa fa-balance-scale"></i>
+                    Finance
+                  </a>
+                </li>
+                <!-- Report -->
+                <li >
+                  <a href="report.php">
+                    <i class="fa fa-bar-chart-o"></i>
+                    Report
+                  </a>
+                </li>
+                <!-- User Account Menu -->
+                <li class="dropdown user user-menu">
+                  <!-- Menu Toggle Button -->
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <!-- The user image in the navbar-->
+                    <img src="../asset1/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                    <span class="hidden-xs">Krena Aji Hidayat</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <!-- The user image in the menu -->
+                    <li class="user-header">
+                      <img src="../asset1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+                      <p>
+                        Kresna Aji Hidayat - <span> Admin </span>
+                        <small>Member since Nov. 2012</small>
+                      </p>
+                    </li>
+
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                      <div class="pull-left">
+                        <a href="dashboard.php" class="btn btn-default btn-flat">Profile</a>
+                      </div>
+                      <div class="pull-right">
+                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+
+              </ul>
+            </div>
+        <!-- /.navbar-custom-menu -->
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+
+
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+    <div class="">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+            Description
+          <small><i class="fa fa-info"></i></small>
+          <small>Admin</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Description</a></li>
+          <li class="">Stock</li>
+          <li class="active">Dashboard</li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="box box-warning box-solid">
+              <div class="box-header with-border">
+                <h3 class="box-title">Deskripsi Sepatu A</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.box-tools -->
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th colspan="9">SEPATU A</th>
+                    </tr>
+                    <tr>
+                      <th scope="col" rowspan="2">TANGGAL</th>
+                      <th scope="col" rowspan="2">KETERANGAN</th>
+                      <th scope="col" colspan="3">SGS</th>
+                      <th scope="col" colspan="3">EX CHINA</th>
+                      <th scope="col" rowspan="2">TOTAL</th>
+                    </tr>
+                    <tr>
+                      <th scope="1">MASUK</th>
+                      <th scope="1">KELUAR</th>
+                      <th scope="1">SALDO</th>
+                      <th scope="1">MASUK</th>
+                      <th scope="1">KELUAR</th>
+                      <th scope="1">SALDO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">12/01/2018</th>
+                      <td>Saldo Awal</td>
+                      <td>234</td>
+                      <td>-</td>
+                      <td>908</td>
+                      <td>757</td>
+                      <td>-</td>
+                      <td>190</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">23/02/2018</th>
+                      <td>Instalasi Kantor</td>
+                      <td>234</td>
+                      <td>980</td>
+                      <td>908</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">21/03/2018</th>
+                      <td>Perbaikan</td>
+                      <td>-</td>
+                      <td>980</td>
+                      <td>908</td>
+                      <td>757</td>
+                      <td>532</td>
+                      <td>190</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th colspan="9">Saldo Akhir Januari</th>
+                    </tr>
+                    <tr>
+                      <th scope="row">12/01/2018</th>
+                      <td>Saldo Awal</td>
+                      <td>234</td>
+                      <td>-</td>
+                      <td>908</td>
+                      <td>757</td>
+                      <td>-</td>
+                      <td>190</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">23/02/2018</th>
+                      <td>Instalasi Kantor</td>
+                      <td>234</td>
+                      <td>980</td>
+                      <td>908</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">21/03/2018</th>
+                      <td>Perbaikan</td>
+                      <td>-</td>
+                      <td>980</td>
+                      <td>908</td>
+                      <td>757</td>
+                      <td>532</td>
+                      <td>190</td>
+                      <td>10.190</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-md-12">
+            <div class="box box-success box-solid">
+              <div class="box-header with-border">
+                <h3 class="box-title">Deskripsi Sepatu B</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.box-tools -->
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th colspan="9">SEPATU B</th>
+                    </tr>
+                    <tr>
+                      <th scope="col" rowspan="2">TANGGAL</th>
+                      <th scope="col" rowspan="2">KETERANGAN</th>
+                      <th scope="col" colspan="3">SGS</th>
+                      <th scope="col" colspan="3">EX CHINA</th>
+                      <th scope="col" rowspan="2">TOTAL</th>
+                    </tr>
+                    <tr>
+                      <th scope="1">MASUK</th>
+                      <th scope="1">KELUAR</th>
+                      <th scope="1">SALDO</th>
+                      <th scope="1">MASUK</th>
+                      <th scope="1">KELUAR</th>
+                      <th scope="1">SALDO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">12/01/2018</th>
+                      <td>Saldo Awal</td>
+                      <td>234</td>
+                      <td>-</td>
+                      <td>908</td>
+                      <td>757</td>
+                      <td>-</td>
+                      <td>190</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">23/02/2018</th>
+                      <td>Instalasi Kantor</td>
+                      <td>234</td>
+                      <td>980</td>
+                      <td>908</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">21/03/2018</th>
+                      <td>Perbaikan</td>
+                      <td>-</td>
+                      <td>980</td>
+                      <td>908</td>
+                      <td>757</td>
+                      <td>532</td>
+                      <td>190</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th colspan="9">Saldo Akhir Januari</th>
+                    </tr>
+                    <tr>
+                      <th scope="row">12/01/2018</th>
+                      <td>Saldo Awal</td>
+                      <td>234</td>
+                      <td>-</td>
+                      <td>908</td>
+                      <td>757</td>
+                      <td>-</td>
+                      <td>190</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">23/02/2018</th>
+                      <td>Instalasi Kantor</td>
+                      <td>234</td>
+                      <td>980</td>
+                      <td>908</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">21/03/2018</th>
+                      <td>Perbaikan</td>
+                      <td>-</td>
+                      <td>980</td>
+                      <td>908</td>
+                      <td>757</td>
+                      <td>532</td>
+                      <td>190</td>
+                      <td>10.190</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-md-12">
+            <div class="box box-primary box-solid">
+              <div class="box-header with-border">
+                <h3 class="box-title">Deskripsi Sepatu C</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.box-tools -->
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th colspan="9">SEPATU C</th>
+                    </tr>
+                    <tr>
+                      <th scope="col" rowspan="2">TANGGAL</th>
+                      <th scope="col" rowspan="2">KETERANGAN</th>
+                      <th scope="col" colspan="3">SGS</th>
+                      <th scope="col" colspan="3">EX CHINA</th>
+                      <th scope="col" rowspan="2">TOTAL</th>
+                    </tr>
+                    <tr>
+                      <th scope="1">MASUK</th>
+                      <th scope="1">KELUAR</th>
+                      <th scope="1">SALDO</th>
+                      <th scope="1">MASUK</th>
+                      <th scope="1">KELUAR</th>
+                      <th scope="1">SALDO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">12/01/2018</th>
+                      <td>Saldo Awal</td>
+                      <td>234</td>
+                      <td>-</td>
+                      <td>908</td>
+                      <td>757</td>
+                      <td>-</td>
+                      <td>190</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">23/02/2018</th>
+                      <td>Instalasi Kantor</td>
+                      <td>234</td>
+                      <td>980</td>
+                      <td>908</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">21/03/2018</th>
+                      <td>Perbaikan</td>
+                      <td>-</td>
+                      <td>980</td>
+                      <td>908</td>
+                      <td>757</td>
+                      <td>532</td>
+                      <td>190</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th colspan="9">Saldo Akhir Januari</th>
+                    </tr>
+                    <tr>
+                      <th scope="row">12/01/2018</th>
+                      <td>Saldo Awal</td>
+                      <td>234</td>
+                      <td>-</td>
+                      <td>908</td>
+                      <td>757</td>
+                      <td>-</td>
+                      <td>190</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">23/02/2018</th>
+                      <td>Instalasi Kantor</td>
+                      <td>234</td>
+                      <td>980</td>
+                      <td>908</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>10.190</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">21/03/2018</th>
+                      <td>Perbaikan</td>
+                      <td>-</td>
+                      <td>980</td>
+                      <td>908</td>
+                      <td>757</td>
+                      <td>532</td>
+                      <td>190</td>
+                      <td>10.190</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+
+        </div>  <!-- /Main content -->
+
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class=" pull-right">
+        <strong>Copyright &copy; BINARY CORPORATE 2018.</strong> All rights
+        reserved.
+      </div>
+    </div>
+    <!-- /.container -->
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="../asset1/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../asset1/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<!-- <script src="../asset1/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../asset1/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script> -->
+<!-- SlimScroll -->
+<script src="../asset1/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../asset1/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../asset1/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../asset1/dist/js/demo.js"></script>
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+</body>
+</html>
