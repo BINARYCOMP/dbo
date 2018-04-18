@@ -35,17 +35,11 @@ class M_pegawai extends CI_Model{
     );
       $this->db->insert('pegawai',$data);
     }
-    public function edit($ID){
-      $data=array(
-        "PEGA_NAMA" => $this->input->post('I_nama'),
-        "PEGA_EMAIL" => $this->input->post('I_email'),
-        "PEGA_ALAMAT" => $this->input->post('I_alamat'),
-        "PEGA_NO_TLP" => $this->input->post('I_no_tlp'),
-        "PEGA_JENKEL" => $this->input->post('I_jenis_kelamin')
-      );
-        $this->db->where ('PEGA_ID',$ID);
-        $this->db->update('pegawai', $data);
+    public function edit($id,$data){
+      $this->db->where('PEGA_ID', $id);
+      $this->db->update('pegawai', $data);
     }
+    
     public function delete($ID){
       $this->db->where('PEGA_ID', $ID);
       $this->db->delete('pegawai');

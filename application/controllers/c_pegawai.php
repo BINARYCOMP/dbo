@@ -19,28 +19,43 @@ class C_pegawai extends CI_controller
     if($this->input->post('submit')){
       if($this->m_pegawai->validation("save")){
         $this->m_pegawai->save();
-        redirect('pegawai');
+        redirect('c_pegawai');
       }
     }
     
     $this->load->view('v_pegawai');
   }
-  
-  public function ubah($ID){
-    if($this->input->post('submit')){
-      if($this->m_pegawai->validation("update")){
-        $this->m_pegawai->edit($ID);
-        redirect('pegawai');
-      }
-    }
-    
-    $data['pegawai'] = $this->m_pegawai->view_by($ID);
-    $this->load->view('v_pegawai_ubah', $data);
-  }
+  public function ubah($id){
+		$dataPegawai=$this->m_pegawai->view_by($id);
+		$data = array(
+			'id'=>$id,
+			'dataPegawai'=>$dataPegawai,
+			'pegawai'=>$this->m_pegawai->view() 
+		);
+		$this->load->view('v_pegawai_ubah',$data);
+	}
+	public function UpdateData($id){
+		$idPegawai = $id;
+		$nama = $_POST['I_nama'];
+		$email = $_POST['I_email'];
+		$alamat = $_POST['I_alamat'];
+		$no_tlp = $_POST['I_no_tlp'];
+		$jenis_kelamin = $_POST['I_jenis_kelamin'];
+
+		$data = array(
+			'PEGA_NAME' =>$nama ,
+			'PEGA_EMAIL' =>$email ,
+			'PEGA_ALAMAT' =>$alamat ,
+			'PEGA_NO_TLP' =>$no_tlp ,
+			'PEGA_JENKEL' =>$jenis_kelamin
+			);
+		$dataLevel=$this->m_pegawai->edit($idPegawai,$data);
+		redirect('c_pegawai');
+	}
   
   public function hapus($ID){
-    $this->m_pegawai->delete($ID); // Panggil fungsi delete() yang ada di SiswaModel.php
-    redirect('siswa');
+    $this->m_pegawai->delete($ID);
+    redirect('c_pegawai');
   }
 }
  ?>
