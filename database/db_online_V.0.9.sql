@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2018 at 12:22 AM
+-- Generation Time: Apr 18, 2018 at 02:56 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `db_online`
@@ -107,6 +107,47 @@ CREATE TABLE `gudang_tak_jadi` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `inventaris`
+--
+
+CREATE TABLE `inventaris` (
+  `INVE_ID` int(11) NOT NULL,
+  `INVE_KEADAAN` varchar(25) NOT NULL,
+  `INVE_KETERANGAN` text NOT NULL,
+  `INVE_INPA_ID` int(11) NOT NULL,
+  `INVE_INCH_ID` int(11) NOT NULL,
+  `INVE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventaris_child`
+--
+
+CREATE TABLE `inventaris_child` (
+  `INCH_ID` int(11) NOT NULL,
+  `INCH_NAME` varchar(75) NOT NULL,
+  `INCH_QTY` int(11) NOT NULL,
+  `INCH_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `INCH_INPA_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventaris_parent`
+--
+
+CREATE TABLE `inventaris_parent` (
+  `INPA_ID` int(11) NOT NULL,
+  `INPA_NAME` varchar(75) NOT NULL,
+  `INPA_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `keuangan`
 --
 
@@ -116,6 +157,7 @@ CREATE TABLE `keuangan` (
   `KEUA_KELUAR` int(11) NOT NULL,
   `KEUA_SALDO` int(11) NOT NULL,
   `KEUA_RINCIAN` text NOT NULL,
+  `KEUA_Tanggal` date NOT NULL,
   `KEUA_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -200,7 +242,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`USER_ID`, `USER_NAME`, `USER_PASSWORD`, `USER_TIMESTAMP`, `USER_LEVE_ID`, `USER_DAPE_ID`) VALUES
-(1, 'SUDO', '28a4437b86f15b3e4204252dd75327fe', '2018-04-14 19:48:06', 5, 0);
+(1, 'SUDO', '28a4437b86f15b3e4204252dd75327fe', '2018-04-17 23:19:15', 5, 0);
 
 --
 -- Indexes for dumped tables
@@ -235,6 +277,24 @@ ALTER TABLE `gudang_jadi`
 --
 ALTER TABLE `gudang_tak_jadi`
   ADD PRIMARY KEY (`GUTA_ID`);
+
+--
+-- Indexes for table `inventaris`
+--
+ALTER TABLE `inventaris`
+  ADD PRIMARY KEY (`INVE_ID`);
+
+--
+-- Indexes for table `inventaris_child`
+--
+ALTER TABLE `inventaris_child`
+  ADD PRIMARY KEY (`INCH_ID`);
+
+--
+-- Indexes for table `inventaris_parent`
+--
+ALTER TABLE `inventaris_parent`
+  ADD PRIMARY KEY (`INPA_ID`);
 
 --
 -- Indexes for table `keuangan`
@@ -301,6 +361,24 @@ ALTER TABLE `gudang_jadi`
 --
 ALTER TABLE `gudang_tak_jadi`
   MODIFY `GUTA_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inventaris`
+--
+ALTER TABLE `inventaris`
+  MODIFY `INVE_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inventaris_child`
+--
+ALTER TABLE `inventaris_child`
+  MODIFY `INCH_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inventaris_parent`
+--
+ALTER TABLE `inventaris_parent`
+  MODIFY `INPA_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `keuangan`
