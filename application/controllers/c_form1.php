@@ -51,7 +51,7 @@ class C_form1 extends CI_Controller
 	public function UpdateData($id){
 		$idpegawai = $_POST['txtidpegawai'];
 		$username = $_POST['txtusername'];
-		$password = $_POST['txtpassword'];
+		$password = md5($_POST['txtpassword']);
 		$level = $_POST['level'];
 
 		$data = array(
@@ -62,6 +62,6 @@ class C_form1 extends CI_Controller
 			'USER_LEVE_ID' =>$level   
 			);
 		$dataLevel=$this->m_form1->UpdateData($data,$id);
-
+		redirect('c_form1','refresh');
 	}
 }

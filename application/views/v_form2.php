@@ -4,7 +4,7 @@
 	<title>update</title>
 </head>
 <body>
-	 	<form action="<?base_url ()?>C_form1/UpdateData/<?php  echo $dataUser[0]['USER_ID'] ?>" method="post">
+	 	<form action="<?php echo base_url ()?>C_form1/UpdateData/<?php  echo $dataUser[0]['USER_ID'] ?>" method="post">
  		<table>
  		<tr> 
  			<th>Register</th>

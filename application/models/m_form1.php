@@ -36,7 +36,7 @@ class M_form1 extends CI_Model
 		return $return;
 	}
 	public function UpdateData($data,$id){
-		$this->db->where('USER_LEVE_ID', $id);
+		$this->db->where('USER_ID', $id);
 		$this->db->update('user', $data);
 	}
 

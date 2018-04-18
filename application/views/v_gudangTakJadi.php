@@ -29,6 +29,39 @@
   <input type="submit" value="Simpan">
 </form>
 <hr>
+<table>
+  <tr>
+    <th>No.</th>
+    <th>Induk Barang</th>
+    <th>Anak Barang</th>
+    <th>Uraian</th>
+    <th>Masuk</th>
+    <th>Keluar</th>
+    <th>Saldo</th>
+  </tr>
+  <?php
+  $no = 1;
+  foreach ($dataGudangTakJadi as $row) {
+    ?>
+      <tr>
+        <td><?php echo $no ?></td>
+        <td><?php echo $row['BAPA_NAME'] ?></td>
+        <td><?php echo $row['BACH_NAME'] ?></td>
+        <td><?php echo $row['GUTA_URAIAN'] ?></td>
+        <td><?php echo $row['GUTA_MASUK'] ?></td>
+        <td><?php echo $row['GUTA_KELUAR'] ?></td>
+        <td><?php echo $row['BACH_GUTA_TOTAL'] ?></td>
+      </tr>
+    <?php
+    $no++;
+  }
+  ?>
+</table>
+
+
+
+
+
 <!-- javascript child -->
 <script>
 function showChild(str) {
