@@ -64,4 +64,7 @@ class C_form1 extends CI_Controller
 		$dataLevel=$this->m_form1->UpdateData($data,$id);
 		redirect('c_form1','refresh');
 	}
+	public function Delete(){
+		
+	}
 }
