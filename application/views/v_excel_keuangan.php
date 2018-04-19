@@ -29,12 +29,12 @@
 	</tr>
 	<?php
 		}
-	$total=$this->m_excel_keuangan->total();
+	$total = $this->m_excel_keuangan->total();
 	var_dump($total);
 	?>
 	<tr>
 		<td colspan="5">Total</td>
-		<td><?php echo intval($total) ; ?></td>
+		<td><?php echo $total[0] ?></td>
 	</tr>
 	<?php
 	}
