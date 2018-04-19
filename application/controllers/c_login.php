@@ -12,7 +12,8 @@ class C_login extends CI_controller
 	}
 	public function index()
 	{
-		$this->load->view('v_login');
+		$data = array('content' => 'v_login' );
+		$this->load->view('tampilan/v_combine',$data);
 	}
 	public function login()
 	{

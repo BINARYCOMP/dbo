@@ -15,8 +15,10 @@ class C_viewAgama extends CI_Controller
 	{
 	$agama=$this->m_viewAgama->view();
 		$data = array(
-			'agama' =>$agama);
-		$this->load->view('v_viewAgama', $data);
+			'agama' =>$agama,
+			'content'=>'v_ViewAgama'
+		);
+		$this->load->view('tampilan/v_combine', $data);
 
 	}
 	public function form()
@@ -33,8 +35,10 @@ class C_viewAgama extends CI_Controller
 	public function FormUpdate($agama){
 		$agama=$this->m_viewAgama->Update($agama);
 		$data = array(
-			'agama' =>$agama);
-		$this->load->view('v_editAgama',$data);
+			'agama' =>$agama,
+			'content' => 'v_editAgama'
+			);
+		$this->load->view('tampilan/v_combine',$data);
 	}
 	public function UpdateData($id){
 		$agama = $_POST['txtagama'];
