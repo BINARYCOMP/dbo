@@ -15,8 +15,9 @@ class C_satuan extends CI_Controller
   {
   $satuan=$this->m_satuan->view();
     $data = array(
+      'content'=>'v_satuan',
       'satuan' =>$satuan);
-    $this->load->view('v_satuan', $data);
+    $this->load->view('tampilan/v_combine', $data);
 
   }
   public function form()
@@ -33,8 +34,9 @@ class C_satuan extends CI_Controller
   public function FormUpdate($satuan){
     $satuan=$this->m_satuan->Update($satuan);
     $data = array(
+      'content'=>'v_editsatuan',
       'satuan' =>$satuan);
-    $this->load->view('v_editsatuan',$data);
+    $this->load->view('tampilan/v_combine',$data);
   }
   public function UpdateData($id){
     $satuan = $_POST['txtsatuan'];

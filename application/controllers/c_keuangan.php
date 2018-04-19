@@ -39,9 +39,10 @@ class C_keuangan extends CI_Controller
 	public function formUpdate($id){
 		$FormUpdate=$this->m_keuangan->FormUpdate($id);
 		$data = array(
-			'keuangan' => $FormUpdate   
+			'keuangan' => $FormUpdate,   
+			'content'=> 'v_editKeuangan'
 			);
-		$this->load->view('v_editKeuangan',$data);
+		$this->load->view('tampilan/v_combine',$data);
 	}
 	public function update($id)
 	{

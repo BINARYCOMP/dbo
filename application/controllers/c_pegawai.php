@@ -11,8 +11,12 @@ class C_pegawai extends CI_controller
     $this->load->model('m_pegawai');
   }
   public function index(){
-    $data['pegawai'] = $this->m_pegawai->view();
-    $this->load->view('v_pegawai',$data);
+    $dataPegawai = $this->m_pegawai->view();
+    $data = array(
+    	'content' =>'v_pegawai' ,
+    	'pegawai'=>$dataPegawai);
+    
+    $this->load->view('tampilan/v_combine',$data);
   }
   
   public function tambah(){
@@ -22,17 +26,18 @@ class C_pegawai extends CI_controller
         redirect('c_pegawai');
       }
     }
-    
-    $this->load->view('v_pegawai');
+    $data = array('content' => 'v_pegawai' );
+    $this->load->view('tampilan/v_combine',$data);
   }
   public function ubah($id){
 		$dataPegawai=$this->m_pegawai->view_by($id);
 		$data = array(
+			'content'=>'v_pegawai_ubah',
 			'id'=>$id,
 			'dataPegawai'=>$dataPegawai,
 			'pegawai'=>$this->m_pegawai->view() 
 		);
-		$this->load->view('v_pegawai_ubah',$data);
+		$this->load->view('tampilan/v_combine',$data);
 	}
 	public function UpdateData($id){
 		$idPegawai = $id;

@@ -15,8 +15,9 @@ class C_level extends CI_Controller
   {
   $level=$this->m_level->view();
     $data = array(
+      'content'=>'v_level',
       'level' =>$level);
-    $this->load->view('v_level', $data);
+    $this->load->view('tampilan/v_combine', $data);
 
   }
   public function form()
@@ -33,8 +34,9 @@ class C_level extends CI_Controller
   public function FormUpdate($level){
     $level=$this->m_level->Update($level);
     $data = array(
+      'content'=>'v_editlevel',
       'level' =>$level);
-    $this->load->view('v_editlevel',$data);
+    $this->load->view('tampilan/v_combine',$data);
   }
   public function UpdateData($id){
     $level = $_POST['txtlevel'];

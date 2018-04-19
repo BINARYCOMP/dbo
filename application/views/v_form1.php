@@ -60,8 +60,8 @@
  					echo "<td>".$row['USER_PASSWORD']."</td>";
  					echo "<td>".$row['USER_LEVE_ID']."</td>";
  					echo "<td><a href='".base_url()."C_form1/FormUpdate/".$row['USER_ID']."'>Edit</a></td>";
- 					echo "<td><a href='".base_url()."C_form1/Delete/".$row['USER_ID']."'>Delete</a></td>";
- 					
+ 					echo "<td><a href='".base_url()."C_form1/Delete/".$row['USER_ID']?>"'>Delete</a></td>;
+ 					<?php 
  			 		echo "</tr>";
  				}
  			 ?>

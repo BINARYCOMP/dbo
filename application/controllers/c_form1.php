@@ -14,10 +14,11 @@ class C_form1 extends CI_Controller
 		$dataLevel=$this->m_form1->getLevel();
 		$dataUser=$this->m_form1->getUser();
 		$data = array(
+			'content'=>'v_form1',
 			'dataLevel' =>$dataLevel,
 			'dataUser' =>$dataUser );
 
-		$this->load->view('v_form1', $data);
+		$this->load->view('tampilan/v_combine', $data);
 
 	
 	}
@@ -43,11 +44,12 @@ class C_form1 extends CI_Controller
 		$dataUser=$this->m_form1->viewData($id);
 	
 		$data = array(
+			'content'=>'v_form2',
 			'dataLevel' =>$dataLevel,
 			'id'=>$id,
 			'dataUser'=>$dataUser );
 
-		$this->load->view('v_form2',$data);
+		$this->load->view('tampilan/v_combine',$data);
 	}
 	public function UpdateData($id){
 		$idpegawai = $_POST['txtidpegawai'];
