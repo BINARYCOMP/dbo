@@ -7,3 +7,6 @@
 <a href="<?php echo base_url() ?>c_login/logout">Logout</a>
 <hr>
 <a href="<?php echo base_url() ?>c_viewAgama">input Agama</a>
+<a href="<?php echo base_url() ?>c_barangChild">barang child</a>
+<a href="<?php echo base_url() ?>c_barangParent">barang parent</a>
+<a href="<?php echo base_url() ?>c_pegawai">pegawai</a>

@@ -24,7 +24,7 @@
         </tr>
         <tr>
           <td>Telepon</td>
-          <td><input type="number" name="I_no_tlp" value="<?php echo($dataPegawai[0]['PEGA_NO_TLP'])?>"></td>
+          <td><input type="text" name="I_no_tlp" value="<?php echo($dataPegawai[0]['PEGA_NO_TLP'])?>"></td>
         </tr>
          <tr>
           <td>Jenis Kelamin</td>

@@ -24,17 +24,17 @@ class C_barangChild extends CI_Controller
 	public function form()
 	{
 		$nama = $_POST['txtnama'];
-		$harga = $_POST['txtharga'];
 		$guja = $_POST['txtguja'];
 		$guta = $_POST['txtguta'];
+		$bapa = $_POST['txtbapa'];
 		$satuan = $_POST['txtsatuan'];
 
 
 		$data = array(
 			'BACH_NAME' =>$nama ,
-			'BACH_HARGA' =>$harga ,
 			'BACH_GUJA_TOTAL' =>$guja ,
 			'BACH_GUTA_TOTAL' =>$guta ,
+			'BACH_BAPA_ID' =>$bapa ,
 			'BACH_SATU_ID' =>$satuan ,
 			);
 		$child=$this->m_barangChild->Insert($data);
@@ -49,16 +49,16 @@ class C_barangChild extends CI_Controller
 	public function UpdateData($id)
 	{
 		$nama = $_POST['txtnama'];
-		$harga = $_POST['txtharga'];
 		$guja = $_POST['txtguja'];
 		$guta = $_POST['txtguta'];
+		$bapa = $_POST['txtbapa'];
 		$satuan = $_POST['txtsatuan'];
 
 		$data = array(
 			'BACH_NAMe' =>$nama ,
-			'BACH_HARGA' =>$harga ,
 			'BACH_GUJA_TOTAL' =>$guja ,
 			'BACH_GUTA_TOTAL' =>$guta ,
+			'BACH_BAPA_ID' =>$bapa ,
 			'BACH_SATU_ID' =>$satuan , 
 			);
 		$child=$this->m_barangChild->UpdateData($id, $data);

@@ -1,29 +1,35 @@
-<form action="<?php echo base_url()?>c_gudangJadi/inputStok" method="POST">
+<form action="<?php echo base_url()?>c_inventaris/save" method="POST">
   <a href="#"> List Inventaris </a><br>
       Nama Induk Inventaris
       <select name="cmbParent" onchange="showChild(this.value)" onclick="showChild(this.value)">
-        <option value="0">== Pilih Induk Inventaris ==</option>
-        <?php  
-          foreach ($namaParent as $row){
-            echo "<option value='".$row['BAPA_ID']."'>";
-            echo $row ['BAPA_NAME'];
-           echo "</option>";
+        <option>=== Pilih Induk Inventaris ===</option>
+        <?php
+          foreach ($dataParent as $row) {
+            echo "<option value ='".$row['INPA_ID']."'> ".$row['INPA_NAME']." </option>";
           }
-           ?>
+        ?>
       </select> <br>
   <a href="#"> List Anak Inventaris </a><br>
       Nama Anak Inventaris
-      <span id="txtChild">
+      <span name="cmbChild" id="txtChild">
         <select>
           <option>== Pilih Anak Inventaris ==</option>
+          <?php
+            foreach ($dataChild as $row) {
+              echo "<option value ='".$row['INCH_ID']."'> ".$row['INCH_NAME']." </option>";
+            }
+          ?>
         </select> 
       </span><br>
-      Qty <input type="number" name="txtQty" required placeholder="0">  
+      Qty 
+      <span id="qty">
+        <input type="number" name="txtQty" required placeholder="0">  
+      </span>
       <br>
-      Keterangan <textarea name="txtKeterangan"></textarea><br>
       Kondisi
-      <input type="radio" name="rbtBaik" value="Baik"> Baik
-      <input type="radio" name="rbtBaik" value="Rusak"> Rusak  <br>
+      <input type="radio" name="rbtKondisi" value="Baik"> Baik
+      <input type="radio" name="rbtKondisi" value="Rusak"> Rusak  <br>
+      Keterangan <textarea name="txtKeterangan"></textarea><br>
   <input type="submit" value="Simpan">
 </form>
 <hr>
@@ -31,29 +37,36 @@
 <table>
   <tr>
     <th>No.</th>
-    <th>Induk Inventaris</th>
-    <th>Anak Inventaris</th>
-    <th>Uraian</th>
-    <th>Masuk</th>
-    <th>Keluar</th>
-    <th>Saldo</th>
+    <th>Nama Barang</th>
+    <th>Qty</th>
+    <th>Kondisi</th>
+    <th>Keterangan</th>
   </tr>
   <?php
   $no = 1;
   foreach ($dataInventaris as $row) {
-    ?>
-      <tr>
-        <td><?php echo $no ?></td>
-        <td><?php echo $row['BAPA_NAME'] ?></td>
-        <td><?php echo $row['BACH_NAME'] ?></td>
-        <td><?php echo $row['GUJA_URAIAN'] ?></td>
-        <td><?php echo $row['GUJA_MASUK'] ?></td>
-        <td><?php echo $row['GUJA_KELUAR'] ?></td>
-        <td><?php echo $row['BACH_GUJA_TOTAL'] ?></td>
-      </tr>
-    <?php
+      ?>
+        <tr>
+          <td><?php echo $no ?></td>
+          <td colspan="3"><?php echo $row['INPA_NAME']?></td>
+        </tr>
+      <?php
+      $getChildbyInpaId = $this->m_inventaris->getChildbyInpaId($row['INPA_ID']);
+      foreach ($getChildbyInpaId as $rowChild) {
+      ?>
+        <tr>
+          <td></td>
+          <td><?php echo $rowChild['INCH_NAME'] ?></td>
+          <td><?php echo $rowChild['INCH_QTY'] ?></td>
+      <?php
+      }
+      ?>
+          <td><?php echo $row['INVE_KEADAAN'] ?></td>
+          <td><?php echo $row['INVE_KETERANGAN'] ?></td>
+        </tr>
+      <?php
     $no++;
-  }
+    }
   ?>
 </table>
 
@@ -63,44 +76,26 @@
 <!-- SCRIPT -->
 <!-- javascript child -->
 <script>
-function showChild(str) {
-  var xhttp;
-  xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("txtChild").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchChild?q="+str, true);
-  xhttp.send();   
-}
-</script>
-<!-- javascript saldo Awal -->
-<script>
-function showStok(str) {
-  var xhttp;
-  xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("txtStok").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchStok?q="+str, true);
-  xhttp.send();   
-}
-</script>
-
-<!-- javascript saldo Akhir -->
-<script type="text/javascript">
-  function showSaldo(){
-    var saldoAwal = parseInt(document.getElementById("saldoAwal").value);
-    var brgKeluar = parseInt(document.getElementById("brgKeluar").value);
-    var brgMasuk  = parseInt(document.getElementById("brgMasuk").value);
-    var saldoAkhir;
-    saldoAkhir = saldoAwal + brgMasuk - brgKeluar;
-
-    document.getElementById("saldoAkhir").value = saldoAkhir;
+  function showChild(str) {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtChild").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "<?php echo base_url()?>c_inventaris/searchChild?q="+str, true);
+    xhttp.send();   
+  }
+  function showQty(str) {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("qty").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "<?php echo base_url()?>c_inventaris/searchQty?q="+str, true);
+    xhttp.send();   
   }
 </script>
-
-<?php echo $message ?>
