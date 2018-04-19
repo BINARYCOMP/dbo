@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Stock</title>
+  <title>Database Online | <?php if(isset($title)) $title ?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -52,7 +52,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="dashboard.html" class="navbar-brand"><b>CORPORATE</b></a>
+          <a href="<?php echo base_url()?>" class="navbar-brand"><b>Database Online</b></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -64,16 +64,16 @@
             <div class="navbar-custom-menu">
               <ul class="nav navbar-nav">
                 <li class="active">
-                  <a href="stock.html">
+                  <a href="<?php echo base_url()?>c_stok">
                     <i class="fa fa-industry"></i>
-                    Stock
+                    Stok
                   </a>
                 </li>
                 <!-- Keuangan -->
                 <li >
-                  <a href="finance.html">
+                  <a href="<?php echo base_url()?>c_keuangan">
                     <i class="fa fa-balance-scale"></i>
-                    Finance
+                    Keuangan
                   </a>
                 </li>
                 <!-- Report -->
@@ -82,6 +82,22 @@
                     <i class="fa fa-bar-chart-o"></i>
                     Report
                   </a>
+                </li>
+                <!-- Super User -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" style="cursor: pointer;" type="button" data-toggle="dropdown">Super User
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li class="dropdown-header">Barang</li>
+                      <li><a href="<?php echo base_url()?>c_barangParent">Barang Parent</a></li>
+                      <li><a href="<?php echo base_url()?>c_barangChild">Barang Child</a></li>
+                      <li class="divider"></li>
+                      <li class="dropdown-header"></li>
+                      <li><a href="<?php echo base_url()?>c_form1">Input User</a></li>
+                      <li><a href="<?php echo base_url()?>c_pegawai">Input Pegawai</a></li>
+                      <li><a href="<?php echo base_url()?>c_viewAgama">Input Agama</a></li>
+                      <li><a href="<?php echo base_url()?>c_level">Input Level</a></li>
+                    </ul>
                 </li>
                 <!-- User Account Menu -->
                 <li class="dropdown user user-menu">
@@ -106,10 +122,10 @@
                     <!-- Menu Footer-->
                     <li class="user-footer">
                       <div class="pull-left">
-                        <a href="dashboard.html" class="btn btn-default btn-flat">Profile</a>
+                        <a href="#" class="btn btn-default btn-flat">Profile</a>
                       </div>
                       <div class="pull-right">
-                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                        <a href="<?php echo base_url()?>c_login/logout" class="btn btn-default btn-flat">Sign out</a>
                       </div>
                     </li>
                   </ul>

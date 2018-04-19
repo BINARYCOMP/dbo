@@ -1,4 +1,4 @@
-<form action="<?php echo base_url()?>c_gudangJadi/inputStok" method="POST">      
+<form method="POST">      
   <!-- Main content -->
       <div class="col-md-6">
         <div class="box box-success">
@@ -17,7 +17,7 @@
                   <label class="control-label">Parent</label>
                   <div class="input-group">
                     <!-- /btn-group -->
-                    <select name="cmbParent" onchange="showChild(this.value)" class="form-control">
+                    <select name="cmbParent" onchange="showChild(this.value)" id="cmbParent" class="form-control">
                       <option value="0">== Pilih Induk Barang ==</option>
                       <?php  
                         foreach ($namaParent as $row){
@@ -61,7 +61,7 @@
 
                 <div class="form-group">
                   <label>Keterangan</label>
-                  <textarea name="txtUraian" class="form-control" rows="3" placeholder="Keterangan barang.."></textarea>
+                  <textarea name="txtUraian" class="form-control" id="keterangan" rows="3" placeholder="Keterangan barang.."></textarea>
                 </div>
 
                 <div class="form-group">
@@ -91,7 +91,7 @@
                       <button type="reset" class="btn btn-default pull-right">Cancel</button>
                     </div>
                     <div class="col-md-2">
-                      <button type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success" >Input Data</button>
+                      <button class="btn btn-success pull-right" type="button" data-toggle="modal" data-target="#modal-success" onclick="modalKonfirmasiJadi()" >Input Data</button>
                     </div>
                   </div>
                 </div>
@@ -99,13 +99,19 @@
               <!-- /.col -->
             </div>
             <!-- /.row -->
+            <div class="modal modal-success fade" id="modal-success">
+              <div class="modal-dialog" id="modalKonfirmasiJadi">
+                
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
           </div>
         </div>
       </div>
 </form>
-<hr>
 
-<table>
+<!-- <table>
   <tr>
     <th>No.</th>
     <th>Induk Barang</th>
@@ -132,7 +138,7 @@
     $no++;
   }
   ?>
-</table>
+</table> -->
 
 
 
@@ -180,4 +186,26 @@ function showStok(str) {
   }
 </script>
 
-<?php echo $message ?>
+<!-- Modal ajax -->
+<script>
+function modalKonfirmasiJadi() {
+  var xhttp;
+  var parent,child,keterangan,masuk,keluar,akhir;
+  parent      = document.getElementById('cmbParent').value;
+  child       = document.getElementById('cmbChild').value;
+  keterangan  = document.getElementById('keterangan').value;
+  masuk       = document.getElementById('brgMasuk').value;
+  keluar      = document.getElementById('brgKeluar').value;
+  akhir       = document.getElementById('saldoAkhir').value;
+  awal       = document.getElementById('saldoAwal').value;
+  
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("modalKonfirmasiJadi").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal, true);
+  xhttp.send();   
+}
+</script>
