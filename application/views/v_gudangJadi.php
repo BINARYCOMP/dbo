@@ -99,17 +99,20 @@
               <!-- /.col -->
             </div>
             <!-- /.row -->
-            <div class="modal modal-success fade" id="modal-success">
-              <div class="modal-dialog" id="modalKonfirmasiJadi">
-                
-              </div>
-              <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->
           </div>
         </div>
       </div>
 </form>
+
+
+<!-- modal konfirmasiJadi -->
+<div class="modal modal-success fade" id="modal-success">
+  <div class="modal-dialog" id="modalKonfirmasiJadi">
+    
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
 <!-- <table>
   <tr>
@@ -197,7 +200,7 @@ function modalKonfirmasiJadi() {
   masuk       = document.getElementById('brgMasuk').value;
   keluar      = document.getElementById('brgKeluar').value;
   akhir       = document.getElementById('saldoAkhir').value;
-  awal       = document.getElementById('saldoAwal').value;
+  awal        = document.getElementById('saldoAwal').value;
   
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {

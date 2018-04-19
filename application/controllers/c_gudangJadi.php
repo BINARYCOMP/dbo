@@ -35,7 +35,6 @@ class C_gudangJadi extends CI_Controller
   }
   public function inputStok()
   {
-    exit();
     $parent     = $_POST['cmbParent'];
     $child      = $_POST['cmbChild'];
     $uraian     = $_POST['txtUraian'];
@@ -50,7 +49,7 @@ class C_gudangJadi extends CI_Controller
       'GUJA_BACH_ID'  => $child ,
     );
     $simpanBarang = $this->m_gudangJadi->simpanBarang($data, $saldoAkhir, $child);
-    echo "<script> window.location='".base_url()."c_stock?message=1' </script>";
+    echo "<script> window.location='".base_url()."c_stok?message=1' </script>";
   }
 
   // nama child
@@ -132,8 +131,7 @@ class C_gudangJadi extends CI_Controller
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-outline">Save changes</button>
-          <form action="www.facebook.com" method="POST">
+          <form action="<?php echo base_url()?>c_gudangJadi/inputStok" method="POST">
             <input type="hidden" name="cmbParent" value="<?php echo $cmbParent?>">
             <input type="hidden" name="cmbChild" value="<?php echo $cmbChild?>">
             <input type="hidden" name="txtMasuk" value="<?php echo $txtMasuk?>">
