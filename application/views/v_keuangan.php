@@ -1,10 +1,10 @@
 <form action="<?php echo base_url().'c_keuangan/simpan'; ?>" method="post">
-	Tanggal <input type="date" name="dtmTanggal"> <br>
+	Tanggal <input type="date" name="dtmTanggal" required="true"> <br>
 	Uraian	<textarea name="txtUraian" required="true"></textarea><br>
-	Debet	<input type="number" name="txtDebet"><br>
-	Kredit	<input type="number" name="txtKredit"><br>
-	Saldo	<input type="number" disabled="true" name=""><br>
-	<input type="hidden" disabled="true" name="txtSaldo">
+	Debet	<input type="number" name="txtDebet" id="masuk"><br>
+	Kredit	<input type="number" name="txtKredit" id="keluar"><br>
+	Saldo	<input type="number" disabled="true" name="txtSaldo" id="saldoAkhir"><br>
+	<input type="hidden" disabled="true" name="txtSaldo" id="saldoAkhir">
 	<input type="submit" name="btnSubmit" value="Simpan">
 
 
