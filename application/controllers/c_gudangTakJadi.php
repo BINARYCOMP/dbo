@@ -58,7 +58,7 @@ class C_gudangTakJadi extends CI_Controller
     $str = $_GET['q'];
     $namaChild  = $this->m_gudangTakJadi->getChildName($str);
     ?>
-      <select name="cmbChild" onchange="showStok(this.value);"  onmousemove ="showStok(this.value);">
+      <select name="cmbChild" onchange="showStok(this.value);"  onmousemove ="showStok(this.value);" class="form-control">
         <?php
           if ($str == 0) {
             ?>
