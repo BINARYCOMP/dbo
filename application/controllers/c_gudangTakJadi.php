@@ -36,11 +36,11 @@ class C_gudangTakJadi extends CI_Controller
   public function inputStok()
   {
     $parent     = $_POST['cmbParent'];
-    $child      = $_POST['cmbChild'];
+    $child      = $_POST['cmbChildTakJadi'];
     $uraian     = $_POST['txtUraian'];
     $masuk      = $_POST['txtMasuk'];
     $keluar     = $_POST['txtKeluar'];
-    $saldoAkhir = $_POST['txtSaldoAwal'] + $masuk - $keluar;
+    $saldoAkhir = $_POST['txtSaldoAwalTakJadi'] + $masuk - $keluar;
     $data = array(
       'GUTA_KELUAR'   => $keluar ,
       'GUTA_URAIAN'   => $uraian ,
@@ -49,7 +49,7 @@ class C_gudangTakJadi extends CI_Controller
       'GUTA_BACH_ID'  => $child ,
     );
     $simpanBarang = $this->m_gudangTakJadi->simpanBarang($data, $saldoAkhir, $child);
-    echo "<script> window.location='".base_url()."c_gudangTakJadi?message=1' </script>";
+    echo "<script> window.location='".base_url()."c_stock?message=1' </script>";
   }
 
   // nama child
@@ -58,7 +58,7 @@ class C_gudangTakJadi extends CI_Controller
     $str = $_GET['q'];
     $namaChild  = $this->m_gudangTakJadi->getChildName($str);
     ?>
-      <select name="cmbChild" onchange="showStok(this.value);"  onmousemove ="showStok(this.value);" class="form-control">
+      <select name="cmbChildTakJadi" onchange="showStokTakJadi(this.value);"  onmousemove ="showStokTakJadi(this.value);" class="form-control">
         <?php
           if ($str == 0) {
             ?>
@@ -86,11 +86,11 @@ class C_gudangTakJadi extends CI_Controller
     $stokAwal = $this->m_gudangTakJadi->getFirstStock($str);
      if ($str == 0) {
       ?>
-        <input type="text" name="txtSaldoAwal" id="saldoAwal" required readonly placeholder="0"> 
+        <input type="text" name="txtSaldoAwalTakJadi" id="saldoAwalTakJadi" required readonly placeholder="0" class="form-control"> 
       <?php
     }else{
       ?>
-        <input type="text" name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['BACH_GUTA_TOTAL'] ?>"> 
+        <input type="text" name="txtSaldoAwalTakJadi" id="saldoAwalTakJadi" required readonly value="<?php echo $stokAwal[0]['BACH_GUTA_TOTAL'] ?>" class="form-control"> 
       <?php
     }
   }

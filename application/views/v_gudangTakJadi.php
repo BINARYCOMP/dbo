@@ -16,7 +16,7 @@
                       <label class="control-label">Parent</label>
                       <div class="input-group">
                         <!-- /btn-group -->
-                        <select name="cmbParent" onchange="showChild(this.value)" class="form-control">
+                        <select name="cmbParent" onchange="showChildTakJadi(this.value)" class="form-control">
                           <option value="0">== Pilih Induk Barang ==</option>
                           <?php  
                             foreach ($namaParent as $row){
@@ -36,7 +36,7 @@
                         <label class="control-label">Child</label>
                         <div class="input-group">
                           <!-- /btn-group -->
-                          <span id="txtChild">
+                          <span id="txtChildTakJadi">
                             <select class="form-control">
                               <option>== Pilih Anak Barang ==</option>
                             </select>
@@ -50,7 +50,7 @@
                     <div class="form-group">
                         <label class=" control-label">Stock Awal</label>
                         <div>
-                          <span id="txtStok"> 
+                          <span id="txtStokTakJadi"> 
                             <input type="text" name="txtSaldoAwal" required id="saldoAwal" readonly placeholder="0" class="form-control">  
                           </span>
                         </div>
@@ -64,21 +64,21 @@
                     <div class="form-group">
                         <label class=" control-label">Masuk</label>
                         <div>
-                          <input type="number" name="txtMasuk" id="brgMasuk" onkeyup="showSaldo()" onclick="showSaldo()" value="0" class="form-control">
+                          <input type="number" name="txtMasuk" id="brgMasuk" onkeyup="showSaldoTakJadi()" onclick="showSaldoTakJadi()" value="0" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label">Keluar</label>
                         <div class="">
-                          <input type="number" name="txtKeluar" id="brgKeluar" onkeyup="showSaldo()" onclick="showSaldo()" value="0" class="form-control">
+                          <input type="number" name="txtKeluar" id="brgKeluar" onkeyup="showSaldoTakJadi()" onclick="showSaldoTakJadi()" value="0" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class=" control-label">Stock Akhir</label>
                         <div>
-                          <input type="number" disabled name="txtSaldoAkhir" id="saldoAkhir" class="form-control">
+                          <input type="number" disabled name="txtsaldoAkhirTakJadi" id="saldoAkhirTakJadi" class="form-control">
                         </div>
                     </div>
 
@@ -121,20 +121,13 @@
                   <!-- /.modal-dialog -->
                 </div>
                 <!-- /.modal -->
-
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                <!-- Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-                the plugin. -->
               </div>
             </div>
             <!-- /.box -->
           </div> <!-- col-input -->
-
         </div>  <!-- /Main content -->
 </form>
-<hr>
+<!-- <hr>
 <table>
   <tr>
     <th>No.</th>
@@ -162,7 +155,7 @@
     $no++;
   }
   ?>
-</table>
+</table> -->
 
 
 
@@ -170,12 +163,12 @@
 
 <!-- javascript child -->
 <script>
-function showChild(str) {
+function showChildTakJadi(str) {
   var xhttp;
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("txtChild").innerHTML = this.responseText;
+      document.getElementById("txtChildTakJadi").innerHTML = this.responseText;
     }
   };
   xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/searchChild?q="+str, true);
@@ -184,12 +177,12 @@ function showChild(str) {
 </script>
 <!-- javascript saldo Awal -->
 <script>
-function showStok(str) {
+function showStokTakJadi(str) {
   var xhttp;
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("txtStok").innerHTML = this.responseText;
+      document.getElementById("txtStokTakJadi").innerHTML = this.responseText;
     }
   };
   xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/searchStok?q="+str, true);
@@ -199,14 +192,14 @@ function showStok(str) {
 
 <!-- javascript saldo Akhir -->
 <script type="text/javascript">
-  function showSaldo(){
+  function showSaldoTakJadi(){
     var saldoAwal = parseInt(document.getElementById("saldoAwal").value);
     var brgKeluar = parseInt(document.getElementById("brgKeluar").value);
     var brgMasuk  = parseInt(document.getElementById("brgMasuk").value);
-    var saldoAkhir;
-    saldoAkhir = saldoAwal + brgMasuk - brgKeluar;
+    var saldoAkhirTakJadi;
+    saldoAkhirTakJadi = saldoAwal + brgMasuk - brgKeluar;
 
-    document.getElementById("saldoAkhir").value = saldoAkhir;
+    document.getElementById("saldoAkhirTakJadi").value = saldoAkhirTakJadi;
   }
 </script>
 

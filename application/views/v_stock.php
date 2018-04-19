@@ -1,4 +1,3 @@
-Full Width Column --> 
   <div class="content-wrapper">
     <div class="">
       <!-- Content Header (Page header) -->
@@ -19,8 +18,8 @@ Full Width Column -->
         <div class="row">
             <!-- isi content -->
 
-            <!-- <?php $this->load->view('v_gudangJadi', $data) ?>
-            <?php $this->load->view('v_gudangTakJadi', $data) ?> -->
+            <?php $this->load->view('v_gudangJadi') ?>
+            <?php $this->load->view('v_gudangTakJadi') ?>
             
         </div>
         <!-- /.box -->

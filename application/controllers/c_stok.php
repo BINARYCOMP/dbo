@@ -9,6 +9,7 @@ class C_stok extends CI_Controller
   {
     parent::__construct();
     $this->load->model('m_gudangJadi');
+    $this->load->model('m_gudangTakJadi');
   }
   public function index()
   {
@@ -25,9 +26,11 @@ class C_stok extends CI_Controller
 
       $namaParent       = $this->m_gudangJadi->getParentName();
       $dataGudangJadi   = $this->m_gudangJadi->getDataGudang();
+      $dataGudangTakJadi   = $this->m_gudangTakJadi->getDataGudang();
       $data = array(
         'namaParent'      => $namaParent,
         'dataGudangJadi'  => $dataGudangJadi,
+        'dataGudangTakJadi' => $dataGudangTakJadi,
         'content'         => 'v_stock',
         'message'         => $message,
       );
