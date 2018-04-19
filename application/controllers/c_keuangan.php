@@ -26,12 +26,14 @@ class C_keuangan extends CI_Controller
 		$uraian 	= $_POST['txtUraian'];
 		$debet 		= $_POST['txtDebet'];
 		$kredit 	= $_POST['txtKredit'];
+		$saldo		= $_POST['txtSaldo'] + $debet - $kredit;
 
 		$data = array(
 			'KEUA_TANGGAL' 	=>$tanggal,
 			'KEUA_RINCIAN' 	=>$uraian,
 			'KEUA_MASUK'	=>$debet,
-			'KEUA_KELUAR' 	=>$kredit   
+			'KEUA_KELUAR' 	=>$kredit,
+			'KEUA_SALDO' 	=>$saldo  
 			);
 		$Insert=$this->m_keuangan->Insert($data);
 		redirect('c_keuangan');
@@ -50,12 +52,14 @@ class C_keuangan extends CI_Controller
 		$uraian 	= $_POST['txtUraian'];
 		$debet 		= $_POST['txtDebet'];
 		$kredit 	= $_POST['txtKredit'];
+		$saldo 		= $_POST['txtSaldo'] + $debet - $kredit;
 
 		$data = array(
 			'KEUA_TANGGAL' 	=>$tanggal,
 			'KEUA_RINCIAN' 	=>$uraian,
 			'KEUA_MASUK'	=>$debet,
-			'KEUA_KELUAR' 	=>$kredit   
+			'KEUA_KELUAR' 	=>$kredit,
+			'KEUA_SALDO'	=>$saldo   
 			);
 
 		$parent=$this->m_keuangan->Update($id, $data);

@@ -21,7 +21,7 @@
 	?>
 	<tr>
 		<td><?php echo $no++ ?></td>
-		<td><?php echo $fdat ?></td>
+		<td><?php echo $data->KEUA_TANGGAL ?></td>
 		<td><?php echo $data->KEUA_RINCIAN ?></td>
 		<td><?php echo $data->KEUA_MASUK ?></td>
 		<td><?php echo $data->KEUA_KELUAR ?></td>
@@ -29,6 +29,14 @@
 	</tr>
 	<?php
 		}
+	$total = $this->m_excel_keuangan->total();
+	var_dump($total);
+	?>
+	<tr>
+		<td colspan="5">Total</td>
+		<td><?php echo $total[0] ?></td>
+	</tr>
+	<?php
 	}
 	else{
 	?>
@@ -39,4 +47,5 @@
 	}
 
 	?>
+
 </table>

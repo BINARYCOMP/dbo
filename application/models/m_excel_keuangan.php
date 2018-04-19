@@ -14,6 +14,12 @@ class M_excel_keuangan extends CI_Model
 		return $query->result();
 		
 	  }
+	  public function total()
+	  {
+	  	$this->db->select_sum('KEUA_SALDO');
+	  	$query=$this->db->get('keuangan');
+		return $query->result();
+	  }
   		
 }
 
