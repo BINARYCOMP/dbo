@@ -26,7 +26,7 @@ class C_form1 extends CI_Controller
 	{
 		$idpegawai = $_POST['txtidpegawai'];
 		$username = $_POST['txtusername'];
-		$password = $_POST['txtpassword'];
+		$password = md5($_POST['txtpassword']);
 		$level = $_POST['level'];
 
 		$data = array(
