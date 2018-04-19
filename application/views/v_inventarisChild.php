@@ -8,7 +8,16 @@
  		<table>
  		<tr>
  			<td>inventaris parent</td>
- 			<td><input type="text" name="txtParent"></td>
+ 			<td>
+ 				<select name="txtParent">
+	 				<option>=== Pilih Parent ===</option>
+	 				<?php
+	 					foreach ($inventaris_parent as $row) {
+	 						echo "<option value ='".$row['INPA_ID']."'> ".$row['INPA_NAME']." </option>";
+	 					}
+	 				?>
+	 			</select>
+ 			</td>
  		</tr>
  		<tr>
  			<td>Nama </td>
@@ -27,10 +36,10 @@
  		<br>
  		<table border="">
  			<tr>
- 				<td>ID inventaris</td>
- 				<td>nama inventaris</td>
+ 				<td>ID Inventaris</td>
+ 				<td>Nama Anak Inventaris</td>
  				<td>Jumlah inventaris</td>
- 				<td>inventaris parent</td>
+ 				<td>Induk Inventaris</td>
  				<td>Tanggal Ditambahkan</td>
  				<td colspan="2">Action</td>
  			</tr>

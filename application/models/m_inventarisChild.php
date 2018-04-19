@@ -5,9 +5,17 @@
 class M_inventarisChild extends CI_Model
 {
 	
-function view()
+	function view()
 	{
 		$sql = "select * from inventaris_child,inventaris_parent where INCH_INPA_ID = INPA_ID ";
+		$query=$this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+
+	}
+	function viewParent()
+	{
+		$sql = "select * from inventaris_parent";
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

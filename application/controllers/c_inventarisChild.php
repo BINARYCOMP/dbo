@@ -13,10 +13,12 @@ class C_inventarisChild extends CI_Controller
 
 	public function index()
 	{
-		$inventarisChild=$this->m_inventarisChild->view();
+		$inventarisChild 	=$this->m_inventarisChild->view();
+		$inventarisParent	=$this->m_inventarisChild->viewParent();
 		$data = array(
-			'content' => 'v_inventarisChild',
-			'inventaris_child' =>$inventarisChild
+			'content' 			=> 'v_inventarisChild',
+			'inventaris_child' 	=> $inventarisChild,
+			'inventaris_parent'	=> $inventarisParent
 		);
 		$this->load->view('tampilan/v_combine',$data);
 
@@ -27,9 +29,9 @@ class C_inventarisChild extends CI_Controller
 		$parent		= $_POST['txtParent'];
 		$jumlah 	= $_POST['txtQty'];
 		$data = array(
-			'INCH_NAME' =>$nama ,
-			'INCH_INPA_ID' =>$parent ,
-			'INCH_QTY' =>$jumlah ,
+			'INCH_NAME' 	=> $nama ,
+			'INCH_INPA_ID' 	=> $parent ,
+			'INCH_QTY' 		=> $jumlah ,
 			);
 		$child=$this->m_inventarisChild->Insert($data);
 		 redirect('c_inventarisChild');
