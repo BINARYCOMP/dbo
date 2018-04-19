@@ -14,11 +14,6 @@
       <span name="cmbChild" id="txtChild">
         <select>
           <option>== Pilih Anak Inventaris ==</option>
-          <?php
-            foreach ($dataChild as $row) {
-              echo "<option value ='".$row['INCH_ID']."'> ".$row['INCH_NAME']." </option>";
-            }
-          ?>
         </select> 
       </span><br>
       Qty 
@@ -44,27 +39,25 @@
   </tr>
   <?php
   $no = 1;
-  foreach ($dataInventaris as $row) {
+  foreach ($dataParent as $row) {
       ?>
         <tr>
           <td><?php echo $no ?></td>
           <td colspan="3"><?php echo $row['INPA_NAME']?></td>
         </tr>
       <?php
-      $getChildbyInpaId = $this->m_inventaris->getChildbyInpaId($row['INPA_ID']);
+      $getChildbyInpaId = $this->m_inventaris->getChildJoinByInpaId($row['INPA_ID']);
       foreach ($getChildbyInpaId as $rowChild) {
-      ?>
-        <tr>
-          <td></td>
-          <td><?php echo $rowChild['INCH_NAME'] ?></td>
-          <td><?php echo $rowChild['INCH_QTY'] ?></td>
-      <?php
+          ?>
+            <tr>
+              <td></td>
+              <td><?php echo $rowChild['INCH_NAME'] ?></td>
+              <td><?php echo $rowChild['INCH_QTY'] ?></td>
+              <td><?php echo $rowChild['INVE_KEADAAN'] ?></td>
+              <td><?php echo $rowChild['INVE_KETERANGAN'] ?></td>
+            </tr>
+          <?php
       }
-      ?>
-          <td><?php echo $row['INVE_KEADAAN'] ?></td>
-          <td><?php echo $row['INVE_KETERANGAN'] ?></td>
-        </tr>
-      <?php
     $no++;
     }
   ?>

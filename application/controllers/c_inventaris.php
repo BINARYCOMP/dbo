@@ -81,7 +81,7 @@ class C_inventaris extends CI_Controller
 	    }else{
 	    	$qtyAwal 	= $data[0]['INCH_QTY'];
 	      ?>
-	        <input type="text" name="txtQty" id="qtyAwal" required readonly value="<?php echo $qtyAwal ?>"> 
+	        <input type="text" name="txtQty" id="qtyAwal" required value="<?php echo $qtyAwal ?>"> 
 	      <?php
 	    }
 	}
