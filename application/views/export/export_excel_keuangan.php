@@ -20,7 +20,7 @@
 	?>
 	<tr>
 		<td><?php echo $no++ ?></td>
-		<td><?php echo $fdat ?></td>
+		<td><?php echo $data->KEUA_TANGGAL ?></td>
 		<td><?php echo $data->KEUA_RINCIAN ?></td>
 		<td><?php echo $data->KEUA_MASUK ?></td>
 		<td><?php echo $data->KEUA_KELUAR ?></td>
