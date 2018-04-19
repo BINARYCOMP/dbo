@@ -132,7 +132,8 @@ class C_gudangJadi extends CI_Controller
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-          <form action="<?php echo base_url()?>c_gudangJadi/inputStok" method="POST">
+          <button type="button" class="btn btn-outline">Save changes</button>
+          <form action="www.facebook.com" method="POST">
             <input type="hidden" name="cmbParent" value="<?php echo $cmbParent?>">
             <input type="hidden" name="cmbChild" value="<?php echo $cmbChild?>">
             <input type="hidden" name="txtMasuk" value="<?php echo $txtMasuk?>">
