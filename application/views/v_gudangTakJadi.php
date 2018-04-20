@@ -1,4 +1,4 @@
-<form action="<?php echo base_url()?>c_gudangTakJadi/inputStok" method="POST">
+<form action="" method="POST">
   <div class="col-md-6">
             <div class="box box-warning">
               <div class="box-header with-border">
@@ -16,7 +16,7 @@
                       <label class="control-label">Parent</label>
                       <div class="input-group">
                         <!-- /btn-group -->
-                        <select name="cmbParent" onchange="showChildTakJadi(this.value)" class="form-control">
+                        <select name="cmbParent" id="cmbParentTakJadi" onchange="showChildTakJadi(this.value)" class="form-control">
                           <option value="0">== Pilih Induk Barang ==</option>
                           <?php  
                             foreach ($namaParent as $row){
@@ -51,27 +51,27 @@
                         <label class=" control-label">Stock Awal</label>
                         <div>
                           <span id="txtStokTakJadi"> 
-                            <input type="text" name="txtSaldoAwal" required id="saldoAwal" readonly placeholder="0" class="form-control">  
+                            <input type="text" name="txtSaldoAwal" required id="saldoAwalTakJadi" readonly placeholder="0" class="form-control">  
                           </span>
                         </div>
                     </div>
 
                     <div class="form-group">
                       <label>Keterangan</label>
-                      <textarea name="txtUraian" class="form-control" rows="3" placeholder="Keterangan barang ..."></textarea>
+                      <textarea name="txtUraian" id="keteranganTakJadi" class="form-control" rows="3" placeholder="Keterangan barang ..."></textarea>
                     </div>
 
                     <div class="form-group">
                         <label class=" control-label">Masuk</label>
                         <div>
-                          <input type="number" name="txtMasuk" id="brgMasuk" onkeyup="showSaldoTakJadi()" onclick="showSaldoTakJadi()" value="0" class="form-control">
+                          <input type="number" name="txtMasuk" id="brgMasukTakJadi" onkeyup="showSaldoTakJadi()" onclick="showSaldoTakJadi()" value="0" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label">Keluar</label>
                         <div class="">
-                          <input type="number" name="txtKeluar" id="brgKeluar" onkeyup="showSaldoTakJadi()" onclick="showSaldoTakJadi()" value="0" class="form-control">
+                          <input type="number" name="txtKeluar" id="brgKeluarTakJadi" onkeyup="showSaldoTakJadi()" onclick="showSaldoTakJadi()" value="0" class="form-control">
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@
                           <button type="reset" class="btn btn-default pull-right">Cancel</button>
                         </div>
                         <div class="col-md-2">
-                          <button type="submit" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-warning" >Input Data</button>
+                          <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
                         </div>
                       </div>
                     </div>
@@ -96,37 +96,21 @@
                   <!-- /.col -->
                 </div>
                 <!-- /.row -->
-
-                <div class="modal modal-warning fade" id="modal-warning">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Input Stock Barang Setengah Jadi</h4>
-                      </div>
-                      <div class="modal-body">
-                        <h4>Parent </h4>
-                        <h4>Child  </h4>
-                        <h4>Masuk  </h4>
-                        <h4>keluar </h4>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-outline">Save changes</button>
-                      </div>
-                    </div>
-                    <!-- /.modal-content -->
-                  </div>
-                  <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-              </div>
             </div>
             <!-- /.box -->
           </div> <!-- col-input -->
         </div>  <!-- /Main content -->
 </form>
+
+<!-- modal konfirmasiJadi -->
+<div class="modal modal-warning fade" id="modal-success2">
+  <div class="modal-dialog" id="modalKonfirmasiTakJadi">
+    
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <!-- <hr>
 <table>
   <tr>
@@ -193,9 +177,9 @@ function showStokTakJadi(str) {
 <!-- javascript saldo Akhir -->
 <script type="text/javascript">
   function showSaldoTakJadi(){
-    var saldoAwal = parseInt(document.getElementById("saldoAwal").value);
-    var brgKeluar = parseInt(document.getElementById("brgKeluar").value);
-    var brgMasuk  = parseInt(document.getElementById("brgMasuk").value);
+    var saldoAwal = parseInt(document.getElementById("saldoAwalTakJadi").value);
+    var brgKeluar = parseInt(document.getElementById("brgKeluarTakJadi").value);
+    var brgMasuk  = parseInt(document.getElementById("brgMasukTakJadi").value);
     var saldoAkhirTakJadi;
     saldoAkhirTakJadi = saldoAwal + brgMasuk - brgKeluar;
 
@@ -203,4 +187,26 @@ function showStokTakJadi(str) {
   }
 </script>
 
-<?php echo $message ?>
+<!-- Modal ajax -->
+<script>
+  function modalKonfirmasiTakJadi() {
+    var xhttp;
+    var parent,child,keterangan,masuk,keluar,akhir;
+    parent      = document.getElementById('cmbParentTakJadi').value;
+    child       = document.getElementById('cmbChildTakJadi').value;
+    keterangan  = document.getElementById('keteranganTakJadi').value;
+    masuk       = document.getElementById('brgMasukTakJadi').value;
+    keluar      = document.getElementById('brgKeluarTakJadi').value;
+    akhir       = document.getElementById('saldoAkhirTakJadi').value;
+    awal        = document.getElementById('saldoAwalTakJadi').value;
+    
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("modalKonfirmasiTakJadi").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal, true);
+    xhttp.send();   
+  }
+</script>

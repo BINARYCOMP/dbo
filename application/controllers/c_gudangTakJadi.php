@@ -49,7 +49,7 @@ class C_gudangTakJadi extends CI_Controller
       'GUTA_BACH_ID'  => $child ,
     );
     $simpanBarang = $this->m_gudangTakJadi->simpanBarang($data, $saldoAkhir, $child);
-    echo "<script> window.location='".base_url()."c_stock?message=1' </script>";
+    echo "<script> window.location='".base_url()."c_stok?message=1' </script>";
   }
 
   // nama child
@@ -58,7 +58,7 @@ class C_gudangTakJadi extends CI_Controller
     $str = $_GET['q'];
     $namaChild  = $this->m_gudangTakJadi->getChildName($str);
     ?>
-      <select name="cmbChildTakJadi" onchange="showStokTakJadi(this.value);"  onmousemove ="showStokTakJadi(this.value);" class="form-control">
+      <select name="cmbChildTakJadi" id="cmbChildTakJadi" onchange="showStokTakJadi(this.value);"  onmousemove ="showStokTakJadi(this.value);" class="form-control">
         <?php
           if ($str == 0) {
             ?>
@@ -93,5 +93,56 @@ class C_gudangTakJadi extends CI_Controller
         <input type="text" name="txtSaldoAwalTakJadi" id="saldoAwalTakJadi" required readonly value="<?php echo $stokAwal[0]['BACH_GUTA_TOTAL'] ?>" class="form-control"> 
       <?php
     }
+  }
+  public function modalKonfirmasi()
+  {
+    $cmbParent     = $_GET['parent'];
+    $cmbChild      = $_GET['child'];
+    $txtUraian     = $_GET['keterangan'];
+    $txtMasuk      = $_GET['masuk'];
+    $txtKeluar     = $_GET['keluar'];
+    $txtSaldoAwal  = $_GET['awal'];
+    $saldoAkhir    = $txtSaldoAwal + $txtMasuk - $txtKeluar;
+
+    ?>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Input Barang Setengah Jadi</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <tr>
+              <th>Induk Barang</th>
+              <th>Anak Barang</th>
+              <th>Barang Masuk</th>
+              <th>Barang Keluar</th>
+              <th>Saldo Akhir</th>
+            </tr>
+            <tr>
+              <td><?php echo $cmbParent ?></td>
+              <td><?php echo $cmbChild ?></td>
+              <td><?php echo $txtMasuk ?></td>
+              <td><?php echo $txtKeluar ?></td>
+              <td><?php echo $saldoAkhir ?> </td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+          <form action="<?php echo base_url()?>c_gudangTakJadi/inputStok" method="POST">
+            <input type="hidden" name="cmbParent" value="<?php echo $cmbParent?>">
+            <input type="hidden" name="cmbChildTakJadi" value="<?php echo $cmbChild?>">
+            <input type="hidden" name="txtMasuk" value="<?php echo $txtMasuk?>">
+            <input type="hidden" name="txtKeluar" value="<?php echo $txtKeluar?>">
+            <input type="hidden" name="txtUraian" value="<?php echo $txtUraian?>">
+            <input type="hidden" name="txtSaldoAwalTakJadi" value="<?php echo $txtSaldoAwal?>">
+            <input type="submit" class="btn btn-outline" value="Simpan">
+          </form>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    <?php
   }
 }

@@ -191,24 +191,24 @@ function showStok(str) {
 
 <!-- Modal ajax -->
 <script>
-function modalKonfirmasiJadi() {
-  var xhttp;
-  var parent,child,keterangan,masuk,keluar,akhir;
-  parent      = document.getElementById('cmbParent').value;
-  child       = document.getElementById('cmbChild').value;
-  keterangan  = document.getElementById('keterangan').value;
-  masuk       = document.getElementById('brgMasuk').value;
-  keluar      = document.getElementById('brgKeluar').value;
-  akhir       = document.getElementById('saldoAkhir').value;
-  awal        = document.getElementById('saldoAwal').value;
-  
-  xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("modalKonfirmasiJadi").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal, true);
-  xhttp.send();   
-}
+  function modalKonfirmasiJadi() {
+    var xhttp;
+    var parent,child,keterangan,masuk,keluar,akhir;
+    parent      = document.getElementById('cmbParent').value;
+    child       = document.getElementById('cmbChild').value;
+    keterangan  = document.getElementById('keterangan').value;
+    masuk       = document.getElementById('brgMasuk').value;
+    keluar      = document.getElementById('brgKeluar').value;
+    akhir       = document.getElementById('saldoAkhir').value;
+    awal        = document.getElementById('saldoAwal').value;
+    
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("modalKonfirmasiJadi").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal, true);
+    xhttp.send();   
+  }
 </script>
