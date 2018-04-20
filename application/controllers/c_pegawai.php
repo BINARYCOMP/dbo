@@ -13,6 +13,7 @@ class C_pegawai extends CI_controller
   public function index(){
     $dataPegawai = $this->m_pegawai->view();
     $data = array(
+    	'title'=>'Pegawai',
     	'content' =>'v_pegawai' ,
     	'pegawai'=>$dataPegawai);
     
@@ -32,6 +33,7 @@ class C_pegawai extends CI_controller
   public function ubah($id){
 		$dataPegawai=$this->m_pegawai->view_by($id);
 		$data = array(
+			'title'=>'Edit Pegawai',
 			'content'=>'v_pegawai_ubah',
 			'id'=>$id,
 			'dataPegawai'=>$dataPegawai,

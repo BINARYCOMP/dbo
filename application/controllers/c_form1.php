@@ -14,6 +14,7 @@ class C_form1 extends CI_Controller
 		$dataLevel=$this->m_form1->getLevel();
 		$dataUser=$this->m_form1->getUser();
 		$data = array(
+			'title'=>'Register',
 			'content'=>'v_form1',
 			'dataLevel' =>$dataLevel,
 			'dataUser' =>$dataUser );

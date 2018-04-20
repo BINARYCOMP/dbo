@@ -15,6 +15,7 @@ class C_keuangan extends CI_Controller
 	{
 		$keuangan=$this->m_keuangan->view();
 		$data = array(
+			'title'=>'Keuangan',
 			'content' => 'v_keuangan',
 			'keuangan' => $keuangan
 		);
@@ -41,6 +42,7 @@ class C_keuangan extends CI_Controller
 	public function formUpdate($id){
 		$FormUpdate=$this->m_keuangan->FormUpdate($id);
 		$data = array(
+			'title'=>'Edit Keuangan',
 			'keuangan' => $FormUpdate,   
 			'content'=> 'v_editKeuangan'
 			);

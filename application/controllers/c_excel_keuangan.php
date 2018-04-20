@@ -15,6 +15,7 @@ class C_excel_keuangan extends CI_Controller
 	public function index()
 	{	
 		$data = array(
+			'title'=>'Cetak Keuangan',
 			'content' => 'v_excel_keuangan',
 			'keuangan' => $this->m_excel_keuangan->view()
 		);
