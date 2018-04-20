@@ -23,7 +23,7 @@ class C_login extends CI_controller
 
 		$datalogin 	= $this->m_login->getlogin($username, $password);
 
-		$dbLevel	= $datalogin[0]["USER_LEVE_ID"];
+		$dbLevel	= $datalogin[0]["LEVE_NAME"];
 		$dbUsername = $datalogin[0]["USER_NAME"];
 		$dbPassword = $datalogin[0]["USER_PASSWORD"];
 		if ($username == $dbUsername && $password == $dbPassword) {
