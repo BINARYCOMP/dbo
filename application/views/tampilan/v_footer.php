@@ -23,20 +23,16 @@
 <script src="/dbo/assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="/dbo/assets/dist/js/adminlte.min.js"></script>
+<script src="/dbo/assets/dist/js/jquery-1.11.2.min.js"></script>
+<script src="/dbo/assets/dist/js/dataTables.bootstrap.js"></script>
+<script src="/dbo/assets/dist/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#lookup").dataTable();
+        $("#guta").dataTable();
+    });
+</script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dbo/assets/dist/js/demo.js"></script>
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
 </body>
 </html>

@@ -16,7 +16,8 @@ class C_viewAgama extends CI_Controller
 	$agama=$this->m_viewAgama->view();
 		$data = array(
 			'agama' =>$agama,
-			'content'=>'v_ViewAgama'
+			'content'=>'v_ViewAgama',
+			'title' => 'Agama'
 		);
 		$this->load->view('tampilan/v_combine', $data);
 

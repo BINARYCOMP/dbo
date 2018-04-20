@@ -33,6 +33,7 @@ class C_stok extends CI_Controller
         'dataGudangTakJadi' => $dataGudangTakJadi,
         'content'         => 'v_stock',
         'message'         => $message,
+        'title'         => 'Input Stok',
       );
       $this->load->view('tampilan/v_combine',$data);
   }
