@@ -45,6 +45,11 @@
       background: transparent !important;
     }
   </style>
+
+  <!-- jquery -->
+  <script src="/dbo/assets/dist/js/adminlte.min.js"></script>
+  <script src="/dbo/assets/dist/js/jquery-1.11.2.min.js"></script>
+ 
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
