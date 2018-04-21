@@ -18,7 +18,7 @@
                     <label class="control-label">Parent</label>
                     <div class="input-group">
                       <!-- /btn-group -->
-                      <select class="form-control" name="cmbParent" onchange="showChild(this.value)" onclick="showChild(this.value)">
+                      <select class="form-control" name="cmbParent" id="cmbParent" onchange="showChild(this.value)" onclick="showChild(this.value)">
                         <option>=== Pilih Induk Inventaris ===</option>
                         <?php
                           foreach ($dataParent as $row) {
@@ -51,7 +51,7 @@
                       <label class=" control-label">Qty</label>
                       <div>
                         <span id="qty">
-                          <input class="form-control" type="number" placeholder="Qty .." name="txtQty" required placeholder="0">  
+                          <input class="form-control" type="number" id="txtQty" placeholder="Qty .." name="txtQty" required placeholder="0">  
                         </span>
                       </div>
                   </div>
@@ -60,10 +60,10 @@
                     <label>Kondisi</label>
                     <div class="row">
                       <div class="col-md-2">
-                        <input  type="radio" name="rbtKondisi" value="Baik"> Baik
+                        <input  type="radio" id="rbtKondisiBaik" name="rbtKondisi" value="Baik"> Baik
                       </div>
                       <div class="col-md-10">
-                        <input  type="radio" name="rbtKondisi" value="Rusak"> Rusak
+                        <input  type="radio" id="rbtKondisiRusak" name="rbtKondisi" value="Rusak"> Rusak
                       </div>
                     </div>
                   </div>
@@ -71,7 +71,7 @@
                   <div class="form-group">
                       <label class=" control-label">Keterangan</label>
                       <div>
-                        <textarea name="txtKeterangan" class="form-control" rows="3" placeholder="Keterangan barang.." pla></textarea>
+                        <textarea name="txtKeterangan" class="form-control" id="txtKeterangan" rows="3" placeholder="Keterangan barang.." pla></textarea>
                       </div>
                   </div>
                   <div class="form-group">
@@ -80,7 +80,7 @@
                         <button type="reset" class="btn btn-default pull-right">Cancel</button>
                       </div>
                       <div class="col-md-2">
-                        <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
+                        <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalInvetaris()" >Input Data</button>
                       </div>
                     </div>
                   </div>
@@ -171,5 +171,27 @@
     };
     xhttp.open("GET", "<?php echo base_url()?>c_inventaris/searchQty?q="+str, true);
     xhttp.send();   
+  }
+   function modalInvetaris() {
+    var xhttp;
+    var parent,child,keterangan,masuk,qty,kondisi;
+    try{
+      parent      = document.getElementById('cmbParent').value;
+      child       = document.getElementById('cmbChild').value;
+      keterangan  = document.getElementById('txtKeterangan').value;
+      qty         = document.getElementById('txtQty').value;
+      if (document.getElementById('rbtKondisiBaik').checked) {
+        kondisi = document.getElementById('rbtKondisiBaik').value;
+      }else if (document.getElementById('rbtKondisiBuruk').checked) {
+        kondisi = document.getElementById('rbtKondisiBuruk').value;
+      }else{
+        alert('Silahkan pilih kondisi barang');
+        return;
+      }
+      
+     
+    }catch(err){
+      console.trace(err.message);
+    }
   }
 </script>

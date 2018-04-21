@@ -45,6 +45,7 @@ class C_form1 extends CI_Controller
 		$dataUser=$this->m_form1->viewData($id);
 	
 		$data = array(
+			'title'=>'Register',
 			'content'=>'v_form2',
 			'dataLevel' =>$dataLevel,
 			'id'=>$id,
@@ -69,7 +70,6 @@ class C_form1 extends CI_Controller
 		redirect('c_form1','refresh');
 	}
 	public function Delete($id){
-		var_dump($id);
 		$dataDelete=$this->m_form1->Delete($id);
 		redirect('c_form1','refresh');
 	}
