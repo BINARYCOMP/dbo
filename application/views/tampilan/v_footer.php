@@ -22,8 +22,6 @@
 <!-- FastClick -->
 <script src="/dbo/assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="/dbo/assets/dist/js/adminlte.min.js"></script>
-<script src="/dbo/assets/dist/js/jquery-1.11.2.min.js"></script>
 <script src="/dbo/assets/dist/js/dataTables.bootstrap.js"></script>
 <script src="/dbo/assets/dist/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
@@ -34,5 +32,8 @@
 </script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dbo/assets/dist/js/demo.js"></script>
+
+
+
 </body>
 </html>
