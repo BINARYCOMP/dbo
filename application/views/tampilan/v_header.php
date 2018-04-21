@@ -112,7 +112,7 @@
                     <!-- The user image in the navbar-->
                     <img src="/dbo/assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                    <span class="hidden-xs">Kresna Aji Hidayat</span>
+                    <span class="hidden-xs"><?php echo $_SESSION['username']?></span>
                   </a>
                   <ul class="dropdown-menu">
                     <!-- The user image in the menu -->
@@ -120,8 +120,8 @@
                       <img src="/dbo/assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                       <p>
-                        Kresna Aji Hidayat - <span> Admin </span>
-                        <small>Member since Nov. 2012</small>
+                        <?php echo $_SESSION['username']?> - <span> <?php echo $_SESSION['level'] ?> </span>
+                        <small>Member since <?php echo date("M, Y", strtotime( $_SESSION['since']));?></small>
                       </p>
                     </li>
 
