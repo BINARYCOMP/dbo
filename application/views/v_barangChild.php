@@ -115,7 +115,7 @@
 				 					echo "<td>".$row['BACH_BAPA_ID']."</td>";
 				 					echo "<td>".$row['BACH_TIMESTAMP']."</td>";
 				 					echo "<td><a href='".base_url()."c_barangChild/FormUpdate/".$row['BACH_ID']."'>Edit</a></td>";
-				 					echo "<td><a href='".base_url()."c_barangChild/delete/".$row['BACH_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a></td>";
+				 					echo "<td><a href='".base_url()."c_barangChild/delete/".$row['BACH_ID']."'>Delete</a></td>";
 				 					echo "</tr>";
 				 				}
 				 			 ?>

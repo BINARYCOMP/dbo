@@ -35,7 +35,7 @@ class C_level extends CI_Controller
   public function FormUpdate($level){
     $level=$this->m_level->Update($level);
     $data = array(
-      'title'=>'Level',
+      'title'=>'Edit Level',
       'content'=>'v_editlevel',
       'level' =>$level);
     $this->load->view('tampilan/v_combine',$data);
