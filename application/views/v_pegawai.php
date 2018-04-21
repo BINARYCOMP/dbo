@@ -51,7 +51,6 @@
                         <div>
                           <input class="form-control" type="Number" placeholder="Masukkan No Telepon" name="pegawai4" required placeholder="0"> 
                         </div>
-<<<<<<< HEAD
                     </div>
                     <div class="form-group">
                       <label>Jenis Kelamin</label>
@@ -68,33 +67,13 @@
                         <label class=" control-label">AGAMA ID</label>
                         <div>
                           <input class="form-control" type="Number" placeholder="Pilih ID" name="pegawai6" required placeholder="0"> 
-=======
-                        <label class=" control-label">Jenis Kelamin</label>
-                        <div class="form-group" >
-                          <span id="qty">
-                            
-                            <div class="col-md-2">
-                              <input  type="radio" name="I_jenis_kelamin" value="Laki-Laki" <?php echo set_radio('jeniskelamin', 'Laki-laki'); ?>> Pria
-                            </div>
-                            <div class="col-md-">
-                              <input  type="radio" name="I_jenis_kelamin" value="Perempuan" <?php echo set_radio('jeniskelamin', 'Perempuan'); ?>> Wanita
-                            </div>
-                            
-                          </span>
->>>>>>> b30bea2dfbe0ca9642b3e45d8040ebdfe23bfd12
-                        </div>
-                    </div>
                     <div class="form-group">
                       <div class="row">
                         <div class="col-md-10">
                           <button type="reset" class="btn btn-default pull-right">Cancel</button>
                         </div>
                         <div class="col-md-2">
-<<<<<<< HEAD
                           <button type="submit" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()">Input Data</button>
-=======
-                          <button type="submit" name="submit" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
->>>>>>> b30bea2dfbe0ca9642b3e45d8040ebdfe23bfd12
                         </div>
                       </div>
                     </div>
