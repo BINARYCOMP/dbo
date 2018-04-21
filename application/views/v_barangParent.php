@@ -81,7 +81,7 @@
 			 					echo "<td>".$row['BAPA_ID']."</td>";
 			 					echo "<td>".$row['BAPA_TIMESTAMP']."</td>";
 			 					echo "<td><a href='".base_url()."c_barangParent/FormUpdate/".$row['BAPA_ID']."'>Edit</a></td>";
-			 					echo "<td><a href='".base_url()."c_barangParent/delete/".$row['BAPA_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a></td>";
+			 					echo "<td><a href='".base_url()."c_barangParent/delete/".$row['BAPA_ID']."'>Delete</a></td>";
 			 					echo "</tr>";
 			 				}
 			 			 ?>
