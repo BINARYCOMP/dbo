@@ -14,6 +14,7 @@ class C_InventarisParent extends CI_Controller
 	{
 		$inventarisParent=$this->m_inventarisParent->view();
 		$data = array(
+			'title' => 'Inventaris Parent',
 			'content' => 'v_inventarisParent',
 			'inventarisParent' =>$inventarisParent
 		);
@@ -33,6 +34,7 @@ class C_InventarisParent extends CI_Controller
 	public function FormUpdate($id){
 		$parent=$this->m_inventarisParent->viewBy($id);
 		$data = array(
+			'title' => 'Inventaris Parent',
 			'content' => 'v_editInventarisParent',
 			'inventarisParent' =>$parent,
 		);
