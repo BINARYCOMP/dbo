@@ -17,6 +17,13 @@ class M_keuangan extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
+	public function getSaldoAkhir()
+	{
+		$sql="select * from keuangan order by KEUA_SALDO desc limit 1";
+		$query=$this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 	public function Insert($data)
 	{
 		$this->db->insert('keuangan',$data);

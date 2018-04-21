@@ -14,10 +14,12 @@ class C_keuangan extends CI_Controller
 	public function index()
 	{
 		$keuangan=$this->m_keuangan->view();
+		$getSaldoAkhir = $this->m_keuangan->getSaldoAkhir();
 		$data = array(
 			'title'=>'Keuangan',
 			'content' => 'v_keuangan',
-			'keuangan' => $keuangan
+			'keuangan' => $keuangan,
+			'saldoAkhir'=> $getSaldoAkhir
 		);
 		$this->load->view('tampilan/v_combine',$data);
 	}
@@ -27,8 +29,7 @@ class C_keuangan extends CI_Controller
 		$uraian 	= $_POST['txtUraian'];
 		$debet 		= $_POST['txtDebet'];
 		$kredit 	= $_POST['txtKredit'];
-		$saldo		= $_POST['txtSaldo'] + $debet - $kredit;
-
+		$saldo		= $_POST['txtSaldoAkhirAsli'];
 		$data = array(
 			'KEUA_TANGGAL' 	=>$tanggal,
 			'KEUA_RINCIAN' 	=>$uraian,
@@ -54,8 +55,7 @@ class C_keuangan extends CI_Controller
 		$uraian 	= $_POST['txtUraian'];
 		$debet 		= $_POST['txtDebet'];
 		$kredit 	= $_POST['txtKredit'];
-		$saldo 		= $_POST['txtSaldo'] + $debet - $kredit;
-
+		$saldo 		= $_POST['txtSaldoAkhirAsli'];
 		$data = array(
 			'KEUA_TANGGAL' 	=>$tanggal,
 			'KEUA_RINCIAN' 	=>$uraian,

@@ -37,7 +37,7 @@
 			                  <label class=" control-label">Uraian</label>
 			                  <div>
 			                    <span >
-			                      <textarea class="form-control" name="txtUraian" required="true" value="<?php echo($keuangan[0]['KEUA_RINCIAN'])?>"></textarea> 
+			                      <textarea class="form-control" name="txtUraian" required="true" ><?php echo($keuangan[0]['KEUA_RINCIAN'])?></textarea> 
 			                    </span>
 			                  </div>
 			                  <label class=" control-label">Debet</label>
@@ -86,6 +86,8 @@
 	<!-- /.row -->
 </div>
 <!-- /.content-wrapper -->
+
+
 
 
 

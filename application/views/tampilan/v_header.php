@@ -44,6 +44,19 @@
     .example-modal .modal {
       background: transparent !important;
     }
+    /*tambahan*/
+    .right{
+      text-align: right !important;
+    }
+    .center{
+      text-align: center !important;
+    }
+    thead tr th{
+      text-align: center !important; 
+    }
+    thead tr td{
+      text-align: center !important; 
+    }
   </style>
 
   <!-- jquery -->
@@ -69,7 +82,7 @@
         <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
               <ul class="nav navbar-nav">
-                <li class="active">
+                <li class="<?php if(isset($menu)) if($menu=='Stok') echo 'active'?>">
                   <a href="<?php echo base_url()?>c_stok">
                     <i class="fa fa-industry"></i>
                     Stok
