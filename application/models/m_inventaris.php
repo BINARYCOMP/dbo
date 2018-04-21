@@ -75,7 +75,7 @@ class M_inventaris extends CI_Model
 	}
 	public function setInventaris($data, $dataChild)
 	{
-		$sql = "update inventaris_child set INCH_QTY ='".$dataChild['qty']."' where INCH_ID = '".$dataChild['INCH_ID']."'";
+		$sql = "update inventaris_child set INCH_QTY ='".$dataChild['INCH_QTY']."' where INCH_ID = '".$dataChild['INCH_ID']."'";
 		$query=$this->db->query($sql);
 		$this->db->insert('inventaris', $data);
 	}
