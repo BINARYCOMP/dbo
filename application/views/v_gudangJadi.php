@@ -44,7 +44,7 @@
                         </select> 
                       </span>
                       <div class="input-group-btn">
-                        <button type="button" class="btn btn-success">Search</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">Search</button>
                       </div>
                     </div>
                 </div>
@@ -214,14 +214,14 @@ function showStok(str) {
 </script>
 
 
-<!-- modal -->
+<!-- modal  parent -->
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width:800px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Lookup Gudang Jadi</h4>
+                <h4 class="modal-title" id="myModalLabel">Lookup Barang Parent</h4>
             </div>
             <div class="modal-body">
                 <table id="lookup" class="table table-bordered table-hover table-striped">
@@ -252,14 +252,65 @@ function showStok(str) {
     </div>
 </div>
 
+
+<!-- modal child -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Lookup Barang Child</h4>
+            </div>
+            <div class="modal-body">
+                <table id="lookup" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>Id Barang</th>
+                        <th>Nama Barang</th>
+                        <th>Total Barang</th>
+                        <th>Satuan</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                      $no = 1;
+                      foreach ($namaChild as $row) {
+                        ?>
+                          <tr class="isi" data-brgChild="<?php echo $row['BACH_ID']; ?>">
+                            <!-- <td><?php echo $no ?></td> -->
+                            <td><?php echo $row['BACH_ID']?></td>
+                            <td><?php echo $row['BACH_NAME']?></td>
+                            <td><?php echo $row['BACH_GUJA_TOTAL']?></td>
+                            <td><?php echo $row['BACH_NAME']?></td>
+                            <td><?php echo $row['BACH_SATU_ID']?></td>
+                          </tr>
+                        <?php
+                        $no++;
+                      }
+                      ?>
+                    </tbody>
+                </table>  
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
 //            jika dipilih, kode obat akan masuk ke input dan modal di tutup
     $(document).on('click', '.isi', function (e) {
         // alert("test");
+
+        // parent
         document.getElementById("cmbParent").value = $(this).attr('data-brgParent');
         $('#myModal').modal('hide');
         showChild($(this).attr('data-brgParent'));
+
+        // child
+        showStok($(this).attr('data-brgChild'));
+        document.getElementById("cmbChild").value = $(this).attr('data-brgChild');
+        $('#myModal2').modal('hide');
+
     });
 
 //            tabel lookup obat
