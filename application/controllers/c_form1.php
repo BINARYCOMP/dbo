@@ -17,7 +17,9 @@ class C_form1 extends CI_Controller
 			'title'=>'Register',
 			'content'=>'v_form1',
 			'dataLevel' =>$dataLevel,
-			'dataUser' =>$dataUser );
+			'dataUser' =>$dataUser,
+			'menu'         => 'Input User' 
+		);
 
 		$this->load->view('tampilan/v_combine', $data);
 
@@ -49,7 +51,9 @@ class C_form1 extends CI_Controller
 			'content'=>'v_form2',
 			'dataLevel' =>$dataLevel,
 			'id'=>$id,
-			'dataUser'=>$dataUser );
+			'dataUser'=>$dataUser,
+			'menu'         => 'Input User' 
+		);
 
 		$this->load->view('tampilan/v_combine',$data);
 	}

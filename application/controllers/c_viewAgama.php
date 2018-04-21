@@ -17,7 +17,8 @@ class C_viewAgama extends CI_Controller
 		$data = array(
 			'agama' =>$agama,
 			'content'=>'v_ViewAgama',
-			'title' => 'Agama'
+			'title' => 'Agama',
+     	 	'menu'            => 'Input Agama'
 		);
 		$this->load->view('tampilan/v_combine', $data);
 
@@ -38,7 +39,8 @@ class C_viewAgama extends CI_Controller
 		$data = array(
 			'agama' =>$agama,
 			'content' => 'v_editAgama',
-			'title' => 'Agama'
+			'title' => 'Agama',
+     	 	'menu'            => 'Input Agama'
 			);
 		$this->load->view('tampilan/v_combine',$data);
 	}

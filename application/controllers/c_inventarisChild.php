@@ -18,7 +18,8 @@ class C_inventarisChild extends CI_Controller
 		$data = array(
 			'content' 			=> 'v_inventarisChild',
 			'inventaris_child' 	=> $inventarisChild,
-			'inventaris_parent'	=> $inventarisParent
+			'inventaris_parent'	=> $inventarisParent,
+			'menu'         		=> 'Inventaris Child'
 		);
 		$this->load->view('tampilan/v_combine',$data);
 
@@ -40,7 +41,8 @@ class C_inventarisChild extends CI_Controller
 		$child=$this->m_inventarisChild->Update($id);
 		$data = array(
 			'content' 			=> 'v_editinventarisChild',
-			'inventarisChild' =>$child
+			'inventarisChild' =>$child,
+			'menu'         		=> 'Inventaris Child'
 		);
 		$this->load->view('tampilan/v_combine',$data);
 	}

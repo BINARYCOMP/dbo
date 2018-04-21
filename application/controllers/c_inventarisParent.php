@@ -16,7 +16,8 @@ class C_InventarisParent extends CI_Controller
 		$data = array(
 			'title' => 'Inventaris Parent',
 			'content' => 'v_inventarisParent',
-			'inventarisParent' =>$inventarisParent
+			'inventarisParent' =>$inventarisParent,
+			'menu'         		=> 'Inventaris Parent'
 		);
 		$this->load->view('tampilan/v_combine',$data);
 
@@ -37,6 +38,7 @@ class C_InventarisParent extends CI_Controller
 			'title' => 'Inventaris Parent',
 			'content' => 'v_editInventarisParent',
 			'inventarisParent' =>$parent,
+			'menu'         		=> 'Inventaris Parent'
 		);
 		$this->load->view('tampilan/v_combine',$data);
 	}

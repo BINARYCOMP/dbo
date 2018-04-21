@@ -19,7 +19,8 @@ class C_keuangan extends CI_Controller
 			'title'=>'Keuangan',
 			'content' => 'v_keuangan',
 			'keuangan' => $keuangan,
-			'saldoAkhir'=> $getSaldoAkhir
+			'saldoAkhir'=> $getSaldoAkhir,
+			'menu'         => 'Keuangan'
 		);
 		$this->load->view('tampilan/v_combine',$data);
 	}
@@ -45,7 +46,8 @@ class C_keuangan extends CI_Controller
 		$data = array(
 			'title'=>'Edit Keuangan',
 			'keuangan' => $FormUpdate,   
-			'content'=> 'v_editKeuangan'
+			'content'=> 'v_editKeuangan',
+			'menu'         => 'Keuangan'
 			);
 		$this->load->view('tampilan/v_combine',$data);
 	}

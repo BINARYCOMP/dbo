@@ -20,7 +20,8 @@ class C_inventaris extends CI_Controller
 			'content' 		=> 'v_inventaris' , 
 			'dataParent' 	=> $getParent ,
 			'dataChild' 	=> $getChild , 
-			'dataInventaris' => $getInventaris
+			'dataInventaris' => $getInventaris,
+			'menu'         => 'Inventaris'
 		);
 		$this->load->view('tampilan/v_combine', $data);
 	}

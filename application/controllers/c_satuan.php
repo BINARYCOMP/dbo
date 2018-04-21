@@ -17,7 +17,9 @@ class C_satuan extends CI_Controller
     $data = array(
       'title'=>'Satuan',
       'content'=>'v_satuan',
-      'satuan' =>$satuan);
+      'satuan' =>$satuan,
+      'menu'            => 'Input Satuan'
+    );
     $this->load->view('tampilan/v_combine', $data);
 
   }
@@ -37,7 +39,9 @@ class C_satuan extends CI_Controller
     $data = array(
       'title'=>'Edit Satuan',
       'content'=>'v_editsatuan',
-      'satuan' =>$satuan);
+      'satuan' =>$satuan,
+      'menu'            => 'Input Satuan'
+    );
     $this->load->view('tampilan/v_combine',$data);
   }
   public function UpdateData($id){

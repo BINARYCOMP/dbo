@@ -17,7 +17,8 @@ class C_pegawai extends CI_Controller
 		$data = array(
 			'pegawai' =>$pegawai,
 			'content'=>'v_pegawai',
-			'title' => 'pegawai'
+			'title' => 'pegawai',
+      		'menu'            => 'Input Pegawai'
 		);
 		$this->load->view('tampilan/v_combine', $data);
 
@@ -46,7 +47,8 @@ class C_pegawai extends CI_Controller
 		$pegawai=$this->m_pegawai->Update($pegawai);
 		$data = array(
 			'pegawai' =>$pegawai,
-			'content' => 'v_editPegawai'
+			'content' => 'v_editPegawai',
+      		'menu'            => 'Input Pegawai'
 			);
 		$this->load->view('tampilan/v_combine',$data);
 	}

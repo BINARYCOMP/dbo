@@ -17,7 +17,8 @@ class C_barangChild extends CI_Controller
 		$data = array(
 			'title'=>'Anak Barang',
 			'content' => 'v_barangChild',
-			'barang_child' =>$barangChild
+			'barang_child' =>$barangChild,
+			'menu'         => 'Barang Child'
 		);
 		$this->load->view('tampilan/v_combine',$data);
 
@@ -46,7 +47,9 @@ class C_barangChild extends CI_Controller
 		$data = array(
 			'content'=>'v_editBarangChild',
 			'title'=>'Edit Anak Barang',
-			'barangChild' =>$child);
+			'barangChild' =>$child,
+			'menu'         => 'Barang Child'
+		);
 		$this->load->view('tampilan/v_combine',$data);
 	}
 	public function UpdateData($id)

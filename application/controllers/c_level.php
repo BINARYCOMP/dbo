@@ -17,7 +17,9 @@ class C_level extends CI_Controller
     $data = array(
       'title'=>'Level',
       'content'=>'v_level',
-      'level' =>$level);
+      'level' =>$level,
+      'menu'            => 'Input Level'
+    );
     $this->load->view('tampilan/v_combine', $data);
 
   }
@@ -37,7 +39,9 @@ class C_level extends CI_Controller
     $data = array(
       'title'=>'Edit Level',
       'content'=>'v_editlevel',
-      'level' =>$level);
+      'level' =>$level,
+      'menu'            => 'Input Level'
+    );
     $this->load->view('tampilan/v_combine',$data);
   }
   public function UpdateData($id){

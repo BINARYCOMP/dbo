@@ -82,28 +82,28 @@
         <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
               <ul class="nav navbar-nav">
-                <li class="<?php if(isset($menu)) if($menu=='Stok') echo 'active'?>">
+                <li class="<?php if(isset($menu)) if($menu == 'Stok') echo 'active'?>">
                   <a href="<?php echo base_url()?>c_stok">
                     <i class="fa fa-industry"></i>
                     Stok
                   </a>
                 </li>
                 <!-- Keuangan -->
-                <li >
+                <li class="<?php if(isset($menu)) if($menu == 'Keuangan') echo 'active'?>" >
                   <a href="<?php echo base_url()?>c_keuangan">
                     <i class="fa fa-balance-scale"></i>
                     Keuangan
                   </a>
                 </li>
                 <!-- Report -->
-                <li >
+                <li class="<?php if(isset($menu)) if($menu == 'Report') echo 'active'?>">
                   <a href="<?php echo base_url()?>c_excel_keuangan">
                     <i class="fa fa-bar-chart-o"></i>
                     Report
                   </a>
                 </li>
                 <!-- Super User -->
-                <li class="dropdown">
+                <li class="dropdown <?php if(isset($menu)) if($menu == 'Barang Parent' || $menu == 'Barang Child' || $menu == 'Input User' || $menu == 'Input Agama' ||  $menu == 'Input Level' ||  $menu == 'Input Satuan' ||  $menu == 'Input Pegawai'  ) echo 'active'?>">
                     <a class="dropdown-toggle" style="cursor: pointer;" type="button" data-toggle="dropdown">Super User
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -116,6 +116,7 @@
                       <li><a href="<?php echo base_url()?>c_pegawai">Input Pegawai</a></li>
                       <li><a href="<?php echo base_url()?>c_viewAgama">Input Agama</a></li>
                       <li><a href="<?php echo base_url()?>c_level">Input Level</a></li>
+                      <li><a href="<?php echo base_url()?>c_satuan">Input Satuan</a></li>
                     </ul>
                 </li>
                 <!-- User Account Menu -->
