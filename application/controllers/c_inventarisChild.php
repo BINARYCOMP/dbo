@@ -39,8 +39,10 @@ class C_inventarisChild extends CI_Controller
 	public function FormUpdate($id){
 		$child=$this->m_inventarisChild->Update($id);
 		$data = array(
-			'inventarisChild' =>$child);
-		$this->load->view('v_editinventarisChild',$data);
+			'content' 			=> 'v_editinventarisChild',
+			'inventarisChild' =>$child
+		);
+		$this->load->view('tampilan/v_combine',$data);
 	}
 	public function UpdateData($id)
 	{
