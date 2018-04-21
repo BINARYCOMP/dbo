@@ -48,17 +48,6 @@
                       </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label class=" control-label">Stock Awal</label>
-                    <div>
-                      <!-- <input type="text" class="form-control" name="" value=""> -->
-                      <span id="txtStok"> 
-                        <input type="text" name="txtSaldoAwal" required id="saldoAwal" readonly placeholder="0" class="form-control">  
-                      </span>
-                    </div>
-                </div>
-
                 <div class="form-group">
                   <label>Keterangan</label>
                   <textarea name="txtUraian" class="form-control" id="keterangan" rows="3" placeholder="Keterangan barang.."></textarea>
@@ -79,10 +68,23 @@
                 </div>
 
                 <div class="form-group">
-                    <label class=" control-label">Stock Akhir</label>
-                    <div>
-                      <input type="number" readonly name="txtSaldoAkhir" id="saldoAkhir" class="form-control">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class=" control-label">Stock Awal</label>
+                      <div>
+                        <!-- <input type="text" class="form-control" name="" value=""> -->
+                        <span id="txtStok"> 
+                          <input type="text" name="txtSaldoAwal" required id="saldoAwal" readonly placeholder="0" class="form-control">  
+                        </span>
+                      </div>
                     </div>
+                    <div class="col-md-6">
+                      <label class=" control-label">Stock Akhir</label>
+                      <div>
+                        <input type="number" readonly name="txtSaldoAkhir" id="saldoAkhir" class="form-control">
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="form-group">

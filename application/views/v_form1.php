@@ -34,22 +34,34 @@
 			                      <input class="form-control" type="text"  name="txtusername" >  
 			                    </span>
 			                  </div>
+			              </div>
+			              <div class="form-group">
 			                  <label class=" control-label">Password</label>
 			                  <div>
 			                    <span id="qty">
 			                      <input class="form-control" type="password"  name="txtpassword" >  
 			                    </span>
 			                  </div>
-			                  <label class=" control-label">ID Pegawai</label>
+			              </div>
+			              <div class="form-group">
+			                  <label class=" control-label">Nama Pegawai</label>
 			                  <div>
-			                    <span id="qty">
-			                      <input class="form-control" type="text"  name="txtidpegawai" >  
-			                    </span>
+								<select name="cmbParent" onchange="showChild(this.value)" id="cmbParent" class="form-control">
+								  <option value="0">== Pilih Pegawai ==</option>
+								  <?php  
+								    foreach ($dataPegawai as $row){
+								      echo "<option value='".$row['PEGA_ID']."'>";
+								      echo $row ['PEGA_NAME'];
+								     echo "</option>";
+								    }
+								  ?>
+								</select>  
 			                  </div>
-			                  <label class=" control-label">Level</label>
+			              </div>
+			              <div class="form-group">
+			                  <label >Level</label>
 			                  <div>
-			                    <span id="qty">
-			                      <select name="level">
+			                      <select name="level" class="form-control">
 				 					<?php  
 				 					foreach ($dataLevel as $row){
 				 						echo "<option value='".$row['LEVE_ID']."'>";
@@ -57,8 +69,7 @@
 				 					 echo "</option>";
 				 					}
 				 					 ?>
-				 				</select>  
-			                    </span>
+				 				</select>
 			                  </div>
 			              </div>
 			              <div class="form-group">

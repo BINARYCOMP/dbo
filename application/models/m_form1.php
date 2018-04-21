@@ -22,7 +22,13 @@ class M_form1 extends CI_Model
 		return $return;
 
 	}
-
+	public function getPegawai()
+	{
+		$sql="select * from pegawai ";
+		$query=$this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 
 		public function Insert($data)
 	{

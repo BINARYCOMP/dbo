@@ -11,14 +11,16 @@ class C_form1 extends CI_Controller
 	public function index()
 	{
 		
-		$dataLevel=$this->m_form1->getLevel();
-		$dataUser=$this->m_form1->getUser();
+		$dataLevel		=$this->m_form1->getLevel();
+		$dataUser		=$this->m_form1->getUser();
+		$dataPegawai 	= $this->m_form1->getPegawai();
 		$data = array(
-			'title'=>'Register',
-			'content'=>'v_form1',
-			'dataLevel' =>$dataLevel,
-			'dataUser' =>$dataUser,
-			'menu'         => 'Input User' 
+			'title'			=> 'Register',
+			'content'		=> 'v_form1',
+			'menu'         	=> 'Input User',
+			'dataLevel' 	=> $dataLevel,
+			'dataUser' 		=> $dataUser,
+			'dataPegawai'	=> $dataPegawai,
 		);
 
 		$this->load->view('tampilan/v_combine', $data);
@@ -27,13 +29,11 @@ class C_form1 extends CI_Controller
 	}
 	public function FormRegister()
 	{
-		$idpegawai = $_POST['txtidpegawai'];
 		$username = $_POST['txtusername'];
 		$password = md5($_POST['txtpassword']);
 		$level = $_POST['level'];
 
 		$data = array(
-			'USER_DAPE_ID' =>$idpegawai ,
 			'USER_NAME' =>$username ,
 			'USER_PASSWORD' =>$password ,
 			'USER_LEVE_ID' =>$level   
@@ -45,14 +45,15 @@ class C_form1 extends CI_Controller
 	public function FormUpdate($id){
 		$dataLevel=$this->m_form1->getLevel();
 		$dataUser=$this->m_form1->viewData($id);
-	
+		$dataPegawai 	= $this->m_form1->getPegawai();
 		$data = array(
 			'title'=>'Edit User',
 			'content'=>'v_form2',
 			'dataLevel' =>$dataLevel,
 			'id'=>$id,
 			'dataUser'=>$dataUser,
-			'menu'         => 'Input User' 
+			'menu'         => 'Input User',
+			'dataPegawai'	=> $dataPegawai, 
 		);
 
 		$this->load->view('tampilan/v_combine',$data);
