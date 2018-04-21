@@ -19,7 +19,7 @@ class C_inventaris extends CI_Controller
 		$data = array(
 			'content' 		=> 'v_inventaris' , 
 			'dataParent' 	=> $getParent ,
-			'dataChild' 		=> $getChild , 
+			'dataChild' 	=> $getChild , 
 			'dataInventaris' => $getInventaris
 		);
 		$this->load->view('tampilan/v_combine', $data);
@@ -35,14 +35,14 @@ class C_inventaris extends CI_Controller
 		$data = array(
 			'INVE_INCH_ID' 		=> $child , 
 			'INVE_INPA_ID' 		=> $parent ,
-			'INVE_KETERANGAN' 	=> $keterangan ,  
+			'INVE_KETERANGAN' 	=> $keterangan , 
 			'INVE_KEADAAN' 		=> $kondisi 
 		);
 		$dataChild = array(
-			'qty' => $qty , 
+			'INCH_QTY' => $qty , 
 			'INCH_ID' => $child 
 		);
-		$this->m_inventaris->setInventaris($data,$dataChild);
+		$setInventaris = $this->m_inventaris->setInventaris($data,$dataChild);
 		redirect('c_inventaris','refresh');
 	}
 	public function searchChild()
@@ -76,59 +76,56 @@ class C_inventaris extends CI_Controller
 	    $data 		= $this->m_inventaris->getChildById($str);
 	    if ($str == 0) {
 	      ?>
-	        <input type="text" name="txtQty" id="qtyAwal" id="txtQty" class="form-control" required readonly placeholder="0"> 
+	        <input type="text" name="txtQty" id="txtQty" class="form-control" required readonly placeholder="0"> 
 	      <?php
 	    }else{
 	    	$qtyAwal 	= $data[0]['INCH_QTY'];
 	      ?>
-	        <input type="text" name="txtQty" id="qtyAwal" id="txtQty" class="form-control" required value="<?php echo $qtyAwal ?>"> 
+	        <input type="text" name="txtQty" id="txtQty" class="form-control" required value="<?php echo $qtyAwal ?>"> 
 	      <?php
 	    }
 	}
-	public function modalKonfirmasi()
+	public function modalInventaris()
 	{
-		$cmbParent     = $_GET['parent'];
-		$cmbChild      = $_GET['child'];
-		$txtUraian     = $_GET['keterangan'];
-		$txtMasuk      = $_GET['masuk'];
-		$txtKeluar     = $_GET['keluar'];
-		$txtSaldoAwal  = $_GET['awal'];
-		$saldoAkhir    = $txtSaldoAwal + $txtMasuk - $txtKeluar;
+		$cmbParent 		= $_GET['parent'];
+		$cmbChild 		= $_GET['child'];
+		$txtQty 		= $_GET['qty'];
+		$rbtKondisi 	= $_GET['kondisi'];
+		$txtKeterangan	= $_GET['keterangan'];
 
 		?>
 		  <div class="modal-content">
 		    <div class="modal-header">
 		      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		        <span aria-hidden="true">&times;</span></button>
-		      <h4 class="modal-title">Input Barang Setengah Jadi</h4>
+		      <h4 class="modal-title">Input Inventaris</h4>
 		    </div>
 		    <div class="modal-body">
 		      <table class="table">
 		        <tr>
 		          <th>Induk Barang</th>
 		          <th>Anak Barang</th>
-		          <th>Barang Masuk</th>
-		          <th>Barang Keluar</th>
-		          <th>Saldo Akhir</th>
+		          <th>Qty</th>
+		          <th>Kondisi</th>
+		          <th>Keterangan</th>
 		        </tr>
 		        <tr>
 		          <td><?php echo $cmbParent ?></td>
 		          <td><?php echo $cmbChild ?></td>
-		          <td><?php echo $txtMasuk ?></td>
-		          <td><?php echo $txtKeluar ?></td>
-		          <td><?php echo $saldoAkhir ?> </td>
+		          <td><?php echo $txtQty ?></td>
+		          <td><?php echo $rbtKondisi ?></td>
+		          <td><?php echo $txtKeterangan ?></td>
 		        </tr>
 		      </table>
 		    </div>
 		    <div class="modal-footer">
 		      <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-		      <form action="<?php echo base_url()?>c_gudangJadi/inputStok" method="POST">
+		      <form action="<?php echo base_url()?>c_inventaris/save" method="POST">
 		        <input type="hidden" name="cmbParent" value="<?php echo $cmbParent?>">
 		        <input type="hidden" name="cmbChild" value="<?php echo $cmbChild?>">
-		        <input type="hidden" name="txtMasuk" value="<?php echo $txtMasuk?>">
-		        <input type="hidden" name="txtKeluar" value="<?php echo $txtKeluar?>">
-		        <input type="hidden" name="txtUraian" value="<?php echo $txtUraian?>">
-		        <input type="hidden" name="txtSaldoAwal" value="<?php echo $txtSaldoAwal?>">
+		        <input type="hidden" name="txtQty" value="<?php echo $txtQty?>">
+		        <input type="hidden" name="rbtKondisi" value="<?php echo $rbtKondisi?>">
+		        <input type="hidden" name="txtKeterangan" value="<?php echo $txtKeterangan?>">
 		        <input type="submit" class="btn btn-outline" value="Simpan">
 		      </form>
 		    </div>
