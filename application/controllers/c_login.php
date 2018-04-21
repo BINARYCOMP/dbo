@@ -26,8 +26,11 @@ class C_login extends CI_controller
 		$dbLevel	= $datalogin[0]["LEVE_NAME"];
 		$dbUsername = $datalogin[0]["USER_NAME"];
 		$dbPassword = $datalogin[0]["USER_PASSWORD"];
+		$since 		= $datalogin[0]['USER_TIMESTAMP'];
 		if ($username == $dbUsername && $password == $dbPassword) {
-			$_SESSION['level'] = $dbLevel;
+			$_SESSION['level'] 		= $dbLevel;
+			$_SESSION['username'] 	= $dbUsername;
+			$_SESSION['since'] 		= $since;
 			header('location:'.base_url().'c_dashboard');
 		}else{
 			header('Location:' .base_url().'c_login');
