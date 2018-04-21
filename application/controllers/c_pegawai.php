@@ -1,68 +1,78 @@
-<?php 
+<?php
 /**
 * 
 */
-class C_pegawai extends CI_controller
+class C_pegawai extends CI_Controller
 {
 	
-	public function __construct(){
-    parent::__construct();
-    $this->load->library('form_validation');
-    $this->load->model('m_pegawai');
-  }
-  public function index(){
-    $dataPegawai = $this->m_pegawai->view();
-    $data = array(
-    	'title'=>'Pegawai',
-    	'content' =>'v_pegawai' ,
-    	'pegawai'=>$dataPegawai);
-    
-    $this->load->view('tampilan/v_combine',$data);
-  }
-  
-  public function tambah(){
-    if($this->input->post('submit')){
-      if($this->m_pegawai->validation("save")){
-        $this->m_pegawai->save();
-        redirect('c_pegawai');
-      }
-    }
-    $data = array('content' => 'v_pegawai' );
-    $this->load->view('tampilan/v_combine',$data);
-  }
-  public function ubah($id){
-		$dataPegawai=$this->m_pegawai->view_by($id);
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('m_pegawai');
+	}
+
+	public function index()
+	{
+	$pegawai=$this->m_pegawai->view();
 		$data = array(
-			'title'=>'Edit Pegawai',
-			'content'=>'v_pegawai_ubah',
-			'id'=>$id,
-			'dataPegawai'=>$dataPegawai,
-			'pegawai'=>$this->m_pegawai->view() 
+			'pegawai' =>$pegawai,
+			'content'=>'v_pegawai',
+			'title' => 'pegawai'
 		);
+		$this->load->view('tampilan/v_combine', $data);
+
+	}
+	public function form()
+	{
+		$pegawai1 = $_POST['pegawai1'];
+		$pegawai2 = $_POST['pegawai2'];
+		$pegawai3 = $_POST['pegawai3'];
+		$pegawai4 = $_POST['pegawai4'];
+		$pegawai5 = $_POST['pegawai5'];
+		$pegawai6 = $_POST['pegawai6'];
+
+		$data = array(
+			'PEGA_NAME' =>$pegawai1 ,
+			'PEGA_EMAIL'=>$pegawai2 ,
+			'PEGA_ALAMAT'=>$pegawai3 ,
+			'PEGA_NO_TLP'=>$pegawai4 ,
+			'PEGA_JENKEL'=>$pegawai5 ,
+			'PEGA_AGAM_ID'=>$pegawai6
+			);
+		$pegawai=$this->m_pegawai->Insert($data);
+		 redirect('c_pegawai');
+	}
+	public function FormUpdate($pegawai){
+		$pegawai=$this->m_pegawai->Update($pegawai);
+		$data = array(
+			'pegawai' =>$pegawai,
+			'content' => 'v_editPegawai'
+			);
 		$this->load->view('tampilan/v_combine',$data);
 	}
 	public function UpdateData($id){
-		$idPegawai = $id;
-		$nama = $_POST['I_nama'];
-		$email = $_POST['I_email'];
-		$alamat = $_POST['I_alamat'];
-		$no_tlp = $_POST['I_no_tlp'];
-		$jenis_kelamin = $_POST['I_jenis_kelamin'];
-
+		$pegawai1 = $_POST['pegawai1'];
+		$pegawai2 = $_POST['pegawai2'];
+		$pegawai3 = $_POST['pegawai3'];
+		$pegawai4 = $_POST['pegawai4'];
+		$pegawai5 = $_POST['pegawai5'];
+		$pegawai6 = $_POST['pegawai6'];
 		$data = array(
-			'PEGA_NAME' =>$nama ,
-			'PEGA_EMAIL' =>$email ,
-			'PEGA_ALAMAT' =>$alamat ,
-			'PEGA_NO_TLP' =>$no_tlp ,
-			'PEGA_JENKEL' =>$jenis_kelamin
+			'PEGA_NAME' =>$pegawai1 ,
+			'PEGA_EMAIL'=>$pegawai2 ,
+			'PEGA_ALAMAT'=>$pegawai3 ,
+			'PEGA_NO_TLP'=>$pegawai4 ,
+			'PEGA_JENKEL'=>$pegawai5 ,
+			'PEGA_AGAM_ID'=>$pegawai6 
 			);
-		$dataLevel=$this->m_pegawai->edit($idPegawai,$data);
-		redirect('c_pegawai');
+		$pegawai=$this->m_pegawai->UpdateData($id, $data);
+		redirect('C_pegawai');
+
 	}
-  
-  public function hapus($ID){
-    $this->m_pegawai->delete($ID);
-    redirect('c_pegawai');
-  }
+	public function delete($id)
+	{
+		$this->db->delete('pegawai', array('PEGA_ID' => $id));
+		redirect('C_pegawai');
+	}
 }
- ?>
+?>
