@@ -23,6 +23,7 @@ class C_InventarisParent extends CI_Controller
 	public function save()
 	{
 		$nama = $_POST['txtnama'];
+
 		$data = array(
 			'INPA_NAME' =>$nama
 			);
@@ -41,11 +42,11 @@ class C_InventarisParent extends CI_Controller
 	{
 		$nama = $_POST['txtnama'];
 
-
 		$data = array(
-			'INPA_NAME' =>$nama ,
+			'INPA_NAME' =>$nama 
 			);
-		$parent=$this->m_inventarisParent->UpdateData($id, $data);
+
+		$this->m_inventarisParent->UpdateData($id, $data);
 		redirect('C_inventarisParent');
 
 	}
