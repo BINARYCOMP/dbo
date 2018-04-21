@@ -70,7 +70,7 @@
 			                    <button type="reset" class="btn btn-default pull-right">Cancel</button>
 			                  </div>
 			                  <div class="col-md-2">
-			                    <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
+			                    <button type="submit" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
 			                  </div>
 			                </div>
 			              </div>
@@ -102,7 +102,7 @@
 				 				<td>Debet</td>
 				 				<td>Kredit</td>
 				 				<td>Saldo</td>
-								<th style="text-align: center" colspan="2">Action </th>
+								<th style="text-align: center" >Action </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -115,8 +115,11 @@
 			 			  		<td><?php echo $row['KEUA_MASUK']; ?></td>
 			 			  		<td><?php echo $row['KEUA_KELUAR']; ?></td>
 			 			  		<td><?php echo $row['KEUA_SALDO']; ?></td>
-			 			  		<td><a href="<?php echo base_url().'c_keuangan/formUpdate/'.$row['KEUA_ID']; ?>">Edit</a></td>
-			 			  		<td><a href="<?php echo base_url().'c_keuangan/delete/'.$row['KEUA_ID']; ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+			 			  		<td>
+			 			  			<a href="<?php echo base_url().'c_keuangan/formUpdate/'.$row['KEUA_ID']; ?>">Edit</a> | 
+			 			  			<a href="<?php echo base_url().'c_keuangan/delete/'.$row['KEUA_ID']; ?>" onclick="return confirm('Are you sure?');">Delete</a>
+			 			  		</td>
+			 			  			
 			 			  	</tr>
 			 			 <?php 
 			 			  	}
