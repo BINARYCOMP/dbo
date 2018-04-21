@@ -41,7 +41,7 @@
 			                    <button type="reset" class="btn btn-default pull-right">Cancel</button>
 			                  </div>
 			                  <div class="col-md-2">
-			                    <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Level</button>
+			                    <button type="submit" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Level</button>
 			                  </div>
 			                </div>
 			              </div>
@@ -78,10 +78,10 @@
 							<?php 
 				 				foreach ($level as $row) {
 				 					echo "<tr>";
-				 					echo "<td>".$row['LEVE_NAME']."</td>";
 				 					echo "<td>".$row['LEVE_ID']."</td>";
+				 					echo "<td>".$row['LEVE_NAME']."</td>";
 				 					echo "<td><a href='".base_url()."c_level/FormUpdate/".$row['LEVE_ID']."'>Edit</a></td>";
-				 					echo "<td><a href='".base_url()."c_level/delete/".$row['LEVE_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a></td>";
+				 					echo "<td><a href='".base_url()."c_level/delete/".$row['LEVE_ID']."'>Delete</a></td>";
 				 					echo "</tr>";
 				 				}
 				 			 ?>
@@ -131,8 +131,8 @@
  			<?php 
  				foreach ($level as $row) {
  					echo "<tr>";
- 					echo "<td>".$row['LEVE_NAME']."</td>";
  					echo "<td>".$row['LEVE_ID']."</td>";
+ 					echo "<td>".$row['LEVE_NAME']."</td>";
  					echo "<td><a href='".base_url()."c_level/FormUpdate/".$row['LEVE_ID']."'>Edit</a></td>";
  					echo "<td><a href='".base_url()."c_level/delete/".$row['LEVE_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a></td>";
  					echo "</tr>";

@@ -56,11 +56,16 @@
                           </span>
                         </div>
                         <label class=" control-label">Jenis Kelamin</label>
-                        <div>
+                        <div class="form-group" >
                           <span id="qty">
-                            <input type="radio" name="I_jenis_kelamin" value="Laki-Laki" <?php echo set_radio('jeniskelamin', 'Laki-laki'); ?>> Pria
-                            <br>
-                            <input type="radio" name="I_jenis_kelamin" value="Perempuan" <?php echo set_radio('jeniskelamin', 'Perempuan'); ?>> Wanita  
+                            
+                            <div class="col-md-2">
+                              <input  type="radio" name="I_jenis_kelamin" value="Laki-Laki" <?php echo set_radio('jeniskelamin', 'Laki-laki'); ?>> Pria
+                            </div>
+                            <div class="col-md-">
+                              <input  type="radio" name="I_jenis_kelamin" value="Perempuan" <?php echo set_radio('jeniskelamin', 'Perempuan'); ?>> Wanita
+                            </div>
+                            
                           </span>
                         </div>
                     </div>
@@ -70,7 +75,7 @@
                           <button type="reset" class="btn btn-default pull-right">Cancel</button>
                         </div>
                         <div class="col-md-2">
-                          <button type="button" name="submit" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
+                          <button type="submit" name="submit" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
                         </div>
                       </div>
                     </div>
