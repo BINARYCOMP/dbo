@@ -50,7 +50,7 @@ class C_inventaris extends CI_Controller
 		$str = $_GET['q'];
 	    $namaChild  = $this->m_inventaris->getChildByInpaId($str);
 	    ?>
-	      <select required name="cmbChild" id="cmbChild" class="form-control" onchange="showQty(this.value)" onmousemove="showQty(this.value)">
+	      <select required name="cmbChild" id="cmbChild" class="form-control" onchange="showQty(this.value);" onmousemove="showQty(this.value);">
 	        <?php
 	          if ($str == 0) {
 	            ?>
