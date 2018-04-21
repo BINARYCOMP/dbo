@@ -27,7 +27,7 @@
                         ?>
                       </select>
                       <div class="input-group-btn">
-                        <button type="button" class="btn btn-warning ">Search</button>
+                        <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#myModal">Search</button>
                       </div>
                     </div>
                   </div>
@@ -63,7 +63,7 @@
                         <input  type="radio" id="rbtKondisiBaik" name="rbtKondisi" value="Baik"> Baik
                       </div>
                       <div class="col-md-10">
-                        <input  type="radio" id="rbtKondisiRusak" name="rbtKondisi" value="Rusak"> Rusak
+                        <input  type="radio" id="rbtKondisiBuruk" name="rbtKondisi" value="Buruk"> Buruk
                       </div>
                     </div>
                   </div>
@@ -80,7 +80,7 @@
                         <button type="reset" class="btn btn-default pull-right">Cancel</button>
                       </div>
                       <div class="col-md-2">
-                        <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalInvetaris()" >Input Data</button>
+                        <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success" onclick="modalInventaris()" >Input Data</button>
                       </div>
                     </div>
                   </div>
@@ -120,7 +120,7 @@
                 foreach ($dataParent as $row) {
                     ?>
                       <tr>
-                        <td><?php echo $no ?></td>
+                        <td><?php echo $no++ ?></td>
                         <td colspan="3"><?php echo $row['INPA_NAME']?></td>
                       </tr>
                     <?php
@@ -147,6 +147,16 @@
       </div> <!-- col-input -->
     </div>
   </div>
+
+<div class="modal modal-success fade" id="modal-success">
+  <div class="modal-dialog" id="modalInventaris"> 
+
+
+  </div>
+</div>
+
+
+
 <!-- SCRIPT -->
 <!-- javascript child -->
 <script>
@@ -172,14 +182,15 @@
     xhttp.open("GET", "<?php echo base_url()?>c_inventaris/searchQty?q="+str, true);
     xhttp.send();   
   }
-   function modalInvetaris() {
+   function modalInventaris() {
     var xhttp;
-    var parent,child,keterangan,masuk,qty,kondisi;
-    try{
+    var parent,child,keterangan,qty,kondisi;
+    // try{
       parent      = document.getElementById('cmbParent').value;
       child       = document.getElementById('cmbChild').value;
       keterangan  = document.getElementById('txtKeterangan').value;
       qty         = document.getElementById('txtQty').value;
+
       if (document.getElementById('rbtKondisiBaik').checked) {
         kondisi = document.getElementById('rbtKondisiBaik').value;
       }else if (document.getElementById('rbtKondisiBuruk').checked) {
@@ -188,10 +199,75 @@
         alert('Silahkan pilih kondisi barang');
         return;
       }
+
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("modalInventaris").innerHTML = this.responseText;
+      }
+    };
+
+    xhttp.open("GET","<?php echo base_url()?>c_inventaris/modalInventaris?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&qty="+qty+"&kondisi="+kondisi,true);
+    xhttp.send()
       
      
-    }catch(err){
-      console.trace(err.message);
-    }
+    // }catch(err){
+    //   console.trace(err.message);
+    // }
   }
+</script>
+
+<!-- modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Lookup Inventaris</h4>
+            </div>
+            <div class="modal-body">
+                <table id="lookup" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>Id Barang</th>
+                        <th>Nama Barang</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                      $no = 1;
+                      foreach ($dataParent as $row) {
+                        ?>
+                          <tr class="isi" data-brgParent="<?php echo $row['INPA_ID']; ?>">
+                            <!-- <td><?php echo $no ?></td> -->
+                            <td><?php echo $row['INPA_ID']?></td>
+                            <td><?php echo $row['INPA_NAME']?></td>
+                          </tr>
+                        <?php
+                        $no++;
+                      }
+                      ?>
+                    </tbody>
+                </table>  
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+//            jika dipilih, kode obat akan masuk ke input dan modal di tutup
+    $(document).on('click', '.isi', function (e) {
+        // alert("test");
+        document.getElementById("cmbParent").value = $(this).attr('data-brgParent');
+        $('#myModal').modal('hide');
+        showChild($(this).attr('data-brgParent'));
+    });
+
+//            tabel lookup obat
+    $(function () {
+        $("#lookup").dataTable();
+    });
+
 </script>

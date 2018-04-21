@@ -69,8 +69,8 @@
 						<thead>
 							<tr>
 								<th>No.</th>
-								<th>agama</th>
-								<th>agama id</th>	
+								<th>Agama</th>
+								<th>Agama Id</th>	
 								<th style="text-align: center" colspan="2">Action </th>
 							</tr>
 						</thead>
@@ -87,7 +87,7 @@
 						        	<a href="<?php echo base_url()?>c_viewAgama/FormUpdate/<?php echo $row['AGAM_ID']?>">Edit</a>
 						        </td>
 						        <td>
-						        	<a href="<?php echo base_url()?>c_viewAgama/delete/<?php echo $row['AGAM_ID']?>" onclick= "return confirm('Are you sure?')">Delete</a>
+						        	<a href="<?php echo base_url()?>c_viewAgama/delete/<?php echo $row['AGAM_ID']?>">Delete</a>
 						        </td>
 						      </tr>
 						    <?php

@@ -15,6 +15,7 @@ class C_barangChild extends CI_Controller
 	{
 		$barangChild=$this->m_barangChild->view();
 		$data = array(
+			'title'=>'Anak Barang',
 			'content' => 'v_barangChild',
 			'barang_child' =>$barangChild
 		);
@@ -43,8 +44,10 @@ class C_barangChild extends CI_Controller
 	public function FormUpdate($id){
 		$child=$this->m_barangChild->Update($id);
 		$data = array(
+			'content'=>'v_editBarangChild',
+			'title'=>'Edit Anak Barang',
 			'barangChild' =>$child);
-		$this->load->view('v_editBarangChild',$data);
+		$this->load->view('tampilan/v_combine',$data);
 	}
 	public function UpdateData($id)
 	{
