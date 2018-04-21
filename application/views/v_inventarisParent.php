@@ -16,7 +16,7 @@
 			  <div class="col-md-6">
 			    <div class="box box-warning">
 			      <div class="box-header with-border">
-			        <h3 class="box-title">Input Invemtaris Parent</h3>
+			        <h3 class="box-title">Input Inventaris Parent</h3>
 
 			        <div class="box-tools pull-right">
 			          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -72,7 +72,7 @@
 								<th>nama inventaris</th>
  								<th>ID inventaris</th>
  								<th>Tanggal Di tambahkan</th>	
-								<th style="text-align: center" colspan="2">Action </th>
+								<th style="text-align: center" >Action </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -86,9 +86,7 @@
 						        <td><?php echo $row['INPA_ID']?></td>
 								<td><?php echo $row['INPA_TIME']?></td>
 						        <td>
-						        	<a href="<?php echo base_url()?>c_inventarisParent/FormUpdate/<?php echo $row['INPA_ID']?>">Edit</a>
-						        </td>
-						        <td>
+						        	<a href="<?php echo base_url()?>c_inventarisParent/FormUpdate/<?php echo $row['INPA_ID']?>">Edit</a> |
 						        	<a href="<?php echo base_url()?>c_inventarisParent/delete/<?php echo $row['INPA_ID']?>" onclick= "return confirm('Are you sure?')">Delete</a>
 						        </td>
 						      </tr>
@@ -110,51 +108,3 @@
 	<!-- /.row -->
 </div>
 <!-- /.content-wrapper -->
-
- <!DOCTYPE html>
- <html>
- <head>
- 	<title></title>
- </head>
- <body>
- 	<form action="<?php echo base_url(). 'c_inventarisParent/save'; ?>" method="post">
- 		<table>
- 		<tr>
- 			<th>view barag parent</th>
- 		</tr>
- 		<tr>
- 			<td>inventaris Parent</td>
- 			<td><input type="text" name="txtnama"></td>
- 		</tr>
- 		<tr>
- 			<td><input type="submit" name="submit" value="Simpan"></td>
- 		</tr>
-
- 		</table>
- 		<br>
- 		<br>
- 		<table border="">
- 			<tr>
- 				<td>nama inventaris</td>
- 				<td>ID inventaris</td>
- 				<td>Tanggal Di tambahkan</td>
- 				<td colspan="2">Action</td>
-
- 			</tr>
- 			<?php 
- 				foreach ($inventarisParent as $row) {
- 					echo "<tr>";
- 					echo "<td>".$row['INPA_NAME']."</td>";
- 					echo "<td>".$row['INPA_ID']."</td>";
- 					echo "<td>".$row['INPA_TIME']."</td>";
- 					echo "<td><a href='".base_url()."c_inventarisParent/FormUpdate/".$row['INPA_ID']."'>Edit</a></td>";
- 					echo "<td><a href='".base_url()."c_inventarisParent/delete/".$row['INPA_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a></td>";
- 					echo "</tr>";
- 				}
- 			 ?>
- 		</table>
-
- 	</form>
- 
- </body>
- </html>
