@@ -81,7 +81,7 @@
 				 					echo "<td>".$row['LEVE_ID']."</td>";
 				 					echo "<td>".$row['LEVE_NAME']."</td>";
 				 					echo "<td><a href='".base_url()."c_level/FormUpdate/".$row['LEVE_ID']."'>Edit</a></td>";
-				 					echo "<td><a href='".base_url()."c_level/delete/".$row['LEVE_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a></td>";
+				 					echo "<td><a href='".base_url()."c_level/delete/".$row['LEVE_ID']."'>Delete</a></td>";
 				 					echo "</tr>";
 				 				}
 				 			 ?>
