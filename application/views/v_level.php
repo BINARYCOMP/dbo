@@ -70,8 +70,7 @@
 							<tr>
 								<th>No.</th>
 								<th>level</th>
-									
-								<th style="text-align: center" colspan="2">Action </th>
+								<th style="text-align: center">Action </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -80,8 +79,8 @@
 				 					echo "<tr>";
 				 					echo "<td>".$row['LEVE_ID']."</td>";
 				 					echo "<td>".$row['LEVE_NAME']."</td>";
-				 					echo "<td><a href='".base_url()."c_level/FormUpdate/".$row['LEVE_ID']."'>Edit</a></td>";
-				 					echo "<td><a href='".base_url()."c_level/delete/".$row['LEVE_ID']."'>Delete</a></td>";
+				 					echo "<td><a href='".base_url()."c_level/FormUpdate/".$row['LEVE_ID']."'>Edit</a> | 
+				 						<a href='".base_url()."c_level/delete/".$row['LEVE_ID']."'>Delete</a></td>";
 				 					echo "</tr>";
 				 				}
 				 			 ?>
@@ -100,47 +99,3 @@
 </div>
 <!-- /.content-wrapper -->
 
-
- <!DOCTYPE html>
- <html>
- <head>
- 	<title></title>
- </head>
- <body>
- 	<form action="<?php echo base_url(). 'c_level/form'; ?>" method="post">
- 		<table>
- 		<tr>
- 			<th>View DB level</th>
- 		</tr>
- 		<tr>
- 			<td>level</td>
- 			<td><input type="text" name="txtlevel"></td>
- 		</tr>
- 		<tr>
- 			<td><input type="submit" name="submit" value="Simpan"></td>
- 		</tr>
-
- 		</table>
- 		<br>
- 		<br>
- 		<table border="">
- 			<tr>
- 				<td>Level</td>
- 				<td>Level id</td>
- 			</tr>
- 			<?php 
- 				foreach ($level as $row) {
- 					echo "<tr>";
- 					echo "<td>".$row['LEVE_ID']."</td>";
- 					echo "<td>".$row['LEVE_NAME']."</td>";
- 					echo "<td><a href='".base_url()."c_level/FormUpdate/".$row['LEVE_ID']."'>Edit</a></td>";
- 					echo "<td><a href='".base_url()."c_level/delete/".$row['LEVE_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a></td>";
- 					echo "</tr>";
- 				}
- 			 ?>
- 		</table>
-
- 	</form>
- 
- </body>
- </html>

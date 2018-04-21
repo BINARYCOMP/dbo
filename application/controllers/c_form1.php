@@ -45,7 +45,7 @@ class C_form1 extends CI_Controller
 		$dataUser=$this->m_form1->viewData($id);
 	
 		$data = array(
-			'title'=>'Register',
+			'title'=>'Edit User',
 			'content'=>'v_form2',
 			'dataLevel' =>$dataLevel,
 			'id'=>$id,
