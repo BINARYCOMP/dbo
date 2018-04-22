@@ -5,9 +5,25 @@
 class M_barangChild extends CI_Model
 {
 	
-function view()
+	public function view()
 	{
 		$sql = "select * from barang_child";
+		$query=$this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+
+	}
+	public function getBarangParent()
+	{
+		$sql = "select * from barang_parent";
+		$query=$this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+
+	}
+	public function getSatuan()
+	{
+		$sql = "select * from satuan";
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

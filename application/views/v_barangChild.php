@@ -28,38 +28,39 @@
 			          <div class="col-md-12 ">
 			            <form action="<?php echo base_url(). 'c_barangChild/form'; ?>" method="POST">
 			              <div class="form-group">
-			                  <label class=" control-label">Nama Barang Child</label>
+			                  <label class=" control-label">Induk Barang</label>
+			                  <div>
+			                    <select name="txtbapa" id="cmbParent" class="form-control">
+								  <option value="0">== Pilih Induk Barang ==</option>
+								  <?php  
+								    foreach ($barang_parent as $row){
+								      echo "<option value='".$row['BAPA_ID']."'>";
+								      echo $row ['BAPA_NAME'];
+								     echo "</option>";
+								    }
+								  ?>
+								</select>  
+			                  </div>
+			              </div>
+			              <div class="form-group">
+			                  <label class=" control-label">Nama Anak Barang</label>
 			                  <div>
 			                    <span >
 			                      <input class="form-control" type="text"  name="txtnama" required="true">  
 			                    </span>
 			                  </div>
-			                  <label class=" control-label">Gudang Jadi</label>
-			                  <div>
-			                    <span >
-			                      <input class="form-control" type="text"  name="txtguja" required="true">  
-			                    </span>
-			                  </div>
-			                  <label class=" control-label">Gudang Tak Jadi</label>
-			                  <div>
-			                    <span >
-			                      <input class="form-control" type="text"  name="txtguta" required="true">  
-			                    </span>
-			                  </div>
-			                  <label class=" control-label">Barang Parent</label>
-			                  <div>
-			                    <span >
-			                      <input class="form-control" type="text"  name="txtbapa" required="true">  
-			                    </span>
-			                  </div>
-			                  <label class=" control-label">Satuan Barang</label>
-			                  <div>
-			                    <span >
-			                      <input class="form-control" type="text"  name="txtsatuan" required="true">  
-			                    </span>
-			                  </div>
-
-			                  
+			              </div>
+			              <div class="form-group">
+			                  <select name="txtsatuan" id="cmbParent" class="form-control">
+								  <option value="0">== Pilih Induk Barang ==</option>
+								  <?php  
+								    foreach ($satuan as $row){
+								      echo "<option value='".$row['SATU_ID']."'>";
+								      echo $row ['SATU_NAME'];
+								     echo "</option>";
+								    }
+								  ?>
+								</select>  
 			              </div>
 			              <div class="form-group">
 			                <div class="row">

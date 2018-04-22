@@ -14,10 +14,14 @@ class C_barangChild extends CI_Controller
 	public function index()
 	{
 		$barangChild=$this->m_barangChild->view();
+		$barangParent=$this->m_barangChild->getBarangParent();
+		$satuan=$this->m_barangChild->getSatuan();
 		$data = array(
+			'barang_child' =>$barangChild,
+			'barang_parent' =>$barangParent,
+			'satuan' =>$satuan,
 			'title'=>'Anak Barang',
 			'content' => 'v_barangChild',
-			'barang_child' =>$barangChild,
 			'menu'         => 'Barang Child'
 		);
 		$this->load->view('tampilan/v_combine',$data);
@@ -34,8 +38,8 @@ class C_barangChild extends CI_Controller
 
 		$data = array(
 			'BACH_NAME' =>$nama ,
-			'BACH_GUJA_TOTAL' =>$guja ,
-			'BACH_GUTA_TOTAL' =>$guta ,
+			'BACH_GUJA_TOTAL' => 0 ,
+			'BACH_GUTA_TOTAL' => 0 ,
 			'BACH_BAPA_ID' =>$bapa ,
 			'BACH_SATU_ID' =>$satuan ,
 			);
