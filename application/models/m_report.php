@@ -17,9 +17,9 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
-	public function getBarangParent()
+	public function getBarangChildByBapaId($id)
 	{
-		$sql 	= "SELECT * FROM gudang_jadi, barang_parent, barang_child WHERE GUJA_BAPA_ID = BAPA_ID ";
+		$sql 	= "SELECT * FROM  barang_child, satuan WHERE BACH_SATU_ID = SATU_ID AND BACH_BAPA_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
