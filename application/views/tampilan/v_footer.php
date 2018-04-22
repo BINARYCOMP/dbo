@@ -27,6 +27,7 @@
 <script type="text/javascript">
     $(function () {
         $("#lookup").dataTable();
+        $("#guja").dataTable();
         $("#guta").dataTable();
     });
 </script>

@@ -34,7 +34,7 @@
                 <div class="box-body">
                   <div class="row">
                     <div class="col-md-12 ">
-                      <table class="table table-bordered table-hover table-striped" id="lookup">
+                      <table class="table table-bordered table-hover table-striped" id="guja">
                         <thead>
                           <tr>
                             <th>No</th>
