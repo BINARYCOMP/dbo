@@ -29,7 +29,7 @@
       return $return;
     }
 
-    // nama Child
+    // nama Child str
     public function getChildName($str)
     {
       $sql="select * from barang_child where bach_bapa_id =".$str;

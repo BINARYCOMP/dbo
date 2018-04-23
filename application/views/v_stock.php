@@ -7,10 +7,6 @@
           <small><i class="fa fa-info"></i></small>
           <small>Admin</small>
         </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Stock</a></li>
-          <li class="active">Dashboard</li>
-        </ol>
       </section>
 
       <!-- Main content -->
