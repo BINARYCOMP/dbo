@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-	<div class="row">
+	
 	  <!-- Content Header (Page header) -->
 	  <section class="content-header">
 	    	<h1>
@@ -10,7 +10,6 @@
 	  </section>
 
 	  <!-- Main content -->
-	  <section class="content">
 		<div class="content">
 			<div class="row">
 			  <div class="col-md-6">
@@ -147,10 +146,7 @@
 			  </div> <!-- col-input -->
 			</div>
 		</div>
-	  </section>
 	  <!-- /.content -->
-	</div>
-	<!-- /.row -->
 </div>
 <!-- /.content-wrapper -->
 

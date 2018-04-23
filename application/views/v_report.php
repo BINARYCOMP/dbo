@@ -290,14 +290,3 @@
     <!-- /.container -->
   </div>
   <!-- /.content-wrapper -->
-
-<div class="content-wrapper">
-	<div class="row">
-	  <!-- Content Header (Page header) -->
-	  <section class="content-header">
-	    	<h1>
-		      <?php if(isset($title)) echo $title ?>
-		      <small><i class="fa fa-info"></i></small>
-		      <small><?php echo $_SESSION['level'] ?></small>
-		    </h1>
-	  </section>
