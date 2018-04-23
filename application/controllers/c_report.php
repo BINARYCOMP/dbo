@@ -31,7 +31,7 @@ class C_report extends CI_Controller
 		$data = array(
 			'dataBarang' 		=> $dataBarang,
 			'content' 			=> 'v_report_detail',
-			'title'				=> 'Laporan',
+			'title'				=> 'Detail '.$dataBarang[0]['BAPA_NAME'],
 			'menu'         		=> 'Report'
 		);
 		$this->load->view('tampilan/v_combine',$data);	
