@@ -14,12 +14,26 @@ class C_report extends CI_Controller
 	public function index()
 	{
 		$dataBarangParent 	= $this->m_report->getBarangParent();
+		$dataKeuangan 		= $this->m_report->getKeuangan();
 		$data = array(
 			'dataBarangParent' 	=> $dataBarangParent,
+			'dataKeuangan' 		=> $dataKeuangan,
 			'content' 			=> 'v_report',
 			'title'				=> 'Laporan',
 			'menu'         		=> 'Report'
 		);
 		$this->load->view('tampilan/v_combine',$data);
+	}
+
+	public function detailBarang($id)
+	{
+		$dataBarang		= $this->m_report->getBarangChildByBapaId($id);
+		$data = array(
+			'dataBarang' 		=> $dataBarang,
+			'content' 			=> 'v_report_detail',
+			'title'				=> 'Laporan',
+			'menu'         		=> 'Report'
+		);
+		$this->load->view('tampilan/v_combine',$data);	
 	}
 }

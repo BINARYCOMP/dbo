@@ -50,7 +50,7 @@
         				?>
         				<tr>
 			                <th scope="row"></th>
-			                <td colspan="8"><b><a href="#"><?php echo $row['BAPA_NAME'] ?></a></b></td>
+			                <td colspan="8"><b><a href="<?php echo base_url()?>c_report/detailBarang/<?php echo $row['BAPA_ID']?>"><?php echo $row['BAPA_NAME'] ?></a></b></td>
 			            </tr>
         				<?php
         				$dataBarangChildById = $this->m_report->getBarangChildByBapaId($row['BAPA_ID']); 
@@ -100,7 +100,7 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <table id="example1" class="table table-bordered table-hover">
+            <table id="lookup" class="table table-bordered table-hover">
               <thead>
               <tr>
                 <th>No</th>
@@ -112,166 +112,20 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>1</td>
-                <td>12/01/2018</td>
-                <td>Pembelian Bahan Material</td>
-                <td>Rp. 60.000</td>
-                <td>Rp. 30.000</td>
-                <td>Rp. 1.000.000</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>22/04/2018</td>
-                <td>Pembelian Bahan Utama baju</td>
-                <td>Rp. 20.000</td>
-                <td>Rp. 70.000</td>
-                <td>Rp. 1.300.000</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>14/06/2018</td>
-                <td>Pembelian Bahan Utama Sepatu</td>
-                <td>Rp. 29.000</td>
-                <td>Rp. 30.000</td>
-                <td>Rp. 1.900.000</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>04/06/2018</td>
-                <td>Pembelian Servis Peralatan</td>
-                <td>Rp. 78.000</td>
-                <td>Rp. 30.000</td>
-                <td>Rp. 1.700.000</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>10/07/2018</td>
-                <td>Pembelian Mesin Produksi</td>
-                <td>Rp. 58.000</td>
-                <td>Rp. 20.000</td>
-                <td>Rp. 1.100.000</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>12/01/2018</td>
-                <td>Pembelian Bahan Material</td>
-                <td>Rp. 60.000</td>
-                <td>Rp. 30.000</td>
-                <td>Rp. 1.000.000</td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>22/04/2018</td>
-                <td>Pembelian Bahan Utama baju</td>
-                <td>Rp. 20.000</td>
-                <td>Rp. 70.000</td>
-                <td>Rp. 1.300.000</td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td>14/06/2018</td>
-                <td>Pembelian Bahan Utama Sepatu</td>
-                <td>Rp. 29.000</td>
-                <td>Rp. 30.000</td>
-                <td>Rp. 1.900.000</td>
-              </tr>
-              <tr>
-                <td>9</td>
-                <td>04/06/2018</td>
-                <td>Pembelian Servis Peralatan</td>
-                <td>Rp. 78.000</td>
-                <td>Rp. 30.000</td>
-                <td>Rp. 1.700.000</td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td>10/07/2018</td>
-                <td>Pembelian Mesin Produksi</td>
-                <td>Rp. 58.000</td>
-                <td>Rp. 20.000</td>
-                <td>Rp. 1.100.000</td>
-              </tr>
-              <tr>
-                <td>11</td>
-                <td>12/01/2018</td>
-                <td>Pembelian Bahan Material</td>
-                <td>Rp. 60.000</td>
-                <td>Rp. 30.000</td>
-                <td>Rp. 1.000.000</td>
-              </tr>
-              <tr>
-                <td>12</td>
-                <td>22/04/2018</td>
-                <td>Pembelian Bahan Utama baju</td>
-                <td>Rp. 20.000</td>
-                <td>Rp. 70.000</td>
-                <td>Rp. 1.300.000</td>
-              </tr>
-              <tr>
-                <td>13</td>
-                <td>14/06/2018</td>
-                <td>Pembelian Bahan Utama Sepatu</td>
-                <td>Rp. 29.000</td>
-                <td>Rp. 30.000</td>
-                <td>Rp. 1.900.000</td>
-              </tr>
-              <tr>
-                <td>14</td>
-                <td>04/06/2018</td>
-                <td>Pembelian Servis Peralatan</td>
-                <td>Rp. 78.000</td>
-                <td>Rp. 30.000</td>
-                <td>Rp. 1.700.000</td>
-              </tr>
-              <tr>
-                <td>15</td>
-                <td>10/07/2018</td>
-                <td>Pembelian Mesin Produksi</td>
-                <td>Rp. 58.000</td>
-                <td>Rp. 20.000</td>
-                <td>Rp. 1.100.000</td>
-              </tr>
-              <tr>
-                <td>16</td>
-                <td>12/01/2018</td>
-                <td>Pembelian Bahan Material</td>
-                <td>Rp. 60.000</td>
-                <td>Rp. 30.000</td>
-                <td>Rp. 1.000.000</td>
-              </tr>
-              <tr>
-                <td>17</td>
-                <td>22/04/2018</td>
-                <td>Pembelian Bahan Utama baju</td>
-                <td>Rp. 20.000</td>
-                <td>Rp. 70.000</td>
-                <td>Rp. 1.300.000</td>
-              </tr>
-              <tr>
-                <td>18</td>
-                <td>14/06/2018</td>
-                <td>Pembelian Bahan Utama Sepatu</td>
-                <td>Rp. 29.000</td>
-                <td>Rp. 30.000</td>
-                <td>Rp. 1.900.000</td>
-              </tr>
-              <tr>
-                <td>19</td>
-                <td>04/06/2018</td>
-                <td>Pembelian Servis Peralatan</td>
-                <td>Rp. 78.000</td>
-                <td>Rp. 30.000</td>
-                <td>Rp. 1.700.000</td>
-              </tr>
-              <tr>
-                <td>20</td>
-                <td>10/07/2018</td>
-                <td>Pembelian Mesin Produksi</td>
-                <td>Rp. 58.000</td>
-                <td>Rp. 20.000</td>
-                <td>Rp. 1.100.000</td>
-              </tr>
+                <?php
+                  foreach ($dataKeuangan as $row) {
+                    ?>
+                      <tr>
+                        <td><?php echo $no ?></td>
+                        <td><?php echo $row['KEUA_TANGGAL'] ?></td>
+                        <td><?php echo $row['KEUA_RINCIAN'] ?></td>
+                        <td><?php echo $row['KEUA_MASUK'] ?></td>
+                        <td><?php echo $row['KEUA_KELUAR'] ?></td>
+                        <td><?php echo $row['KEUA_SALDO'] ?></td>
+                      </tr>
+                    <?php                    
+                  }
+                ?>
             </tbody>
           </table>
         </div>
