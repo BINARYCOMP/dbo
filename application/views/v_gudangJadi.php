@@ -274,20 +274,20 @@ function showStok(str) {
                       </tr>
                     </thead>
                     <tbody>
-                      <?php 
-                      $no = 1;
-                      foreach ($namaChild as $row) {
-                        ?>
-                          <tr class="isi" data-brgChild="<?php echo $row['BACH_ID']; ?>">
-                            <!-- <td><?php echo $no ?></td> -->
-                            <td><?php echo $row['BACH_ID']?></td>
-                            <td><?php echo $row['BACH_NAME']?></td>
-                            <td><?php echo $row['BACH_GUJA_TOTAL']?></td>
-                            <td><?php echo $row['BACH_NAME']?></td>
-                            <td><?php echo $row['BACH_SATU_ID']?></td>
-                          </tr>
-                        <?php
-                        $no++;
+                      <?php
+                      $namaChild = "SELECT * FROM barang_child, barang_parent WHERE BACH_BAPA_ID = BAPA_ID"; 
+                      if (is_array($namaChild) || is_object($namaChild)){
+                        foreach ($namaChild as $row) {
+                          ?>
+                            <tr class="isi" data-brgChild="<?php echo $row['BACH_BAPA_ID']; ?>">
+                              <!-- <td><?php echo $no ?></td> -->
+                              <td><?php echo $row['BACH_ID']?></td>
+                              <td><?php echo $row['BACH_NAME']?></td>
+                              <td><?php echo $row['BACH_GUJA_TOTAL']?></td>
+                              <td><?php echo $row['BACH_SATU_ID']?></td>
+                            </tr>
+                          <?php
+                        }
                       }
                       ?>
                     </tbody>
@@ -312,6 +312,7 @@ function showStok(str) {
         showStok($(this).attr('data-brgChild'));
         document.getElementById("cmbChild").value = $(this).attr('data-brgChild');
         $('#myModal2').modal('hide');
+        
 
     });
 
