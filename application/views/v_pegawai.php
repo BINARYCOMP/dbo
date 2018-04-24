@@ -16,24 +16,23 @@
             <div class="col-md-12 ">
               <form action="<?php echo base_url(). 'c_pegawai/form'; ?>" method="POST">
                 <div class="form-group">
-                    <div>
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class=" control-label">Nama</label>
                     <div>
                       <input class="form-control" type="text" placeholder="Masukkan Nama" name="pegawai1" required placeholder="0"> 
+                    </div>
                     </div>  
                 <div class="form-group">
                     <label class=" control-label">Email</label>
                     <div>
                       <input class="form-control" type="text" placeholder="Masukkan Email @" name="pegawai2" required placeholder="0">  
                     </div>
+                  </div>
                 <div class="form-group">
                     <label class=" control-label">Alamat</label>
                     <div>
                       <textarea name="pegawai3" class="form-control" id="pegawai3" rows="3" placeholder="Masukkan Alamat" required></textarea>
                     </div>
+                  </div>
                 <div class="form-group">
                     <label class=" control-label">No Telepon</label>
                     <div>
@@ -52,9 +51,21 @@
                   </div>
                 </div>
                 <div class="form-group">
-                    <label class=" control-label">AGAMA ID</label>
+                    <label class=" control-label">AGAMA</label>
                     <div>
-                      <input class="form-control" type="Number" placeholder="Pilih ID" name="pegawai6" required placeholder="0"> 
+                        <!-- /btn-group -->
+                        <select name="pegawai6" class="form-control">
+                          <option value="0">== Pilih Agama ==</option>
+                          <?php  
+                            foreach ($agamaId as $row){
+                              echo "<option value='".$row['AGAM_ID']."'>";
+                              echo $row ['AGAM_NAME'];
+                             echo "</option>";
+                            }
+                          ?>
+                        </select> 
+                    </div>
+                </div> 
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-10">
@@ -74,6 +85,7 @@
       </div>
         <!-- /.box -->
     </div> <!-- col-input -->
+
     <div class="col-md-6">
       <div class="box box-warning">
         <div class="box-header with-border">

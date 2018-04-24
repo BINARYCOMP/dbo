@@ -45,29 +45,46 @@
                         <?php
                           if ($pegawai[0]['PEGA_JENKEL'] == "L") {
                           ?>
-                            <input type="radio" name="pegawai5" checked="true" > Laki-Laki
-                            <input  type="radio" name="pegawai5"> Perempuan
+                            <input type="radio" name="pegawai5" checked="true" value="L" > Laki-Laki
+                            <input  type="radio" name="pegawai5" value="P"> Perempuan
                           <?php
                           }
                           elseif ($pegawai[0]['PEGA_JENKEL'] == "P") {
                           ?>
-                            <input type="radio" name="pegawai5"> Laki-Laki
-                            <input  type="radio" name="pegawai5" checked="true"> Perempuan
+                            <input type="radio" name="pegawai5" value="L"> Laki-Laki
+                            <input  type="radio" name="pegawai5" checked="true" value="P"> Perempuan
                           <?php
                            } 
                           else{
                           ?>
-                            <input type="radio" name="pegawai5"> Laki-Laki
-                            <input  type="radio" name="pegawai5"> Perempuan
+                            <input type="radio" name="pegawai5" value="L"> Laki-Laki
+                            <input  type="radio" name="pegawai5" value="P"> Perempuan
                           <?php
                           }
                         ?>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class=" control-label">Id Agama</label>
+                    <label class=" control-label">Agama</label>
                     <div>
-                        <input class="form-control" type="text"  required="true" name="pegawai6" value="<?php echo($pegawai[0]['PEGA_AGAM_ID'])?>">
+                        <!-- /btn-group -->
+                        <select name="pegawai6" class="form-control">
+                          <option value="0">== Pilih Agama ==</option>
+                          <?php  
+                            foreach ($agamaId as $row){
+                              if ($row['AGAM_ID'] == $pegawai[0]['PEGA_AGAM_ID']){
+                                ?>
+                                <option value="<?php echo $row['AGAM_ID'] ?>" selected><?php echo $row['AGAM_NAME']?></option>
+                                <?php
+                              } else {                               
+                                ?>
+                                <option value="<?php echo $row['AGAM_ID'] ?>" ><?php echo $row['AGAM_NAME']?></option>
+                                <?php
+                              }
+                              
+                            }
+                          ?>
+                        </select> 
                     </div>
                 </div>
                 <div class="form-group">
