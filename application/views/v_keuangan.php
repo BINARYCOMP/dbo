@@ -51,7 +51,7 @@
 	                  <label class=" control-label">Saldo</label>
 	                  <div class="row">
 	                  	<div class="col-md-6">
-                  			<input type="text" class="form-control" readonly="true" name="txtSaldoAwal" value="<?php echo $saldoAkhir[0]['KEUA_SALDO']?>" >  
+                  			<input type="text" class="form-control" readonly="true" name="txtSaldoAwal" value=" <?php echo $saldoAkhir[0]['KEUA_SALDO']?> " >  
                   		</div>
                   		<div class="col-md-6">
                     		<input type="text" class="form-control" readonly="true" name="txtSaldoAkhir" id="saldoAkhirMuncul" >  

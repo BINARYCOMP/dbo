@@ -16,7 +16,7 @@ class M_form1 extends CI_Model
 	
 		public function getUser()
 	{
-		$sql="select * from user ";
+		$sql="select user.*,pegawai.PEGA_NAME from user inner join pegawai on pegawai.pega_id=user.user_id";
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

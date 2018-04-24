@@ -59,7 +59,8 @@ class C_form1 extends CI_Controller
 		$this->load->view('tampilan/v_combine',$data);
 	}
 	public function UpdateData($id){
-		$idpegawai = $_POST['txtidpegawai'];
+		$namapegawai=$_POST['txtname'];
+		// $idpegawai = $_POST['txtidpegawai'];
 		$username = $_POST['txtusername'];
 		$password = md5($_POST['txtpassword']);
 		$level = $_POST['level'];

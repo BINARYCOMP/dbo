@@ -34,16 +34,19 @@
 	              <div class="form-group">
 	                  <label class=" control-label">Nama Pegawai</label>
 	                  <div>
-						<select name="cmbParent" onchange="showChild(this.value)" id="cmbParent" class="form-control">
+	                  	<span id="qty">
+	                      <input class="form-control" type="text"  name="txtname" >  
+	                    </span>
+<!-- 						<select name="cmbParent" onchange="showChild(this.value)" id="cmbParent" class="form-control">
 						  <option value="0">== Pilih Pegawai ==</option>
 						  <?php  
-						    foreach ($dataPegawai as $row){
+						    /*foreach ($dataPegawai as $row){
 						      echo "<option value='".$row['PEGA_ID']."'>";
 						      echo $row ['PEGA_NAME'];
 						     echo "</option>";
-						    }
+						    } */
 						  ?>
-						</select>  
+						</select> -->  
 	                  </div>
 	              </div>
 	              <div class="form-group">
@@ -94,7 +97,7 @@
 				<thead>
 					<tr>
 						<th>No.</th>
-						<th>ID Pegawai</th>
+						<th>Nama Pegawai</th>
 						<th>Username</th>
 						<th>Level</th>	
 						<th style="text-align: center" >Action </th>
@@ -103,11 +106,12 @@
 				<tbody>
 				<?php 
 				$no = 1;
+
 	 				foreach ($dataUser as $row) {
 	 					echo "<tr>";
 	 					
 	 					echo "<td>".$no++."</td>";
-	 					echo "<td>".$row['USER_DAPE_ID']."</td>";
+	 					echo "<td>".$row['PEGA_NAME']."</td>";
 	 					echo "<td>".$row['USER_NAME']."</td>";
 	 					echo "<td>".$row['USER_LEVE_ID']."</td>";
 	 					echo "<td>
