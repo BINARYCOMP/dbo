@@ -35,6 +35,12 @@ function view()
     $this->db->where('PEGA_ID', $id);
     $this->db->delete('pegawai');
   }
-
+  public function getAgama()
+    {
+      $sql="select * from agama";
+      $query=$this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
 }
 ?>

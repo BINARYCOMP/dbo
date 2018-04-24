@@ -13,9 +13,11 @@ class C_pegawai extends CI_Controller
 
 	public function index()
 	{
+	$agamaId=$this->m_pegawai->getAgama();
 	$pegawai=$this->m_pegawai->view();
 		$data = array(
 			'pegawai' =>$pegawai,
+			'agamaId' =>$agamaId,
 			'content'=>'v_pegawai',
 			'title' => 'pegawai',
       		'menu'            => 'Input Pegawai'
@@ -44,9 +46,11 @@ class C_pegawai extends CI_Controller
 		 redirect('c_pegawai');
 	}
 	public function FormUpdate($pegawai){
+		$agamaId=$this->m_pegawai->getAgama();
 		$pegawai=$this->m_pegawai->Update($pegawai);
 		$data = array(
 			'pegawai' =>$pegawai,
+			'agamaId'  =>$agamaId,
 			'content' => 'v_editPegawai',
       		'menu'            => 'Input Pegawai'
 			);
