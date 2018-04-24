@@ -44,7 +44,7 @@
                         </select> 
                       </span>
                       <div class="input-group-btn">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">Search</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2" onclick="modalChildJadi()">Search</button>
                       </div>
                     </div>
                 </div>
@@ -116,37 +116,13 @@
 </div>
 <!-- /.modal -->
 
-<!-- <table>
-  <tr>
-    <th>No.</th>
-    <th>Induk Barang</th>
-    <th>Anak Barang</th>
-    <th>Uraian</th>
-    <th>Masuk</th>
-    <th>Keluar</th>
-    <th>Saldo</th>
-  </tr>
-  <?php
-  $no = 1;
-  foreach ($dataGudangJadi as $row) {
-    ?>
-      <tr>
-        <td><?php echo $no ?></td>
-        <td><?php echo $row['BAPA_NAME'] ?></td>
-        <td><?php echo $row['BACH_NAME'] ?></td>
-        <td><?php echo $row['GUJA_URAIAN'] ?></td>
-        <td><?php echo $row['GUJA_MASUK'] ?></td>
-        <td><?php echo $row['GUJA_KELUAR'] ?></td>
-        <td><?php echo $row['BACH_GUJA_TOTAL'] ?></td>
-      </tr>
-    <?php
-    $no++;
-  }
-  ?>
-</table> -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:800px" id="modalChildJadi">
 
-
-
+   </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
 <!-- SCRIPT -->
 <!-- javascript child -->
@@ -213,6 +189,22 @@ function showStok(str) {
     xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal, true);
     xhttp.send();   
   }
+
+  function modalChildJadi() {
+    var xhttp;
+    var parent;
+    parent    = document.getElementById('cmbParent').value;
+
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("modalChildJadi").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/modalChild?parent="+parent, true);
+    xhttp.send();
+  }
+
 </script>
 
 
@@ -235,16 +227,13 @@ function showStok(str) {
                     </thead>
                     <tbody>
                       <?php 
-                      $no = 1;
                       foreach ($namaParent as $row) {
                         ?>
                           <tr class="isi" data-brgParent="<?php echo $row['BAPA_ID']; ?>">
-                            <!-- <td><?php echo $no ?></td> -->
                             <td><?php echo $row['BAPA_ID']?></td>
                             <td><?php echo $row['BAPA_NAME']?></td>
                           </tr>
                         <?php
-                        $no++;
                       }
                       ?>
                     </tbody>
@@ -255,47 +244,7 @@ function showStok(str) {
 </div>
 
 
-<!-- modal child -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:800px">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Lookup Barang Child</h4>
-            </div>
-            <div class="modal-body">
-                <table id="lookup" class="table table-bordered table-hover table-striped">
-                    <thead>
-                      <tr>
-                        <th>Id Barang</th>
-                        <th>Nama Barang</th>
-                        <th>Total Barang</th>
-                        <th>Satuan</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $namaChild = "SELECT * FROM barang_child, barang_parent WHERE BACH_BAPA_ID = BAPA_ID"; 
-                      if (is_array($namaChild) || is_object($namaChild)){
-                        foreach ($namaChild as $row) {
-                          ?>
-                            <tr class="isi" data-brgChild="<?php echo $row['BACH_BAPA_ID']; ?>">
-                              <!-- <td><?php echo $no ?></td> -->
-                              <td><?php echo $row['BACH_ID']?></td>
-                              <td><?php echo $row['BACH_NAME']?></td>
-                              <td><?php echo $row['BACH_GUJA_TOTAL']?></td>
-                              <td><?php echo $row['BACH_SATU_ID']?></td>
-                            </tr>
-                          <?php
-                        }
-                      }
-                      ?>
-                    </tbody>
-                </table>  
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <script type="text/javascript">
 
@@ -308,17 +257,25 @@ function showStok(str) {
         $('#myModal').modal('hide');
         showChild($(this).attr('data-brgParent'));
 
-        // child
-        showStok($(this).attr('data-brgChild'));
-        document.getElementById("cmbChild").value = $(this).attr('data-brgChild');
-        $('#myModal2').modal('hide');
         
 
     });
 
-//            tabel lookup obat
-    $(function () {
-        $("#lookup").dataTable();
+     $(document).on('click', '.isi2', function (e) {
+        // alert("test");
+
+        // child
+        document.getElementById("cmbChild").value = $(this).attr('data-brgChild');
+        $('#myModal2').modal('hide');
+        showStok($(this).attr('data-brgChild'));
+        
+
     });
+
+
+    
+        
+
+
 
 </script>

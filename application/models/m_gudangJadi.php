@@ -52,6 +52,17 @@
       $return = $query->result_array();
       return $return;
     }
+
+    public function getChildByBapaId($id)
+    {
+      $sql    = "SELECT * FROM barang_child INNER JOIN barang_parent ON BACH_BAPA_ID = BAPA_ID WHERE BACH_BAPA_ID =".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return; 
+    }
+     
   }
 
  ?>
+
+

@@ -145,4 +145,18 @@ class C_gudangJadi extends CI_Controller
       <!-- /.modal-content -->
     <?php
   }
+
+  public function modalChild()
+   {
+     $cmbParent = $_GET['parent'];
+     $namaChild = $this->m_gudangJadi->getChildByBapaId($cmbParent);
+     $data = array(
+      'cmbParent' => $cmbParent ,
+      'namaChild' => $namaChild 
+    );
+     $this->load->view('modal/v_modalChildGudangJadi', $data);
+  } 
 }
+
+?>
+
