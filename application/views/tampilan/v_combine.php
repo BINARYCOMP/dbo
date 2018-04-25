@@ -8,7 +8,7 @@ if (isset($_SERVER['HTTPS'])) {
 	$http = "http://";
 }
 $url = $http.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-if ($url != base_url()) {
+if ($url != base_url() && $url != base_url()."c_dashboard" && $url != base_url()."c_dashboard/") {
 	?>
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->

@@ -29,7 +29,41 @@
 		    vertical-align: middle;
 		    text-align: center;
 		}
+		.circle-one:hover {
+		    width: 125px;
+		    height: 125px;
+		    border-radius: 50%;
+		    border: 10px #cf000f solid;
+		    margin: 0 auto;
+		    vertical-align: middle;
+		    text-align: center;
+		}
 		.circle-one img {
+		    width: 75px;
+		    height: 75px;
+		    margin-top: 10%;
+		    border-radius: 50%;
+
+		}
+		.circle-two {
+		    width: 125px;
+		    height: 125px;
+		    border-radius: 50%;
+		    border: 10px #3276b1 double;
+		    margin: 0 auto;
+		    vertical-align: middle;
+		    text-align: center;
+		}
+		.circle-two:hover {
+		    width: 125px;
+		    height: 125px;
+		    border-radius: 50%;
+		    border: 10px #3276b1 solid;#3276b1
+		    margin: 0 auto;
+		    vertical-align: middle;
+		    text-align: center;
+		}
+		.circle-two img {
 		    width: 75px;
 		    height: 75px;
 		    margin-top: 10%;
@@ -44,8 +78,8 @@
 	</style>
 <script>
 	$(document).ready(function(){
-	        $("#gambar1").animate({left: '200px'}, 1000);
-	        $("#gambar2").animate({left: '400px'}, 1000);
+	        $("#gambar1").animate({left: '250px'}, 1000);
+	        $("#gambar2").animate({left: '450px'}, 1000);
 	        $("#img1").fadeIn(3000);
 	        $("#img2").fadeIn(2700);
 	        $(".text-img").fadeIn(2700);
@@ -78,7 +112,7 @@
 
 
 
-<div class="content">
+<div class="content" style="min-height: 720px">
 	<div class="container">
 		<div class="row text-center center-block">
 				<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" id="gambar1">
@@ -96,7 +130,7 @@
 
 				<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" id="gambar2">
 					 <a href="https://emas.telkom.co.id/MIG/">
-				        <div class="circle-one">
+				        <div class="circle-two">
 							  <a href="">
 							  	<img id="img2" src="<?php echo base_url()?>assets/img/Cimuning.jpg" style="display: none">
 							  </a>
