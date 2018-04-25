@@ -47,6 +47,7 @@ class C_gudangJadi extends CI_Controller
       'GUJA_MASUK'    => $masuk ,
       'GUJA_BAPA_ID'  => $parent ,
       'GUJA_BACH_ID'  => $child ,
+      'GUJA_SALDO'    => $saldoAkhir
     );
     $simpanBarang = $this->m_gudangJadi->simpanBarang($data, $saldoAkhir, $child);
     echo "<script> window.location='".base_url()."c_stok?message=1' </script>";

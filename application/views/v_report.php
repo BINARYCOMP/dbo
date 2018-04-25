@@ -49,11 +49,11 @@
         			<th scope="row"><?php echo $no ?></th>
 	        		<td><?php echo $row['BACH_NAME'] ?></td>
 	        		<td><?php echo $row['SATU_NAME'] ?></td>
-	                <td>6.234</td>
-	                <td>1.980</td>
-	                <td>2.0908</td>
-	                <td>3.757</td>
-	                <td>5.532</td>
+	                <td></td>
+	                <td></td>
+	                <td></td>
+	                <td></td>
+	                <td></td>
 	        		<td><?php echo $row['BACH_GUJA_TOTAL'] ?></td>
         		</tr>
   					<?php
