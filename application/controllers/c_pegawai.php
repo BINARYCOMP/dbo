@@ -19,7 +19,7 @@ class C_pegawai extends CI_Controller
 			'pegawai' =>$pegawai,
 			'agamaId' =>$agamaId,
 			'content'=>'v_pegawai',
-			'title' => 'pegawai',
+			'title' => 'Pegawai',
       		'menu'            => 'Input Pegawai'
 		);
 		$this->load->view('tampilan/v_combine', $data);
