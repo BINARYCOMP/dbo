@@ -89,7 +89,7 @@
     <div class="col-md-6">
       <div class="box box-warning">
         <div class="box-header with-border">
-          <h3 class="box-title">Data pegawai</h3>
+          <h3 class="box-title">Data Pegawai</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -124,7 +124,7 @@
                 <td><?php echo $row['PEGA_ALAMAT']?></td>
                 <td><?php echo $row['PEGA_NO_TLP']?></td>
                 <td><?php echo $row['PEGA_JENKEL']?></td>
-                <td><?php echo $row['PEGA_AGAM_ID']?></td>
+                <td><?php echo $row['AGAM_NAME']?></td>
                 <td>
                   <a href="<?php echo base_url()?>c_pegawai/FormUpdate/<?php echo $row['PEGA_ID']?>">Edit</a>
                 </td>

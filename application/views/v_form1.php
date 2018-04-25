@@ -35,18 +35,18 @@
 	                  <label class=" control-label">Nama Pegawai</label>
 	                  <div>
 	                  	<span id="qty">
-	                      <input class="form-control" type="text"  name="txtname" >  
+	                      
+							<select name="cmbParent" onchange="showChild(this.value)" id="cmbParent" class="form-control">
+							  <option value="0">== Pilih Pegawai ==</option>
+							  <?php  
+							    foreach ($dataPegawai as $row){
+							      echo "<option value='".$row['PEGA_ID']."'>";
+							      echo $row ['PEGA_NAME'];
+							     echo "</option>";
+							    }
+							  ?>
+							</select>  
 	                    </span>
-<!-- 						<select name="cmbParent" onchange="showChild(this.value)" id="cmbParent" class="form-control">
-						  <option value="0">== Pilih Pegawai ==</option>
-						  <?php  
-						    /*foreach ($dataPegawai as $row){
-						      echo "<option value='".$row['PEGA_ID']."'>";
-						      echo $row ['PEGA_NAME'];
-						     echo "</option>";
-						    } */
-						  ?>
-						</select> -->  
 	                  </div>
 	              </div>
 	              <div class="form-group">
@@ -113,7 +113,7 @@
 	 					echo "<td>".$no++."</td>";
 	 					echo "<td>".$row['PEGA_NAME']."</td>";
 	 					echo "<td>".$row['USER_NAME']."</td>";
-	 					echo "<td>".$row['USER_LEVE_ID']."</td>";
+	 					echo "<td>".$row['LEVE_NAME']."</td>";
 	 					echo "<td>
 	 							<a href='".base_url()."C_form1/FormUpdate/".$row['USER_ID']."'>Edit</a> |
 	 							<a  href='".base_url()."C_form1/Delete/".$row['USER_ID']."'>Delete</a>

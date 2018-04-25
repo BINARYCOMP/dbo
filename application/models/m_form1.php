@@ -7,7 +7,7 @@ class M_form1 extends CI_Model
 	
 	public function getLevel()
 	{
-		$sql="select * from level ";
+		$sql="select * from level";
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -16,7 +16,7 @@ class M_form1 extends CI_Model
 	
 		public function getUser()
 	{
-		$sql="select user.*,pegawai.PEGA_NAME from user inner join pegawai on pegawai.pega_id=user.user_id";
+		$sql="select * from user inner join pegawai on pegawai.pega_id=user.user_id inner join level on level.LEVE_ID=user.USER_LEVE_ID  ";
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
