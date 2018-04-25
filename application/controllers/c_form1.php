@@ -29,11 +29,13 @@ class C_form1 extends CI_Controller
 	}
 	public function FormRegister()
 	{
+		$idpegawai=$_POST['cmbParent'];
 		$username = $_POST['txtusername'];
 		$password = md5($_POST['txtpassword']);
 		$level = $_POST['level'];
 
 		$data = array(
+			'USER_DAPE_ID'=>$idpegawai,
 			'USER_NAME' =>$username ,
 			'USER_PASSWORD' =>$password ,
 			'USER_LEVE_ID' =>$level   
@@ -59,8 +61,8 @@ class C_form1 extends CI_Controller
 		$this->load->view('tampilan/v_combine',$data);
 	}
 	public function UpdateData($id){
-		$namapegawai=$_POST['txtname'];
-		// $idpegawai = $_POST['txtidpegawai'];
+		
+		
 		$username = $_POST['txtusername'];
 		$password = md5($_POST['txtpassword']);
 		$level = $_POST['level'];
