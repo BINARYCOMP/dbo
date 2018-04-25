@@ -55,11 +55,11 @@
                             <td><?php echo $row2['GUJA_URAIAN'] ?></td>
                             <td><?php echo $row2['GUJA_KELUAR'] ?></td>
                             <td><?php echo $row2['GUJA_MASUK'] ?></td>
-                            <td><?php echo $row2['BACH_GUJA_TOTAL'] ?></td>
+                            <td><?php echo $row2['GUJA_SALDO'] ?></td>
                             <td><?php echo $row2['GUJA_KELUAR'] ?></td>
                             <td><?php echo $row2['GUJA_MASUK'] ?></td>
+                            <td><?php echo $row2['GUJA_SALDO'] ?></td>
                             <td><?php echo $row2['BACH_GUJA_TOTAL'] ?></td>
-                            <td><?php echo 'Ieu kumaha ?' ?></td>
                           </tr>
                         <?php
                       }
