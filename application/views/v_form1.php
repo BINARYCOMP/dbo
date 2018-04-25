@@ -113,7 +113,7 @@
 	 					echo "<td>".$no++."</td>";
 	 					echo "<td>".$row['PEGA_NAME']."</td>";
 	 					echo "<td>".$row['USER_NAME']."</td>";
-	 					echo "<td>".$row['USER_LEVE_ID']."</td>";
+	 					echo "<td>".$row['LEVE_NAME']."</td>";
 	 					echo "<td>
 	 							<a href='".base_url()."C_form1/FormUpdate/".$row['USER_ID']."'>Edit</a> |
 	 							<a  href='".base_url()."C_form1/Delete/".$row['USER_ID']."'>Delete</a>
