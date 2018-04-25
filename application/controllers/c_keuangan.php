@@ -15,6 +15,11 @@ class C_keuangan extends CI_Controller
 	{
 		$keuangan=$this->m_keuangan->view();
 		$getSaldoAkhir = $this->m_keuangan->getSaldoAkhir();
+		if ($getSaldoAkhir == null) {
+			$getSaldoAkhir = 0;
+		}else{
+			$getSaldoAkhir = $getSaldoAkhir[0]['KEUA_SALDO'];
+		}
 		$data = array(
 			'title'=>'Keuangan',
 			'content' => 'v_keuangan',

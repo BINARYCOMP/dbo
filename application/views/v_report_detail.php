@@ -51,13 +51,17 @@
                       foreach ($dataBarangChild as $row2) {
                         ?>
                           <tr>
-                            <th scope="row"><?php echo $row2['GUJA_TIMESTAMP'] ?></th>
+                            <th scope="row">
+                              <?php 
+                                echo date("D d M Y ( h:m:s a )", strtotime($row2['GUJA_TIMESTAMP']));
+                              ?>
+                            </th>
                             <td><?php echo $row2['GUJA_URAIAN'] ?></td>
-                            <td><?php echo $row2['GUJA_KELUAR'] ?></td>
                             <td><?php echo $row2['GUJA_MASUK'] ?></td>
+                            <td><?php echo $row2['GUJA_KELUAR'] ?></td>
                             <td><?php echo $row2['GUJA_SALDO'] ?></td>
-                            <td><?php echo $row2['GUJA_KELUAR'] ?></td>
                             <td><?php echo $row2['GUJA_MASUK'] ?></td>
+                            <td><?php echo $row2['GUJA_KELUAR'] ?></td>
                             <td><?php echo $row2['GUJA_SALDO'] ?></td>
                             <td><?php echo $row2['BACH_GUJA_TOTAL'] ?></td>
                           </tr>

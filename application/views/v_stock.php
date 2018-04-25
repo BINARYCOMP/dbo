@@ -43,7 +43,7 @@
                           <td><?php echo $row['GUJA_URAIAN']?></td>
                           <td><?php echo $row['GUJA_MASUK']?></td>
                           <td><?php echo $row['GUJA_KELUAR']?></td>
-                          <td><?php echo $row['BACH_GUJA_TOTAL']?></td>
+                          <td><?php echo $row['GUJA_SALDO']?></td>
                         </tr>
                       <?php
                       $no++;

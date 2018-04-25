@@ -35,7 +35,7 @@
 	                  <label class=" control-label">Debet</label>
 	                  <div>
 	                    <span >
-	                      <input class="form-control" type="number" onkeyup="saldo()" placeholder="" name="txtDebet" id="masuk">  
+	                      <input class="form-control" type="number" onkeyup="saldo('masuk')" placeholder="" name="txtDebet" id="masuk">  
 	                    </span>
 	                  </div>
 	              </div>
@@ -43,7 +43,7 @@
 	                  <label class=" control-label">Kredit</label>
 	                  <div>
 	                    <span >
-	                      <input class="form-control" type="number" onkeyup="saldo()" placeholder="" name="txtKredit" id="keluar">  
+	                      <input class="form-control" type="number" onkeyup="saldo('keluar')" placeholder="" name="txtKredit" id="keluar">  
 	                    </span>
 	                  </div>
 	              </div>
@@ -51,7 +51,7 @@
 	                  <label class=" control-label">Saldo</label>
 	                  <div class="row">
 	                  	<div class="col-md-6">
-                  			<input type="text" class="form-control" readonly="true" name="txtSaldoAwal" value=" <?php echo $saldoAkhir[0]['KEUA_SALDO']?> " >  
+                  			<input type="text" class="form-control" readonly="true" name="txtSaldoAwal" value=" <?php echo $saldoAkhir?> " >  
                   		</div>
                   		<div class="col-md-6">
                     		<input type="text" class="form-control" readonly="true" name="txtSaldoAkhir" id="saldoAkhirMuncul" >  
@@ -60,7 +60,7 @@
 	              </div>
                   <div class="form-group">
                   		<div class="col-md-6">
-                  			<input type="hidden"  readonly="true" name="txtSaldoAwalAsli" value="<?php echo $saldoAkhir[0]['KEUA_SALDO']?>" id="saldoAwal">  
+                  			<input type="hidden"  readonly="true" name="txtSaldoAwalAsli" value="<?php echo $saldoAkhir ?>" id="saldoAwal">  
                   		</div>
                   		<div class="col-md-6">
                     		<input type="hidden" readonly="true" name="txtSaldoAkhirAsli" id="saldoAkhir">  
@@ -137,19 +137,21 @@
 </div>
 <!-- /.content -->
 <script type="text/javascript">
-	function saldo() {
+	function saldo(id) {
 		var masuk,keluar,rumus,awal; 
-		if (document.getElementById('masuk').value == "") {
-			document.getElementById('masuk').value = 0;
-		}
-		if (document.getElementById('keluar').value == "") {
+		if (id == 'masuk') {
+			masuk 	= document.getElementById('masuk').value;
 			document.getElementById('keluar').value = 0;
+			keluar  = document.getElementById('keluar').value;;
+		}else if (id == 'keluar') {
+			keluar  = document.getElementById('keluar').value;;
+			document.getElementById('masuk').value = 0;
+			masuk  = document.getElementById('masuk').value;;
 		}
-		masuk 	= document.getElementById('masuk').value;
-		keluar 	= document.getElementById('keluar').value;
 		awal 	= document.getElementById('saldoAwal').value;
 		rumus 	= parseInt(awal)  + parseInt(masuk) - parseInt(keluar);
 		document.getElementById('saldoAkhirMuncul').value = rumus;
 		document.getElementById('saldoAkhir').value = rumus;
+		
 	}
 </script>
