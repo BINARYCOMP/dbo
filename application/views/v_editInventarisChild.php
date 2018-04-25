@@ -29,7 +29,7 @@
 	                  </div>
 	              </div>
 	              <div class="form-group">
-	                  <label class=" control-label">Nama Barang</label>
+	                  <label class=" control-label">Nama Inventaris</label>
 	                  <div>
 	                    <span id="qty">
 	                      <input class="form-control" type="text"  required="true" name="txtnama" value="<?php echo($inventarisChild[0]['INCH_NAME'])?>" >  
@@ -37,7 +37,7 @@
 	                  </div>
 	              </div>
 	               <div class="form-group">
-	                  <label class=" control-label">QTY Barang</label>
+	                  <label class=" control-label">QTY Inventaris</label>
 	                  <div>
 	                    <span id="qty">
 	                      <input class="form-control" type="text"  required="true" name="txtqty" value="<?php echo($inventarisChild[0]['INCH_QTY'])?>" >  

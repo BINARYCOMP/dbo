@@ -42,7 +42,7 @@ class C_inventarisChild extends CI_Controller
 		$child=$this->m_inventarisChild->Update($id);
 		$inventarisParent	=$this->m_inventarisChild->viewParent();
 		$data = array(
-			'title'				=> 'Invebtaris Child',
+			'title'				=> 'Inventaris Child',
 			'content' 			=> 'v_editinventarisChild',
 			'inventarisChild' 	=> $child,
 			'inventaris_parent'	=> $inventarisParent,
