@@ -16,6 +16,7 @@ class C_inventarisChild extends CI_Controller
 		$inventarisChild 	=$this->m_inventarisChild->view();
 		$inventarisParent	=$this->m_inventarisChild->viewParent();
 		$data = array(
+			'title'				=> 'Inventaris Child',
 			'content' 			=> 'v_inventarisChild',
 			'inventaris_child' 	=> $inventarisChild,
 			'inventaris_parent'	=> $inventarisParent,
@@ -39,27 +40,25 @@ class C_inventarisChild extends CI_Controller
 	}
 	public function FormUpdate($id){
 		$child=$this->m_inventarisChild->Update($id);
+		$inventarisParent	=$this->m_inventarisChild->viewParent();
 		$data = array(
+			'title'				=> 'Invebtaris Child',
 			'content' 			=> 'v_editinventarisChild',
-			'inventarisChild' =>$child,
+			'inventarisChild' 	=> $child,
+			'inventaris_parent'	=> $inventarisParent,
 			'menu'         		=> 'Inventaris Child'
 		);
 		$this->load->view('tampilan/v_combine',$data);
 	}
 	public function UpdateData($id)
 	{
-		$nama = $_POST['txtnama'];
-		$guja = $_POST['txtguja'];
-		$guta = $_POST['txtguta'];
-		$bapa = $_POST['txtbapa'];
-		$satuan = $_POST['txtsatuan'];
-
+		$nama 		= $_POST['txtnama'];
+		$parent		= $_POST['txtParent'];
+		$jumlah 	= $_POST['txtqty'];
 		$data = array(
-			'INCH_NAMe' =>$nama ,
-			'INCH_GUJA_TOTAL' =>$guja ,
-			'INCH_GUTA_TOTAL' =>$guta ,
-			'INCH_BAPA_ID' =>$bapa ,
-			'INCH_SATU_ID' =>$satuan , 
+			'INCH_NAME' 	=> $nama ,
+			'INCH_INPA_ID' 	=> $parent ,
+			'INCH_QTY' 		=> $jumlah ,
 			);
 		$child=$this->m_inventarisChild->UpdateData($id, $data);
 		redirect('C_inventarisChild');
