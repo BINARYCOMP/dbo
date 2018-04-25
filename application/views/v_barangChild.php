@@ -19,7 +19,7 @@
 	                  <label class=" control-label">Induk Barang</label>
 	                  <div>
 	                    <select name="txtbapa" id="cmbParent" class="form-control">
-						  <option value="0">== Pilih Induk Barang ==</option>
+						  <option value="0">== Pilih Satuan ==</option>
 						  <?php  
 						    foreach ($barang_parent as $row){
 						      echo "<option value='".$row['BAPA_ID']."'>";
