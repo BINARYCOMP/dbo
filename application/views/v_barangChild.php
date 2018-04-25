@@ -19,7 +19,7 @@
 	                  <label class=" control-label">Induk Barang</label>
 	                  <div>
 	                    <select name="txtbapa" id="cmbParent" class="form-control">
-						  <option value="0">== Pilih Satuan ==</option>
+						  <option value="0">== Pilih Induk Barang ==</option>
 						  <?php  
 						    foreach ($barang_parent as $row){
 						      echo "<option value='".$row['BAPA_ID']."'>";
@@ -40,7 +40,7 @@
 	              </div>
 	              <div class="form-group">
 	                  <select name="txtsatuan" id="cmbParent" class="form-control">
-						  <option value="0">== Pilih Induk Barang ==</option>
+						  <option value="0">== Pilih Satuan ==</option>
 						  <?php  
 						    foreach ($satuan as $row){
 						      echo "<option value='".$row['SATU_ID']."'>";
