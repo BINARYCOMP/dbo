@@ -244,8 +244,7 @@ function showStok(str) {
 </div>
 
 
-
-
+<!-- script -->
 <script type="text/javascript">
 
 //            jika dipilih, kode obat akan masuk ke input dan modal di tutup
@@ -271,11 +270,5 @@ function showStok(str) {
         
 
     });
-
-
-    
-        
-
-
 
 </script>
