@@ -27,7 +27,7 @@
                           ?>
                         </select>
                         <div class="input-group-btn">
-                          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Search</button>
+                          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalTakJadi">Search</button>
                         </div>
                       </div>
                     </div>
@@ -42,7 +42,7 @@
                             </select>
                           </span>
                           <div class="input-group-btn">
-                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal2">Search</button>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalTakJadi2" onclick="modalChildTakJadi()">Search</button>
                           </div>
                         </div>
                     </div>
@@ -114,8 +114,8 @@
 </div>
 <!-- /.modal -->
 
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="width:800px" id="modalChildJadi">
+<div class="modal fade" id="myModalTakJadi2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:800px" id="modalChildTakJadi">
 
    </div>
   <!-- /.modal-dialog -->
@@ -186,11 +186,26 @@ function showStokTakJadi(str) {
     xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal, true);
     xhttp.send();   
   }
+
+   function modalChildTakJadi() {
+    var xhttp;
+    var parent;
+    parent    = document.getElementById('cmbParentTakJadi').value;
+
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("modalChildTakJadi").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/modalChild?parent="+parent, true);
+    xhttp.send();
+  }
 </script>
 
 <!-- modal  parent -->
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModalTakJadi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width:800px">
         <div class="modal-content">
             <div class="modal-header">
@@ -198,7 +213,7 @@ function showStokTakJadi(str) {
                 <h4 class="modal-title" id="myModalLabel">Lookup Barang Parent</h4>
             </div>
             <div class="modal-body">
-                <table id="lookup" class="table table-bordered table-hover table-striped">
+                <table id="gutaParent" class="table table-bordered table-hover table-striped">
                     <thead>
                       <tr>
                         <th>Id Barang</th>
@@ -209,7 +224,7 @@ function showStokTakJadi(str) {
                       <?php 
                       foreach ($namaParent as $row) {
                         ?>
-                          <tr class="pilih" data-brgParent="<?php echo $row['BAPA_ID']; ?>">
+                          <tr class="pilih" data-brgParentTakJadi="<?php echo $row['BAPA_ID']; ?>">
                             <td><?php echo $row['BAPA_ID']?></td>
                             <td><?php echo $row['BAPA_NAME']?></td>
                           </tr>
@@ -227,13 +242,13 @@ function showStokTakJadi(str) {
 <script type="text/javascript">
 
 //            jika dipilih, kode obat akan masuk ke input dan modal di tutup
-    $(document).on('click', '.Pilih', function (e) {
+    $(document).on('click', '.pilih', function (e) {
         // alert("test");
 
         // parent
-        document.getElementById("cmbParentTakJadi").value = $(this).attr('data-brgParent');
-        $('#myModal').modal('hide');
-        showChildTakJadi($(this).attr('data-brgParent'));
+        document.getElementById("cmbParentTakJadi").value = $(this).attr('data-brgParentTakJadi');
+        $('#myModalTakJadi').modal('hide');
+        showChildTakJadi($(this).attr('data-brgParentTakJadi'));
 
         
 
@@ -243,9 +258,9 @@ function showStokTakJadi(str) {
         // alert("test");
 
         // child
-        document.getElementById("cmbChildTakJadi").value = $(this).attr('data-brgChild');
-        $('#myModal2').modal('hide');
-        showStokTakJadi($(this).attr('data-brgChild'));
+        document.getElementById("cmbChildTakJadi").value = $(this).attr('data-brgChildTakJadi');
+        $('#myModalTakJadi2').modal('hide');
+        showStokTakJadi($(this).attr('data-brgChildTakJadi'));
         
 
     });

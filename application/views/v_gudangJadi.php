@@ -218,7 +218,7 @@ function showStok(str) {
                 <h4 class="modal-title" id="myModalLabel">Lookup Barang Parent</h4>
             </div>
             <div class="modal-body">
-                <table id="lookup" class="table table-bordered table-hover table-striped">
+                <table id="gujaParent" class="table table-bordered table-hover table-striped">
                     <thead>
                       <tr>
                         <th>Id Barang</th>

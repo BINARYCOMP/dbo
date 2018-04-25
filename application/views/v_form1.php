@@ -35,7 +35,6 @@
 	                  <label class=" control-label">Nama Pegawai</label>
 	                  <div>
 	                  	<span id="qty">
-	                      
 							<select name="cmbParent" onchange="showChild(this.value)" id="cmbParent" class="form-control">
 							  <option value="0">== Pilih Pegawai ==</option>
 							  <?php  

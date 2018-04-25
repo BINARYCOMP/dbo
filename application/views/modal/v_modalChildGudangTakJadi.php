@@ -5,7 +5,7 @@
         <h4 class="modal-title" id="myModalLabel">Lookup Barang Child</h4>
     </div>
     <div class="modal-body">
-        <table id="gujaChild" class="table table-bordered table-hover table-striped">
+        <table id="gutaChild" class="table table-bordered table-hover table-striped">
             <thead>
               <tr>
                 <th>Id Barang</th>
@@ -19,7 +19,7 @@
               if (is_array($namaChild) || is_object($namaChild)){
                 foreach ($namaChild as $row) {
                   ?>
-                    <tr class="pilih2" data-brgChild="<?php echo $row['BACH_ID']; ?>">
+                    <tr class="pilih2" data-brgChildTakJadi="<?php echo $row['BACH_ID']; ?>">
                       <!-- <td><?php echo $no ?></td> -->
                       <td><?php echo $row['BACH_ID']?></td>
                       <td><?php echo $row['BACH_NAME']?></td>

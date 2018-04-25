@@ -42,7 +42,10 @@
               ]
           });
         $("#guta").dataTable();
+        $("#gujaParent").dataTable();
         $("#gujaChild").dataTable();
+        $("#gutaChild").dataTable();
+        $("#gutaParent").dataTable();
     });
 </script>
 <!-- AdminLTE for demo purposes -->
