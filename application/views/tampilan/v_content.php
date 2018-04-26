@@ -90,30 +90,8 @@
 	});
 </script>
 
-<!-- 
-<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 wow fadeInLeft" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s;">
-    <a href="https://emas.telkom.co.id/MIG/">
-        <div class="circle-one" id="gambar1">
-			  <a href="">
-			  	<img id="img1" src="<?php echo base_url()?>assets/img/Bawang.jpg" style="display: none">
-			  </a>
-        </div>
-        <div class="circle-title">
-            <p> [ Gudang Bawang ] </p>
-        </div>
-    </a>
-</div>
-
- -->
-
-
-
-
-
-
-
 <div class="content" style="min-height: 720px">
-	<div class="container">
+	<!-- <div class="container">
 		<div class="row text-center center-block">
 				<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" id="gambar1">
 					 <a href="https://emas.telkom.co.id/MIG/">
@@ -141,5 +119,5 @@
 				    </a>
 				</div>
 		</div>
-	</div>
+	</d -->iv>
 </div>
