@@ -112,3 +112,54 @@
     </table>
   </div>
 
+
+    <!-- Inventaris Report -->
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title"><span class="text-center">Inventaris Report</span></h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget=" "><i class="fa fa-edit"></i> Edit</button>
+        <button type="button" class="btn btn-box-tool" data-widget=" "><i class="fa fa-save"></i> Save</button>
+        <button type="button" class="btn btn-box-tool" data-widget=" "><i class="fa fa-file-excel-o"></i> Excel</button>
+        <button type="button" class="btn btn-box-tool" data-widget=" "><i class="fa fa-file-pdf-o"></i> PDF</button>
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <table id="example1" class="table table-bordered table-hover">
+        <thead >
+        <tr>
+          <th scope="col" rowspan="2">N0</th>
+          <th scope="col" rowspan="2">NAMA BARANG</th>
+          <th scope="col" rowspan="2">QTY</th>
+        </tr>
+        </thead>
+        <tbody>
+      <?php
+      $no = 1;
+        foreach ($dataInventarisParent as $row) {
+          ?>
+          <tr>
+                <th scope="row"></th>
+                <td colspan="8"><b><a href="<?php echo base_url()?>c_report/detailInventaris/<?php echo $row['INPA_ID']?>"><?php echo $row['INPA_NAME'] ?></a></b></td>
+            </tr>
+          <?php
+          $dataBarangChildById = $this->m_report->getInventarisChildByInpaId($row['INPA_ID']); 
+          foreach ($dataBarangChildById as $row) {
+            ?>
+            <tr>
+              <th scope="row"><?php echo $no ?></th>
+              <td><?php echo $row['INCH_NAME'] ?></td>
+              <td><?php echo $row['INCH_QTY'] ?></td>
+            </tr>
+            <?php
+            $no++;
+          }
+        }
+      ?>
+      </tbody>
+    </table>
+  </div>
+

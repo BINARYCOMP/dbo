@@ -45,4 +45,22 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
+
+
+
+		public function getInventarisParent()
+	{
+		$sql 	= "SELECT * FROM inventaris_parent ";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+
+		public function getInventarisChildByInpaId($id)
+	{
+		$sql 	= "SELECT * FROM  inventaris_parent, inventaris_child, inventaris WHERE INCH_INPA_ID = INPA_ID AND INVE_INCH_ID = INCH_ID AND INVE_INPA_ID = INPA_ID AND INPA_ID =".$id;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 }

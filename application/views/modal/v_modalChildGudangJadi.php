@@ -16,11 +16,12 @@
             </thead>
             <tbody>
               <?php
+              $no=1;
               if (is_array($namaChild) || is_object($namaChild)){
                 foreach ($namaChild as $row) {
                   ?>
                     <tr class="isi2" data-brgChild="<?php echo $row['BACH_ID']; ?>">
-                      <td><?php echo $no ?></td>
+                      <td><?php echo $no++ ?></td>
                       <td><?php echo $row['BACH_NAME']?></td>
                       <td><?php echo $row['BACH_GUJA_TOTAL']?></td>
                       <td><?php echo $row['BAPA_NAME']?></td>
