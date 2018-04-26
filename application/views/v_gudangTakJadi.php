@@ -1,4 +1,4 @@
-<form action="" method="POST">
+<form action="" method="POST">  
   <div class="col-md-6">
             <div class="box box-warning">
               <div class="box-header with-border">
@@ -27,7 +27,7 @@
                           ?>
                         </select>
                         <div class="input-group-btn">
-                          <button type="button" class="btn btn-warning ">Search</button>
+                          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalTakJadi">Search</button>
                         </div>
                       </div>
                     </div>
@@ -42,7 +42,7 @@
                             </select>
                           </span>
                           <div class="input-group-btn">
-                            <button type="button" class="btn btn-warning">Search</button>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalTakJadi2" onclick="modalChildTakJadi()">Search</button>
                           </div>
                         </div>
                     </div>
@@ -114,39 +114,13 @@
 </div>
 <!-- /.modal -->
 
-<!-- <hr>
-<table>
-  <tr>
-    <th>No.</th>
-    <th>Induk Barang</th>
-    <th>Anak Barang</th>
-    <th>Uraian</th>
-    <th>Masuk</th>
-    <th>Keluar</th>
-    <th>Saldo</th>
-  </tr>
-  <?php
-  $no = 1;
-  foreach ($dataGudangTakJadi as $row) {
-    ?>
-      <tr>
-        <td><?php echo $no ?></td>
-        <td><?php echo $row['BAPA_NAME'] ?></td>
-        <td><?php echo $row['BACH_NAME'] ?></td>
-        <td><?php echo $row['GUTA_URAIAN'] ?></td>
-        <td><?php echo $row['GUTA_MASUK'] ?></td>
-        <td><?php echo $row['GUTA_KELUAR'] ?></td>
-        <td><?php echo $row['BACH_GUTA_TOTAL'] ?></td>
-      </tr>
-    <?php
-    $no++;
-  }
-  ?>
-</table> -->
+<div class="modal fade" id="myModalTakJadi2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:800px" id="modalChildTakJadi">
 
-
-
-
+   </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
 <!-- javascript child -->
 <script>
@@ -212,4 +186,83 @@ function showStokTakJadi(str) {
     xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal, true);
     xhttp.send();   
   }
+
+   function modalChildTakJadi() {
+    var xhttp;
+    var parent;
+    parent    = document.getElementById('cmbParentTakJadi').value;
+
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("modalChildTakJadi").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/modalChild?parent="+parent, true);
+    xhttp.send();
+  }
+</script>
+
+<!-- modal  parent -->
+
+<div class="modal fade" id="myModalTakJadi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Lookup Barang Parent</h4>
+            </div>
+            <div class="modal-body">
+                <table id="gutaParent" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>Id Barang</th>
+                        <th>Nama Barang</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                      foreach ($namaParent as $row) {
+                        ?>
+                          <tr class="pilih" data-brgParentTakJadi="<?php echo $row['BAPA_ID']; ?>">
+                            <td><?php echo $row['BAPA_ID']?></td>
+                            <td><?php echo $row['BAPA_NAME']?></td>
+                          </tr>
+                        <?php
+                      }
+                      ?>
+                    </tbody>
+                </table>  
+            </div><!--  /.modal body -->
+        </div> <!-- /.modal content -->
+    </div> <!-- /.modal dialog  -->
+</div><!--  /.end of modal -->
+
+
+<script type="text/javascript">
+
+//            jika dipilih, kode obat akan masuk ke input dan modal di tutup
+    $(document).on('click', '.pilih', function (e) {
+        // alert("test");
+
+        // parent
+        document.getElementById("cmbParentTakJadi").value = $(this).attr('data-brgParentTakJadi');
+        $('#myModalTakJadi').modal('hide');
+        showChildTakJadi($(this).attr('data-brgParentTakJadi'));
+
+        
+
+    });
+
+     $(document).on('click', '.pilih2', function (e) {
+        // alert("test");
+
+        // child
+        document.getElementById("cmbChildTakJadi").value = $(this).attr('data-brgChildTakJadi');
+        $('#myModalTakJadi2').modal('hide');
+        showStokTakJadi($(this).attr('data-brgChildTakJadi'));
+        
+
+    });
+
 </script>

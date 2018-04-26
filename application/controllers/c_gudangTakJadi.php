@@ -23,8 +23,8 @@ class C_gudangTakJadi extends CI_Controller
       $message ="";
     }
 
-      $namaParent = $this->m_gudangTakJadi->getParentName();
-      $dataGudangTakJadi   = $this->m_gudangTakJadi->getDataGudang();
+      $namaParent           = $this->m_gudangTakJadi->getParentName();
+      $dataGudangTakJadi    = $this->m_gudangTakJadi->getDataGudang();
       $data = array(
         'namaParent'        => $namaParent,
         'dataGudangTakJadi' => $dataGudangTakJadi,
@@ -145,4 +145,16 @@ class C_gudangTakJadi extends CI_Controller
       <!-- /.modal-content -->
     <?php
   }
+
+  public function modalChild()
+   {
+     $cmbParent = $_GET['parent'];
+     $namaChild = $this->m_gudangTakJadi->getChildByBapaId($cmbParent);
+     $data = array(
+      'cmbParent' => $cmbParent ,
+      'namaChild' => $namaChild 
+    );
+     $this->load->view('modal/v_modalChildGudangTakJadi', $data);
+  } 
+
 }
