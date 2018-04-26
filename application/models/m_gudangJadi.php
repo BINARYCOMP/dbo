@@ -23,7 +23,7 @@
     //nama Parent
     public function getParentName()
     {
-      $sql="select * from barang_parent";
+      $sql="select * from barang_parent,satuan where barang_parent.BAPA_ID=satuan.SATU_ID";
       $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;

@@ -216,7 +216,7 @@ function showStokTakJadi(str) {
                 <table id="gutaParent" class="table table-bordered table-hover table-striped">
                     <thead>
                       <tr>
-                        <th>Id Barang</th>
+                        <th>Satuan</th>
                         <th>Nama Barang</th>
                       </tr>
                     </thead>
@@ -225,7 +225,7 @@ function showStokTakJadi(str) {
                       foreach ($namaParent as $row) {
                         ?>
                           <tr class="pilih" data-brgParentTakJadi="<?php echo $row['BAPA_ID']; ?>">
-                            <td><?php echo $row['BAPA_ID']?></td>
+                            <td><?php echo $row['SATU_NAME']?></td>
                             <td><?php echo $row['BAPA_NAME']?></td>
                           </tr>
                         <?php

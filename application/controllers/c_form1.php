@@ -62,7 +62,7 @@ class C_form1 extends CI_Controller
 	}
 	public function UpdateData($id){
 		
-		
+		$idpegawai=$_POST['cmbNamaPega'];
 		$username = $_POST['txtusername'];
 		$password = md5($_POST['txtpassword']);
 		$level = $_POST['level'];

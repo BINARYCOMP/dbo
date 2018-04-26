@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <label class=" control-label">Email</label>
                     <div>
-                      <input class="form-control" type="text" placeholder="Masukkan Email @" name="pegawai2" required placeholder="0">  
+                      <input class="form-control" type="email" placeholder="Masukkan Email @" name="pegawai2" required placeholder="0">  
                     </div>
                   </div>
                 <div class="form-group">
@@ -41,12 +41,12 @@
                 </div>
                 <div class="form-group">
                   <label>Jenis Kelamin</label>
-                  <div class="row">
+                  <div  class="row">
                     <div class="col-md-2">
-                      <input  type="radio" name="pegawai5"> Laki-Laki
+                      <input value="Laki-Laki" type="radio" name="pegawai5"> Laki-Laki
                     </div>
                     <div class="col-md-10">
-                      <input  type="radio" name="pegawai5"> Perempuan
+                      <input value="Perempuan" type="radio" name="pegawai5"> Perempuan
                     </div>
                   </div>
                 </div>
@@ -101,14 +101,13 @@
         <thead>
           <tr>
             <th>No.</th>
-            <th>Id Pegawai</th>
             <th>Nama</th>
             <th>Email</th>
             <th>Alamat</th>
             <th>No Telepon</th>
             <th>Jenis Kelamin</th>
-            <th>Id Agama</th>
-            <th style="text-align: center" colspan="2">Action </th>
+            <th>Agama</th>
+            <th style="text-align: center">Action </th>
           </tr>
         </thead>
         <tbody>
@@ -118,7 +117,6 @@
             ?>
               <tr>
                 <td><?php echo $no ?></td>
-                <td><?php echo $row['PEGA_ID']?></td>
                 <td><?php echo $row['PEGA_NAME']?></td>
                 <td><?php echo $row['PEGA_EMAIL']?></td>
                 <td><?php echo $row['PEGA_ALAMAT']?></td>

@@ -34,7 +34,7 @@
 					<div class="form-group">
 					  <label class=" control-label">Nama Pegawai</label>
 					  <div>
-						<select name="cmbParent" onchange="showChild(this.value)" id="cmbParent" class="form-control">
+						<select name="cmbNamaPega" onchange="showChild(this.value)" id="cmbParent" class="form-control">
 						  <option value="0">== Pilih Pegawai ==</option>
 						  <?php  
 						    foreach ($dataPegawai as $row){
