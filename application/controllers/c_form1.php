@@ -29,7 +29,7 @@ class C_form1 extends CI_Controller
 	}
 	public function FormRegister()
 	{
-		$idpegawai=$_POST['cmbParent'];
+		$idpegawai=$_POST['cmbNamaPega'];
 		$username = $_POST['txtusername'];
 		$password = md5($_POST['txtpassword']);
 		$level = $_POST['level'];

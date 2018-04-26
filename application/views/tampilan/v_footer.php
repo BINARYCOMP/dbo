@@ -41,11 +41,18 @@
                   'excel'
               ]
           });
+
+        // gudang
         $("#guta").dataTable();
         $("#gujaParent").dataTable();
         $("#gujaChild").dataTable();
         $("#gutaChild").dataTable();
         $("#gutaParent").dataTable();
+
+        // user
+        $("#registForm").dataTable();
+
+
     });
 </script>
 <!-- AdminLTE for demo purposes -->

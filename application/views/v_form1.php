@@ -2,7 +2,7 @@
 <div class="content">
 	<div class="row">
 	  <div class="col-md-6">
-	    <div class="box box-warning">
+	    <div class="box box-info">
 	      <div class="box-header with-border">
 	        <h3 class="box-title">Input Data</h3>
 
@@ -32,22 +32,24 @@
 	                  </div>
 	              </div>
 	              <div class="form-group">
-	                  <label class=" control-label">Nama Pegawai</label>
-	                  <div>
-	                  	<span id="qty">
-							<select name="cmbParent" onchange="showChild(this.value)" id="cmbParent" class="form-control">
-							  <option value="0">== Pilih Pegawai ==</option>
-							  <?php  
-							    foreach ($dataPegawai as $row){
-							      echo "<option value='".$row['PEGA_ID']."'>";
-							      echo $row ['PEGA_NAME'];
-							     echo "</option>";
-							    }
-							  ?>
-							</select>  
-	                    </span>
-	                  </div>
-	              </div>
+					<label class="control-label">Nama Pegawai</label>
+						<div class="input-group">
+						  <!-- /btn-group -->
+						  <select name="cmbNamaPega" id="cmbNamaPega" class="form-control">
+						    <option value="0">== Pilih Pegawai ==</option>
+						    <?php  
+						      foreach ($dataPegawai as $row){
+						        echo "<option value='".$row['PEGA_ID']."'>";
+						        echo $row ['PEGA_NAME'];
+						       echo "</option>";
+						      }
+						    ?>
+						  </select> 
+						  <div class="input-group-btn">
+						    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalRegister">Search</button>
+						  </div>
+						</div>
+					</div>
 	              <div class="form-group">
 	                  <label >Level</label>
 	                  <div>
@@ -68,7 +70,7 @@
 	                    <button type="reset" class="btn btn-default pull-right">Cancel</button>
 	                  </div>
 	                  <div class="col-md-2">
-	                    <button type="submit" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
+	                    <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
 	                  </div>
 	                </div>
 	              </div>
@@ -82,7 +84,7 @@
 	      <!-- /.box -->
 	  </div> <!-- col-input -->
 	  <div class="col-md-6">
-	    <div class="box box-warning">
+	    <div class="box box-info">
 	      <div class="box-header with-border">
 	        <h3 class="box-title">Data User</h3>
 
@@ -130,3 +132,52 @@
 	</div>
 </div>
 <!-- /.content -->
+
+
+<!-- modal  parent -->
+
+<div class="modal fade" id="myModalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Lookup Barang Parent</h4>
+            </div>
+            <div class="modal-body">
+                <table id="registForm" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID Pegawai</th>
+                        <th>Nama Pegawai</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                      foreach ($dataPegawai as $row) {
+                        ?>
+                          <tr class="cari" data-namaPega="<?php echo $row['PEGA_ID']; ?>">
+                            <td><?php echo $row['PEGA_ID']?></td>
+                            <td><?php echo $row['PEGA_NAME']?></td>
+                          </tr>
+                        <?php
+                      }
+                      ?>
+                    </tbody>
+                </table>  
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+//            jika dipilih, kode obat akan masuk ke input dan modal di tutup
+    $(document).on('click', '.cari', function (e) {
+        // alert("test");
+
+        // parent
+        document.getElementById("cmbNamaPega").value = $(this).attr('data-namaPega');
+        $('#myModalRegister').modal('hide');
+
+    });
+</script>
