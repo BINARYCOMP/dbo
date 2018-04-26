@@ -8,7 +8,7 @@
         <table id="gujaChild" class="table table-bordered table-hover table-striped">
             <thead>
               <tr>
-                <th>Id Barang</th>
+                <th>No.</th>
                 <th>Nama Barang</th>
                 <th>Total Barang</th>
                 <th>Satuan</th>
@@ -20,11 +20,10 @@
                 foreach ($namaChild as $row) {
                   ?>
                     <tr class="isi2" data-brgChild="<?php echo $row['BACH_ID']; ?>">
-                      <!-- <td><?php echo $no ?></td> -->
-                      <td><?php echo $row['BACH_ID']?></td>
+                      <td><?php echo $no ?></td>
                       <td><?php echo $row['BACH_NAME']?></td>
                       <td><?php echo $row['BACH_GUJA_TOTAL']?></td>
-                      <td><?php echo $row['BACH_SATU_ID']?></td>
+                      <td><?php echo $row['BAPA_NAME']?></td>
                     </tr>
                   <?php
                 }
