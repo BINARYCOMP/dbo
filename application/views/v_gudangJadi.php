@@ -221,19 +221,23 @@ function showStok(str) {
                 <table id="gujaParent" class="table table-bordered table-hover table-striped">
                     <thead>
                       <tr>
-                        <th>Satuan</th>
+                        <th>No.</th>
                         <th>Nama Barang</th>
+                        <th>Satuan</th>
                       </tr>
-                    </thead>
+                    </thead>        
                     <tbody>
                       <?php 
+                      $no=1;
                       foreach ($namaParent as $row) {
                         ?>
                           <tr class="isi" data-brgParent="<?php echo $row['BAPA_ID']; ?>">
-                            <td><?php echo $row['SATU_NAME']?></td>
+                            <td><?php echo $no?></td>
                             <td><?php echo $row['BAPA_NAME']?></td>
+                            <td><?php echo $row['SATU_NAME']?></td>
                           </tr>
                         <?php
+                        $no++;
                       }
                       ?>
                     </tbody>
