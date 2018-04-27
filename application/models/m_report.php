@@ -63,4 +63,12 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
+
+		public function getInventarisByChildId($id)
+	{
+		$sql 	= "SELECT * FROM  inventaris, inventaris_parent, inventaris_child WHERE INVE_INCH_ID = INCH_ID AND INVE_INPA_ID = INPA_ID AND INCH_ID =".$id;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 }
