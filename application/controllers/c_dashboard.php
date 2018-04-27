@@ -12,7 +12,7 @@ class C_dashboard extends CI_Controller
 	}
 
 	public function index(){
-		if ($_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'SUPER USER' ) {
+		if ($_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'SUPER ADMIN' ) {
 			$view = 'tampilan/v_content';
 		}else if ($_SESSION['level'] == 'ADMIN') {
 			$view = 'tampilan/v_content_admin';
