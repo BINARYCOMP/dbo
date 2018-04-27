@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Apr 2018 pada 20.01
+-- Waktu pembuatan: 27 Apr 2018 pada 20.05
 -- Versi server: 10.1.31-MariaDB
 -- Versi PHP: 5.6.35
 
@@ -121,14 +121,6 @@ CREATE TABLE `inventaris` (
   `INVE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `inventaris`
---
-
-INSERT INTO `inventaris` (`INVE_ID`, `INVE_KEADAAN`, `INVE_KETERANGAN`, `INVE_INPA_ID`, `INVE_INCH_ID`, `INVE_TIME`) VALUES
-(1, 'Baik', 'Sepatu AdidasKu', 1, 1, '2018-04-27 17:36:05'),
-(2, 'Buruk', 'Sepatu NikeKu', 1, 2, '2018-04-27 17:36:23');
-
 -- --------------------------------------------------------
 
 --
@@ -143,14 +135,6 @@ CREATE TABLE `inventaris_child` (
   `INCH_INPA_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `inventaris_child`
---
-
-INSERT INTO `inventaris_child` (`INCH_ID`, `INCH_NAME`, `INCH_QTY`, `INCH_TIME`, `INCH_INPA_ID`) VALUES
-(1, 'Sepatu Adidas', 5, '2018-04-27 17:35:20', 1),
-(2, 'Sepatu Nike', 3, '2018-04-27 17:35:30', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -162,13 +146,6 @@ CREATE TABLE `inventaris_parent` (
   `INPA_NAME` varchar(75) NOT NULL,
   `INPA_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `inventaris_parent`
---
-
-INSERT INTO `inventaris_parent` (`INPA_ID`, `INPA_NAME`, `INPA_TIME`) VALUES
-(1, 'Sepatu', '2018-04-27 17:34:35');
 
 -- --------------------------------------------------------
 
@@ -509,19 +486,19 @@ ALTER TABLE `gudang_tak_jadi`
 -- AUTO_INCREMENT untuk tabel `inventaris`
 --
 ALTER TABLE `inventaris`
-  MODIFY `INVE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `INVE_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `inventaris_child`
 --
 ALTER TABLE `inventaris_child`
-  MODIFY `INCH_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `INCH_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `inventaris_parent`
 --
 ALTER TABLE `inventaris_parent`
-  MODIFY `INPA_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `INPA_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `keuangan`
