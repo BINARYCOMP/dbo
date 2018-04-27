@@ -21,6 +21,17 @@ class m_dashboard extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
+	public function getReportStockSetengahJadi($month)
+	{
+		$year = date('Y');
+		$sql = "
+		SELECT SUM(GUTA_MASUK) as 'masuk', SUM(GUTA_KELUAR) as 'keluar' FROM gudang_tak_jadi WHERE
+		YEAR(GUTA_TIMESTAMP) = ".$year." AND MONTH(GUTA_TIMESTAMP) = ".$month."
+		";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 	public function getReportKeuangan($month)
 	{
 		$year = date('Y');

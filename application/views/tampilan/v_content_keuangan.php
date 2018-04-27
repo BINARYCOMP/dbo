@@ -95,24 +95,7 @@
 	</div>
 	<!-- /.callout -->	
 	<div class="row">
-		<div class="col-md-6">
-			<div class="box box-primary">
-			  <div class="box-header with-border">
-			    <h3 class="box-title">Grafik Barang Masuk dan Keluar Tahun <?php echo date('Y') ?></h3>
-
-			    <div class="box-tools pull-right">
-			      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-			      </button>
-			      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-			    </div>
-			  </div>
-			  <div class="box-body chart-responsive">
-			    <div class="chart" id="stock-chart" style="height: 300px;"></div>
-			  </div>
-			</div>
-		</div>
-		<!-- /.col md 6 -->
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<div class="box box-primary">
 			  <div class="box-header with-border">
 			    <h3 class="box-title">Grafik Keuangan Tahun <?php echo date('Y') ?></h3>
@@ -128,7 +111,7 @@
 			  </div>
 			</div>
 		</div>
-		<!-- /.col md 6 -->
+		<!-- /.col md 12 -->
 	</div>
 	<!-- /.row -->
 </section>
@@ -139,54 +122,6 @@
 
 <!-- Grafik / chart -->
 <script>
-  // Stock
-  $(function () {
-    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    var data = [
-    <?php for ($i=1; $i <= 12; $i++) {  
-    	if ($i < 10) {
-    		$month = "0".$i;
-    	}else{
-    		$month = $i;
-    	}
-    	$dataReport = $this->m_dashboard->getReportStock($month);
-    	if ($dataReport[0]['masuk'] == null) {
-    		$dataReport[0]['masuk'] = 0;
-    	}
-    	if ($dataReport[0]['keluar'] == null) {
-    		$dataReport[0]['keluar'] = 0;
-    	}
-    	if ($i != 12) {
-    		?>
-    		{ y: '1998-<?php echo $month ?>', a: <?php echo $dataReport[0]['masuk'] ?>, b: <?php echo $dataReport[0]['keluar'] ?>},
-    		<?php
-    	}else{
-    		?>
-    		{ y: '1998-<?php echo $month ?>', a: <?php echo $dataReport[0]['masuk'] ?>, b: <?php echo $dataReport[0]['keluar'] ?>}
-    		<?php
-    	}
-    }
-    ?>
-    ],
-    config = {
-        data: data,
-        xkey: 'y',
-        lineColors: ['#2ecc71','#e74c3c'],
-        ykeys: ['a', 'b'],
-        labels: ['Total Barang Masuk', 'Total Barang Keluar'],
-        xLabelFormat: function(x) { // <--- x.getMonth() returns valid index
-          var month = months[x.getMonth()];
-          return month;
-        },
-        dateFormat: function(x) {
-          var month = months[new Date(x).getMonth()];
-          return month;
-        },
-    };
-    config.element = 'stock-chart';
-    Morris.Line(config);
-  });
-
   // Keuangan
   $(function () {
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

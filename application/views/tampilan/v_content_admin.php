@@ -98,8 +98,7 @@
 		<div class="col-md-6">
 			<div class="box box-primary">
 			  <div class="box-header with-border">
-			    <h3 class="box-title">Grafik Barang Masuk dan Keluar Tahun <?php echo date('Y') ?></h3>
-
+			    <h3 class="box-title">Grafik Barang Jadi [ Gudang Cimuning ] Tahun <?php echo date('Y') ?></h3>
 			    <div class="box-tools pull-right">
 			      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 			      </button>
@@ -115,8 +114,7 @@
 		<div class="col-md-6">
 			<div class="box box-primary">
 			  <div class="box-header with-border">
-			    <h3 class="box-title">Grafik Keuangan Tahun <?php echo date('Y') ?></h3>
-
+			    <h3 class="box-title">Grafik Barang Setengah Jadi [ Gudang Cimuning ] <?php echo date('Y') ?></h3>
 			    <div class="box-tools pull-right">
 			      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 			      </button>
@@ -124,7 +122,7 @@
 			    </div>
 			  </div>
 			  <div class="box-body chart-responsive">
-			    <div class="chart" id="keuangan-chart" style="height: 300px;"></div>
+			    <div class="chart" id="guta-chart" style="height: 300px;"></div>
 			  </div>
 			</div>
 		</div>
@@ -197,7 +195,7 @@
     	}else{
     		$month = $i;
     	}
-    	$dataReport = $this->m_dashboard->getReportKeuangan($month);
+    	$dataReport = $this->m_dashboard->getReportStockSetengahJadi($month);
     	if ($dataReport[0]['masuk'] == null) {
     		$dataReport[0]['masuk'] = 0;
     	}
@@ -231,7 +229,7 @@
           return month;
         },
     };
-    config.element = 'keuangan-chart';
+    config.element = 'guta-chart';
     Morris.Line(config);
   });
 </script>
