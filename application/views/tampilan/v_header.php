@@ -21,6 +21,10 @@
   <link rel="stylesheet" href="/dbo/assets/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="/dbo/assets/dist/css/dataTables.bootstrap.css">
 
+  <!-- Grafik -->
+  <!-- Morris charts -->
+  <link rel="stylesheet" href="/dbo/assets/bower_components/morris.js/morris.css">
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -133,6 +137,35 @@
                     <?php
                   }else if ($_SESSION['level'] == 'SUPER ADMIN') {
                     ?>
+                       <li class="<?php if(isset($menu)) if($menu == 'Stok') echo 'active'?>">
+                        <a class="dropdown-toggle" style="cursor: pointer;" type="button" data-toggle="dropdown">
+                          <i class="fa fa-industry"></i>
+                          Gudang
+                          <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li class="dropdown-header">Gudang Cimuning</li>
+                            <li><a href="<?php echo base_url()?>c_stok">Input Barang</a></li>
+                            <li><a href="<?php echo base_url()?>">Input Material</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Gudang Bawang</li>
+                            <li><a href="<?php echo base_url()?>">Input Barang Jadi</a></li>
+                            <li><a href="<?php echo base_url()?>">Input Material</a></li>
+                          </ul>
+                      </li>
+                      <!-- Keuangan -->
+                      <li class="<?php if(isset($menu)) if($menu == 'Keuangan') echo 'active'?>" >
+                        <a href="<?php echo base_url()?>c_keuangan">
+                          <i class="fa fa-balance-scale"></i>
+                          Keuangan
+                        </a>
+                      </li>
+                      <!-- Report -->
+                      <li class="<?php if(isset($menu)) if($menu == 'Report') echo 'active'?>">
+                        <a href="<?php echo base_url()?>c_report">
+                          <i class="fa fa-bar-chart-o"></i>
+                          Report
+                        </a>
+                      </li>
                       <!-- Super User -->
                       <li class="dropdown <?php if(isset($menu)) if($menu == 'Barang Parent' || $menu == 'Barang Child' || $menu == 'Input User' || $menu == 'Input Agama' ||  $menu == 'Input Level' ||  $menu == 'Input Satuan' ||  $menu == 'Input Pegawai'  ) echo 'active'?>">
                           <a class="dropdown-toggle" style="cursor: pointer;" type="button" data-toggle="dropdown">Super User
