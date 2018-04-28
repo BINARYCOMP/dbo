@@ -25,7 +25,9 @@ class C_gudangJadi extends CI_Controller
 
       $namaParent       = $this->m_gudangJadi->getParentName();
       $dataGudangJadi   = $this->m_gudangJadi->getDataGudang();
+      $namaKategori     = $this->m_gudangJadi->getKategoriName();
       $data = array(
+        'namaKategori'    => $namaKategori,
         'namaParent'      => $namaParent,
         'dataGudangJadi'  => $dataGudangJadi,
         'content'         => 'v_gudangJadi',
@@ -37,11 +39,13 @@ class C_gudangJadi extends CI_Controller
   {
     $parent     = $_POST['cmbParent'];
     $child      = $_POST['cmbChild'];
+    $kategori   = $_POST['cmbKategori'];
     $uraian     = $_POST['txtUraian'];
     $masuk      = $_POST['txtMasuk'];
     $keluar     = $_POST['txtKeluar'];
     $saldoAkhir = $_POST['txtSaldoAwal'] + $masuk - $keluar;
     $data = array(
+      'GUJA_KATE_ID'  => $kategori,
       'GUJA_KELUAR'   => $keluar ,
       'GUJA_URAIAN'   => $uraian ,
       'GUJA_MASUK'    => $masuk ,
@@ -99,6 +103,7 @@ class C_gudangJadi extends CI_Controller
   {
     $cmbParent     = $_GET['parent'];
     $cmbChild      = $_GET['child'];
+    $cmbKategori   = $_GET['kategori'];
     $txtUraian     = $_GET['keterangan'];
     $txtMasuk      = $_GET['masuk'];
     $txtKeluar     = $_GET['keluar'];
@@ -117,6 +122,7 @@ class C_gudangJadi extends CI_Controller
             <tr>
               <th>Induk Barang</th>
               <th>Anak Barang</th>
+              <th>Kategori</th>
               <th>Barang Masuk</th>
               <th>Barang Keluar</th>
               <th>Saldo Akhir</th>
@@ -124,6 +130,7 @@ class C_gudangJadi extends CI_Controller
             <tr>
               <td><?php echo $cmbParent ?></td>
               <td><?php echo $cmbChild ?></td>
+              <td><?php echo $cmbKategori ?></td>
               <td><?php echo $txtMasuk ?></td>
               <td><?php echo $txtKeluar ?></td>
               <td><?php echo $saldoAkhir ?> </td>
@@ -135,6 +142,7 @@ class C_gudangJadi extends CI_Controller
           <form action="<?php echo base_url()?>c_gudangJadi/inputStok" method="POST">
             <input type="hidden" name="cmbParent" value="<?php echo $cmbParent?>">
             <input type="hidden" name="cmbChild" value="<?php echo $cmbChild?>">
+            <input type="hidden" name="cmbKategori" value="<?php echo $cmbKategori?>">
             <input type="hidden" name="txtMasuk" value="<?php echo $txtMasuk?>">
             <input type="hidden" name="txtKeluar" value="<?php echo $txtKeluar?>">
             <input type="hidden" name="txtUraian" value="<?php echo $txtUraian?>">
@@ -158,6 +166,3 @@ class C_gudangJadi extends CI_Controller
      $this->load->view('modal/v_modalChildGudangJadi', $data);
   } 
 }
-
-?>
-

@@ -2,7 +2,7 @@
 <div class="content">
 	<div class="row">
 	  <div class="col-md-6">
-	    <div class="box box-warning">
+	    <div class="box box-info">
 	      <div class="box-header with-border">
 	        <h3 class="box-title">Input Agama</h3>
 
@@ -19,7 +19,7 @@
 	                  <label class=" control-label">Agama</label>
 	                  <div>
 	                    <span id="qty">
-	                      <input class="form-control" type="number" placeholder="Agama .." name="txtagama" required placeholder="0">  
+	                      <input class="form-control" type="text" placeholder="Agama .." name="txtagama" required placeholder="0">  
 	                    </span>
 	                  </div>
 	              </div>
@@ -29,7 +29,7 @@
 	                    <button type="reset" class="btn btn-default pull-right">Cancel</button>
 	                  </div>
 	                  <div class="col-md-2">
-	                    <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
+	                    <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
 	                  </div>
 	                </div>
 	              </div>
@@ -43,7 +43,7 @@
 	      <!-- /.box -->
 	  </div> <!-- col-input -->
 	  <div class="col-md-6">
-	    <div class="box box-warning">
+	    <div class="box box-info">
 	      <div class="box-header with-border">
 	        <h3 class="box-title">Data Agama</h3>
 

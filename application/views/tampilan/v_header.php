@@ -13,13 +13,14 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="/dbo/assets/bower_components/Ionicons/css/ionicons.min.css">
   <!-- DataTables -->
+  <link rel="stylesheet" href="/dbo/assets/dist/css/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
   <!-- <link rel="stylesheet" href="/dbo/assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"> -->
   <!-- Theme style -->
   <link rel="stylesheet" href="/dbo/assets/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/dbo/assets/dist/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" href="/dbo/assets/dist/css/dataTables.bootstrap.css">
 
   <!-- Grafik -->
   <!-- Morris charts -->
@@ -55,6 +56,10 @@
     .center{
       text-align: center !important;
     }
+    .left{
+      text-align: left !important;
+    }
+
     thead tr th{
       text-align: center !important; 
     }
@@ -195,12 +200,13 @@
                             <li><a href="<?php echo base_url()?>c_barangParent">Barang Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_barangChild">Barang Child</a></li>
                             <li class="divider"></li>
-                            <li class="dropdown-header"></li>
+                            <li class="dropdown-header">Super User</li>
                             <li><a href="<?php echo base_url()?>c_form1">Input User</a></li>
                             <li><a href="<?php echo base_url()?>c_pegawai">Input Pegawai</a></li>
-                            <li><a href="<?php echo base_url()?>c_viewAgama">Input Agama</a></li>
-                            <li><a href="<?php echo base_url()?>c_level">Input Level</a></li>
                             <li><a href="<?php echo base_url()?>c_satuan">Input Satuan</a></li>
+                            <li><a href="<?php echo base_url()?>c_kategori">Input Kategori</a></li>
+                            <li><a href="<?php echo base_url()?>c_level">Input Level</a></li>
+                            <li><a href="<?php echo base_url()?>c_viewAgama">Input Agama</a></li>
                           </ul>
                       </li>
                     <?php

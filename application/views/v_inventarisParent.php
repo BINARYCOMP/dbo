@@ -2,7 +2,7 @@
 <div class="content">
 	<div class="row">
 	  <div class="col-md-6">
-	    <div class="box box-warning">
+	    <div class="box box-info">
 	      <div class="box-header with-border">
 	        <h3 class="box-title">Input Inventaris Parent</h3>
 
@@ -29,7 +29,7 @@
 	                    <button type="reset" class="btn btn-default pull-right">Cancel</button>
 	                  </div>
 	                  <div class="col-md-2">
-	                    <button type="submit" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
+	                    <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
 	                  </div>
 	                </div>
 	              </div>
@@ -43,7 +43,7 @@
 	      <!-- /.box -->
 	  </div> <!-- col-input -->
 	  <div class="col-md-6">
-	    <div class="box box-warning">
+	    <div class="box box-info">
 	      <div class="box-header with-border">
 	        <h3 class="box-title">Data Inventaris Parent</h3>
 
@@ -58,8 +58,7 @@
 					<tr>
 						<th>No.</th>
 						<th>nama inventaris</th>
-							<th>ID inventaris</th>
-							<th>Tanggal Di tambahkan</th>	
+						<th>Tanggal Di tambahkan</th>	
 						<th style="text-align: center" >Action </th>
 					</tr>
 				</thead>
@@ -71,7 +70,6 @@
 				      <tr>
 				        <td><?php echo $no++ ?></td>
 				        <td><?php echo $row['INPA_NAME']?></td>
-				        <td><?php echo $row['INPA_ID']?></td>
 						<td><?php echo $row['INPA_TIME']?></td>
 				        <td>
 				        	<a href="<?php echo base_url()?>c_inventarisParent/FormUpdate/<?php echo $row['INPA_ID']?>">Edit</a> |

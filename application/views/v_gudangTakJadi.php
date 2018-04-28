@@ -47,6 +47,26 @@
                         </div>
                     </div>
 
+                <div class="form-group">
+                  <label class="control-label">Kategori</label>
+                  <div class="input-group">
+                    <!-- /btn-group -->
+                    <select name="cmbKategori" id="cmbKategoriTakJadi" class="form-control">
+                      <option value="0">== Pilih Kategori ==</option>
+                      <?php  
+                        foreach ($namaKategori as $row){
+                          echo "<option value='".$row['KATE_ID']."'>";
+                          echo $row ['KATE_NAME'];
+                         echo "</option>";
+                        }
+                      ?>
+                    </select> <br>
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Search</button>
+                    </div>
+                  </div>
+                </div>
+
                     <div class="form-group">
                       <label>Keterangan</label>
                       <textarea name="txtUraian" id="keteranganTakJadi" class="form-control" rows="3" placeholder="Keterangan barang ..."></textarea>
@@ -168,9 +188,10 @@ function showStokTakJadi(str) {
 <script>
   function modalKonfirmasiTakJadi() {
     var xhttp;
-    var parent,child,keterangan,masuk,keluar,akhir;
+    var parent,child,kategori,keterangan,masuk,keluar,akhir;
     parent      = document.getElementById('cmbParentTakJadi').value;
     child       = document.getElementById('cmbChildTakJadi').value;
+    kategori    = document.getElementById('cmbKategoriTakJadi').value;
     keterangan  = document.getElementById('keteranganTakJadi').value;
     masuk       = document.getElementById('brgMasukTakJadi').value;
     keluar      = document.getElementById('brgKeluarTakJadi').value;
@@ -183,7 +204,7 @@ function showStokTakJadi(str) {
         document.getElementById("modalKonfirmasiTakJadi").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&kategori="+kategori+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal, true);
     xhttp.send();   
   }
 
@@ -216,19 +237,23 @@ function showStokTakJadi(str) {
                 <table id="gutaParent" class="table table-bordered table-hover table-striped">
                     <thead>
                       <tr>
-                        <th>Satuan</th>
+                        <th>No.</th>
                         <th>Nama Barang</th>
+                        
                       </tr>
                     </thead>
                     <tbody>
                       <?php 
+                      $no=1;
                       foreach ($namaParent as $row) {
                         ?>
                           <tr class="pilih" data-brgParentTakJadi="<?php echo $row['BAPA_ID']; ?>">
-                            <td><?php echo $row['SATU_NAME']?></td>
+                            <td><?php echo $no ?></td>
                             <td><?php echo $row['BAPA_NAME']?></td>
+                            
                           </tr>
                         <?php
+                        $no++;
                       }
                       ?>
                     </tbody>

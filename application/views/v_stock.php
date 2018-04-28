@@ -3,8 +3,10 @@
   <div class="row">
       <!-- isi content -->
 
-      <?php $this->load->view('v_gudangJadi') ?>
-      <?php $this->load->view('v_gudangTakJadi') ?>
+      <?php 
+      $this->load->view('v_gudangJadi') ;
+      $this->load->view('v_gudangTakJadi') 
+      ?>
       <!-- Main content -->
       <div class="col-md-6">
         <div class="box box-success">
@@ -25,6 +27,7 @@
                       <th>No</th>
                       <th>Induk Barang</th>
                       <th>Anak Barang</th>
+                      <th>Kategori</th>
                       <th>Keterangan</th>
                       <th>Masuk</th>
                       <th>Keluar</th>
@@ -40,6 +43,7 @@
                           <td><?php echo $no ?></td>
                           <td><?php echo $row['BAPA_NAME']?></td>
                           <td><?php echo $row['BACH_NAME']?></td>
+                          <td><?php echo $row['KATE_NAME']?></td>
                           <td><?php echo $row['GUJA_URAIAN']?></td>
                           <td><?php echo $row['GUJA_MASUK']?></td>
                           <td><?php echo $row['GUJA_KELUAR']?></td>
@@ -78,9 +82,11 @@
                       <th>No</th>
                       <th>Induk Barang</th>
                       <th>Anak Barang</th>
+                      <th>Kategori</th>
                       <th>Keterangan</th>
                       <th>Masuk</th>
                       <th>Keluar</th>
+                      <th>Saldo</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -92,9 +98,11 @@
                           <td><?php echo $no ?></td>
                           <td><?php echo $row['BAPA_NAME']?></td>
                           <td><?php echo $row['BACH_NAME']?></td>
+                          <td><?php echo $row['KATE_NAME']?></td>
                           <td><?php echo $row['GUTA_URAIAN']?></td>
                           <td><?php echo $row['GUTA_MASUK']?></td>
                           <td><?php echo $row['GUTA_KELUAR']?></td>
+                          <td><?php echo $row['GUTA_SALDO']?></td>
                         </tr>
                       <?php
                       $no++;

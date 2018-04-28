@@ -18,20 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 
 
---
--- Database: `db_online`
---
 
--- --------------------------------------------------------
 
---
--- Table structure for table `agama`
---
-
-CREATE TABLE `agama` (
-  `AGAM_ID` int(11) NOT NULL,
-  `AGAM_NAME` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `agama`
