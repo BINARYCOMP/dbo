@@ -1,4 +1,5 @@
 <?php 
+if (!empty($status)) header('location:acces_denied.php');
 /**
 * 
 */
@@ -10,16 +11,22 @@ class C_profil extends CI_Controller
 		parent::__construct();
 		$this->load->model('m_profil');
 	}
-	function Index()
+	public function Index()
 	{
 		$Account=$this->m_profil->getInfoAccount();
 		$data = array(
 			'Account'	=>$Account,
-			'content'	=>'v_pegawai',
-			'title' 	=>'Pegawai',
-      		'menu'      =>'Input Pegawai'
+			'content'	=>'v_profil',
+			'title' 	=>'Account',
+      		'menu'      =>'Profil Account'
 		);
+		$this->load->view('tampilan/v_combine', $data);
 	}
+	public function Password()
+	{
+		$this->load->view('v_editPassword');
+	}
+	
 }
 
  ?>

@@ -7,10 +7,10 @@ class M_pegawai extends CI_Model
   
 function view()
   {
-    $sql = "select * from pegawai,agama where pegawai.PEGA_AGAM_ID=agama.AGAM_ID";
-    $query=$this->db->query($sql);
+    $sql    = "select * from pegawai,agama where pegawai.PEGA_AGAM_ID=agama.AGAM_ID";
+    $query  =$this->db->query($sql);
     $return = $query->result_array();
-  return $return;
+    return $return;
 
   }
   public function Insert($data)
@@ -20,8 +20,8 @@ function view()
   }
   public function Update($data)
   {
-    $sql="select * from pegawai where PEGA_ID =".$data;
-    $query=$this->db->query($sql);
+    $sql    ="select * from pegawai where PEGA_ID =".$data;
+    $query  =$this->db->query($sql);
     $return = $query->result_array();
     return $return;
   }
@@ -37,8 +37,8 @@ function view()
   }
   public function getAgama()
     {
-      $sql="select * from agama";
-      $query=$this->db->query($sql);
+      $sql    ="select * from agama";
+      $query  =$this->db->query($sql);
       $return = $query->result_array();
       return $return;
     }

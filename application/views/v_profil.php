@@ -1,4 +1,10 @@
-    <div class="col-md-6">
+<!DOCTYPE html>
+   <html>
+   <head>
+     <title></title>
+   </head>
+   <body>
+   <div class="col-md-6">
       <div class="box box-warning">
         <div class="box-header with-border">
           <h3 class="box-title">Data Pegawai</h3>
@@ -18,13 +24,14 @@
             <th>No Telepon</th>
             <th>Jenis Kelamin</th>
             <th>Agama</th>
-            <th style="text-align: center">Action </th>
+            <th>Password</th>
+            <th style="text-align: center">Ganti Password</th>
           </tr>
         </thead>
         <tbody>
           <?php 
           $no = 1;
-          foreach ($pegawai as $row) {
+          foreach ($Account as $row) {
             ?>
               <tr>
                 <td><?php echo $no ?></td>
@@ -33,12 +40,10 @@
                 <td><?php echo $row['PEGA_ALAMAT']?></td>
                 <td><?php echo $row['PEGA_NO_TLP']?></td>
                 <td><?php echo $row['PEGA_JENKEL']?></td>
-                <td><?php echo $row['AGAM_NAME']?></td>
+                <td><?php echo $row['PEGA_AGAM_ID']?></td>
+                <td>*******</td>
                 <td>
-                  <a href="<?php echo base_url()?>c_pegawai/FormUpdate/<?php echo $row['PEGA_ID']?>">Edit</a>
-                </td>
-                <td>
-                  <a href="<?php echo base_url()?>c_pegawai/delete/<?php echo $row['PEGA_ID']?>" onclick= "return confirm('Are you sure?')">Delete</a>
+                  <a href="<?php echo base_url()?>c_profil/UpdatePassword/<?php echo $row['PEGA_ID']?>">Ganti</a>
                 </td>
               </tr>
             <?php
@@ -51,3 +56,5 @@
       </div>
         <!-- /.box -->
     </div>
+   </body>
+   </html>

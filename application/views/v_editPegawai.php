@@ -18,25 +18,25 @@
                 <div class="form-group">
                     <label class=" control-label">Nama Pegawai</label>
                     <div>
-                        <input class="form-control" type="text"  required="true" name="pegawai1" value="<?php echo($pegawai[0]['PEGA_NAME'])?>">
+                        <input class="form-control" type="text"  required="true" name="iName" value="<?php echo($pegawai[0]['PEGA_NAME'])?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class=" control-label">Email</label>
                     <div>
-                        <input class="form-control" type="text"  required="true" name="pegawai2" value="<?php echo($pegawai[0]['PEGA_EMAIL'])?>">
+                        <input class="form-control" type="text"  required="true" name="iEmail" value="<?php echo($pegawai[0]['PEGA_EMAIL'])?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class=" control-label">Alamat</label>
                     <div>
-                        <textarea class="form-control" type="text"  required="true" name="pegawai3"><?php echo($pegawai[0]['PEGA_ALAMAT'])?></textarea>
+                        <textarea class="form-control" type="text"  required="true" name="iAlamat"><?php echo($pegawai[0]['PEGA_ALAMAT'])?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class=" control-label">No Telepon</label>
                     <div>
-                        <input class="form-control" type="number"  required="true" name="pegawai4" value="<?php echo($pegawai[0]['PEGA_NO_TLP'])?>">
+                        <input class="form-control" type="number"  required="true" name="iNoTelpon" value="<?php echo($pegawai[0]['PEGA_NO_TLP'])?>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -45,20 +45,20 @@
                         <?php
                           if ($pegawai[0]['PEGA_JENKEL'] == "L") {
                           ?>
-                            <input type="radio" name="pegawai5" checked="true" value="L" > Laki-Laki
-                            <input  type="radio" name="pegawai5" value="P"> Perempuan
+                            <input type="radio" name="iJenisKelamin" checked="true" value="L" > Laki-Laki
+                            <input  type="radio" name="iJenisKelamin" value="P"> Perempuan
                           <?php
                           }
                           elseif ($pegawai[0]['PEGA_JENKEL'] == "P") {
                           ?>
-                            <input type="radio" name="pegawai5" value="L"> Laki-Laki
-                            <input  type="radio" name="pegawai5" checked="true" value="P"> Perempuan
+                            <input type="radio" name="iJenisKelamin" value="L"> Laki-Laki
+                            <input  type="radio" name="iJenisKelamin" checked="true" value="P"> Perempuan
                           <?php
                            } 
                           else{
                           ?>
-                            <input type="radio" name="pegawai5" value="L"> Laki-Laki
-                            <input  type="radio" name="pegawai5" value="P"> Perempuan
+                            <input type="radio" name="iJenisKelamin" value="L"> Laki-Laki
+                            <input  type="radio" name="iJenisKelamin" value="P"> Perempuan
                           <?php
                           }
                         ?>
@@ -68,7 +68,7 @@
                     <label class=" control-label">Agama</label>
                     <div>
                         <!-- /btn-group -->
-                        <select name="pegawai6" class="form-control">
+                        <select name="iAgamaId" class="form-control">
                           <option value="0">== Pilih Agama ==</option>
                           <?php  
                             foreach ($agamaId as $row){

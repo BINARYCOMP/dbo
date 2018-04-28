@@ -64,7 +64,7 @@
                       ?>
                     </select> <br>
                     <div class="input-group-btn">
-                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Search</button>
+                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalKategori">Search</button>
                     </div>
                   </div>
                 </div>
@@ -269,6 +269,44 @@ function showStok(str) {
     </div>
 </div>
 
+<!-- modal  kategori -->
+
+<div class="modal fade" id="myModalKategori" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Lookup Barang Parent</h4>
+            </div>
+            <div class="modal-body">
+                <table id="gujaKategori" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>No.</th>
+                        <th>Nama Kategori</th>
+                        
+                      </tr>
+                    </thead>        
+                    <tbody>
+                      <?php 
+                      $no=1;
+                      foreach ($namaKategori as $row) {
+                        ?>
+                          <tr class="kate" data-namaKategori="<?php echo $row['KATE_ID']; ?>">
+                            <td><?php echo $no?></td>
+                            <td><?php echo $row['KATE_NAME']?></td>
+                            
+                          </tr>
+                        <?php
+                        $no++;
+                      }
+                      ?>
+                    </tbody>
+                </table>  
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- script -->
 <script type="text/javascript">
@@ -281,9 +319,7 @@ function showStok(str) {
         document.getElementById("cmbParent").value = $(this).attr('data-brgParent');
         $('#myModal').modal('hide');
         showChild($(this).attr('data-brgParent'));
-
         
-
     });
 
      $(document).on('click', '.isi2', function (e) {
@@ -293,6 +329,17 @@ function showStok(str) {
         document.getElementById("cmbChild").value = $(this).attr('data-brgChild');
         $('#myModal2').modal('hide');
         showStok($(this).attr('data-brgChild'));
+        
+
+    });
+
+    $(document).on('click', '.kate', function (e) {
+        // alert("test");
+
+        // child
+        document.getElementById("cmbKategori").value = $(this).attr('data-namaKategori');
+        $('#myModalKategori').modal('hide');
+
         
 
     });
