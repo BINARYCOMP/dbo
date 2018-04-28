@@ -48,7 +48,7 @@
     
     public function getDataGudang()
     {
-      $sql    = "select * from gudang_tak_jadi,barang_child,barang_parent where GUTA_BACH_ID = BACH_ID AND GUTA_BAPA_ID = BAPA_ID";
+      $sql    = "select * from gudang_tak_jadi,barang_child,barang_parent,kategori where GUTA_BACH_ID = BACH_ID AND GUTA_BAPA_ID = BAPA_ID AND GUTA_KATE_ID = KATE_ID";
       $query  = $this->db->query($sql);
       $return = $query->result_array();
       return $return;
@@ -61,6 +61,14 @@
       $query  = $this->db->query($sql);
       $return = $query->result_array();
       return $return; 
+    }
+
+            public function getKategoriName()
+    {
+      $sql="select * from kategori";
+      $query=$this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
     }
   }
 
