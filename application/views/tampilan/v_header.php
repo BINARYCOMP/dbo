@@ -55,6 +55,10 @@
     .center{
       text-align: center !important;
     }
+    .left{
+      text-align: left !important;
+    }
+
     thead tr th{
       text-align: center !important; 
     }
