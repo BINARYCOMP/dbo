@@ -45,10 +45,14 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
-
-
-
-		public function getInventarisParent()
+	public function getTotalQtyByInpaId($id)
+	{
+		$sql 	= "SELECT sum(INCH_QTY) as 'Total' FROM  inventaris_child WHERE INCH_INPA_ID =".$id;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getInventarisParent()
 	{
 		$sql 	= "SELECT * FROM inventaris_parent ";
 		$query = $this->db->query($sql);

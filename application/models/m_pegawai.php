@@ -10,7 +10,7 @@ function view()
     $sql = "select * from pegawai,agama where pegawai.PEGA_AGAM_ID=agama.AGAM_ID";
     $query=$this->db->query($sql);
     $return = $query->result_array();
-  return $return
+  return $return;
 
   }
   public function Insert($data)
