@@ -48,8 +48,10 @@
         $("#guta").dataTable();
         $("#gujaParent").dataTable();
         $("#gujaChild").dataTable();
+        $("#gujaKategori").dataTable();
         $("#gutaChild").dataTable();
         $("#gutaParent").dataTable();
+        $("#gutaKategori").dataTable();
 
         // user
         $("#registForm").dataTable();
