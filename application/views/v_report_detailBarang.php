@@ -1,5 +1,7 @@
-<!-- Main content -->
+<!-- content -->
 <section class="content">
+
+<!-- Main Content -->
   <div class="row">
 
     <?php
@@ -80,7 +82,7 @@
         $noWarna++;
       }
     ?>
-  </div>  <!-- /Main content -->
+  </div>  <!-- /Main Content -->
 
 </section>
 <!-- /.content -->

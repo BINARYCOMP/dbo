@@ -89,30 +89,27 @@
 	$(document).ready(function(){
 	});
 </script>
+<section class="content">
+	<div class="callout callout-info">
+	  <h4> Grafik Barang Masuk dan Barang Keluar</h4>
+	</div>
+	<div class="box box-primary">
+	  <div class="box-header with-border">
+	    <h3 class="box-title">Area Chart</h3>
 
-<!-- 
-<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 wow fadeInLeft" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s;">
-    <a href="https://emas.telkom.co.id/MIG/">
-        <div class="circle-one" id="gambar1">
-			  <a href="">
-			  	<img id="img1" src="<?php echo base_url()?>assets/img/Bawang.jpg" style="display: none">
-			  </a>
-        </div>
-        <div class="circle-title">
-            <p> [ Gudang Bawang ] </p>
-        </div>
-    </a>
-</div>
-
- -->
-
-
-
-
-
-
-
-<div class="content" style="min-height: 720px">
+	    <div class="box-tools pull-right">
+	      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+	      </button>
+	      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+	    </div>
+	  </div>
+	  <div class="box-body chart-responsive">
+	    <div class="chart" id="area-chart" style="height: 300px;"></div>
+	  </div>
+	</div>
+	<!-- /.callout -->
+</section>
+<!-- <div class="content" style="min-height: 720px">
 	<div class="container">
 		<div class="row text-center center-block">
 				<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" id="gambar1">
@@ -142,4 +139,4 @@
 				</div>
 		</div>
 	</div>
-</div>
+</div> -->

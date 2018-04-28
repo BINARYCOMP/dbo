@@ -17,17 +17,28 @@
             </thead>
             <tbody>
               <?php
+<<<<<<< HEAD
 
+=======
+              $no=1;
+>>>>>>> d8157d6bf7db9ba467a27f2435bbb1c853f4935e
               if (is_array($namaChild) || is_object($namaChild)){
                 $no=1;
                 foreach ($namaChild as $row) {
                   ?>
                     <tr class="isi2" data-brgChild="<?php echo $row['BACH_ID']; ?>">
+<<<<<<< HEAD
                       <td> <?php echo $no ?> </td>
                       <td> <?php echo $row['BACH_ID']?> </td>
                       <td> <?php echo $row['BACH_NAME']?> </td>
                       <td> <?php echo $row['BACH_GUJA_TOTAL']?> </td>
                       <td> <?php echo $row['BAPA_NAME']?> </td>
+=======
+                      <td><?php echo $no++ ?></td>
+                      <td><?php echo $row['BACH_NAME']?></td>
+                      <td><?php echo $row['BACH_GUJA_TOTAL']?></td>
+                      <td><?php echo $row['BAPA_NAME']?></td>
+>>>>>>> d8157d6bf7db9ba467a27f2435bbb1c853f4935e
                     </tr>
                   <?php
                   $no++;
