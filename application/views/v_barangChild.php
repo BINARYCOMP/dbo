@@ -87,8 +87,8 @@
 			<table class="table table-bordered table-hover table-striped" id="lookup">
 				<thead>
 					<tr>
+		 				<th>No.</th>
 						<th>Name Barang</th>
-		 				<th>ID Barang</th>
 		 				<th>Gudang Jadi</th>
 		 				<th>Gudang Tak Jadi</th>
 		 				<th>Satuan Barang</th>
@@ -99,17 +99,19 @@
 				</thead>
 				<tbody>
 					<?php 
+					$no=1;
 		 				foreach ($barang_child as $row) {
 		 					echo "<tr>";
+		 					echo "<td>".$no."</td>";
 		 					echo "<td>".$row['BACH_NAME']."</td>";
-		 					echo "<td>".$row['BACH_ID']."</td>";
 		 					echo "<td>".$row['BACH_GUJA_TOTAL']."</td>";
 		 					echo "<td>".$row['BACH_GUTA_TOTAL']."</td>";
-		 					echo "<td>".$row['BACH_SATU_ID']."</td>";
-		 					echo "<td>".$row['BACH_BAPA_ID']."</td>";
+		 					echo "<td>".$row['SATU_NAME']."</td>";
+		 					echo "<td>".$row['BAPA_NAME']."</td>";
 		 					echo "<td>".$row['BACH_TIMESTAMP']."</td>";
 		 					echo "<td><a href='".base_url()."c_barangChild/FormUpdate/".$row['BACH_ID']."'>Edit</a> | <a href='".base_url()."c_barangChild/delete/".$row['BACH_ID']."'>Delete</a></td>";
 		 					echo "</tr>";
+		 					$no++;
 		 				}
 		 			 ?>
 				</tbody>
