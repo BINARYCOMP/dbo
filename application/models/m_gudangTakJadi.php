@@ -23,7 +23,7 @@
     //nama Parent
     public function getParentName()
     {
-      $sql="select * from barang_parent,satuan where barang_parent.BAPA_ID=satuan.SATU_ID";
+      $sql="select * from barang_parent";
       $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;
@@ -56,7 +56,8 @@
 
     public function getChildByBapaId($id)
     {
-      $sql    = "SELECT * FROM barang_child INNER JOIN barang_parent ON BACH_BAPA_ID = BAPA_ID WHERE BACH_BAPA_ID =".$id;
+      $sql    = "SELECT * FROM barang_child INNER JOIN barang_parent ON barang_child.BACH_BAPA_ID = barang_parent.BAPA_ID inner join satuan on barang_parent.BAPA_ID=satuan.SATU_ID WHERE BACH_BAPA_ID =".$id;
+      var_dump($sql);
       $query  = $this->db->query($sql);
       $return = $query->result_array();
       return $return; 

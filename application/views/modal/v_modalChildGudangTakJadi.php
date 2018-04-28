@@ -8,7 +8,7 @@
         <table id="gutaChild" class="table table-bordered table-hover table-striped">
             <thead>
               <tr>
-                <th>Id Barang</th>
+                <th>No.</th>
                 <th>Nama Barang</th>
                 <th>Total Barang</th>
                 <th>Satuan</th>
@@ -17,16 +17,18 @@
             <tbody>
               <?php
               if (is_array($namaChild) || is_object($namaChild)){
+                $no=1;
                 foreach ($namaChild as $row) {
                   ?>
                     <tr class="pilih2" data-brgChildTakJadi="<?php echo $row['BACH_ID']; ?>">
                       <!-- <td><?php echo $no ?></td> -->
-                      <td><?php echo $row['BACH_ID']?></td>
+                      <td><?php echo $no ?></td>
                       <td><?php echo $row['BACH_NAME']?></td>
-                      <td><?php echo $row['BACH_GUJA_TOTAL']?></td>
-                      <td><?php echo $row['BACH_SATU_ID']?></td>
+                      <td><?php echo $row['BACH_GUTA_TOTAL']?></td>
+                      <td><?php echo $row['SATU_NAME']?></td>
                     </tr>
                   <?php
+                  $no++;
                 }
               }
               ?>
