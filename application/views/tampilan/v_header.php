@@ -104,6 +104,12 @@
                             <li><a href="<?php echo base_url()?>">Input Material</a></li>
                           </ul>
                       </li>
+                      <li class="<?php if(isset($menu)) if($menu == 'Inventaris') echo 'active'?>" >
+                        <a href="<?php echo base_url()?>c_inventaris">
+                          <i class="glyphicon glyphicon-list-alt"></i>
+                          Inventaris
+                        </a>
+                      </li>
                     <?php
                   }else if ($_SESSION['level'] == 'KEUANGAN') {
                     ?>
@@ -152,6 +158,20 @@
                             <li><a href="<?php echo base_url()?>">Input Material</a></li>
                           </ul>
                       </li>
+
+                      <!-- Inventaris -->
+                      <li class="<?php if(isset($menu)) if($menu == 'Inventaris') echo 'active'?>">
+                        <a class="dropdown-toggle" style="cursor: pointer;" type="button" data-toggle="dropdown">
+                          <i class="glyphicon glyphicon-list-alt"></i>
+                          Inventaris
+                          <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li><a href="<?php echo base_url()?>c_inventaris">Input Inventaris</a></li>
+                            <li><a href="<?php echo base_url()?>c_inventarisParent">Input Inventaris Parent</a></li>
+                            <li><a href="<?php echo base_url()?>c_inventarisChild">Input Inventaris Child</a></li>
+                          </ul>
+                      </li>
+
                       <!-- Keuangan -->
                       <li class="<?php if(isset($menu)) if($menu == 'Keuangan') echo 'active'?>" >
                         <a href="<?php echo base_url()?>c_keuangan">

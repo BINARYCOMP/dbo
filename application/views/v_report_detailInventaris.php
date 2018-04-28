@@ -40,7 +40,7 @@
                   </thead>
                   <tbody>
                     <?php
-                      $dataInventarisChild = $this->m_report->getInventarisChildByInpaId($row['INCH_ID']);
+                      $dataInventarisChild = $this->m_report->getInventarisByChildId($row['INCH_ID']);
                       foreach ($dataInventarisChild as $row2) {
                         ?>
                           <tr>
