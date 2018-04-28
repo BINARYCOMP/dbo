@@ -190,7 +190,11 @@
           "bSort": false
         } );
         $('#finance').dataTable( {
-          "bSort": false
+          "bSort": false,
+          lengthChange: false,
+          buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
         } );
+        table.buttons().container()
+        .appendTo( '#example_wrapper .col-sm-6:eq(0)' );
     });
 </script>

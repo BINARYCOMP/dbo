@@ -13,13 +13,14 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="/dbo/assets/bower_components/Ionicons/css/ionicons.min.css">
   <!-- DataTables -->
+  <link rel="stylesheet" href="/dbo/assets/dist/css/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
   <!-- <link rel="stylesheet" href="/dbo/assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"> -->
   <!-- Theme style -->
   <link rel="stylesheet" href="/dbo/assets/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/dbo/assets/dist/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" href="/dbo/assets/dist/css/dataTables.bootstrap.css">
 
   <!-- Grafik -->
   <!-- Morris charts -->

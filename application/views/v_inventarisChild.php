@@ -80,24 +80,25 @@
 	      <div class="box-body">
 			<table class="table table-bordered table-hover table-striped" id="lookup">
 				<thead>
-					<tr>
-						<th>nama inventaris</th>
-							<th>ID inventaris</th>
-							<th>Jumlah Inventaris</th>
+					<tr>	
+							<th>No.</th>
 							<th>Induk Inventaris</th>
+							<th>nama inventaris</th>
+							<th>Jumlah Inventaris</th>
 							<th>Tanggal Di tambahkan</th>	
 						<th style="text-align: center" >Action </th>
 					</tr>
 				</thead>
 				<tbody>
 				  <?php 
+				  $no=1;
 				  foreach ($inventaris_child as $row) {
 				    ?>
-				      <tr>   
-				        <td><?php echo $row['INCH_NAME']?></td>
-				        <td><?php echo $row['INCH_ID']?></td>
-						<td><?php echo $row['INCH_QTY']?></td>
+				      <tr>
+				      	<td><?php echo $no?></td>  
 						<td><?php echo $row['INPA_NAME']?></td>
+				        <td><?php echo $row['INCH_NAME']?></td>
+						<td><?php echo $row['INCH_QTY']?></td>
 						<td><?php echo $row['INCH_TIME']?></td>
 				        <td>
 				        	<a href="<?php echo base_url()?>c_inventarisChild/FormUpdate/<?php echo $row['INCH_ID']?>">Edit</a> |
@@ -105,6 +106,7 @@
 				        </td>
 				      </tr>
 				    <?php
+				    $no++;
 				  }
 				  ?>
 				</tbody>

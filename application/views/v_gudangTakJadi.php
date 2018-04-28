@@ -47,6 +47,26 @@
                         </div>
                     </div>
 
+                <div class="form-group">
+                  <label class="control-label">Kategori</label>
+                  <div class="input-group">
+                    <!-- /btn-group -->
+                    <select name="cmbKategori" id="cmbKategoriTakJadi" class="form-control">
+                      <option value="0">== Pilih Kategori ==</option>
+                      <?php  
+                        foreach ($namaKategori as $row){
+                          echo "<option value='".$row['KATE_ID']."'>";
+                          echo $row ['KATE_NAME'];
+                         echo "</option>";
+                        }
+                      ?>
+                    </select> <br>
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalKategori2">Search</button>
+                    </div>
+                  </div>
+                </div>
+
                     <div class="form-group">
                       <label>Keterangan</label>
                       <textarea name="txtUraian" id="keteranganTakJadi" class="form-control" rows="3" placeholder="Keterangan barang ..."></textarea>
@@ -168,9 +188,10 @@ function showStokTakJadi(str) {
 <script>
   function modalKonfirmasiTakJadi() {
     var xhttp;
-    var parent,child,keterangan,masuk,keluar,akhir;
+    var parent,child,kategori,keterangan,masuk,keluar,akhir;
     parent      = document.getElementById('cmbParentTakJadi').value;
     child       = document.getElementById('cmbChildTakJadi').value;
+    kategori    = document.getElementById('cmbKategoriTakJadi').value;
     keterangan  = document.getElementById('keteranganTakJadi').value;
     masuk       = document.getElementById('brgMasukTakJadi').value;
     keluar      = document.getElementById('brgKeluarTakJadi').value;
@@ -183,7 +204,7 @@ function showStokTakJadi(str) {
         document.getElementById("modalKonfirmasiTakJadi").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&kategori="+kategori+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal, true);
     xhttp.send();   
   }
 
@@ -242,6 +263,45 @@ function showStokTakJadi(str) {
     </div> <!-- /.modal dialog  -->
 </div><!--  /.end of modal -->
 
+<!-- modal  kategori -->
+
+<div class="modal fade" id="myModalKategori2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Lookup Barang Parent</h4>
+            </div>
+            <div class="modal-body">
+                <table id="gutaKategori" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>No.</th>
+                        <th>Nama Kategori</th>
+                        
+                      </tr>
+                    </thead>        
+                    <tbody>
+                      <?php 
+                      $no=1;
+                      foreach ($namaKategori as $row) {
+                        ?>
+                          <tr class="kate2" data-namaKategori="<?php echo $row['KATE_ID']; ?>">
+                            <td><?php echo $no?></td>
+                            <td><?php echo $row['KATE_NAME']?></td>
+                            
+                          </tr>
+                        <?php
+                        $no++;
+                      }
+                      ?>
+                    </tbody>
+                </table>  
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script type="text/javascript">
 
@@ -265,6 +325,17 @@ function showStokTakJadi(str) {
         document.getElementById("cmbChildTakJadi").value = $(this).attr('data-brgChildTakJadi');
         $('#myModalTakJadi2').modal('hide');
         showStokTakJadi($(this).attr('data-brgChildTakJadi'));
+        
+
+    });
+
+    $(document).on('click', '.kate2', function (e) {
+        // alert("test");
+
+        // child
+        document.getElementById("cmbKategoriTakJadi").value = $(this).attr('data-namaKategori');
+        $('#myModalKategori2').modal('hide');
+
         
 
     });

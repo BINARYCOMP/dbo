@@ -7,7 +7,7 @@ class M_barangChild extends CI_Model
 	
 	public function view()
 	{
-		$sql = "select * from barang_child, satuan where barang_child.BACH_SATU_ID = satuan.SATU_ID";
+		$sql = "select * from barang_child inner join satuan on barang_child.BACH_SATU_ID = satuan.SATU_ID inner join barang_parent on barang_child.BACH_BAPA_ID=barang_parent.BAPA_ID ";
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
