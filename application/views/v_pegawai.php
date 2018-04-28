@@ -18,35 +18,35 @@
                 <div class="form-group">
                     <label class=" control-label">Nama</label>
                     <div>
-                      <input class="form-control" type="text" placeholder="Masukkan Nama" name="pegawai1" required placeholder="0"> 
+                      <input class="form-control" type="text" placeholder="Masukkan Nama" name="iName" required placeholder="0"> 
                     </div>
                     </div>  
                 <div class="form-group">
                     <label class=" control-label">Email</label>
                     <div>
-                      <input class="form-control" type="email" placeholder="Masukkan Email @" name="pegawai2" required placeholder="0">  
+                      <input class="form-control" type="email" placeholder="Masukkan Email @" name="iEmail" required placeholder="0">  
                     </div>
                   </div>
                 <div class="form-group">
                     <label class=" control-label">Alamat</label>
                     <div>
-                      <textarea name="pegawai3" class="form-control" id="pegawai3" rows="3" placeholder="Masukkan Alamat" required></textarea>
+                      <textarea name="iAlamat" class="form-control" id="pegawai3" rows="3" placeholder="Masukkan Alamat" required></textarea>
                     </div>
                   </div>
                 <div class="form-group">
                     <label class=" control-label">No Telepon</label>
                     <div>
-                      <input class="form-control" type="Number" placeholder="Masukkan No Telepon" name="pegawai4" required placeholder="0"> 
+                      <input class="form-control" type="Number" placeholder="Masukkan No Telepon" name="iNoTelpon" required placeholder="0"> 
                     </div>
                 </div>
                 <div class="form-group">
                   <label>Jenis Kelamin</label>
                   <div  class="row">
                     <div class="col-md-2">
-                      <input value="Laki-Laki" type="radio" name="pegawai5"> Laki-Laki
+                      <input value="Laki-Laki" type="radio" name="iJenisKelamin"> Laki-Laki
                     </div>
                     <div class="col-md-10">
-                      <input value="Perempuan" type="radio" name="pegawai5"> Perempuan
+                      <input value="Perempuan" type="radio" name="iJenisKelamin"> Perempuan
                     </div>
                   </div>
                 </div>
@@ -54,7 +54,7 @@
                     <label class=" control-label">AGAMA</label>
                     <div>
                         <!-- /btn-group -->
-                        <select name="pegawai6" class="form-control">
+                        <select name="iAgamaId" class="form-control">
                           <option value="0">== Pilih Agama ==</option>
                           <?php  
                             foreach ($agamaId as $row){
@@ -90,7 +90,6 @@
       <div class="box box-warning">
         <div class="box-header with-border">
           <h3 class="box-title">Data Pegawai</h3>
-
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
           </div>

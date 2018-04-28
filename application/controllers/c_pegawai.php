@@ -16,31 +16,31 @@ class C_pegawai extends CI_Controller
 	$agamaId=$this->m_pegawai->getAgama();
 	$pegawai=$this->m_pegawai->view();
 		$data = array(
-			'pegawai' =>$pegawai,
-			'agamaId' =>$agamaId,
-			'content'=>'v_pegawai',
-			'title' => 'Pegawai',
-      		'menu'            => 'Input Pegawai'
+			'pegawai'	=>$pegawai,
+			'agamaId' 	=>$agamaId,
+			'content'	=>'v_pegawai',
+			'title' 	=>'Pegawai',
+      		'menu'      =>'Input Pegawai'
 		);
 		$this->load->view('tampilan/v_combine', $data);
 
 	}
 	public function form()
 	{
-		$pegawai1 = $_POST['pegawai1'];
-		$pegawai2 = $_POST['pegawai2'];
-		$pegawai3 = $_POST['pegawai3'];
-		$pegawai4 = $_POST['pegawai4'];
-		$pegawai5 = $_POST['pegawai5'];
-		$pegawai6 = $_POST['pegawai6'];
+		$PEGA_NAME		= $_POST['iName'];
+		$PEGA_EMAIL		= $_POST['iEmail'];
+		$PEGA_ALAMAT 	= $_POST['iAlamat'];
+		$PEGA_NO_TLP 	= $_POST['iNoTelpon'];
+		$PEGA_JENKEL 	= $_POST['iJenisKelamin'];
+		$PEGA_AGAM_ID 	= $_POST['iAgamaId'];
 
 		$data = array(
-			'PEGA_NAME' =>$pegawai1 ,
-			'PEGA_EMAIL'=>$pegawai2 ,
-			'PEGA_ALAMAT'=>$pegawai3 ,
-			'PEGA_NO_TLP'=>$pegawai4 ,
-			'PEGA_JENKEL'=>$pegawai5 ,
-			'PEGA_AGAM_ID'=>$pegawai6
+			'PEGA_NAME' 	=>$PEGA_NAME ,
+			'PEGA_EMAIL'	=>$PEGA_EMAIL ,
+			'PEGA_ALAMAT'	=>$PEGA_ALAMAT ,
+			'PEGA_NO_TLP'	=>$PEGA_NO_TLP ,
+			'PEGA_JENKEL'	=>$PEGA_JENKEL ,
+			'PEGA_AGAM_ID'	=>$PEGA_AGAM_ID
 			);
 		$pegawai=$this->m_pegawai->Insert($data);
 		 redirect('c_pegawai');
@@ -49,27 +49,28 @@ class C_pegawai extends CI_Controller
 		$agamaId=$this->m_pegawai->getAgama();
 		$pegawai=$this->m_pegawai->Update($pegawai);
 		$data = array(
-			'pegawai' =>$pegawai,
-			'agamaId'  =>$agamaId,
-			'content' => 'v_editPegawai',
-      		'menu'            => 'Input Pegawai'
+			'pegawai' 	=>$pegawai,
+			'agamaId'  	=>$agamaId,
+			'title'		=>'Pegawai',
+			'content' 	=>'v_editPegawai',
+      		'menu'      =>'Input Pegawai'
 			);
 		$this->load->view('tampilan/v_combine',$data);
 	}
 	public function UpdateData($id){
-		$pegawai1 = $_POST['pegawai1'];
-		$pegawai2 = $_POST['pegawai2'];
-		$pegawai3 = $_POST['pegawai3'];
-		$pegawai4 = $_POST['pegawai4'];
-		$pegawai5 = $_POST['pegawai5'];
-		$pegawai6 = $_POST['pegawai6'];
+		$PEGA_NAME		= $_POST['iName'];
+		$PEGA_EMAIL		= $_POST['iEmail'];
+		$PEGA_ALAMAT 	= $_POST['iAlamat'];
+		$PEGA_NO_TLP 	= $_POST['iNoTelpon'];
+		$PEGA_JENKEL 	= $_POST['ijeniskelamin'];
+		$PEGA_AGAM_ID 	= $_POST['iAgamaId'];
 		$data = array(
-			'PEGA_NAME' =>$pegawai1 ,
-			'PEGA_EMAIL'=>$pegawai2 ,
-			'PEGA_ALAMAT'=>$pegawai3 ,
-			'PEGA_NO_TLP'=>$pegawai4 ,
-			'PEGA_JENKEL'=>$pegawai5 ,
-			'PEGA_AGAM_ID'=>$pegawai6 
+			'PEGA_NAME' 	=>$PEGA_NAME ,
+			'PEGA_EMAIL'	=>$PEGA_EMAIL ,
+			'PEGA_ALAMAT'	=>$PEGA_ALAMAT ,
+			'PEGA_NO_TLP'	=>$PEGA_NO_TLP ,
+			'PEGA_JENKEL'	=>$PEGA_JENKEL ,
+			'PEGA_AGAM_ID'	=>$PEGA_AGAM_ID
 			);
 		$pegawai=$this->m_pegawai->UpdateData($id, $data);
 		redirect('C_pegawai');
