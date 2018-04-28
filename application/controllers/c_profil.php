@@ -5,9 +5,21 @@
 class C_profil extends CI_Controller
 {
 	
-	function __construct(argument)
+	function __construct()
 	{
-		# code...
+		parent::__construct();
+		$this->load->model('m_profil');
+	}
+	function Index()
+	{
+		$Account=$this->m_profil->getInfoAccount();
+		$data = array(
+			'Account'	=>$Account,
+			'content'	=>'v_pegawai',
+			'title' 	=>'Pegawai',
+      		'menu'      =>'Input Pegawai'
+		);
 	}
 }
+
  ?>
