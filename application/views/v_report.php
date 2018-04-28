@@ -53,7 +53,7 @@
   				foreach ($dataBarangChildById as $row) {
   					?>
         		<tr>
-        			<th scope="row"><?php echo $no ?></th>
+        			<th scope="row" class="center"><?php echo $no ?></th>
 	        		<td><?php echo $row['BACH_NAME'] ?></td>
 	        		<td><?php echo $row['SATU_NAME'] ?></td>
               <td></td>
@@ -61,7 +61,7 @@
               <td></td>
               <td></td>
               <td></td>
-	        		<td><?php echo $row['BACH_GUJA_TOTAL'] ?></td>
+	        		<td class="right" ><?php echo $row['BACH_GUJA_TOTAL'] ?></td>
         		</tr>
   					<?php
   					$no++;
@@ -103,17 +103,19 @@
           </thead>
           <tbody>
             <?php
+            $no = 1;
               foreach ($dataKeuangan as $row) {
                 ?>
                   <tr>
-                    <td><?php echo $no ?></td>
-                    <td><?php echo $row['KEUA_TANGGAL'] ?></td>
+                    <td class="center"><?php echo $no ?></td>
+                    <td class="center"><?php echo $row['KEUA_TANGGAL'] ?></td>
                     <td><?php echo $row['KEUA_RINCIAN'] ?></td>
-                    <td><?php echo $row['KEUA_MASUK'] ?></td>
-                    <td><?php echo $row['KEUA_KELUAR'] ?></td>
-                    <td><?php echo $row['KEUA_SALDO'] ?></td>
+                    <td class="right"><?php echo $row['KEUA_MASUK'] ?></td>
+                    <td class="right"><?php echo $row['KEUA_KELUAR'] ?></td>
+                    <td class="right"><?php echo $row['KEUA_SALDO'] ?></td>
                   </tr>
                 <?php                    
+                $no++;
               }
             ?>
         </tbody>
@@ -137,7 +139,7 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-      <table id="finance" class="table table-bordered table-striped table-hover">
+      <table id="finance" class="table table-bordered table-hover">
         <thead >
           <tr>
             <th scope="col">N0</th>
@@ -151,22 +153,23 @@
         <?php
         $no = 1;
           foreach ($dataInventarisParent as $row) {
+            $getTotal = $this->m_report->getTotalQtyByInpaId($row['INPA_ID']);
             ?>
-            <tr>
-                  <th scope="row"><?php echo $no ?></th>
-                  <td><b><?php echo $row['INPA_NAME'] ?></b></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
+            <tr class="success">
+              <th scope="row" class="center"><?php echo $no ?></th>
+              <th><b><?php echo $row['INPA_NAME'] ?></b></th>
+              <th class="right"><?php echo $getTotal[0]['Total']?></th>
+              <td></td>
+              <td></td>
+            </tr>
             <?php
             $dataBarangChildById = $this->m_report->getInventarisChildByInpaId($row['INPA_ID']); 
             foreach ($dataBarangChildById as $row) {
               ?>
               <tr>
                 <th scope="row"></th>
-                <td><?php echo $row['INCH_NAME'] ?></td>
-                <td><?php echo $row['INCH_QTY'] ?></td>
+                <td ><?php echo $row['INCH_NAME'] ?></td>
+                <td class="right"><?php echo $row['INCH_QTY'] ?></td>
                 <td><?php echo $row['INVE_KEADAAN'] ?></td>
                 <td><?php echo $row['INVE_KETERANGAN'] ?></td>
               </tr>
