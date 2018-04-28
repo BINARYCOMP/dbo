@@ -34,17 +34,26 @@
                     <tr>
                       <th scope="col" rowspan="2">TANGGAL</th>
                       <th scope="col" rowspan="2">KETERANGAN</th>
-                      <th scope="col" colspan="3">SGS</th>
-                      <th scope="col" colspan="3">EX CHINA</th>
-                      <th scope="col" rowspan="2">TOTAL</th>
+                      <?php
+                      $dataKategori = $this->m_report->getKategoriByBachId($row['BACH_ID']);
+                      foreach ($dataKategori as $daka) {
+                        ?>
+                      <th scope="col" colspan="3"><?php echo $daka['KATE_NAME']?></th>
+                      <?php
+                      }
+                      ?>
                     </tr>
                     <tr>
-                      <th scope="1">MASUK</th>
-                      <th scope="1">KELUAR</th>
-                      <th scope="1">SALDO</th>
-                      <th scope="1">MASUK</th>
-                      <th scope="1">KELUAR</th>
-                      <th scope="1">SALDO</th>
+                    <?php
+                      foreach ($dataKategori as $daka) {
+                    ?>
+                        <th scope="1">MASUK</th>
+                        <th scope="1">KELUAR</th>
+                        <th scope="1">SALDO</th>
+                    <?php
+                      }
+                    ?>
+                      <th scope="col" rowspan="2">TOTAL</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -59,12 +68,12 @@
                               ?>
                             </th>
                             <td><?php echo $row2['GUJA_URAIAN'] ?></td>
-                            <td><?php echo $row2['GUJA_MASUK'] ?></td>
-                            <td><?php echo $row2['GUJA_KELUAR'] ?></td>
-                            <td><?php echo $row2['GUJA_SALDO'] ?></td>
-                            <td><?php echo $row2['GUJA_MASUK'] ?></td>
-                            <td><?php echo $row2['GUJA_KELUAR'] ?></td>
-                            <td><?php echo $row2['GUJA_SALDO'] ?></td>
+                            <?php
+                                $dataStok = $this->m_report->getStokByKateId($row2['GUJA_KATE_ID'], $row['BACH_ID']);
+                            ?>
+                              <td><?php echo $dataStok[0]['GUJA_MASUK'] ?></td>
+                              <td><?php echo $dataStok[0]['GUJA_KELUAR'] ?></td>
+                              <td><?php echo $dataStok[0]['GUJA_SALDO'] ?></td>
                             <td><?php echo $row2['BACH_GUJA_TOTAL'] ?></td>
                           </tr>
                         <?php
