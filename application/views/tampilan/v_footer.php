@@ -54,8 +54,19 @@
         // user
         $("#registForm").dataTable();
 
+<<<<<<< HEAD
+        //barang
+        $("#brgChild").dataTable();
+        $("#brgChildIn").dataTable();
+        
+
+        // inventaris
+        $("#invenChild").dataTable();
+        $("#invenChildIn").dataTable();
+=======
         //report
         $("#finance").dataTable();        
+>>>>>>> f7dabb731e54ab07664e90128d9a1445e8d48192
 
 
     });
