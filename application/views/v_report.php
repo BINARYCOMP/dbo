@@ -15,7 +15,7 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-      <table id="example1" class="table table-bordered table-striped table-hover">
+      <table id="stock" class="table table-bordered table-striped table-hover">
         <thead >
         <tr>
           <th scope="col" rowspan="2">N0</th>
@@ -39,7 +39,14 @@
   				?>
   				<tr>
                 <th scope="row"></th>
-                <td colspan="8"><b><a href="<?php echo base_url()?>c_report/detailBarang/<?php echo $row['BAPA_ID']?>"><?php echo $row['BAPA_NAME'] ?></a></b></td>
+                <td><b><a href="<?php echo base_url()?>c_report/detailBarang/<?php echo $row['BAPA_ID']?>"><?php echo $row['BAPA_NAME'] ?></a></b></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
   				<?php
   				$dataBarangChildById = $this->m_report->getBarangChildByBapaId($row['BAPA_ID']); 
@@ -49,11 +56,11 @@
         			<th scope="row"><?php echo $no ?></th>
 	        		<td><?php echo $row['BACH_NAME'] ?></td>
 	        		<td><?php echo $row['SATU_NAME'] ?></td>
-	                <td></td>
-	                <td></td>
-	                <td></td>
-	                <td></td>
-	                <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
 	        		<td><?php echo $row['BACH_GUJA_TOTAL'] ?></td>
         		</tr>
   					<?php
@@ -147,7 +154,10 @@
             ?>
             <tr>
                   <th scope="row"></th>
-                  <td colspan="8"><b><a href="<?php echo base_url()?>c_report/detailInventaris/<?php echo $row['INPA_ID']?>"><?php echo $row['INPA_NAME'] ?></a></b></td>
+                  <td><b><a href="<?php echo base_url()?>c_report/detailInventaris/<?php echo $row['INPA_ID']?>"><?php echo $row['INPA_NAME'] ?></a></b></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
               </tr>
             <?php
             $dataBarangChildById = $this->m_report->getInventarisChildByInpaId($row['INPA_ID']); 
@@ -170,3 +180,14 @@
     </div>
   </div>
 </section>
+
+<script type="text/javascript">
+    $(function () {
+        $('#stock').dataTable( {
+          "bSort": false
+        } );
+        $('#finance').dataTable( {
+          "bSort": false
+        } );
+    });
+</script>
