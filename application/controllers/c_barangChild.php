@@ -30,16 +30,12 @@ class C_barangChild extends CI_Controller
 	public function form()
 	{
 		$nama = $_POST['txtnama'];
-		$guja = $_POST['txtguja'];
-		$guta = $_POST['txtguta'];
 		$bapa = $_POST['txtbapa'];
 		$satuan = $_POST['txtsatuan'];
 
 
 		$data = array(
 			'BACH_NAME' =>$nama ,
-			'BACH_GUJA_TOTAL' => 0 ,
-			'BACH_GUTA_TOTAL' => 0 ,
 			'BACH_BAPA_ID' =>$bapa ,
 			'BACH_SATU_ID' =>$satuan ,
 			);
@@ -47,9 +43,15 @@ class C_barangChild extends CI_Controller
 		 redirect('c_barangChild');
 	}
 	public function FormUpdate($id){
-		$child=$this->m_barangChild->Update($id);
+		$barangChild=$this->m_barangChild->view();
+		$child=$this->m_barangChild->Update($id); 
+		$satuan=$this->m_barangChild->getSatuan();
+		$barangParent=$this->m_barangChild->getBarangParent();
 		$data = array(
+			'barang_child' =>$barangChild,
 			'content'=>'v_editBarangChild',
+			'satuan' =>$satuan,
+			'barang_parent' =>$barangParent,
 			'title'=>'Edit Anak Barang',
 			'barangChild' =>$child,
 			'menu'         => 'Barang Child'
@@ -80,5 +82,7 @@ class C_barangChild extends CI_Controller
 		$this->db->delete('barang_child', array('BACH_ID' => $id));
 		redirect('c_barangChild');
 	}
+
+
 }
 ?>

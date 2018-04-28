@@ -53,6 +53,15 @@
         // user
         $("#registForm").dataTable();
 
+        //barang
+        $("#brgChild").dataTable();
+        $("#brgChildIn").dataTable();
+        
+
+        // inventaris
+        $("#invenChild").dataTable();
+        $("#invenChildIn").dataTable();
+
 
     });
 </script>
