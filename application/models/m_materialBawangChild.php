@@ -36,7 +36,7 @@ class M_materialBawangChild extends CI_Model
   }
   public function Update($data)
   {
-    $sql="select * from material_child_bawang where M_ID =".$data;
+    $sql="select * from material_child_bawang where MCBA_ID =".$data;
     $query=$this->db->query($sql);
     $return = $query->result_array();
     return $return;
