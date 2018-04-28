@@ -58,8 +58,7 @@
 					<tr>
 						<th>No.</th>
 						<th>nama inventaris</th>
-							<th>ID inventaris</th>
-							<th>Tanggal Di tambahkan</th>	
+						<th>Tanggal Di tambahkan</th>	
 						<th style="text-align: center" >Action </th>
 					</tr>
 				</thead>
@@ -71,7 +70,6 @@
 				      <tr>
 				        <td><?php echo $no++ ?></td>
 				        <td><?php echo $row['INPA_NAME']?></td>
-				        <td><?php echo $row['INPA_ID']?></td>
 						<td><?php echo $row['INPA_TIME']?></td>
 				        <td>
 				        	<a href="<?php echo base_url()?>c_inventarisParent/FormUpdate/<?php echo $row['INPA_ID']?>">Edit</a> |

@@ -153,8 +153,8 @@
           foreach ($dataInventarisParent as $row) {
             ?>
             <tr>
-                  <th scope="row"></th>
-                  <td><b><a href="<?php echo base_url()?>c_report/detailInventaris/<?php echo $row['INPA_ID']?>"><?php echo $row['INPA_NAME'] ?></a></b></td>
+                  <th scope="row"><?php echo $no ?></th>
+                  <td><b><?php echo $row['INPA_NAME'] ?></b></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -164,15 +164,15 @@
             foreach ($dataBarangChildById as $row) {
               ?>
               <tr>
-                <th scope="row"><?php echo $no ?></th>
+                <th scope="row"></th>
                 <td><?php echo $row['INCH_NAME'] ?></td>
                 <td><?php echo $row['INCH_QTY'] ?></td>
                 <td><?php echo $row['INVE_KEADAAN'] ?></td>
                 <td><?php echo $row['INVE_KETERANGAN'] ?></td>
               </tr>
               <?php
-              $no++;
             }
+            $no++;
           }
         ?>
         </tbody>

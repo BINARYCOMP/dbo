@@ -195,12 +195,13 @@
                             <li><a href="<?php echo base_url()?>c_barangParent">Barang Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_barangChild">Barang Child</a></li>
                             <li class="divider"></li>
-                            <li class="dropdown-header"></li>
+                            <li class="dropdown-header">Super User</li>
                             <li><a href="<?php echo base_url()?>c_form1">Input User</a></li>
                             <li><a href="<?php echo base_url()?>c_pegawai">Input Pegawai</a></li>
-                            <li><a href="<?php echo base_url()?>c_viewAgama">Input Agama</a></li>
-                            <li><a href="<?php echo base_url()?>c_level">Input Level</a></li>
                             <li><a href="<?php echo base_url()?>c_satuan">Input Satuan</a></li>
+                            <li><a href="<?php echo base_url()?>c_kategori">Input Kategori</a></li>
+                            <li><a href="<?php echo base_url()?>c_level">Input Level</a></li>
+                            <li><a href="<?php echo base_url()?>c_viewAgama">Input Agama</a></li>
                           </ul>
                       </li>
                     <?php
