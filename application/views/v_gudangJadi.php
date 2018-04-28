@@ -223,7 +223,7 @@ function showStok(str) {
                       <tr>
                         <th>No.</th>
                         <th>Nama Barang</th>
-                        <th>Satuan</th>
+                        
                       </tr>
                     </thead>        
                     <tbody>
@@ -234,7 +234,7 @@ function showStok(str) {
                           <tr class="isi" data-brgParent="<?php echo $row['BAPA_ID']; ?>">
                             <td><?php echo $no?></td>
                             <td><?php echo $row['BAPA_NAME']?></td>
-                            <td><?php echo $row['SATU_NAME']?></td>
+                            
                           </tr>
                         <?php
                         $no++;

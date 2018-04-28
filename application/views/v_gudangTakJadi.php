@@ -218,7 +218,7 @@ function showStokTakJadi(str) {
                       <tr>
                         <th>No.</th>
                         <th>Nama Barang</th>
-                        <th>Satuan</th>
+                        
                       </tr>
                     </thead>
                     <tbody>
@@ -229,7 +229,7 @@ function showStokTakJadi(str) {
                           <tr class="pilih" data-brgParentTakJadi="<?php echo $row['BAPA_ID']; ?>">
                             <td><?php echo $no ?></td>
                             <td><?php echo $row['BAPA_NAME']?></td>
-                            <td><?php echo $row['SATU_NAME']?></td>
+                            
                           </tr>
                         <?php
                         $no++;
