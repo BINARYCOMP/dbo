@@ -62,7 +62,7 @@
                       ?>
                     </select> <br>
                     <div class="input-group-btn">
-                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Search</button>
+                      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalKategori2">Search</button>
                     </div>
                   </div>
                 </div>
@@ -263,6 +263,45 @@ function showStokTakJadi(str) {
     </div> <!-- /.modal dialog  -->
 </div><!--  /.end of modal -->
 
+<!-- modal  kategori -->
+
+<div class="modal fade" id="myModalKategori2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Lookup Barang Parent</h4>
+            </div>
+            <div class="modal-body">
+                <table id="gutaKategori" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>No.</th>
+                        <th>Nama Kategori</th>
+                        
+                      </tr>
+                    </thead>        
+                    <tbody>
+                      <?php 
+                      $no=1;
+                      foreach ($namaKategori as $row) {
+                        ?>
+                          <tr class="kate2" data-namaKategori="<?php echo $row['KATE_ID']; ?>">
+                            <td><?php echo $no?></td>
+                            <td><?php echo $row['KATE_NAME']?></td>
+                            
+                          </tr>
+                        <?php
+                        $no++;
+                      }
+                      ?>
+                    </tbody>
+                </table>  
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script type="text/javascript">
 
@@ -286,6 +325,17 @@ function showStokTakJadi(str) {
         document.getElementById("cmbChildTakJadi").value = $(this).attr('data-brgChildTakJadi');
         $('#myModalTakJadi2').modal('hide');
         showStokTakJadi($(this).attr('data-brgChildTakJadi'));
+        
+
+    });
+
+    $(document).on('click', '.kate2', function (e) {
+        // alert("test");
+
+        // child
+        document.getElementById("cmbKategoriTakJadi").value = $(this).attr('data-namaKategori');
+        $('#myModalKategori2').modal('hide');
+
         
 
     });
