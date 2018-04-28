@@ -24,17 +24,17 @@ class C_stok extends CI_Controller
       $message ="";
     }
 
-      $namaParent       = $this->m_gudangJadi->getParentName();
-      $dataGudangJadi   = $this->m_gudangJadi->getDataGudang();
-      $dataGudangTakJadi   = $this->m_gudangTakJadi->getDataGudang();
+      $namaParent           = $this->m_gudangJadi->getParentName();
+      $dataGudangJadi       = $this->m_gudangJadi->getDataGudang();
+      $dataGudangTakJadi    = $this->m_gudangTakJadi->getDataGudang();
       $data = array(
-        'namaParent'      => $namaParent,
-        'dataGudangJadi'  => $dataGudangJadi,
+        'namaParent'        => $namaParent,
+        'dataGudangJadi'    => $dataGudangJadi,
         'dataGudangTakJadi' => $dataGudangTakJadi,
-        'content'         => 'v_stock',
-        'message'         => $message,
-        'title'         => 'Input Stok',
-        'menu'         => 'Stok'
+        'content'           => 'v_stock',
+        'message'           => $message,
+        'title'             => 'Input Stok',
+        'menu'              => 'Stok'
       );
       $this->load->view('tampilan/v_combine',$data);
   }
