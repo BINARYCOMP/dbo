@@ -38,6 +38,18 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
+	public function getStokByKateId($id,$bachId)
+	{
+		$sql 	= "SELECT * FROM kategori, gudang_jadi, barang_child, barang_parent WHERE 
+					GUJA_BACH_ID = BACH_ID AND
+					GUJA_BAPA_ID = BAPA_ID AND
+					GUJA_KATE_ID = KATE_ID AND
+					GUJA_KATE_ID = ".$id." AND
+					GUJA_BACH_ID = ".$bachId;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 	public function getTotalSaldoByBachId($id)
 	{
 		$sql 	= "SELECT sum(BACH_GUJA_ID) as 'Total' FROM  barang_child WHERE BACH_ID =".$id;
@@ -49,6 +61,13 @@ class M_report extends CI_Model
 	{
 		$sql 	= "SELECT sum(INCH_QTY) as 'Total' FROM  inventaris_child WHERE INCH_INPA_ID =".$id;
 		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getKategoriByBachId($id)
+	{
+		$sql	= "SELECT * FROM gudang_jadi, kategori WHERE guja_kate_id = kate_id AND GUJA_BACH_ID = ".$id;
+		$query 	= $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
