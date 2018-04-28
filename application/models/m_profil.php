@@ -19,5 +19,12 @@ class M_profil extends CI_Model
 	    $return = $query->result_array();
 	    return $return;
   	}
+  	public function GetVerifPassowrd($password)
+	{
+		$sql = "select * from user,pegawai where USER_DAPE_ID = PEGA_ID AND USER_PASSWORD = '$password'";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 }
  ?>
