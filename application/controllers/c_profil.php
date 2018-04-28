@@ -1,4 +1,5 @@
 <?php 
+if (!empty($status)) header('location:acces_denied.php');
 /**
 * 
 */
@@ -10,7 +11,7 @@ class C_profil extends CI_Controller
 		parent::__construct();
 		$this->load->model('m_profil');
 	}
-	function Index()
+	public function Index()
 	{
 		$Account=$this->m_profil->getInfoAccount();
 		$data = array(
@@ -21,17 +22,11 @@ class C_profil extends CI_Controller
 		);
 		$this->load->view('tampilan/v_combine', $data);
 	}
-	function UpdatePassword($Account)
+	public function Password()
 	{
-		$Account=$this->m_profil->Update($Account);
-		$data = array(
-			'Account' 	=>$Account,
-			'title'		=>'Ganti Password',
-			'content' 	=>'v_editPassword',
-      		'menu'      =>'Ganti Password'
-			);
-		$this->load->view('tampilan/v_combine',$data);
+		$this->load->view('v_editPassword');
 	}
+	
 }
 
  ?>

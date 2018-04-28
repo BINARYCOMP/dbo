@@ -1,7 +1,7 @@
 <div class="content">
 	<div class="row">
 	  <div class="col-md-6">
-	    <div class="box box-warning">
+	    <div class="box box-info">
 	      <div class="box-header with-border">
 	        <h3 class="box-title">Input Agama</h3>
 
@@ -28,7 +28,7 @@
 	                    <button type="reset" class="btn btn-default pull-right">Cancel</button>
 	                  </div>
 	                  <div class="col-md-2">
-	                    <button type="submit" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
+	                    <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
 	                  </div>
 	                </div>
 	              </div>

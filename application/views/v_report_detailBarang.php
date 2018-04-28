@@ -69,11 +69,15 @@
                             </th>
                             <td><?php echo $row2['GUJA_URAIAN'] ?></td>
                             <?php
-                                $dataStok = $this->m_report->getStokByKateId($row2['GUJA_KATE_ID'], $row['BACH_ID']);
+                              foreach ($dataKategori as $daka) {
+                                $dataStok = $this->m_report->getStokByKateId($daka['KATE_ID'], $row['BAPA_ID']);
                             ?>
                               <td><?php echo $dataStok[0]['GUJA_MASUK'] ?></td>
                               <td><?php echo $dataStok[0]['GUJA_KELUAR'] ?></td>
                               <td><?php echo $dataStok[0]['GUJA_SALDO'] ?></td>
+                            <?php
+                              }
+                            ?>
                             <td><?php echo $row2['BACH_GUJA_TOTAL'] ?></td>
                           </tr>
                         <?php
