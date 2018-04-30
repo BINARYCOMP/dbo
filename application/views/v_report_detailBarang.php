@@ -71,16 +71,18 @@
                             <td><?php echo $row2['GUJA_URAIAN'] ?></td>
                             <?php
                             $total = array();
+                            $saldoKate = array();
                             $subTotal = 0;
                             $r =0;
                               foreach ($dataKategori as $daka) {
                                 $dataStok   = $this->m_report->getStokByKateId($daka['KATE_ID'], $row['BAPA_ID']);
                                 $lastSaldo  = $this->m_report->getLastStok($row['BAPA_ID'], $row['BACH_ID'], $daka['KATE_ID']);
                                 if ($daka['KATE_ID'] != $row2['GUJA_KATE_ID']) {
+                                $saldoKate['kategori'] = $daka['KATE_ID'];
                                   ?>
                                     <td>0</td>
                                     <td>0</td>
-                                    <td>0</td>
+                                    <td><?php var_dump($saldoKate) ?></td>
                                   <?php
                                 }else{
                                   ?>
