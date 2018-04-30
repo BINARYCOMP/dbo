@@ -53,7 +53,7 @@
                   <label class="control-label">Kategori</label>
                   <div class="input-group">
                     <!-- /btn-group -->
-                    <select name="cmbKategori" id="cmbKategori" class="form-control">
+                    <select name="cmbKategori" onchange="showStok();" onmousemove="showStok();" id="cmbKategori" class="form-control">
                       <option value="0">== Pilih Kategori ==</option>
                       <?php  
                         foreach ($namaKategori as $row){
@@ -162,7 +162,11 @@ function showChild(str) {
 </script>
 <!-- javascript saldo Awal -->
 <script>
-function showStok(str) {
+function showStok() {
+  var bachId = document.getElementById('cmbChild').value;
+  var bapaId = document.getElementById('cmbParent').value;
+  var kateId = document.getElementById('cmbKategori').value;
+
   var xhttp;
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -170,7 +174,7 @@ function showStok(str) {
       document.getElementById("txtStok").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchStok?q="+str, true);
+  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchStok?kateId="+kateId+"&bachId="+bachId+"&bapaId="+bapaId, true);
   xhttp.send();   
 }
 </script>
@@ -328,7 +332,7 @@ function showStok(str) {
         // child
         document.getElementById("cmbChild").value = $(this).attr('data-brgChild');
         $('#myModal2').modal('hide');
-        showStok($(this).attr('data-brgChild'));
+        showStok();
         
 
     });
@@ -339,7 +343,7 @@ function showStok(str) {
         // child
         document.getElementById("cmbKategori").value = $(this).attr('data-namaKategori');
         $('#myModalKategori').modal('hide');
-
+        showStok();
         
 
     });

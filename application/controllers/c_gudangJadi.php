@@ -63,7 +63,7 @@ class C_gudangJadi extends CI_Controller
     $str = $_GET['q'];
     $namaChild  = $this->m_gudangJadi->getChildName($str);
     ?>
-      <select required name="cmbChild" id="cmbChild" onchange="showStok(this.value);" onmousemove ="showStok(this.value);" class="form-control">
+      <select required name="cmbChild" id="cmbChild" onchange="showStok();" onmousemove ="showStok();" class="form-control">
         <?php
           if ($str == 0) {
             ?>
@@ -87,15 +87,17 @@ class C_gudangJadi extends CI_Controller
   // cari stok
   public function searchStok()
   {
-    $str = $_GET['q'];
-    $stokAwal = $this->m_gudangJadi->getFirstStock($str);
-    if ($str == 0) {
+    $bapa_id = $_GET['bapaId'];
+    $bach_id = $_GET['bachId'];
+    $kate_id = $_GET['kateId'];
+    $stokAwal = $this->m_gudangJadi->getFirstStock($bapa_id,$bach_id,$kate_id);
+    if ($bapa_id == 0 || $bach_id == 0 || $kate_id == 0) {
       ?>
         <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly placeholder="0"> 
       <?php
     }else{
       ?>
-        <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['BACH_GUJA_TOTAL'] ?>"> 
+        <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['GUJA_SALDO'] ?>"> 
       <?php
     }
   }

@@ -66,10 +66,17 @@ class M_report extends CI_Model
 	}
 	public function getKategoriByBachId($id)
 	{
-		$sql	= "SELECT * FROM gudang_jadi, kategori WHERE guja_kate_id = kate_id AND GUJA_BACH_ID = ".$id;
+		$sql	= "SELECT * FROM gudang_jadi, kategori WHERE guja_kate_id = kate_id AND GUJA_BACH_ID = ".$id." GROUP BY kate_id";
 		$query 	= $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
+	}
+	public function getLastStok($bapa_id,$bach_id, $kate_id)
+	{
+		$sql="SELECT * from gudang_jadi, barang_parent, barang_child, kategori where guja_bach_id = bach_id and guja_bapa_id = bapa_id and guja_kate_id = kate_id and  guja_bach_id = ".$bach_id." and guja_bapa_id = ".$bapa_id." and guja_kate_id = ".$kate_id." group by guja_id desc limit 1";
+		$query=$this->db->query($sql);
+		$return = $query->result_array();
+return $return;
 	}
 	public function getInventarisParent()
 	{

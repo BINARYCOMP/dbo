@@ -29,7 +29,7 @@
                 <table class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th colspan="9"><?php echo $row['BACH_NAME'] ?></th>
+                      <th colspan="12"><?php echo $row['BACH_NAME'] ?></th>
                     </tr>
                     <tr>
                       <th scope="col" rowspan="2">TANGGAL</th>
@@ -42,6 +42,7 @@
                       <?php
                       }
                       ?>
+                      <th scope="col" rowspan="2">TOTAL</th>
                     </tr>
                     <tr>
                     <?php
@@ -53,12 +54,12 @@
                     <?php
                       }
                     ?>
-                      <th scope="col" rowspan="2">TOTAL</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
                       $dataBarangChild = $this->m_report->getBarangJadiByChildId($row['BACH_ID']);
+                      $k= 0;
                       foreach ($dataBarangChild as $row2) {
                         ?>
                           <tr>
@@ -69,18 +70,34 @@
                             </th>
                             <td><?php echo $row2['GUJA_URAIAN'] ?></td>
                             <?php
+                            $total = array();
+                            $subTotal = 0;
+                            $r =0;
                               foreach ($dataKategori as $daka) {
-                                $dataStok = $this->m_report->getStokByKateId($daka['KATE_ID'], $row['BAPA_ID']);
-                            ?>
-                              <td><?php echo $dataStok[0]['GUJA_MASUK'] ?></td>
-                              <td><?php echo $dataStok[0]['GUJA_KELUAR'] ?></td>
-                              <td><?php echo $dataStok[0]['GUJA_SALDO'] ?></td>
-                            <?php
+                                $dataStok   = $this->m_report->getStokByKateId($daka['KATE_ID'], $row['BAPA_ID']);
+                                $lastSaldo  = $this->m_report->getLastStok($row['BAPA_ID'], $row['BACH_ID'], $daka['KATE_ID']);
+                                if ($daka['KATE_ID'] != $row2['GUJA_KATE_ID']) {
+                                  ?>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                  <?php
+                                }else{
+                                  ?>
+                                    <td><?php echo $row2['GUJA_MASUK'] ?></td>
+                                    <td><?php echo $row2['GUJA_KELUAR'] ?></td>
+                                    <td><?php echo $row2['GUJA_SALDO'] ?></td>
+                                  <?php
+                                $subTotal = $subTotal + $row2['GUJA_SALDO']; 
+                                $total[] = $subTotal;
+                                }
+                                $r++;
                               }
                             ?>
-                            <td><?php echo $row2['BACH_GUJA_TOTAL'] ?></td>
+                              <td><?php echo $total[0]; ?></td>
                           </tr>
                         <?php
+                        $k++;
                       }
                     ?>
                   </tbody>
