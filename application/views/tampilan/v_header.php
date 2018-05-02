@@ -106,7 +106,7 @@
                             <li class="divider"></li>
                             <li class="dropdown-header">Gudang Bawang</li>
                             <li><a href="<?php echo base_url()?>">Input Barang Jadi</a></li>
-                            <li><a href="<?php echo base_url()?>">Input Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_material">Input Material</a></li>
                           </ul>
                       </li>
                       <li class="<?php if(isset($menu)) if($menu == 'Inventaris') echo 'active'?>" >
@@ -160,7 +160,7 @@
                             <li class="divider"></li>
                             <li class="dropdown-header">Gudang Bawang</li>
                             <li><a href="<?php echo base_url()?>">Input Barang Jadi</a></li>
-                            <li><a href="<?php echo base_url()?>">Input Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_material"">Input Material</a></li>
                           </ul>
                       </li>
 
