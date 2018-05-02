@@ -89,18 +89,23 @@ class C_material extends CI_Controller
   // cari stok
   public function searchStok()
   {
-    $bapa_id = $_GET['bapaId'];
-    $bach_id = $_GET['bachId'];
-    $kate_id = $_GET['kateId'];
-    $stokAwal = $this->m_material->getFirstStock($bapa_id,$bach_id,$kate_id);
-    if ($bapa_id == 0 || $bach_id == 0 || $kate_id == 0) {
+    $mpbaId = $_GET['mpbaId'];
+    $mcbaId = $_GET['mcbaId'];
+    $stokAwal = $this->m_material->getFirstStock($mcbaId,$mpbaId);
+    if ($mpbaId == 0 || $mcbaId == 0 ) {
       ?>
         <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly placeholder="0"> 
       <?php
     }else{
-      ?>
-        <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['GUJA_SALDO'] ?>"> 
-      <?php
+      if (isset($stokAwal[0]['MABA_SALDO'])) {
+        ?>
+          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['MABA_SALDO'] ?>"> 
+        <?php
+      }else{
+        ?>
+          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo '0' ?>"> 
+        <?php
+      }
     }
   }
   public function modalKonfirmasi()
@@ -160,13 +165,27 @@ class C_material extends CI_Controller
   }
 
   public function modalChild()
-   {
-     $cmbParent = $_GET['parent'];
-     $namaChild = $this->m_material->getChildByBapaId($cmbParent);
-     $data = array(
-      'cmbParent' => $cmbParent ,
-      'namaChild' => $namaChild 
+  {
+    $cmbParent = $_GET['parent'];
+    $namaChild = $this->m_material->getChildByBapaId($cmbParent);
+    $data = array(
+     'cmbParent' => $cmbParent ,
+     'namaChild' => $namaChild 
     );
-     $this->load->view('modal/v_modalChildmaterial', $data);
+      if (is_array($namaChild) || is_object($namaChild)){
+      $no=1;
+      foreach ($namaChild as $row) {
+        ?>
+          <tr class="isi2" data-brgChild="<?php echo $row['BACH_ID']; ?>">
+
+            <td> <?php echo $no ?> </td>
+            <td> <?php echo $row['BACH_NAME']?> </td>
+            <td> <?php echo $row['BACH_GUJA_TOTAL']?> </td>
+            <td> <?php echo $row['SATU_NAME']?> </td>
+          </tr>
+        <?php
+        $no++;
+      }
+    }
   } 
 }

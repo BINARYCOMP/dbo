@@ -3,7 +3,7 @@
       <div class="col-md-12">
         <div class="box box-info">
           <div class="box-header with-border">
-            <h3 class="box-title">Input material</h3>
+            <h3 class="box-title">Input Material</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -13,13 +13,13 @@
           <div class="box-body">
             <div class="row">
               <div class="col-md-12 ">
-                <form action="<?php echo base_url()?>c_material/save" method="POST">
+                <form action="<?php echo base_url()?>c_Material/save" method="POST">
                   <div class="form-group">
                     <label class="control-label">Parent</label>
                     <div class="input-group">
                       <!-- /btn-group -->
                       <select class="form-control" name="cmbParent" id="cmbParent" onchange="showChild(this.value)">
-                        <option>=== Pilih Induk material ===</option>
+                        <option>=== Pilih Induk Material ===</option>
                         <?php
                           foreach ($dataParent as $row) {
                             echo "<option value ='".$row['BAPA_ID']."'> ".$row['BAPA_NAME']." </option>";
@@ -38,11 +38,11 @@
                         <!-- /btn-group -->
                         <span name="cmbChild" id="txtChild">
                           <select class="form-control">
-                            <option>== Pilih Anak material ==</option>
+                            <option>== Pilih Anak Material ==</option>
                           </select> 
                         </span>
                         <div class="input-group-btn">
-                          <button type="button" class="btn btn-info">Search</button>
+                          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal" onclick="modalChildJadi()" >Search</button>
                         </div>
                       </div>
                   </div>
@@ -50,14 +50,14 @@
                   <div class="form-group">
                       <label class=" control-label">Masuk</label>
                       <div>
-                          <input class="form-control" type="number" id="masuk" placeholder="Material Masuk" name="txtMasuk" required >  
+                          <input class="form-control" type="number" id="masuk" onkeyup ="showSaldo(this.value)" placeholder="Material Masuk" name="txtMasuk" required >  
                       </div>
                   </div>
 
                   <div class="form-group">
                       <label class=" control-label">Keluar</label>
                       <div>
-                          <input class="form-control" type="number" id="masuk" placeholder="Material Masuk" name="txtMasuk" required >  
+                          <input class="form-control" type="number" id="keluar" onkeyup ="showSaldo(this.value)" placeholder="Material Masuk" name="txtMasuk" required >  
                       </div>
                   </div>
 
@@ -65,22 +65,22 @@
                   <div class="form-group">
                       <label class=" control-label">Keterangan</label>
                       <div>
-                        <textarea name="txtKeterangan" class="form-control" id="txtKeterangan" rows="3" placeholder="Keterangan barang.." pla></textarea>
+                        <textarea name="txtKeterangan" class="form-control" id="txtKeterangan" rows="3" placeholder="Keterangan Material.." pla></textarea>
                       </div>
                   </div>
 
                   <div class="row">
                     <div class="form-group col-md-6">
                         <label class=" control-label">Saldo Awal</label>
-                        <div>
-                            <input class="form-control" type="number" id="masuk" placeholder="Saldo Awal" name="txtMasuk" required >  
+                        <div id="stok">
+                            <input class="form-control" type="number" id="saldoAwal" placeholder="Saldo Awal" name="txtMasuk" required >  
                         </div>
                     </div>
 
                     <div class="form-group col-md-6">
                         <label class=" control-label">Saldo Akhir</label>
                         <div>
-                            <input class="form-control" type="number" id="masuk" placeholder="Saldo Akhir" name="txtMasuk" required >  
+                            <input class="form-control" type="number" id="saldoAkhir" placeholder="Saldo Akhir" name="txtMasuk" required >  
                         </div>
                     </div>
                   </div>
@@ -91,7 +91,7 @@
                         <button type="reset" class="btn btn-default pull-right">Cancel</button>
                       </div>
                       <div class="col-md-2">
-                        <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal-success" onclick="modalmaterial()" >Input Data</button>
+                        <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal-success" onclick="modalMaterial()" >Input Data</button>
                       </div>
                     </div>
                   </div>
@@ -107,7 +107,7 @@
       <div class="col-md-12">
         <div class="box box-info">
           <div class="box-header with-border">
-            <h3 class="box-title">Data material</h3>
+            <h3 class="box-title">Data Material</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -119,7 +119,7 @@
               <thead>
                 <tr>
                   <th>No.</th>
-                  <th>Nama Barang</th>
+                  <th>Nama Material</th>
                   <th>Qty</th>
                   <th>Kondisi</th>
                   <th>Keterangan</th>
@@ -146,10 +146,35 @@
     </div>
   </div>
 
-<div class="modal modal-success fade" id="modal-success">
-  <div class="modal-dialog" id="modalmaterial"> 
-
-
+<div class="modal fade" id="modal">
+  <div class="modal-dialog"> 
+    <!-- modal child -->
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Lookup Barang Child</h4>
+          </div>
+          <div class="modal-body">
+              <table id="gujaChild" class="table table-bordered table-hover table-striped">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Nama Barang</th>
+                      <th>Total Barang</th>
+                      <th>Satuan</th>
+                    </tr>
+                  </thead>
+                  <tbody id="modalChild">
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+              </table>  
+          </div>
+      </div>
   </div>
 </div>
 
@@ -166,21 +191,24 @@
         document.getElementById("txtChild").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_material/searchChild?q="+str, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_Material/searchChild?q="+str, true);
     xhttp.send();   
   }
-  function showQty(str) {
+  function showStok() {
     var xhttp;
+    var mcbaId = document.getElementById('cmbChild').value;
+    var mpbaId = document.getElementById('cmbParent').value;
+
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("qty").innerHTML = this.responseText;
+        document.getElementById("stok").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_material/searchQty?q="+str, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_Material/searchStok?mpbaId="+mpbaId+"&mcbaId="+mcbaId, true);
     xhttp.send();   
   }
-   function modalmaterial() {
+   function modalMaterial() {
     var xhttp;
     var parent,child,keterangan,qty,kondisi;
     // try{
@@ -194,24 +222,43 @@
       }else if (document.getElementById('rbtKondisiBuruk').checked) {
         kondisi = document.getElementById('rbtKondisiBuruk').value;
       }else{
-        alert('Silahkan pilih kondisi barang');
+        alert('Silahkan pilih kondisi Material');
         return;
       }
 
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("modalmaterial").innerHTML = this.responseText;
+        document.getElementById("modalMaterial").innerHTML = this.responseText;
       }
     };
 
-    xhttp.open("GET","<?php echo base_url()?>c_material/modalmaterial?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&qty="+qty+"&kondisi="+kondisi,true);
+    xhttp.open("GET","<?php echo base_url()?>c_Material/modalMaterial?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&qty="+qty+"&kondisi="+kondisi,true);
     xhttp.send()
       
      
     // }catch(err){
     //   console.trace(err.message);
     // }
+  }
+</script>
+
+<!-- javascript saldo Akhir -->
+<script type="text/javascript">
+  function showSaldo(){
+    var saldoAwal = parseInt(document.getElementById("saldoAwal").value);
+    var brgKeluar = parseInt(document.getElementById("keluar").value);
+    var brgMasuk  = parseInt(document.getElementById("masuk").value);
+    if (isNaN(parseInt(brgKeluar))) {
+      brgKeluar = 0;
+    }
+    if (isNaN(parseInt(brgMasuk))) {
+      brgMasuk = 0;
+    }
+    var saldoAkhir;
+    saldoAkhir = saldoAwal + brgMasuk - brgKeluar;
+
+    document.getElementById("saldoAkhir").value = saldoAkhir;
   }
 </script>
 
@@ -222,14 +269,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Lookup material</h4>
+                <h4 class="modal-title" id="myModalLabel">Lookup Material</h4>
             </div>
             <div class="modal-body">
                 <table id="lookup" class="table table-bordered table-hover table-striped">
                     <thead>
                       <tr>
-                        <th>Id Barang</th>
-                        <th>Nama Barang</th>
+                        <th>Id Material</th>
+                        <th>Nama Material</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -263,9 +310,24 @@
         showChild($(this).attr('data-brgParent'));
     });
 
-//            tabel lookup obat
     $(function () {
         $("#lookup").dataTable();
+        $("#gujaChild").dataTable();
     });
 
+    //child jadi
+    function modalChildJadi() {
+      var xhttp;
+      var parent;
+      parent    = document.getElementById('cmbParent').value;
+
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("modalChild").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "<?php echo base_url()?>c_material/modalChild?parent="+parent, true);
+      xhttp.send();
+    }
 </script>

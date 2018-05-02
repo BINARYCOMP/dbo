@@ -38,9 +38,9 @@
       return $return;
     }
 
-    public function getFirstStock($bach_id,$bapa_id,$kate_id)
+    public function getFirstStock($mcba_id,$mpba_id)
     {
-      $sql="SELECT * from gudang_jadi, barang_parent, barang_child, kategori where guja_bach_id = bach_id and guja_bapa_id = bapa_id and guja_kate_id = kate_id and  guja_bach_id = ".$bach_id." and guja_bapa_id = ".$bapa_id." and guja_kate_id = ".$kate_id." group by guja_id desc limit 1";
+      $sql="SELECT * from material_bawang, material_child_bawang, material_parent_bawang where maba_mpba_id = mpba_id and maba_mcba_id = mcba_id  and  maba_mcba_id = ".$mcba_id." and maba_mpba_id = ".$mpba_id." group by maba_id desc limit 1";
       $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;
