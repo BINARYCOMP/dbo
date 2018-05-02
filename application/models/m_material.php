@@ -23,7 +23,7 @@
     //nama Parent
     public function getParentName()
     {
-      $sql="select * from barang_parent";
+      $sql="select * from material_parent_bawang";
       $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;
@@ -32,7 +32,7 @@
     // nama Child str
     public function getChildName($str)
     {
-      $sql="select * from barang_child where bach_bapa_id =".$str;
+      $sql="select * from material_child_bawang where mcba_mpba_id =".$str;
       $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;
@@ -53,10 +53,9 @@
       return $return;
     }
 
-    public function getChildByBapaId($id)
+    public function getChildByMpbaId($id)
     {
-      var_dump($id);
-      $sql    = "SELECT * FROM barang_child INNER JOIN barang_parent ON barang_child.BACH_BAPA_ID = barang_parent.BAPA_ID inner join satuan on barang_parent.BAPA_ID=satuan.SATU_ID WHERE BACH_BAPA_ID =".$id;
+      $sql    = "SELECT * FROM material_child_bawang INNER JOIN material_parent_bawang ON MCBA_MPBA_ID = MPBA_ID inner join satuan on MCBA_SATU_ID = SATU_ID WHERE MCBA_MPBA_ID =".$id;
       $query  = $this->db->query($sql);
       $return = $query->result_array();
       return $return; 

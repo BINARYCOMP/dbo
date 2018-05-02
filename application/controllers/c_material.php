@@ -52,7 +52,7 @@ class C_material extends CI_Controller
       'GUJA_URAIAN'   => $uraian ,
       'GUJA_MASUK'    => $masuk ,
       'GUJA_BAPA_ID'  => $parent ,
-      'GUJA_BACH_ID'  => $child ,
+      'GUJA_MCBA_ID'  => $child ,
       'GUJA_SALDO'    => $saldoAkhir
     );
     $simpanMaterial = $this->m_material->simpanMaterial($data, $saldoAkhir, $child);
@@ -77,8 +77,8 @@ class C_material extends CI_Controller
             <?php
           }
           foreach ($namaChild as $row){
-            echo "<option value='".$row['BACH_ID']."'>";
-            echo $row ['BACH_NAME'];
+            echo "<option value='".$row['MCBA_ID']."'>";
+            echo $row ['MCBA_NAME'];
            echo "</option>";
           }
         ?>
@@ -94,7 +94,7 @@ class C_material extends CI_Controller
     $stokAwal = $this->m_material->getFirstStock($mcbaId,$mpbaId);
     if ($mpbaId == 0 || $mcbaId == 0 ) {
       ?>
-        <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly placeholder="0"> 
+        <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly placeholder="0" value="0"> 
       <?php
     }else{
       if (isset($stokAwal[0]['MABA_SALDO'])) {
@@ -112,13 +112,11 @@ class C_material extends CI_Controller
   {
     $cmbParent     = $_GET['parent'];
     $cmbChild      = $_GET['child'];
-    $cmbKategori   = $_GET['kategori'];
     $txtUraian     = $_GET['keterangan'];
     $txtMasuk      = $_GET['masuk'];
     $txtKeluar     = $_GET['keluar'];
     $txtSaldoAwal  = $_GET['awal'];
-    $saldoAkhir    = $txtSaldoAwal + $txtMasuk - $txtKeluar;
-
+    $saldoAkhir    = $txtSaldoAwal + intval($txtMasuk) - intval($txtKeluar);
     ?>
       <div class="modal-content">
         <div class="modal-header">
@@ -130,8 +128,7 @@ class C_material extends CI_Controller
           <table class="table">
             <tr>
               <th>Induk Material</th>
-              <th>Anak Material</th>
-              <th>Kategori</th>
+              <th>Anak Material
               <th>Material Masuk</th>
               <th>Material Keluar</th>
               <th>Saldo Akhir</th>
@@ -139,9 +136,8 @@ class C_material extends CI_Controller
             <tr>
               <td><?php echo $cmbParent ?></td>
               <td><?php echo $cmbChild ?></td>
-              <td><?php echo $cmbKategori ?></td>
-              <td><?php echo $txtMasuk ?></td>
-              <td><?php echo $txtKeluar ?></td>
+              <td><?php echo intval($txtMasuk) ?></td>
+              <td><?php echo intval($txtKeluar) ?></td>
               <td><?php echo $saldoAkhir ?> </td>
             </tr>
           </table>
@@ -151,7 +147,6 @@ class C_material extends CI_Controller
           <form action="<?php echo base_url()?>c_material/inputStok" method="POST">
             <input type="hidden" name="cmbParent" value="<?php echo $cmbParent?>">
             <input type="hidden" name="cmbChild" value="<?php echo $cmbChild?>">
-            <input type="hidden" name="cmbKategori" value="<?php echo $cmbKategori?>">
             <input type="hidden" name="txtMasuk" value="<?php echo $txtMasuk?>">
             <input type="hidden" name="txtKeluar" value="<?php echo $txtKeluar?>">
             <input type="hidden" name="txtUraian" value="<?php echo $txtUraian?>">
@@ -167,20 +162,14 @@ class C_material extends CI_Controller
   public function modalChild()
   {
     $cmbParent = $_GET['parent'];
-    $namaChild = $this->m_material->getChildByBapaId($cmbParent);
-    $data = array(
-     'cmbParent' => $cmbParent ,
-     'namaChild' => $namaChild 
-    );
-      if (is_array($namaChild) || is_object($namaChild)){
+    $namaChild = $this->m_material->getChildByMpbaId($cmbParent);
+    if (is_array($namaChild) || is_object($namaChild)){
       $no=1;
       foreach ($namaChild as $row) {
         ?>
-          <tr class="isi2" data-brgChild="<?php echo $row['BACH_ID']; ?>">
-
+          <tr style="cursor: pointer;" class="isi2" data-brgChild="<?php echo $row['MCBA_ID']; ?>">
             <td> <?php echo $no ?> </td>
-            <td> <?php echo $row['BACH_NAME']?> </td>
-            <td> <?php echo $row['BACH_GUJA_TOTAL']?> </td>
+            <td> <?php echo $row['MCBA_NAME']?> </td>
             <td> <?php echo $row['SATU_NAME']?> </td>
           </tr>
         <?php

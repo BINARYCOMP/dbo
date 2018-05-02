@@ -19,10 +19,10 @@
                     <div class="input-group">
                       <!-- /btn-group -->
                       <select class="form-control" name="cmbParent" id="cmbParent" onchange="showChild(this.value)">
-                        <option>=== Pilih Induk Material ===</option>
+                        <option value="z">=== Pilih Induk Material ===</option>
                         <?php
                           foreach ($dataParent as $row) {
-                            echo "<option value ='".$row['BAPA_ID']."'> ".$row['BAPA_NAME']." </option>";
+                            echo "<option value ='".$row['MPBA_ID']."'> ".$row['MPBA_NAME']." </option>";
                           }
                         ?>
                       </select>
@@ -57,7 +57,7 @@
                   <div class="form-group">
                       <label class=" control-label">Keluar</label>
                       <div>
-                          <input class="form-control" type="number" id="keluar" onkeyup ="showSaldo(this.value)" placeholder="Material Masuk" name="txtMasuk" required >  
+                          <input class="form-control" type="number" id="keluar" onkeyup ="showSaldo(this.value)" placeholder="Material Keluar" name="txtMasuk" required >  
                       </div>
                   </div>
 
@@ -73,14 +73,14 @@
                     <div class="form-group col-md-6">
                         <label class=" control-label">Saldo Awal</label>
                         <div id="stok">
-                            <input class="form-control" type="number" id="saldoAwal" placeholder="Saldo Awal" name="txtMasuk" required >  
+                            <input class="form-control" type="number" id="saldoAwal" placeholder="Saldo Awal" name="txtSaldoAwal" required >
                         </div>
                     </div>
 
                     <div class="form-group col-md-6">
                         <label class=" control-label">Saldo Akhir</label>
                         <div>
-                            <input class="form-control" type="number" id="saldoAkhir" placeholder="Saldo Akhir" name="txtMasuk" required >  
+                            <input class="form-control" type="number" id="saldoAkhir" placeholder="Saldo Akhir" name="txtSaldoAkhir" required >  
                         </div>
                     </div>
                   </div>
@@ -91,7 +91,7 @@
                         <button type="reset" class="btn btn-default pull-right">Cancel</button>
                       </div>
                       <div class="col-md-2">
-                        <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal-success" onclick="modalMaterial()" >Input Data</button>
+                        <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#modalMaterialShow" onclick="modalMaterial()" >Input Data</button>
                       </div>
                     </div>
                   </div>
@@ -160,22 +160,59 @@
                     <tr>
                       <th>No.</th>
                       <th>Nama Barang</th>
-                      <th>Total Barang</th>
                       <th>Satuan</th>
                     </tr>
                   </thead>
                   <tbody id="modalChild">
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
                   </tbody>
               </table>  
           </div>
       </div>
   </div>
+</div>
+
+<div class="modal fade" id="modalMaterialShow">
+  <div class="modal-dialog" id="modalMaterial"> 
+    <!-- modal material -->
+
+  </div>
+</div>
+
+<!-- modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Lookup Material</h4>
+            </div>
+            <div class="modal-body">
+                <table id="lookup" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>Id Material</th>
+                        <th>Nama Material</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                      $no = 1;
+                      foreach ($dataParent as $row) {
+                        ?>
+                          <tr style="cursor: pointer;" class="isi" data-brgParent="<?php echo $row['MPBA_ID']; ?>">
+                            <!-- <td><?php echo $no ?></td> -->
+                            <td><?php echo $row['MPBA_ID']?></td>
+                            <td><?php echo $row['MPBA_NAME']?></td>
+                          </tr>
+                        <?php
+                        $no++;
+                      }
+                      ?>
+                    </tbody>
+                </table>  
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -210,21 +247,16 @@
   }
    function modalMaterial() {
     var xhttp;
-    var parent,child,keterangan,qty,kondisi;
+    var parent,child,keterangan,masuk,keluar,kondisi;
     // try{
       parent      = document.getElementById('cmbParent').value;
       child       = document.getElementById('cmbChild').value;
       keterangan  = document.getElementById('txtKeterangan').value;
-      qty         = document.getElementById('txtQty').value;
+      masuk       = document.getElementById('masuk').value;
+      keluar      = document.getElementById('keluar').value;
+      awal        = document.getElementById('saldoAwal').value;
+      akhir       = document.getElementById('saldoAkhir').value;
 
-      if (document.getElementById('rbtKondisiBaik').checked) {
-        kondisi = document.getElementById('rbtKondisiBaik').value;
-      }else if (document.getElementById('rbtKondisiBuruk').checked) {
-        kondisi = document.getElementById('rbtKondisiBuruk').value;
-      }else{
-        alert('Silahkan pilih kondisi Material');
-        return;
-      }
 
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -233,18 +265,11 @@
       }
     };
 
-    xhttp.open("GET","<?php echo base_url()?>c_Material/modalMaterial?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&qty="+qty+"&kondisi="+kondisi,true);
+    xhttp.open("GET","<?php echo base_url()?>c_Material/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&awal="+awal+"&akhir="+akhir,true);
     xhttp.send()
-      
-     
-    // }catch(err){
-    //   console.trace(err.message);
-    // }
   }
-</script>
 
-<!-- javascript saldo Akhir -->
-<script type="text/javascript">
+// javascript saldo Akhir
   function showSaldo(){
     var saldoAwal = parseInt(document.getElementById("saldoAwal").value);
     var brgKeluar = parseInt(document.getElementById("keluar").value);
@@ -255,59 +280,25 @@
     if (isNaN(parseInt(brgMasuk))) {
       brgMasuk = 0;
     }
+    if (isNaN(parseInt(saldoAwal))) {
+      saldoAwal = 0;
+    }
     var saldoAkhir;
     saldoAkhir = saldoAwal + brgMasuk - brgKeluar;
 
     document.getElementById("saldoAkhir").value = saldoAkhir;
   }
-</script>
-
-<!-- modal -->
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:800px">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Lookup Material</h4>
-            </div>
-            <div class="modal-body">
-                <table id="lookup" class="table table-bordered table-hover table-striped">
-                    <thead>
-                      <tr>
-                        <th>Id Material</th>
-                        <th>Nama Material</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php 
-                      $no = 1;
-                      foreach ($dataParent as $row) {
-                        ?>
-                          <tr class="isi" data-brgParent="<?php echo $row['BAPA_ID']; ?>">
-                            <!-- <td><?php echo $no ?></td> -->
-                            <td><?php echo $row['BAPA_ID']?></td>
-                            <td><?php echo $row['BAPA_NAME']?></td>
-                          </tr>
-                        <?php
-                        $no++;
-                      }
-                      ?>
-                    </tbody>
-                </table>  
-            </div>
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript">
 
 //            jika dipilih, kode obat akan masuk ke input dan modal di tutup
     $(document).on('click', '.isi', function (e) {
-        // alert("test");
         document.getElementById("cmbParent").value = $(this).attr('data-brgParent');
         $('#myModal').modal('hide');
         showChild($(this).attr('data-brgParent'));
+    });
+    $(document).on('click', '.isi2', function (e) {
+        document.getElementById("cmbChild").value = $(this).attr('data-brgChild');
+        $('#modal').modal('hide');
+        showStok();
     });
 
     $(function () {
