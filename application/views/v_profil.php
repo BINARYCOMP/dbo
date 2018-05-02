@@ -7,7 +7,7 @@
    <div class="col-md-6">
       <div class="box box-warning">
         <div class="box-header with-border">
-          <h3 class="box-title">Data Pegawai</h3>
+          <h3 class="box-title">Account Profile</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
           </div>
@@ -40,7 +40,7 @@
                 <td><?php echo $row['PEGA_ALAMAT']?></td>
                 <td><?php echo $row['PEGA_NO_TLP']?></td>
                 <td><?php echo $row['PEGA_JENKEL']?></td>
-                <td><?php echo $row['PEGA_AGAM_ID']?></td>
+                <td><?php echo $row['AGAM_NAME']?></td>
                 <td>*******</td>
                 <td>
                   <a href="<?php echo base_url()?>c_profil/UpdatePassword/<?php echo $row['PEGA_ID']?>">Ganti</a>

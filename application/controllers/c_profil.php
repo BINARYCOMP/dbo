@@ -13,9 +13,11 @@ class C_profil extends CI_Controller
 	}
 	public function Index()
 	{
-		$Account=$this->m_profil->getInfoAccount();
+		$agamaId	=$this->m_profil->getAgama();
+		$Account 	=$this->m_profil->getInfoAccount();
 		$data = array(
 			'Account'	=>$Account,
+			'agamaId'	=>$agamaId, 
 			'content'	=>'v_profil',
 			'title' 	=>'Account',
       		'menu'      =>'Profil Account'

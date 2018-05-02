@@ -36,11 +36,11 @@ function view()
     $this->db->delete('pegawai');
   }
   public function getAgama()
-    {
-      $sql    ="select * from agama";
-      $query  =$this->db->query($sql);
-      $return = $query->result_array();
-      return $return;
-    }
+  {
+    $sql    ="select * from agama";
+    $query  =$this->db->query($sql);
+    $return = $query->result_array();
+    return $return;
+  }
 }
 ?>
