@@ -36,8 +36,6 @@
                 <div class="form-group">
                     <label class="control-label">Child</label>
                     <div class="input-group">
-                      <!-- /btn-group -->
-                      <!-- <input type="text" class="form-control"> -->
                       <span id="txtChild">
                         <select class="form-control">
                           <option>== Pilih Anak Barang ==</option>
@@ -95,7 +93,7 @@
                       <div>
                         <!-- <input type="text" class="form-control" name="" value=""> -->
                         <span id="txtStok"> 
-                          <input type="text" name="txtSaldoAwal" required id="saldoAwal" readonly placeholder="0" class="form-control">  
+                          <input type="text" name="txtSaldoAwal" required id="saldoAwal" readonly value="0" class="form-control">  
                         </span>
                       </div>
                     </div>
@@ -187,8 +185,7 @@ function showStok() {
     var brgMasuk  = parseInt(document.getElementById("brgMasuk").value);
     var saldoAkhir;
     saldoAkhir = saldoAwal + brgMasuk - brgKeluar;
-
-    document.getElementById("saldoAkhir").value = saldoAkhir;
+    document.getElementById("saldoAkhir").value = parseInt(saldoAkhir);
   }
 </script>
 

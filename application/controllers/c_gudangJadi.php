@@ -90,15 +90,26 @@ class C_gudangJadi extends CI_Controller
     $bapa_id = $_GET['bapaId'];
     $bach_id = $_GET['bachId'];
     $kate_id = $_GET['kateId'];
-    $stokAwal = $this->m_gudangJadi->getFirstStock($bapa_id,$bach_id,$kate_id);
-    if ($bapa_id == 0 || $bach_id == 0 || $kate_id == 0) {
+    if ($kate_id != 0) {
+      $stokAwal = $this->m_gudangJadi->getFirstStock($bach_id,$bapa_id,$kate_id);
+    }else{
+      $stokAwal = $this->m_gudangJadi->getFirstStockWithoutKategori($bach_id,$bapa_id);
+    }
+
+    if ($bapa_id == 0 || $bach_id == 0) {
       ?>
-        <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly placeholder="0"> 
+        <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly value="0"> 
       <?php
     }else{
-      ?>
-        <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['GUJA_SALDO'] ?>"> 
-      <?php
+      if (empty($stokAwal[0]['GUJA_SALDO'])) {
+        ?>
+          <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly value="0"> 
+        <?php
+      }else{
+        ?>
+          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['GUJA_SALDO']?>">
+        <?php
+      }
     }
   }
   public function modalKonfirmasi()

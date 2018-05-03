@@ -45,9 +45,23 @@
       $return = $query->result_array();
       return $return;
     }
+    public function getFirstStockWithoutKategori($bach_id,$bapa_id)
+    {
+      $sql="SELECT * from gudang_jadi, barang_parent, barang_child where guja_bach_id = bach_id and guja_bapa_id = bapa_id and guja_bach_id = ".$bach_id." and guja_bapa_id = ".$bapa_id." group by guja_id desc limit 1";
+      $query=$this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
     public function getDataGudang()
     {
-      $sql    = "select * from gudang_jadi,barang_child,barang_parent,kategori where GUJA_BACH_ID = BACH_ID AND GUJA_BAPA_ID = BAPA_ID AND GUJA_KATE_ID = KATE_ID";
+      $sql    = "SELECT * from gudang_jadi,barang_child,barang_parent where GUJA_BACH_ID = BACH_ID AND GUJA_BAPA_ID = BAPA_ID";
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+    public function getKateNameByGujaKateId($id)
+    {
+      $sql    = "SELECT * from kategori where kate_id = ".$id;
       $query  = $this->db->query($sql);
       $return = $query->result_array();
       return $return;

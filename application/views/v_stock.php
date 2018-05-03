@@ -43,7 +43,16 @@
                           <td><?php echo $no ?></td>
                           <td><?php echo $row['BAPA_NAME']?></td>
                           <td><?php echo $row['BACH_NAME']?></td>
-                          <td><?php echo $row['KATE_NAME']?></td>
+                          <td>
+                            <?php 
+                              $kategori = $this->m_gudangJadi->getKateNameByGujaKateId($row['GUJA_KATE_ID']);
+                              if (isset($kategori[0]['KATE_NAME'])) {
+                                echo $kategori[0]['KATE_NAME'];
+                              }else{
+                                echo "-";
+                              }
+                            ?>
+                          </td>
                           <td><?php echo $row['GUJA_URAIAN']?></td>
                           <td><?php echo $row['GUJA_MASUK']?></td>
                           <td><?php echo $row['GUJA_KELUAR']?></td>
