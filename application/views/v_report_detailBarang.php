@@ -71,7 +71,6 @@
                             </th>
                             <td><?php echo $row2['GUJA_URAIAN'] ?></td>
                             <?php
-                            $total = array();
                             $subTotal = 0;
                             $r =0;
                             $a = 0;
@@ -101,16 +100,12 @@
                                     <td><?php echo $row2['GUJA_SALDO'] ?></td>
                                   <?php
                                 }
-                                // var_dump($saldo[2]);
-                                // for ($i=0; $i < 3 ; $i++) { 
-                                //   $subTotal   = $subTotal + $saldo[1]; 
-                                //   $total[]    = $subTotal;
-                                // }
+                                $subTotal = $subTotal + $saldo[$a];
                                 $r++;
                                 $a++;
                               }
                             ?>
-                              <td><?php echo $total[0]; ?></td>
+                              <td><?php echo $subTotal; ?></td>
                           </tr>
                         <?php
                         $k++;
