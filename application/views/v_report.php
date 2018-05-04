@@ -25,11 +25,13 @@
             <th scope="col" rowspan="2">JUMLAH</th>
           </tr>
           <tr>
-            <th scope="1">2</th>
-            <th scope="1">3</th>
-            <th scope="1">7</th>
-            <th scope="1">8</th>
-            <th scope="1">9</th>
+          <?php
+            foreach ($dataRuangan as $row) {
+              ?>
+                  <th scope="1"><?php echo $row['RUAN_NUMBER']?></th>
+              <?php
+            }
+          ?>
           </tr>
         </thead>
         <tbody>
@@ -56,12 +58,24 @@
             			<th scope="row" class="center"><?php echo $no ?></th>
     	        		<td><?php echo $row['BACH_NAME'] ?></td>
     	        		<td><?php echo $row['SATU_NAME'] ?></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-    	        		<td class="right" ><?php echo $row['BACH_GUJA_TOTAL'] ?></td>
+                  <?php
+                    foreach ($dataRuangan as $key) {
+                      $total = $this->m_report->getTotalByRuangan($row['BAPA_ID'],$row['BACH_ID'],$key['RUAN_ID']);
+                      ?>
+                        <td scope="1">
+                          <?php
+                            if (isset($total[0]['TOTAL_RUANGAN'])) {
+                              echo $total[0]['TOTAL_RUANGAN'];
+                            }else{
+                              echo "-";
+                            }
+                          ?>
+                        </td>
+                      <?php
+                    }
+                    $total = $this->m_report->getTotalSaldo($row['BAPA_ID'],$row['BACH_ID']);
+                  ?>
+    	        		<td class="right" ><?php echo $total['TOTAL'] ?></td>
             		</tr>
       					<?php
       					$no++;

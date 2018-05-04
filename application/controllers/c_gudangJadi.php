@@ -135,7 +135,7 @@ class C_gudangJadi extends CI_Controller
 
     $namaParentUntukDitampilkan      = $namaParentDariModel[0]['BAPA_NAME'];
     $namaChildUntukDitampilkan       = $namaChildDariModel[0]['BACH_NAME'] ;
-    $namaKategoriUntukDitampilkan    = $namaKategoriDariModel[0]['KATE_NAME']; 
+    $namaKategoriUntukDitampilkan    = $namaKategoriDariModel[0]['KATE_NAME'] = 0; 
     $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER']; 
 
 
