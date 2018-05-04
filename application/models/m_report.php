@@ -24,12 +24,36 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
+	public function getRuangan()
+	{
+		$sql 	= "SELECT * FROM ruangan";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 	public function getBarangChildByBapaId($id)
 	{
 		$sql 	= "SELECT * FROM  barang_parent, barang_child, satuan WHERE BACH_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_BAPA_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
+	}
+	public function getTotalByRuangan($bapaId, $bachId, $ruanId)
+	{
+		$sql 	= "SELECT SUM(GUJA_MASUK) as 'TOTAL_RUANGAN' FROM  gudang_jadi WHERE GUJA_BAPA_ID = ".$bapaId." AND GUJA_BACH_ID = ".$bachId." AND GUJA_RUAN_ID = ".$ruanId;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;	
+	}
+	public function getTotalSaldo($bapaId, $bachId)
+	{
+		$sql 	= "SELECT SUM(GUJA_MASUK) as 'MASUK', SUM(GUJA_KELUAR) as 'KELUAR' FROM  gudang_jadi WHERE GUJA_BAPA_ID = ".$bapaId." AND GUJA_BACH_ID = ".$bachId;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		$return = $return[0]['MASUK'] - $return[0]['KELUAR'];
+		$return = array(
+			'TOTAL' => $return);
+		return $return;	
 	}
 	public function getBarangJadiByChildId($id)
 	{

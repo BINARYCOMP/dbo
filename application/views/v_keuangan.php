@@ -2,7 +2,7 @@
 <div class="content">
 	<div class="row">
 	  <?php
-	  	if ($_SESSION['level'] == 'KEUANGAN' || $_SESSION['level'] == 'OWNER' ) {
+	  	if ($_SESSION['level'] == 'KEUANGAN' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN' ) {
 	  		?>
 	  		<div class="col-md-6">
 			    <div class="box box-info">
@@ -90,7 +90,7 @@
 			  </div> <!-- col-input -->
 	  		<?php
 	  	}
-	  	if ($_SESSION['level'] != 'KEUANGAN') {
+	  	if ($_SESSION['level'] != 'KEUANGAN' || $_SESSION['level'] != 'SUPER ADMIN' || $_SESSION['level'] != 'OWNER') {
 	  		echo '<div class="col-md-12">';
 	  	}else{
 	  		echo '<div class="col-md-6">';

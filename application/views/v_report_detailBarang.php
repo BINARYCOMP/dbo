@@ -155,6 +155,7 @@
       var nantinya = "#detailStock";
       for (var i = 0 ; i <= jumlah; i++) {
         $(nantinya+i).dataTable( {
+          "bSort": false,
           dom:'B <"content-header" <"col-sm-2"l> f>tipH',
           buttons: [ 'excel' ]
         } );
