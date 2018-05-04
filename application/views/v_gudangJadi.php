@@ -68,6 +68,26 @@
                 </div>
 
                 <div class="form-group">
+                  <label class="control-label">Nomor Gudang</label>
+                  <div class="input-group">
+                    <!-- /btn-group -->
+                    <select name="cmbRuangan" id="cmbRuangan"  class="form-control">
+                      <option value="0">== Pilih Gudang ==</option>
+                      <?php  
+                        foreach ($dataRuangan as $row){
+                          echo "<option value='".$row['RUAN_ID']."'>";
+                          echo $row ['RUAN_NUMBER'];
+                         echo "</option>";
+                        }
+                      ?>
+                    </select> <br>
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalKategori">Search</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
                   <label>Keterangan</label>
                   <textarea name="txtUraian" class="form-control" id="keterangan" rows="3" placeholder="Keterangan barang.."></textarea>
                 </div>
@@ -202,6 +222,7 @@ function showStok() {
     keluar      = document.getElementById('brgKeluar').value;
     akhir       = document.getElementById('saldoAkhir').value;
     awal        = document.getElementById('saldoAwal').value;
+    ruangan     = document.getElementById('cmbRuangan').value;
     
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -209,7 +230,7 @@ function showStok() {
         document.getElementById("modalKonfirmasiJadi").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&kategori="+kategori+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&kategori="+kategori+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal+"&ruangan="+ruangan, true);
     xhttp.send();   
   }
 

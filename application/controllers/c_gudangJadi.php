@@ -25,11 +25,13 @@ class C_gudangJadi extends CI_Controller
 
       $namaParent       = $this->m_gudangJadi->getParentName();
       $dataGudangJadi   = $this->m_gudangJadi->getDataGudang();
+      $dataRuangan      = $this->m_gudangJadi->getRuangan();
       $namaKategori     = $this->m_gudangJadi->getKategoriName();
       $data = array(
         'namaKategori'    => $namaKategori,
         'namaParent'      => $namaParent,
         'dataGudangJadi'  => $dataGudangJadi,
+        'dataRuangan'     => $dataRuangan,
         'content'         => 'v_gudangJadi',
         'message'         => $message,
       );
@@ -43,6 +45,7 @@ class C_gudangJadi extends CI_Controller
     $uraian     = $_POST['txtUraian'];
     $masuk      = $_POST['txtMasuk'];
     $keluar     = $_POST['txtKeluar'];
+    $cmbRuangan     = $_POST['cmbRuangan'];
     $saldoAkhir = $_POST['txtSaldoAwal'] + $masuk - $keluar;
     $data = array(
       'GUJA_KATE_ID'  => $kategori,
@@ -51,7 +54,8 @@ class C_gudangJadi extends CI_Controller
       'GUJA_MASUK'    => $masuk ,
       'GUJA_BAPA_ID'  => $parent ,
       'GUJA_BACH_ID'  => $child ,
-      'GUJA_SALDO'    => $saldoAkhir
+      'GUJA_SALDO'    => $saldoAkhir,
+      'GUJA_RUAN_ID'  => $cmbRuangan
     );
     $simpanBarang = $this->m_gudangJadi->simpanBarang($data, $saldoAkhir, $child);
     echo "<script> window.location='".base_url()."c_stok?message=1' </script>";
@@ -121,7 +125,19 @@ class C_gudangJadi extends CI_Controller
     $txtMasuk      = $_GET['masuk'];
     $txtKeluar     = $_GET['keluar'];
     $txtSaldoAwal  = $_GET['awal'];
+    $cmbRuangan    = $_GET['ruangan'];
     $saldoAkhir    = $txtSaldoAwal + $txtMasuk - $txtKeluar;
+
+    $namaParentDariModel      = $this->m_gudangJadi->getParentByBapaId($cmbParent);
+    $namaChildDariModel       = $this->m_gudangJadi->getChildByBachId($cmbChild);
+    $namaKategoriDariModel    = $this->m_gudangJadi->getKategoriByKateId($cmbKategori);
+    $namaRuanganDariModel     = $this->m_gudangJadi->getRuanganByRuanId($cmbRuangan);
+
+    $namaParentUntukDitampilkan      = $namaParentDariModel[0]['BAPA_NAME'];
+    $namaChildUntukDitampilkan       = $namaChildDariModel[0]['BACH_NAME'] ;
+    $namaKategoriUntukDitampilkan    = $namaKategoriDariModel[0]['KATE_NAME']; 
+    $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER']; 
+
 
     ?>
       <div class="modal-content">
@@ -131,19 +147,21 @@ class C_gudangJadi extends CI_Controller
           <h4 class="modal-title">Input Barang Setengah Jadi</h4>
         </div>
         <div class="modal-body">
-          <table class="table">
+          <table class="table table-bordered">
             <tr>
               <th>Induk Barang</th>
               <th>Anak Barang</th>
               <th>Kategori</th>
+              <th>Ruangan</th>
               <th>Barang Masuk</th>
               <th>Barang Keluar</th>
               <th>Saldo Akhir</th>
             </tr>
             <tr>
-              <td><?php echo $cmbParent ?></td>
-              <td><?php echo $cmbChild ?></td>
-              <td><?php echo $cmbKategori ?></td>
+              <td><?php echo $namaParentUntukDitampilkan ?></td>
+              <td><?php echo $namaChildUntukDitampilkan?></td>
+              <td><?php echo $namaKategoriUntukDitampilkan ?></td>
+              <td><?php echo $nomorGudangUntukDitampilkan ?></td>
               <td><?php echo $txtMasuk ?></td>
               <td><?php echo $txtKeluar ?></td>
               <td><?php echo $saldoAkhir ?> </td>
@@ -160,6 +178,7 @@ class C_gudangJadi extends CI_Controller
             <input type="hidden" name="txtKeluar" value="<?php echo $txtKeluar?>">
             <input type="hidden" name="txtUraian" value="<?php echo $txtUraian?>">
             <input type="hidden" name="txtSaldoAwal" value="<?php echo $txtSaldoAwal?>">
+            <input type="hidden" name="cmbRuangan" value="<?php echo $cmbRuangan?>">
             <input type="submit" class="btn btn-outline" value="Simpan">
           </form>
         </div>

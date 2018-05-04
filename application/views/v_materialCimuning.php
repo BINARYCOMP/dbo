@@ -3,7 +3,7 @@
       <div class="col-md-12">
         <div class="box box-info">
           <div class="box-header with-border">
-            <h3 class="box-title">Input Material</h3>
+            <h3 class="box-title">Input Material Cimuning</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -13,16 +13,16 @@
           <div class="box-body">
             <div class="row">
               <div class="col-md-12 ">
-                <form action="<?php echo base_url()?>c_Material/save" method="POST">
+                <form action="<?php echo base_url()?>c_materialCimuning/save" method="POST">
                   <div class="form-group">
                     <label class="control-label">Parent</label>
                     <div class="input-group">
                       <!-- /btn-group -->
                       <select class="form-control" name="cmbParent" id="cmbParent" onchange="showChild(this.value)">
-                        <option value="z">=== Pilih Induk Material ===</option>
+                        <option value="0">=== Pilih Induk Material ===</option>
                         <?php
                           foreach ($dataParent as $row) {
-                            echo "<option value ='".$row['MPBA_ID']."'> ".$row['MPBA_NAME']." </option>";
+                            echo "<option value ='".$row['MPCI_ID']."'> ".$row['MPCI_NAME']." </option>";
                           }
                         ?>
                       </select>
@@ -47,6 +47,11 @@
                       </div>
                   </div>
 
+                <div class="form-group">
+                  <label>Keterangan</label>
+                  <textarea name="txtUraian" class="form-control" id="txtUraian" rows="3" placeholder="Keterangan barang.."></textarea>
+                </div>
+
                   <div class="form-group">
                       <label class=" control-label">Masuk</label>
                       <div>
@@ -58,14 +63,6 @@
                       <label class=" control-label">Keluar</label>
                       <div>
                           <input class="form-control" type="number" id="keluar" onkeyup ="showSaldo(this.value)" placeholder="Material Keluar" name="txtMasuk" required >  
-                      </div>
-                  </div>
-
-
-                  <div class="form-group">
-                      <label class=" control-label">Keterangan</label>
-                      <div>
-                        <textarea name="txtKeterangan" class="form-control" id="txtKeterangan" rows="3" placeholder="Keterangan Material.." pla></textarea>
                       </div>
                   </div>
 
@@ -107,7 +104,7 @@
       <div class="col-md-12">
         <div class="box box-info">
           <div class="box-header with-border">
-            <h3 class="box-title">Data Material</h3>
+            <h3 class="box-title">Data Material Cimuning</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -199,10 +196,10 @@
                       $no = 1;
                       foreach ($dataParent as $row) {
                         ?>
-                          <tr style="cursor: pointer;" class="isi" data-brgParent="<?php echo $row['MPBA_ID']; ?>">
+                          <tr style="cursor: pointer;" class="isi" data-brgParent="<?php echo $row['MPCI_ID']; ?>">
                             <!-- <td><?php echo $no ?></td> -->
-                            <td><?php echo $row['MPBA_ID']?></td>
-                            <td><?php echo $row['MPBA_NAME']?></td>
+                            <td><?php echo $row['MPCI_ID']?></td>
+                            <td><?php echo $row['MPCI_NAME']?></td>
                           </tr>
                         <?php
                         $no++;
@@ -228,7 +225,7 @@
         document.getElementById("txtChild").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_Material/searchChild?q="+str, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_materialCimuning/searchChild?q="+str, true);
     xhttp.send();   
   }
   function showStok() {
@@ -242,7 +239,7 @@
         document.getElementById("stok").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_Material/searchStok?mpbaId="+mpbaId+"&mcbaId="+mcbaId, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_materialCimuning/searchStok?mpciId="+mpbaId+"&mcciId="+mcbaId, true);
     xhttp.send();   
   }
    function modalMaterial() {
@@ -251,7 +248,7 @@
     // try{
       parent      = document.getElementById('cmbParent').value;
       child       = document.getElementById('cmbChild').value;
-      keterangan  = document.getElementById('txtKeterangan').value;
+      keterangan  = document.getElementById('txtUraian').value;
       masuk       = document.getElementById('masuk').value;
       keluar      = document.getElementById('keluar').value;
       awal        = document.getElementById('saldoAwal').value;
@@ -265,7 +262,7 @@
       }
     };
 
-    xhttp.open("GET","<?php echo base_url()?>c_Material/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&awal="+awal+"&akhir="+akhir,true);
+    xhttp.open("GET","<?php echo base_url()?>c_materialCimuning/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&awal="+awal+"&akhir="+akhir,true);
     xhttp.send()
   }
 
@@ -318,7 +315,7 @@
           document.getElementById("modalChild").innerHTML = this.responseText;
         }
       };
-      xhttp.open("GET", "<?php echo base_url()?>c_material/modalChild?parent="+parent, true);
+      xhttp.open("GET", "<?php echo base_url()?>c_materialCimuning/modalChild?parent="+parent, true);
       xhttp.send();
     }
 </script>
