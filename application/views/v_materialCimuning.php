@@ -168,7 +168,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="modalMaterialShow">
+<div class="modal modal-success fade" id="modalMaterialShow">
   <div class="modal-dialog" id="modalMaterial"> 
     <!-- modal material -->
 
