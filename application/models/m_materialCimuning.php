@@ -68,7 +68,20 @@
       $return = $query->result_array();
       return $return; 
     }
-     
+         public function getChildBymcciId($id)
+    {
+      $sql    = "SELECT * from material_child_cimuning where mcci_id = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+    public function getParentBympciId($id)
+    {
+      $sql    = "SELECT * from material_parent_cimuning where mpci_id = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
   }
 
  ?>
