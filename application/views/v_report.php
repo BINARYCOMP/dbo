@@ -17,59 +17,59 @@
     <div class="box-body">
       <table id="stock" class="table table-bordered table-striped table-hover">
         <thead >
-        <tr>
-          <th scope="col" rowspan="2">N0</th>
-          <th scope="col" rowspan="2">NAMA BARANG</th>
-          <th scope="col" rowspan="2">SATUAN</th>
-          <th scope="col" colspan="5">GUDANG</th>
-          <th scope="col" rowspan="2">JUMLAH</th>
-        </tr>
-        <tr>
-          <th scope="1">2</th>
-          <th scope="1">3</th>
-          <th scope="1">7</th>
-          <th scope="1">8</th>
-          <th scope="1">9</th>
-        </tr>
+          <tr>
+            <th scope="col" rowspan="2">N0</th>
+            <th scope="col" rowspan="2">NAMA BARANG</th>
+            <th scope="col" rowspan="2">SATUAN</th>
+            <th scope="col" colspan="5">GUDANG</th>
+            <th scope="col" rowspan="2">JUMLAH</th>
+          </tr>
+          <tr>
+            <th scope="1">2</th>
+            <th scope="1">3</th>
+            <th scope="1">7</th>
+            <th scope="1">8</th>
+            <th scope="1">9</th>
+          </tr>
         </thead>
         <tbody>
-  		<?php
-  		$no = 1;
-  			foreach ($dataBarangParent as $row) {
-  				?>
-  				<tr>
-                <th scope="row"></th>
-                <td><b><a href="<?php echo base_url()?>c_report/detailBarang/<?php echo $row['BAPA_ID']?>"><?php echo $row['BAPA_NAME'] ?></a></b></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-  				<?php
-  				$dataBarangChildById = $this->m_report->getBarangChildByBapaId($row['BAPA_ID']); 
-  				foreach ($dataBarangChildById as $row) {
-  					?>
-        		<tr>
-        			<th scope="row" class="center"><?php echo $no ?></th>
-	        		<td><?php echo $row['BACH_NAME'] ?></td>
-	        		<td><?php echo $row['SATU_NAME'] ?></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-	        		<td class="right" ><?php echo $row['BACH_GUJA_TOTAL'] ?></td>
-        		</tr>
-  					<?php
-  					$no++;
-  				}
-  			}
-  		?>
-      </tbody>
-    </table>
+      		<?php
+      		$no = 1;
+      			foreach ($dataBarangParent as $row) {
+      				?>
+      				<tr>
+                    <th scope="row"></th>
+                    <td><b><a href="<?php echo base_url()?>c_report/detailBarang/<?php echo $row['BAPA_ID']?>"><?php echo $row['BAPA_NAME'] ?></a></b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+      				<?php
+      				$dataBarangChildById = $this->m_report->getBarangChildByBapaId($row['BAPA_ID']); 
+      				foreach ($dataBarangChildById as $row) {
+      					?>
+            		<tr>
+            			<th scope="row" class="center"><?php echo $no ?></th>
+    	        		<td><?php echo $row['BACH_NAME'] ?></td>
+    	        		<td><?php echo $row['SATU_NAME'] ?></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+    	        		<td class="right" ><?php echo $row['BACH_GUJA_TOTAL'] ?></td>
+            		</tr>
+      					<?php
+      					$no++;
+      				}
+      			}
+      		?>
+        </tbody>
+      </table>
     </div>
   </div>
 

@@ -26,20 +26,20 @@
               </div>
               <!-- /.box-header -->
               <div class="box-body">
-                <table class="table table-bordered table-hover">
+                <?php $dataKategori = $this->m_report->getKategoriByBachId($row['BACH_ID']); ?>
+                <table id="detailStock<?php echo $noWarna?>" class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th colspan="12"><?php echo $row['BACH_NAME'] ?></th>
+                      <th colspan="120"><?php echo $row['BACH_NAME'] ?></th>
                     </tr>
                     <tr>
-                      <th scope="col" rowspan="2">TANGGAL</th>
-                      <th scope="col" rowspan="2">KETERANGAN</th>
+                      <th scope="col" <?php if(!empty($dataKategori)) echo 'rowspan="2"'?> >TANGGAL</th>
+                      <th scope="col" <?php if(!empty($dataKategori)) echo 'rowspan="2"'?> >KETERANGAN</th>
                       <?php
-                      $dataKategori = $this->m_report->getKategoriByBachId($row['BACH_ID']);
                       foreach ($dataKategori as $daka) {
                         ?>
-                      <th scope="col" colspan="3"><?php echo $daka['KATE_NAME']?></th>
-                      <?php
+                          <th scope="col" colspan="3"><?php echo $daka['KATE_NAME']?></th>
+                          <?php
                       }
                       if (empty($dataKategori)) {
                         ?>
@@ -49,19 +49,25 @@
                         <?php
                       }
                       ?>
-                      <th scope="col" rowspan="2">TOTAL</th>
+                          <th scope="col" <?php if(!empty($dataKategori)) echo 'rowspan="2"'?> >TOTAL</th>
                     </tr>
-                    <tr>
                     <?php
-                      foreach ($dataKategori as $daka) {
-                    ?>
-                        <th scope="1">MASUK</th>
-                        <th scope="1">KELUAR</th>
-                        <th scope="1">SALDO</th>
-                    <?php
+                      if (!empty($dataKategori)) {
+                        ?>
+                          <tr>
+                          <?php
+                            foreach ($dataKategori as $daka) {
+                          ?>
+                              <th scope="1">MASUK</th>
+                              <th scope="1">KELUAR</th>
+                              <th scope="1">SALDO</th>
+                          <?php
+                            }
+                          ?>
+                          </tr>
+                        <?php
                       }
                     ?>
-                    </tr>
                   </thead>
                   <tbody>
                     <?php
@@ -143,3 +149,22 @@
 
 </section>
 <!-- /.content -->
+<script type="text/javascript">
+    $(function () {
+      var jumlah = <?php echo count($dataBarang) ?> ;
+      var nantinya = "#detailStock";
+      for (var i = 0 ; i <= jumlah; i++) {
+        $(nantinya+i).dataTable( {
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+          buttons: [ 'excel' ]
+        } );
+      }
+        $('#finance').dataTable( {
+          "bSort": false,
+          lengthChange: false,
+          buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+        } );
+        // table.buttons().container()
+        // .appendTo( '#example_wrapper .col-sm-6:eq(0)' );
+    });
+</script>

@@ -36,6 +36,7 @@
 <script type="text/javascript">
 
     $(function () {
+        $("#detailStock").dataTable();
         $("#lookup").dataTable();
         $("#guja").dataTable({
               dom: 'Bfrtip',
