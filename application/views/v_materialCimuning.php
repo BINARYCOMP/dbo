@@ -116,24 +116,46 @@
               <thead>
                 <tr>
                   <th>No.</th>
-                  <th>Nama Material</th>
-                  <th>Qty</th>
-                  <th>Kondisi</th>
+                  <th>Material Parent</th>
+                  <th>Material Child</th>
                   <th>Keterangan</th>
+                  <th>masuk</th>
+                  <th>Keluar</th>
+                  <th>Saldo</th>
+                  <?php
+                        if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
+                          ?> 
+                            <th> Action </th>
+                          <?php
+                        }
+                        ?>
                 </tr>
               </thead>
               <tbody>
-                      <tr>
-                        <td></td>
-                        <td colspan="3"></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
+                      <?php 
+                    $no = 1;
+                    foreach ($datamaterial as $row) {
+                      ?>
+                        <tr>
+                          <td><?php echo $no ?></td>
+                          <td><?php echo $row['MPCI_NAME']?></td>
+                          <td><?php echo $row['MCCI_NAME']?></td>
+                          <td><?php echo $row['MACI_URAIAN']?></td>
+                          <td><?php echo $row['MACI_MASUK']?></td>
+                          <td><?php echo $row['MACI_KELUAR']?></td>
+                          <td><?php echo $row['MACI_SALDO']?></td>
+                          <?php
+                            if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
+                              ?> 
+                                <td> <a href="#">Edit</a> | <a href="#">Delete</a>  </td> 
+                              <?php
+                            }
+                          ?>
+                        </tr>
+                      <?php
+                      $no++;
+                    }
+                    ?>
               </tbody>
             </table>
           </div>
@@ -168,7 +190,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="modalMaterialShow">
+<div class="modal modal-success fade" id="modalMaterialShow">
   <div class="modal-dialog" id="modalMaterial"> 
     <!-- modal material -->
 

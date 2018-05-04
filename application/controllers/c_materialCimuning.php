@@ -44,14 +44,14 @@ class C_materialCimuning extends CI_Controller
     $keluar     = $_POST['txtKeluar'];
     $saldoAkhir = $_POST['txtSaldoAwal'] + $masuk - $keluar;
     $data = array(
-      'GUJA_KELUAR'   => $keluar ,
-      'GUJA_URAIAN'   => $uraian ,
-      'GUJA_MASUK'    => $masuk ,
-      'GUJA_BAPA_ID'  => $parent ,
-      'GUJA_MCBA_ID'  => $child ,
-      'GUJA_SALDO'    => $saldoAkhir
+      'MACI_KELUAR'   => $keluar ,
+      'MACI_URAIAN'   => $uraian ,
+      'MACI_MASUK'    => $masuk ,
+      'MACI_MPCI_ID'  => $parent ,
+      'MACI_MCCI_ID'  => $child ,
+      'MACI_SALDO'    => $saldoAkhir
     );
-    $simpanMaterial = $this->m_materialCimuning->simpanMaterial($data, $saldoAkhir, $child);
+    $simpanBarang = $this->m_materialCimuning->simpanBarang($data, $saldoAkhir, $child);
     echo "<script> window.location='".base_url()."C_materialCimuning?message=1' </script>";
   }
 
@@ -85,9 +85,13 @@ class C_materialCimuning extends CI_Controller
   // cari stok
   public function searchStok()
   {
+    ?>
+    <script type="text/javascript">alert("masuk");</script>
+    <?php
     $mpciId = $_GET['mpciId'];
     $mcciId = $_GET['mcciId'];
     $stokAwal = $this->m_materialCimuning->getFirstStock($mcciId,$mpciId);
+
     if ($mpciId == 0 || $mcciId == 0 ) {
       ?>
         <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly placeholder="0" value="0"> 
@@ -113,6 +117,13 @@ class C_materialCimuning extends CI_Controller
     $txtKeluar     = $_GET['keluar'];
     $txtSaldoAwal  = $_GET['awal'];
     $saldoAkhir    = $txtSaldoAwal + intval($txtMasuk) - intval($txtKeluar);
+
+    $namaParentDariModel      = $this->m_materialCimuning->getParentBympciId($cmbParent);
+    $namaChildDariModel       = $this->m_materialCimuning->getChildBymcciId($cmbChild);
+
+    $namaParentUntukDitampilkan      = $namaParentDariModel[0]['MPCI_NAME'];
+    $namaChildUntukDitampilkan       = $namaChildDariModel[0]['MCCI_NAME'] ;
+
     ?>
       <div class="modal-content">
         <div class="modal-header">
@@ -121,7 +132,7 @@ class C_materialCimuning extends CI_Controller
           <h4 class="modal-title">Input Material Setengah Jadi</h4>
         </div>
         <div class="modal-body">
-          <table class="table">
+          <table class="table table-bordered">
             <tr>
               <th>Induk Material</th>
               <th>Anak Material
@@ -130,8 +141,8 @@ class C_materialCimuning extends CI_Controller
               <th>Saldo Akhir</th>
             </tr>
             <tr>
-              <td><?php echo $cmbParent ?></td>
-              <td><?php echo $cmbChild ?></td>
+              <td><?php echo $namaParentUntukDitampilkan  ?></td>
+              <td><?php echo $namaChildUntukDitampilkan ?></td>
               <td><?php echo intval($txtMasuk) ?></td>
               <td><?php echo intval($txtKeluar) ?></td>
               <td><?php echo $saldoAkhir ?> </td>
@@ -140,7 +151,7 @@ class C_materialCimuning extends CI_Controller
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-          <form action="<?php echo base_url()?>c_material/inputStok" method="POST">
+          <form action="<?php echo base_url()?>C_materialCimuning/inputStok" method="POST">
             <input type="hidden" name="cmbParent" value="<?php echo $cmbParent?>">
             <input type="hidden" name="cmbChild" value="<?php echo $cmbChild?>">
             <input type="hidden" name="txtMasuk" value="<?php echo $txtMasuk?>">
