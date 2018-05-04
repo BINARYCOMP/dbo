@@ -4,8 +4,10 @@
       <!-- isi content -->
 
       <?php 
-      $this->load->view('v_gudangJadi') ;
-      $this->load->view('v_gudangTakJadi') 
+      if ($_SESSION['level'] == 'ADMIN BAWANG' || $_SESSION['level'] == 'ADMIN CIMUNING' || $_SESSION['level'] == 'OWNER') {
+        $this->load->view('v_gudangJadi') ;
+        $this->load->view('v_gudangTakJadi'); 
+      }
       ?>
       <!-- Main content -->
       <div class="col-md-6">
@@ -32,6 +34,13 @@
                       <th>Masuk</th>
                       <th>Keluar</th>
                       <th>Saldo</th>
+                      <?php
+                        if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
+                          ?> 
+                            <th> Action </th>
+                          <?php
+                        }
+                      ?>
                     </tr>
                   </thead>
                   <tbody>
@@ -57,6 +66,13 @@
                           <td><?php echo $row['GUJA_MASUK']?></td>
                           <td><?php echo $row['GUJA_KELUAR']?></td>
                           <td><?php echo $row['GUJA_SALDO']?></td>
+                          <?php
+                            if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
+                              ?> 
+                                <td> <a href="#">Edit</a> | <a href="#">Delete</a>  </td> 
+                              <?php
+                            }
+                          ?>
                         </tr>
                       <?php
                       $no++;
@@ -96,6 +112,13 @@
                       <th>Masuk</th>
                       <th>Keluar</th>
                       <th>Saldo</th>
+                      <?php
+                        if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
+                          ?> 
+                            <th> Action </th>
+                          <?php
+                        }
+                        ?>
                     </tr>
                   </thead>
                   <tbody>
@@ -112,6 +135,13 @@
                           <td><?php echo $row['GUTA_MASUK']?></td>
                           <td><?php echo $row['GUTA_KELUAR']?></td>
                           <td><?php echo $row['GUTA_SALDO']?></td>
+                          <?php
+                            if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
+                              ?> 
+                                <td> <a href="#">Edit</a> | <a href="#">Delete</a>  </td> 
+                              <?php
+                            }
+                          ?>
                         </tr>
                       <?php
                       $no++;
