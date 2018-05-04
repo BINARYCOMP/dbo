@@ -2,7 +2,7 @@
   /**
    *
    */
-  class M_GudangBawang extends CI_Model
+  class M_gudangBawang extends CI_Model
   {
 
     function __construct()
