@@ -29,6 +29,15 @@
       return $return;
     }
 
+    //data Ruangan
+    public function getRuangan()
+    {
+      $sql="select * from ruangan";
+      $query=$this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+
     // nama Child str
     public function getChildName($str)
     {
@@ -67,6 +76,15 @@
       return $return;
     }
 
+    public function getRuanNumberByGujaRuanId($id)
+    {
+      $sql    = "SELECT * from ruangan where ruan_id = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+
+
     public function getChildByBapaId($id)
     {
       var_dump($id);
@@ -80,6 +98,35 @@
     {
       $sql="select * from kategori";
       $query=$this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+
+    public function getChildByBachId($id)
+    {
+      $sql    = "SELECT * from barang_child where bach_id = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+    public function getParentByBapaId($id)
+    {
+      $sql    = "SELECT * from barang_parent where bapa_id = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+    public function getKategoriByKateId($id)
+    {
+      $sql    = "SELECT * from kategori where kate_id = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+    public function getRuanganByRuanId($id)
+    {
+      $sql    = "SELECT * from ruangan where ruan_id = ".$id;
+      $query  = $this->db->query($sql);
       $return = $query->result_array();
       return $return;
     }

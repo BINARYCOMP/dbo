@@ -31,6 +31,7 @@
                       <th>Anak Barang</th>
                       <th>Kategori</th>
                       <th>Keterangan</th>
+                      <th>Ruangan</th>
                       <th>Masuk</th>
                       <th>Keluar</th>
                       <th>Saldo</th>
@@ -63,6 +64,15 @@
                             ?>
                           </td>
                           <td><?php echo $row['GUJA_URAIAN']?></td>
+                          <td>
+                            <?php 
+                              $kategori = $this->m_gudangJadi->getRuanNumberByGujaRuanId($row['GUJA_RUAN_ID']);
+                              if (isset($kategori[0]['RUAN_NUMBER'])) {
+                                echo $kategori[0]['RUAN_NUMBER'];
+                              }else{
+                                echo "-";
+                              }
+                            ?>
                           <td><?php echo $row['GUJA_MASUK']?></td>
                           <td><?php echo $row['GUJA_KELUAR']?></td>
                           <td><?php echo $row['GUJA_SALDO']?></td>
