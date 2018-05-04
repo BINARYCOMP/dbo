@@ -12,6 +12,9 @@
       $warna[4] = 'default';
       $noWarna  = 0;
       foreach ($dataBarang as $row) {
+        if ($noWarna > 4) {
+          $noWarna = 0;
+        }
         ?>
           <div class="col-md-12">
             <div class="box box-<?php echo $warna[$noWarna] ?> box-solid">

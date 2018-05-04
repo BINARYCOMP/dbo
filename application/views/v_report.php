@@ -21,7 +21,7 @@
             <th scope="col" rowspan="2">N0</th>
             <th scope="col" rowspan="2">NAMA BARANG</th>
             <th scope="col" rowspan="2">SATUAN</th>
-            <th scope="col" colspan="5">GUDANG</th>
+            <th scope="col" colspan="<?php echo count($dataRuangan) ?>">GUDANG</th>
             <th scope="col" rowspan="2">JUMLAH</th>
           </tr>
           <tr>
@@ -42,13 +42,15 @@
       				<tr>
                     <th scope="row"></th>
                     <td><b><a href="<?php echo base_url()?>c_report/detailBarang/<?php echo $row['BAPA_ID']?>"><?php echo $row['BAPA_NAME'] ?></a></b></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <th></th>
+                    <?php
+                      foreach ($dataRuangan as $r) {
+                        ?>
+                            <th scope="1"></th>
+                        <?php
+                      }
+                    ?>
+                    <th scope="1"></th>
                 </tr>
       				<?php
       				$dataBarangChildById = $this->m_report->getBarangChildByBapaId($row['BAPA_ID']); 
