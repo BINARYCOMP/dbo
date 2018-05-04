@@ -4,7 +4,7 @@
       <!-- isi content -->
 
       <?php 
-      if ($_SESSION['level'] == 'ADMIN BAWANG' || $_SESSION['level'] == 'ADMIN CIMUNING' || $_SESSION['level'] == 'OWNER') {
+      if ($_SESSION['level'] == 'ADMIN BAWANG' || $_SESSION['level'] == 'ADMIN CIMUNING' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN') {
         $this->load->view('v_gudangJadi') ;
         $this->load->view('v_gudangTakJadi'); 
       }
