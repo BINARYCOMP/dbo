@@ -85,9 +85,13 @@ class C_materialCimuning extends CI_Controller
   // cari stok
   public function searchStok()
   {
+    ?>
+    <script type="text/javascript">alert("masuk");</script>
+    <?php
     $mpciId = $_GET['mpciId'];
     $mcciId = $_GET['mcciId'];
     $stokAwal = $this->m_materialCimuning->getFirstStock($mcciId,$mpciId);
+
     if ($mpciId == 0 || $mcciId == 0 ) {
       ?>
         <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly placeholder="0" value="0"> 
@@ -128,7 +132,7 @@ class C_materialCimuning extends CI_Controller
           <h4 class="modal-title">Input Material Setengah Jadi</h4>
         </div>
         <div class="modal-body">
-          <table class="table">
+          <table class="table table-bordered">
             <tr>
               <th>Induk Material</th>
               <th>Anak Material

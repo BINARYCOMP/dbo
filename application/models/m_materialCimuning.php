@@ -40,7 +40,8 @@
 
     public function getFirstStock($mcci_id,$mpci_id)
     {
-      $sql="SELECT * from material_cimuning, material_parent_cimuning, material_child_cimuning where maci_mcci_id = mcci_id and maci_mpci_id = mpci_id and maci_mcci_id = ".$mcci_id." and maci_mpci_id = ".$mpci_id." and group by maci_id desc limit 1";
+      $sql="SELECT * from material_cimuning, material_parent_cimuning, material_child_cimuning where maci_mcci_id = mcci_id and maci_mpci_id = mpci_id and maci_mcci_id = ".$mcci_id." and maci_mpci_id = ".$mpci_id." group by maci_id desc limit 1";
+
       $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;
