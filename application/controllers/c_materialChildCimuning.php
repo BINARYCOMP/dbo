@@ -73,7 +73,7 @@ class C_materialChildCimuning extends CI_Controller
 			'MCCI_SATU_ID' =>$satuan ,
 			'MCCI_MACI_TOTAL' => 0
 			);
-		$child=$this->m_materialChildCimuning->UpdateData($data);
+		$child=$this->m_materialChildCimuning->UpdateData($id, $data);
 		redirect('C_materialChildCimuning');
 
 	}
