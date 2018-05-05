@@ -18,17 +18,6 @@
                   <div class="input-group autocomplete">
                     <!-- /btn-group -->
                     <input id="myInput" class="form-control" type="text" name="cmbParent" onchange="showChild(this.value)" placeholder="== Pilih Induk Barang ==">
-                    <!--  <select name="cmbParent" onchange="showChild(this.value)" id="cmbParent" class="form-control">
-                      <option value="0">== Pilih Induk Barang ==</option>
-                      <?php  
-                        /*foreach ($namaParent as $row){
-                          echo "<option value='".$row['BAPA_ID']."'>";
-                          echo $row ['BAPA_NAME'];
-                         echo "</option>"; 
-                        }
-                        */
-                      ?>
-                    </select> <br> -->
                     <div class="input-group-btn">
                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Search</button>
                     </div>
@@ -475,7 +464,6 @@ var Parent = [ <?php
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), Parent);
-alert( countries);
 
 
 </script>
