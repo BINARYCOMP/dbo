@@ -32,7 +32,6 @@ class C_materialChildCimuning extends CI_Controller
 		$parent = $_POST['txtparent'];
 		$nama = $_POST['txtnama'];
 		$satuan = $_POST['txtsatuan'];
-		$total = $_POST['txttotal'];
 
 
 		$data = array(
@@ -64,7 +63,6 @@ class C_materialChildCimuning extends CI_Controller
 		$parent = $_POST['txtparent'];
 		$nama = $_POST['txtnama'];
 		$satuan = $_POST['txtsatuan'];
-		$total = $_POST['txttotal'];
 
 
 		$data = array(

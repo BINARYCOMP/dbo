@@ -49,14 +49,6 @@
 						  ?>
 						</select>  
 	              </div>
-	                  <label class=" control-label">Total<</label>
-	                  <div>
-	                    <span >
-	                      <input class="form-control" type="number"  name="txttotal" required="true" value="<?php echo($bawangChild[0]['MCBA_MABA_TOTAL'])?>">  
-	                    </span>
-	                  </div>
-	                  
-	              </div>
 	              <div class="form-group">
 	                <div class="row">
 	                  <div class="col-md-10">
