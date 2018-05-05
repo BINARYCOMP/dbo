@@ -152,6 +152,102 @@
 </form>
 
 <?php } ?>
+<!-- tabel  -->
+
+<div class="col-md-12">
+        <div class="box box-info">
+          <div class="box-header with-border">
+            <h3 class="box-title">Tabel Gudang Bawang Jadi</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <div class="row">
+              <div class="col-md-12 ">
+                <table class="table table-bordered table-hover dataTable no-footer" id="lookup">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Induk Barang</th>
+                      <th>Anak Barang</th>
+                      <th>Kategori</th>
+                      <th>Keterangan</th>
+                      <th>Ruangan</th>
+                      <th>Masuk</th>
+                      <th>Keluar</th>
+                      <th>Saldo</th>
+                      <?php
+                        if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
+                          ?> 
+                            <th> Action </th>
+                          <?php
+                        }
+                        ?>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php 
+                    $no = 1;
+                    foreach ($dataGudangBawang as $row) {
+                      ?>
+                        <tr>
+                          <td><?php echo $no ?></td>
+                          <td><?php echo $row['BAPA_NAME']?></td>
+                          <td><?php echo $row['BACH_NAME']?></td>
+                          <td>
+                            <?php 
+                              $kategori = $this->m_gudangBawang->getKateNameByGubaKateId($row['GUBA_KATE_ID']);
+                              if (isset($kategori[0]['KATE_NAME'])) {
+                                echo $kategori[0]['KATE_NAME'];
+                              }else{
+                                echo "-";
+                              }
+                            ?>
+                          </td>
+                          <td><?php echo $row['GUBA_URAIAN']?></td>
+                          <td>
+                            <?php 
+                              $kategori = $this->m_gudangBawang->getRuanNumberByGubaRuanId($row['GUBA_RUAN_ID']);
+                              if (isset($kategori[0]['RUAN_NUMBER'])) {
+                                echo $kategori[0]['RUAN_NUMBER'];
+                              }else{
+                                echo "-";
+                              }
+                            ?>
+                          <td><?php echo $row['GUBA_MASUK']?></td>
+                          <td><?php echo $row['GUBA_KELUAR']?></td>
+                          <td><?php echo $row['GUBA_SALDO']?></td>
+                          <?php
+                            if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
+                              ?> 
+                                <td> <a href="#">Edit</a> | <a href="<?php echo base_url()?>c_gudangBawang/delete/<?php echo $row['GUBA_ID']?>">Delete</a>  </td> 
+                              <?php
+                            }
+                          ?>
+                        </tr>
+                      <?php
+                      $no++;
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+      </div>
+  </div>
+  <!-- /.box -->
+
+</section>
+<!-- /.content -->
+
+
 <!-- modal konfirmasiJadi -->
 <div class="modal modal-success fade" id="modal-success">
   <div class="modal-dialog" id="modalKonfirmasiJadi">
@@ -374,99 +470,3 @@ function showStok() {
     });
 
 </script>
-
-
-<!-- tabel  -->
-
-<div class="col-md-12">
-        <div class="box box-info">
-          <div class="box-header with-border">
-            <h3 class="box-title">Tabel Gudang Bawang Jadi</h3>
-
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            </div>
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <div class="row">
-              <div class="col-md-12 ">
-                <table class="table table-bordered table-hover dataTable no-footer" id="lookup">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Induk Barang</th>
-                      <th>Anak Barang</th>
-                      <th>Kategori</th>
-                      <th>Keterangan</th>
-                      <th>Ruangan</th>
-                      <th>Masuk</th>
-                      <th>Keluar</th>
-                      <th>Saldo</th>
-                      <?php
-                        if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
-                          ?> 
-                            <th> Action </th>
-                          <?php
-                        }
-                        ?>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php 
-                    $no = 1;
-                    foreach ($dataGudangBawang as $row) {
-                      ?>
-                        <tr>
-                          <td><?php echo $no ?></td>
-                          <td><?php echo $row['BAPA_NAME']?></td>
-                          <td><?php echo $row['BACH_NAME']?></td>
-                          <td>
-                            <?php 
-                              $kategori = $this->m_gudangBawang->getKateNameByGubaKateId($row['GUBA_KATE_ID']);
-                              if (isset($kategori[0]['KATE_NAME'])) {
-                                echo $kategori[0]['KATE_NAME'];
-                              }else{
-                                echo "-";
-                              }
-                            ?>
-                          </td>
-                          <td><?php echo $row['GUBA_URAIAN']?></td>
-                          <td>
-                            <?php 
-                              $kategori = $this->m_gudangBawang->getRuanNumberByGubaRuanId($row['GUBA_RUAN_ID']);
-                              if (isset($kategori[0]['RUAN_NUMBER'])) {
-                                echo $kategori[0]['RUAN_NUMBER'];
-                              }else{
-                                echo "-";
-                              }
-                            ?>
-                          <td><?php echo $row['GUBA_MASUK']?></td>
-                          <td><?php echo $row['GUBA_KELUAR']?></td>
-                          <td><?php echo $row['GUBA_SALDO']?></td>
-                          <?php
-                            if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
-                              ?> 
-                                <td> <a href="#">Edit</a> | <a href="<?php echo base_url()?>c_gudangBawang/delete/<?php echo $row['GUBA_ID']?>">Delete</a>  </td> 
-                              <?php
-                            }
-                          ?>
-                        </tr>
-                      <?php
-                      $no++;
-                    }
-                    ?>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.col -->
-            </div>
-            <!-- /.row -->
-          </div>
-        </div>
-      </div>
-  </div>
-  <!-- /.box -->
-
-</section>
-<!-- /.content -->
