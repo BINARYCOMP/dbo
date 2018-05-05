@@ -421,9 +421,26 @@ function showStok() {
                           <td><?php echo $no ?></td>
                           <td><?php echo $row['BAPA_NAME']?></td>
                           <td><?php echo $row['BACH_NAME']?></td>
-                          <td><?php echo $row['KATE_NAME']?></td>
+                          <td>
+                            <?php 
+                              $kategori = $this->m_gudangBawang->getKateNameByGubaKateId($row['GUBA_KATE_ID']);
+                              if (isset($kategori[0]['KATE_NAME'])) {
+                                echo $kategori[0]['KATE_NAME'];
+                              }else{
+                                echo "-";
+                              }
+                            ?>
+                          </td>
                           <td><?php echo $row['GUBA_URAIAN']?></td>
-                          <td><?php echo $row['RUAN_NUMBER']?></td>
+                          <td>
+                            <?php 
+                              $kategori = $this->m_gudangBawang->getRuanNumberByGubaRuanId($row['GUBA_RUAN_ID']);
+                              if (isset($kategori[0]['RUAN_NUMBER'])) {
+                                echo $kategori[0]['RUAN_NUMBER'];
+                              }else{
+                                echo "-";
+                              }
+                            ?>
                           <td><?php echo $row['GUBA_MASUK']?></td>
                           <td><?php echo $row['GUBA_KELUAR']?></td>
                           <td><?php echo $row['GUBA_SALDO']?></td>
