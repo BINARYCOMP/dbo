@@ -32,14 +32,12 @@ class C_materialBawangChild extends CI_Controller
 		$parent = $_POST['txtparent'];
 		$nama = $_POST['txtnama'];
 		$satuan = $_POST['txtsatuan'];
-		$total = $_POST['txttotal'];
 
 
 		$data = array(
 			'MCBA_MPBA_ID' =>$parent ,
 			'MCBA_NAME' => $nama ,
-			'MCBA_SATU_ID' =>$satuan ,
-			'MCBA_MABA_TOTAL' => 0
+			'MCBA_SATU_ID' =>$satuan 
 			);
 		$child=$this->m_materialBawangChild->Insert($data);
 		redirect('C_materialBawangChild');
@@ -66,14 +64,12 @@ class C_materialBawangChild extends CI_Controller
 		$parent = $_POST['txtparent'];
 		$nama = $_POST['txtnama'];
 		$satuan = $_POST['txtsatuan'];
-		$total = $_POST['txttotal'];
 
 
 		$data = array(
 			'MCBA_MPBA_ID' =>$parent ,
 			'MCBA_NAME' => $nama ,
-			'MCBA_SATU_ID' =>$satuan ,
-			'MCBA_MABA_TOTAL' => 0
+			'MCBA_SATU_ID' =>$satuan 
 			);
 		$child=$this->m_materialBawangChild->UpdateData($id, $data);
 		redirect('C_materialBawangChild');

@@ -52,14 +52,6 @@
 						</select>  
 	              </div>
 	              <div class="form-group">
-	                  <label class=" control-label">Total</label>
-	                  <div>
-	                    <span >
-	                      <input class="form-control" type="text"  name="txttotal" required="true">  
-	                    </span>
-	                  </div>
-	              </div>
-	              <div class="form-group">
 	                <div class="row">
 	                  <div class="col-md-10">
 	                    <button type="reset" class="btn btn-default pull-right">Cancel</button>
