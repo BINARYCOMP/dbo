@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 06, 2018 at 12:40 AM
+-- Generation Time: May 06, 2018 at 01:17 AM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -469,12 +469,68 @@ CREATE TABLE IF NOT EXISTS `inventaris_child` (
   `INCH_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `INCH_INPA_ID` int(11) NOT NULL,
   PRIMARY KEY (`INCH_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
 --
 -- Dumping data for table `inventaris_child`
 --
 
+INSERT INTO `inventaris_child` (`INCH_ID`, `INCH_NAME`, `INCH_QTY`, `INCH_TIME`, `INCH_INPA_ID`) VALUES
+(1, 'DKM-RA500-001', 0, '2018-05-06 00:59:31', 1),
+(2, 'DKM-RA500-002', 0, '2018-05-06 00:59:45', 1),
+(3, 'DKM-RA500-003', 0, '2018-05-06 00:59:52', 1),
+(4, 'WIPM-001', 0, '2018-05-06 01:00:02', 2),
+(5, 'WIPM-002', 0, '2018-05-06 01:00:13', 2),
+(6, 'WIPM-003', 0, '2018-05-06 01:00:20', 2),
+(7, 'No.3881', 0, '2018-05-06 01:00:26', 4),
+(8, 'No.7320', 0, '2018-05-06 01:00:34', 4),
+(9, 'TS101A-3-001', 0, '2018-05-06 01:01:04', 6),
+(10, 'TS101A-3-002', 0, '2018-05-06 01:01:10', 6),
+(11, 'TS101A-2-001', 0, '2018-05-06 01:01:16', 7),
+(12, 'TS101A-2-002', 0, '2018-05-06 01:01:22', 7),
+(13, 'TS101A-2-003', 0, '2018-05-06 01:01:27', 7),
+(14, 'TS101A-2-004', 0, '2018-05-06 01:01:34', 7),
+(15, 'CJX-250-001', 0, '2018-05-06 01:02:01', 8),
+(16, 'CJX-250-002', 0, '2018-05-06 01:02:08', 8),
+(17, 'Alat-001 Alat Uji Tegangan', 0, '2018-05-06 01:02:38', 13),
+(18, 'Alat-002 Alat Uji Infuse', 0, '2018-05-06 01:02:48', 13),
+(19, 'Alat-003 Komputer/Kontrol', 0, '2018-05-06 01:02:59', 13),
+(20, 'Alat-004', 0, '2018-05-06 01:03:06', 13),
+(21, 'Alat-005', 0, '2018-05-06 01:03:16', 13),
+(22, 'Samsung-001 Kantor', 0, '2018-05-06 01:03:34', 14),
+(23, 'Samsung-002 Kantor', 0, '2018-05-06 01:03:41', 14),
+(24, 'Samsung-003 Lab Atas', 0, '2018-05-06 01:15:39', 14),
+(25, 'Samsung-004 Ruang Rapat', 0, '2018-05-06 01:03:56', 14),
+(26, 'Samsung-005 Ruang Rapat', 0, '2018-05-06 01:04:05', 14),
+(27, 'Samsung-006 Ruang Manager', 0, '2018-05-06 01:04:12', 14),
+(28, 'Layar LG', 0, '2018-05-06 01:07:59', 17),
+(29, 'Keyboard Logitech', 0, '2018-05-06 01:08:06', 17),
+(30, 'Mouse Ligitech', 0, '2018-05-06 01:08:14', 17),
+(31, 'CPU Intel Core i3 Ram4GB', 0, '2018-05-06 01:08:21', 17),
+(32, 'TP-Link Wifi', 0, '2018-05-06 01:12:06', 17),
+(33, 'Kursi Direktur', 0, '2018-05-06 01:08:38', 17),
+(34, 'Kursi Cheetos', 0, '2018-05-06 01:08:44', 17),
+(35, 'Kursi Tamu', 0, '2018-05-06 01:16:20', 17),
+(36, 'Meja Tamu', 0, '2018-05-06 01:09:02', 17),
+(37, 'Kursi Busa', 0, '2018-05-06 01:09:11', 17),
+(38, 'Kursi Plastik', 0, '2018-05-06 01:09:18', 17),
+(39, 'Meja Kantor ', 0, '2018-05-06 01:09:24', 17),
+(40, 'Meja Rapat', 0, '2018-05-06 01:09:32', 17),
+(41, 'Lemari Kantor', 0, '2018-05-06 01:09:40', 17),
+(42, 'Lemari Display', 0, '2018-05-06 01:16:10', 17),
+(43, '001-Pos Satpam', 0, '2018-05-06 01:10:00', 17),
+(44, '002-Produksi', 0, '2018-05-06 01:10:07', 18),
+(45, '003-Produksi', 0, '2018-05-06 01:10:16', 18),
+(46, '004-Lab Atas', 0, '2018-05-06 01:10:23', 18),
+(47, 'APAR Besar Produksi', 0, '2018-05-06 01:10:31', 20),
+(48, 'APAR Kecil Produksi', 0, '2018-05-06 01:10:39', 20),
+(49, 'APAR Kecil Lab Arrester', 0, '2018-05-06 01:10:47', 20),
+(50, 'APAR Kecil Lab Atas', 0, '2018-05-06 01:10:54', 20),
+(51, 'APAR Kecil Kantor', 0, '2018-05-06 01:11:01', 20),
+(52, 'APAR Kecil Pos Satpam', 0, '2018-05-06 01:12:30', 20),
+(53, 'Toilet Produksi', 0, '2018-05-06 01:11:16', 21),
+(54, 'Toilet Kantor', 0, '2018-05-06 01:11:23', 21),
+(55, 'Toilet Atas', 0, '2018-05-06 01:11:33', 21);
 
 -- --------------------------------------------------------
 
@@ -487,12 +543,34 @@ CREATE TABLE IF NOT EXISTS `inventaris_parent` (
   `INPA_NAME` varchar(75) NOT NULL,
   `INPA_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`INPA_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `inventaris_parent`
 --
 
+INSERT INTO `inventaris_parent` (`INPA_ID`, `INPA_NAME`, `INPA_TIME`) VALUES
+(1, 'Dekuma DKM-RA500 Rubber Injection', '2018-05-06 00:55:41'),
+(2, 'Welltech Injection Plastic Machine', '2018-05-06 00:55:48'),
+(3, 'Mesin Penggiling Rubber XK-230X630', '2018-05-06 00:55:54'),
+(4, 'Mesin Press Daylight Press', '2018-05-06 00:55:59'),
+(5, 'Mesin Uji Tarik YJN-L-50', '2018-05-06 00:56:10'),
+(6, 'Oven TS101A-3', '2018-05-06 00:56:20'),
+(7, 'Oven TS101A-2', '2018-05-06 00:56:24'),
+(8, 'Crimping and Press Machine CJX-250', '2018-05-06 00:56:29'),
+(9, 'Megger DLRO-200', '2018-05-06 00:56:34'),
+(10, 'Ling Hoo Colling Tower', '2018-05-06 00:56:39'),
+(11, 'Panther Kompressor', '2018-05-06 00:56:43'),
+(12, 'Kompressor Lab Arrester', '2018-05-06 00:56:49'),
+(13, 'Alat Uji Lab Arrester', '2018-05-06 00:56:53'),
+(14, 'Air Conditioner', '2018-05-06 00:57:06'),
+(15, 'Infocus Ruang Rapat', '2018-05-06 00:57:13'),
+(16, 'Telephone Ruang Manager', '2018-05-06 00:57:18'),
+(17, 'Perlengkapan Kantor', '2018-05-06 00:57:22'),
+(18, 'Kipas Angin', '2018-05-06 00:57:33'),
+(19, 'Televisi Pos Satpam', '2018-05-06 00:57:41'),
+(20, 'Alat Pemadam Kebakaran (APAR)', '2018-05-06 00:57:46'),
+(21, 'Toilet/WC', '2018-05-06 00:57:52');
 
 -- --------------------------------------------------------
 

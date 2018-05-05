@@ -89,8 +89,6 @@
 					<tr>
 		 				<th>No.</th>
 						<th>Name Barang</th>
-		 				<th>Gudang Jadi</th>
-		 				<th>Gudang Tak Jadi</th>
 		 				<th>Satuan Barang</th>
 		 				<th>Barang Parent</th>
 		 				<th>Waktu</th>
@@ -104,8 +102,6 @@
 		 					echo "<tr>";
 		 					echo "<td>".$no."</td>";
 		 					echo "<td>".$row['BACH_NAME']."</td>";
-		 					echo "<td>".$row['BACH_GUJA_TOTAL']."</td>";
-		 					echo "<td>".$row['BACH_GUTA_TOTAL']."</td>";
 		 					echo "<td>".$row['SATU_NAME']."</td>";
 		 					echo "<td>".$row['BAPA_NAME']."</td>";
 		 					echo "<td>".$row['BACH_TIMESTAMP']."</td>";
