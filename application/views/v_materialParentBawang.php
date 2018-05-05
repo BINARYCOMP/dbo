@@ -59,7 +59,7 @@
 						<th>No.</th>
 						<th>Nama Material Parent</th>
 						<th>Waktu</th>	
-						<th style="text-align: center" colspan="2">Action </th>
+						<th>Action </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -72,9 +72,7 @@
 				        <td><?php echo $row['MPBA_NAME']?></td>
 				        <td><?php echo $row['MPBA_TIMESTAMP']?></td>
 				        <td>
-				        	<a href="<?php echo base_url()?>c_materialParentBawang/FormUpdate/<?php echo $row['MPBA_ID']?>">Edit</a>
-				        </td>
-				        <td>
+				        	<a href="<?php echo base_url()?>c_materialParentBawang/FormUpdate/<?php echo $row['MPBA_ID']?>">Edit</a> | 
 				        	<a href="<?php echo base_url()?>c_materialParentBawang/delete/<?php echo $row['MPBA_ID']?>">Delete</a>
 				        </td>
 				      </tr>

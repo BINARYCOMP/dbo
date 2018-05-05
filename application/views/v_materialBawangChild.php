@@ -89,7 +89,7 @@
 		 				<th>Nama Material Induk</th>
 		 				<th>Satuan Barang</th>
 		 				<th>Waktu</th>
-		 				<th colspan="2">Action</th>
+		 				<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
