@@ -60,7 +60,7 @@
                   <label class="control-label">Kategori</label>
                   <div class="input-group">
                     <!-- /btn-group -->
-                    <select name="cmbKategori"  id="cmbKategori" class="form-control">
+                    <select name="cmbKategori"  id="cmbKategori" class="form-control" onchange="showStok();" onmousemove="showStok();">
                       <option value="0">== Pilih Kategori ==</option>
                       <?php  
                         foreach ($namaKategori as $row){
@@ -391,7 +391,7 @@ function showStok() {
           <div class="box-body">
             <div class="row">
               <div class="col-md-12 ">
-                <table class="table" id="GUBA">
+                <table class="table table-bordered table-hover dataTable no-footer" id="lookup">
                   <thead>
                     <tr>
                       <th>No</th>
@@ -399,6 +399,7 @@ function showStok() {
                       <th>Anak Barang</th>
                       <th>Kategori</th>
                       <th>Keterangan</th>
+                      <th>Ruangan</th>
                       <th>Masuk</th>
                       <th>Keluar</th>
                       <th>Saldo</th>
@@ -422,6 +423,7 @@ function showStok() {
                           <td><?php echo $row['BACH_NAME']?></td>
                           <td><?php echo $row['KATE_NAME']?></td>
                           <td><?php echo $row['GUBA_URAIAN']?></td>
+                          <td><?php echo $row['RUAN_NUMBER']?></td>
                           <td><?php echo $row['GUBA_MASUK']?></td>
                           <td><?php echo $row['GUBA_KELUAR']?></td>
                           <td><?php echo $row['GUBA_SALDO']?></td>
