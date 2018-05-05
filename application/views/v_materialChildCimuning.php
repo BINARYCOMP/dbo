@@ -88,7 +88,7 @@
 		 				<th>Nama Material Induk</th>
 		 				<th>Satuan Barang</th>
 		 				<th>Waktu</th>
-		 				<th>Total</th>
+		 				<th colspan="2">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -99,7 +99,6 @@
 		 					echo "<td>".$row['MPCI_NAME']."</td>";
 		 					echo "<td>".$row['SATU_NAME']."</td>";
 		 					echo "<td>".$row['MCCI_TIMESTAMP']."</td>";
-		 					echo "<td>".$row['MCCI_MACI_TOTAL']."</td>";
 		 					echo "<td><a href='".base_url()."c_materialChildCimuning/FormUpdate/".$row['MCCI_ID']."'>Edit</a></td>";
 		 					echo "<td><a href='".base_url()."c_materialChildCimuning/delete/".$row['MCCI_ID']."'>Delete</a></td>";
 		 					echo "</tr>";
