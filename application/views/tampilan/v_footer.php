@@ -37,7 +37,11 @@
 
     $(function () {
         $("#detailStock").dataTable();
-        $("#lookup").dataTable();
+        $('#lookup').dataTable( {
+          "bSort": false,
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+          buttons: [ 'excel' ]
+        } );
         $("#guja").dataTable({
               dom: 'Bfrtip',
               buttons: [
