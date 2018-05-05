@@ -13,11 +13,6 @@
     public function simpanBarang($data, $saldo, $child)
     {
       $this->db->insert("gudang_bawang", $data);
-      $data = array(
-              'BACH_GUBA_TOTAL' => $saldo,
-      );
-      $this->db->where('bach_id', $child);
-      $this->db->update('barang_child', $data);
     }
 
     //nama Parent
@@ -45,6 +40,15 @@
       $return = $query->result_array();
       return $return;
     }
+
+    public function getFirstStockWithoutKategori($bach_id,$bapa_id)
+    {
+      $sql="SELECT * from gudang_bawang, barang_parent, barang_child where guba_bach_id = bach_id and guba_bapa_id = bapa_id and guba_bach_id = ".$bach_id." and guba_bapa_id = ".$bapa_id." group by guba_id desc limit 1";
+      $query=$this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+
     public function getDataGudang()
     {
       $sql    = "select * from gudang_bawang,barang_child,barang_parent,kategori where GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND GUBA_KATE_ID = KATE_ID";
@@ -70,9 +74,49 @@
       return $return;
     }
 
+    //data Ruangan
+    public function getRuangan()
+    {
+      $sql="select * from ruangan";
+      $query=$this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+
+    public function getParentByBapaId($id)
+    {
+      $sql    = "SELECT * from barang_parent where bapa_id = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+
+    public function getChildByBachId($id)
+    {
+      $sql    = "SELECT * from barang_child where bach_id = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+
+    public function getKategoriByKateId($id)
+    {
+      $sql    = "SELECT * from kategori where kate_id = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+
+    public function getRuanganByRuanId($id)
+    {
+      $sql    = "SELECT * from ruangan where ruan_id = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+
      
   }
 
- ?>
 
 
