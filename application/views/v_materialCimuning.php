@@ -147,7 +147,7 @@
                           <?php
                             if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
                               ?> 
-                                <td> <a href="#">Edit</a> | <a href="#">Delete</a>  </td> 
+                                <td> <a href="#">Edit</a> | <a href="<?php echo base_url()?>c_materialCimuning/delete/<?php echo $row['MACI_ID']?>">Delete</a>  </td> 
                               <?php
                             }
                           ?>

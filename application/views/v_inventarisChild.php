@@ -40,14 +40,6 @@
 	                    </span>
 	                  </div>
 	              </div>
-	               <div class="form-group">
-	                  <label class=" control-label">Jumlah</label>
-	                  <div>
-	                    <span id="qty">
-	                      <input class="form-control" required="true" type="number" name="txtQty">  
-	                    </span>
-	                  </div>
-	              </div>
 	              <div class="form-group">
 	                <div class="row">
 	                  <div class="col-md-10">

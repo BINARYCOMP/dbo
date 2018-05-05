@@ -52,14 +52,6 @@
 						</select>  
 	              </div>
 	              <div class="form-group">
-	                  <label class=" control-label">Total</label>
-	                  <div>
-	                    <span >
-	                      <input class="form-control" type="text"  name="txttotal" required="true">  
-	                    </span>
-	                  </div>
-	              </div>
-	              <div class="form-group">
 	                <div class="row">
 	                  <div class="col-md-10">
 	                    <button type="reset" class="btn btn-default pull-right">Cancel</button>
@@ -92,25 +84,27 @@
 			<table class="table table-bordered table-hover table-striped" id="lookup">
 				<thead>
 					<tr>
+						<th>No</th>
 						<th>Nama</th>
 		 				<th>Nama Material Induk</th>
 		 				<th>Satuan Barang</th>
 		 				<th>Waktu</th>
-		 				<th>Total</th>
+		 				<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php 
+					$no =1;
 		 				foreach ($cimuning_child as $row) {
 		 					echo "<tr>";
+		 					echo "<td>".$no."</td>";
 		 					echo "<td>".$row['MCCI_NAME']."</td>";
 		 					echo "<td>".$row['MPCI_NAME']."</td>";
 		 					echo "<td>".$row['SATU_NAME']."</td>";
 		 					echo "<td>".$row['MCCI_TIMESTAMP']."</td>";
-		 					echo "<td>".$row['MCCI_MACI_TOTAL']."</td>";
-		 					echo "<td><a href='".base_url()."c_materialChildCimuning/FormUpdate/".$row['MCCI_ID']."'>Edit</a></td>";
-		 					echo "<td><a href='".base_url()."c_materialChildCimuning/delete/".$row['MCCI_ID']."'>Delete</a></td>";
+		 					echo "<td><a href='".base_url()."c_materialChildCimuning/FormUpdate/".$row['MCCI_ID']."'>Edit</a> | <a href='".base_url()."c_materialChildCimuning/delete/".$row['MCCI_ID']."'>Delete</a></td>";
 		 					echo "</tr>";
+		 					$no++;
 		 				}
 		 			 ?>
 				</tbody>
@@ -124,3 +118,17 @@
 <!-- /.content -->
 
 
+<script type="text/javascript">
+    $(function () {
+        $('#cimuning').dataTable( {
+          "bSort": false
+        } );
+        $('#finance').dataTable( {
+          "bSort": false,
+          lengthChange: false,
+          buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+        } );
+        table.buttons().container()
+        .appendTo( '#example_wrapper .col-sm-6:eq(0)' );
+    });
+</script>
