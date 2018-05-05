@@ -37,7 +37,7 @@
                         <div class="input-group">
                           <!-- /btn-group -->
                           <span id="txtChildTakJadi">
-                            <select class="form-control">
+                            <select name="cmbChild" id="cmbChildTakJadi" onclick="showStokTakJadi(this.value)" class="form-control">
                               <option>== Pilih Anak Barang ==</option>
                             </select>
                           </span>
@@ -51,7 +51,7 @@
                   <label class="control-label">Kategori</label>
                   <div class="input-group">
                     <!-- /btn-group -->
-                    <select name="cmbKategori" id="cmbKategoriTakJadi" class="form-control">
+                    <select name="cmbKategori" onchange="showStokTakJadi();" onmousemove="showStokTakJadi();" id="cmbKategoriTakJadi" class="form-control">
                       <option value="0">== Pilih Kategori ==</option>
                       <?php  
                         foreach ($namaKategori as $row){
@@ -65,6 +65,22 @@
                       <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalKategori2">Search</button>
                     </div>
                   </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">Nomor Gudang</label>
+                  
+                    <!-- /btn-group -->
+                    <select name="cmbRuangan" id="cmbRuangan"  class="form-control">
+                      <option value="0">== Pilih Gudang ==</option>
+                      <?php  
+                        foreach ($dataRuangan as $row){
+                          echo "<option value='".$row['RUAN_ID']."'>";
+                          echo $row ['RUAN_NUMBER'];
+                         echo "</option>";
+                        }
+                      ?>
+                    </select> <br>
                 </div>
 
                     <div class="form-group">
@@ -92,7 +108,7 @@
                           <label class=" control-label">Stock Awal</label>
                           <div>
                             <span id="txtStokTakJadi"> 
-                              <input type="text" name="txtSaldoAwal" required id="saldoAwalTakJadi" readonly placeholder="0" class="form-control">  
+                              <input type="text" name="txtSaldoAwal" required id="saldoAwalTakJadi" readonly value="0"  class="form-control">  
                             </span>
                           </div>
                         </div>
@@ -159,6 +175,9 @@ function showChildTakJadi(str) {
 <!-- javascript saldo Awal -->
 <script>
 function showStokTakJadi(str) {
+  var bachId = document.getElementById('cmbChildTakJadi').value;
+  var bapaId = document.getElementById('cmbParentTakJadi').value;
+  var kateId = document.getElementById('cmbKategoriTakJadi').value;
   var xhttp;
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -166,7 +185,7 @@ function showStokTakJadi(str) {
       document.getElementById("txtStokTakJadi").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/searchStok?q="+str, true);
+  xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/searchStok?kateId="+kateId+"&bachId="+bachId+"&bapaId="+bapaId, true);
   xhttp.send();   
 }
 </script>
@@ -180,7 +199,7 @@ function showStokTakJadi(str) {
     var saldoAkhirTakJadi;
     saldoAkhirTakJadi = saldoAwal + brgMasuk - brgKeluar;
 
-    document.getElementById("saldoAkhirTakJadi").value = saldoAkhirTakJadi;
+    document.getElementById("saldoAkhirTakJadi").value = parseInt(saldoAkhirTakJadi);
   }
 </script>
 
@@ -197,6 +216,7 @@ function showStokTakJadi(str) {
     keluar      = document.getElementById('brgKeluarTakJadi').value;
     akhir       = document.getElementById('saldoAkhirTakJadi').value;
     awal        = document.getElementById('saldoAwalTakJadi').value;
+    ruangan     = document.getElementById('cmbRuangan').value;
     
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -303,6 +323,43 @@ function showStokTakJadi(str) {
 </div>
 
 
+<div class="modal fade" id="myModalTakJadi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Lookup Barang Child</h4>
+            </div>
+            <div class="modal-body">
+                <table id="gutaChild" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>No.</th>
+                        <th>Nama Kategori</th>
+                        
+                      </tr>
+                    </thead>        
+                    <tbody>
+                      <?php 
+                      $no=1;
+                      foreach ($namaChild as $row) {
+                        ?>
+                          <tr class="kate2" data-namaKategori="<?php echo $row['BACH_ID']; ?>">
+                            <td><?php echo $no?></td>
+                            <td><?php echo $row['BACH_NAME']?></td>
+                            
+                          </tr>
+                        <?php
+                        $no++;
+                      }
+                      ?>
+                    </tbody>
+                </table>  
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
 //            jika dipilih, kode obat akan masuk ke input dan modal di tutup
@@ -339,5 +396,6 @@ function showStokTakJadi(str) {
         
 
     });
+
 
 </script>
