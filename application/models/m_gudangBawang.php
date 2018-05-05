@@ -51,7 +51,7 @@
 
     public function getDataGudang()
     {
-      $sql    = "select * from gudang_bawang,barang_child,barang_parent,kategori where GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND GUBA_KATE_ID = KATE_ID";
+      $sql    = "select * from gudang_bawang,barang_child,barang_parent,kategori,ruangan where GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND GUBA_KATE_ID = KATE_ID AND GUBA_RUAN_ID = RUAN_ID";
       $query  = $this->db->query($sql);
       $return = $query->result_array();
       return $return;
@@ -59,8 +59,7 @@
 
     public function getChildByBapaId($id)
     {
-      var_dump($id);
-      $sql    = "SELECT * FROM barang_child INNER JOIN barang_parent ON barang_child.BACH_BAPA_ID = barang_parent.BAPA_ID inner join satuan on barang_parent.BAPA_ID=satuan.SATU_ID WHERE BACH_BAPA_ID =".$id;
+      $sql    = "SELECT * FROM barang_child INNER JOIN barang_parent ON BACH_BAPA_ID = BAPA_ID inner join satuan on BACH_SATU_ID= SATU_ID WHERE BACH_BAPA_ID =".$id;
       $query  = $this->db->query($sql);
       $return = $query->result_array();
       return $return; 
