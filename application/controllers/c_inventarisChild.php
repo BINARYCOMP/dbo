@@ -29,11 +29,9 @@ class C_inventarisChild extends CI_Controller
 	{
 		$nama 		= $_POST['txtNama'];
 		$parent		= $_POST['txtParent'];
-		$jumlah 	= $_POST['txtQty'];
 		$data = array(
 			'INCH_NAME' 	=> $nama ,
 			'INCH_INPA_ID' 	=> $parent ,
-			'INCH_QTY' 		=> $jumlah ,
 			);
 		$child=$this->m_inventarisChild->Insert($data);
 		 redirect('c_inventarisChild');
