@@ -43,11 +43,11 @@ class C_barangChild extends CI_Controller
 		 redirect('c_barangChild');
 	}
 	public function FormUpdate($id){
-		$barangChild=$this->m_barangChild->view();
-		$child=$this->m_barangChild->Update($id); 
-		$satuan=$this->m_barangChild->getSatuan();
-		$barangParent=$this->m_barangChild->getBarangParent();
-		$data = array(
+		$barangChild 	=$this->m_barangChild->view();
+		$child 			=$this->m_barangChild->Update($id); 
+		$satuan 		=$this->m_barangChild->getSatuan();
+		$barangParent 	=$this->m_barangChild->getBarangParent();
+		$data  = array(
 			'barang_child' =>$barangChild,
 			'content'=>'v_editBarangChild',
 			'satuan' =>$satuan,
@@ -60,16 +60,12 @@ class C_barangChild extends CI_Controller
 	}
 	public function UpdateData($id)
 	{
-		$nama = $_POST['txtnama'];
-		$guja = $_POST['txtguja'];
-		$guta = $_POST['txtguta'];
-		$bapa = $_POST['txtbapa'];
+		$nama 	= $_POST['txtnama'];
+		$bapa 	= $_POST['txtbapa'];
 		$satuan = $_POST['txtsatuan'];
 
 		$data = array(
-			'BACH_NAMe' =>$nama ,
-			'BACH_GUJA_TOTAL' =>$guja ,
-			'BACH_GUTA_TOTAL' =>$guta ,
+			'BACH_NAME' =>$nama ,
 			'BACH_BAPA_ID' =>$bapa ,
 			'BACH_SATU_ID' =>$satuan , 
 			);

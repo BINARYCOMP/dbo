@@ -19,16 +19,26 @@
 					  <label class="control-label">Nama Barang Parent</label>
 					  <div class="input-group">
 					    <!-- /btn-group -->
+
 					    <select name="txtbapa" id="cmbBapa" class="form-control">
 					      <option value="0">== Pilih Induk Barang ==</option>
 					      <?php  
+
 					        foreach ($barang_parent as $row){
-					          echo "<option value='".$row['BAPA_ID']."'>";
-					          	echo $row ['BAPA_NAME'];
-					          echo "</option>";
-					        }
+                              if ($row['BAPA_ID'] == $barangChild[0]['BACH_BAPA_ID']){
+                                ?>
+                                <option value="<?php echo $row['BAPA_ID'] ?>" selected><?php echo $row['BAPA_NAME']?></option>
+                                <?php
+                              } else {                               
+                                ?>
+                                <option value="<?php echo $row['BAPA_ID'] ?>" ><?php echo $row['BAPA_NAME']?></option>
+                                <?php
+                              }
+                              
+                            }
 					      ?>
 					    </select> <br>
+					    <!-- <?php  var_dump($barang_child); ?> -->
 					    <div class="input-group-btn">
 					      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalChild">Search</button>
 					    </div>
@@ -42,7 +52,7 @@
 	                    </span>
 	                  </div>
 	                  <div class="form-group">
-		                    <label class=" control-label">Agama</label>
+		                    <label class=" control-label">Satuan</label>
 		                    <div>
 		                        <!-- /btn-group -->
 		                        <select name="txtsatuan" class="form-control">
@@ -50,7 +60,7 @@
 		                          <?php  		                       
 		                            foreach ($satuan as $row){
 
-		                              if ($row['SATU_ID'] == $barang_child[0]['BACH_SATU_ID']){
+		                              if ($row['SATU_ID'] == $barangChild[0]['BACH_SATU_ID']){
 		                                ?>
 		                                <option value="<?php echo $row['SATU_ID'] ?>" selected><?php echo $row['SATU_NAME']?></option>
 		                                <?php
