@@ -199,11 +199,11 @@
                           <ul class="dropdown-menu">
                             <li class="dropdown-header">Gudang Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_stok">View Barang</a></li>
-                            <li><a href="<?php echo base_url()?>">View Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialCimuning">View Material</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Gudang Bawang</li>
                             <li><a href="<?php echo base_url()?>c_gudangBawang">View Barang Jadi</a></li>
-                            <li><a href="<?php echo base_url()?>c_material"">View Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialBawang"">View Material</a></li>
                           </ul>
                       </li>
 
@@ -270,11 +270,11 @@
                           <ul class="dropdown-menu">
                             <li class="dropdown-header">Gudang Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_stok">Input Barang</a></li>
-                            <li><a href="<?php echo base_url()?>c_materialBawang">Input Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialCimuning">Input Material</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Gudang Bawang</li>
-                            <li><a href="<?php echo base_url()?>">Input Barang Jadi</a></li>
-                            <li><a href="<?php echo base_url()?>c_materialCimuning">Input Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_gudangBawang">Input Barang Jadi</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialBawang">Input Material</a></li>
                           </ul>
                       </li>
 
@@ -342,11 +342,11 @@
                           <ul class="dropdown-menu">
                             <li class="dropdown-header">Gudang Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_stok">Input Barang</a></li>
-                            <li><a href="<?php echo base_url()?>c_materialBawang">Input Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialCimuning">Input Material</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Gudang Bawang</li>
                             <li><a href="<?php echo base_url()?>c_gudangBawang">Input Barang Jadi</a></li>
-                            <li><a href="<?php echo base_url()?>c_materialCimuning">Input Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialBawang">Input Material</a></li>
                           </ul>
                       </li>
 
