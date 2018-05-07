@@ -10,7 +10,6 @@
               <tr>
                 <th>No.</th>
                 <th>Nama Barang</th>
-                <th>Total Barang</th>
                 <th>Satuan</th>
               </tr>
             </thead>
@@ -26,7 +25,6 @@
 
                       <td> <?php echo $no ?> </td>
                       <td> <?php echo $row['BACH_NAME']?> </td>
-                      <td> <?php echo $row['BACH_GUJA_TOTAL']?> </td>
                       <td> <?php echo $row['SATU_NAME']?> </td>
                     </tr>
                   <?php

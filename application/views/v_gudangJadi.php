@@ -17,7 +17,8 @@
                   <label class="control-label">Parent</label>
                   <div class="input-group autocomplete">
                     <!-- /btn-group -->
-                    <input id="myInput" class="form-control" type="text" name="cmbParent" onchange="showChild(this.value)" placeholder="== Pilih Induk Barang ==">
+                    <input id="myInput" class="form-control" type="text" name="cmbParentMuncul"  placeholder="== Pilih Induk Barang ==">
+                    <input class="form-control" id="cmbParent" type="hidden" name="cmbParent">
                     <div class="input-group-btn">
                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Search</button>
                     </div>
@@ -354,7 +355,7 @@ function showStok() {
 
     });
 
-function autocomplete(inp, arr) {
+function autocomplete(inp, arr,id) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
@@ -382,10 +383,13 @@ function autocomplete(inp, arr) {
           b.innerHTML += arr[i].substr(val.length);
           /*insert a input field that will hold the current array item's value:*/
           b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          b.innerHTML += "<li type='hidden' value='" + id[i] + "'>";
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function(e) {
               /*insert the value for the autocomplete text field:*/
               inp.value = this.getElementsByTagName("input")[0].value;
+              document.getElementById("cmbParent").value = this.getElementsByTagName("li")[0].value;
+              showChild(this.getElementsByTagName("li")[0].value);
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/
               closeAllLists();
@@ -461,9 +465,17 @@ var Parent = [ <?php
                         }
                 ?> 
                 ];
+var Id = [ <?php 
+                foreach ($namaParent as $row){
+                         
+                          echo "'".$row ['BAPA_ID']."',";
+                         
+                        }
+                ?> 
+                ];
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("myInput"), Parent);
+autocomplete(document.getElementById("myInput"), Parent, Id);
 
 
 </script>
