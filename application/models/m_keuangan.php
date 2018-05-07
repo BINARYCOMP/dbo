@@ -19,7 +19,7 @@ class M_keuangan extends CI_Model
 	}
 	public function getSaldoAkhir()
 	{
-		$sql="select * from keuangan order by KEUA_SALDO desc limit 1";
+		$sql="select * from keuangan order by KEUA_ID desc limit 1";
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

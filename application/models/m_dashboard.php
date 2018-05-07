@@ -37,7 +37,7 @@ class m_dashboard extends CI_Model
 		$year = date('Y');
 		$sql = "
 		SELECT SUM(KEUA_MASUK) as 'masuk', SUM(KEUA_KELUAR) as 'keluar' FROM keuangan WHERE
-		YEAR(KEUA_TIMESTAMP) = ".$year." AND MONTH(KEUA_TIMESTAMP) = ".$month."
+		YEAR(KEUA_TANGGAL) = ".$year." AND MONTH(KEUA_TANGGAL) = ".$month."
 		";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
