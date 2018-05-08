@@ -14,9 +14,9 @@ class C_profil extends CI_Controller
 	public function Index()
 	{
 		$agamaId	=$this->m_profil->getAgama();
-		$Account 	=$this->m_profil->getInfoAccount();
+		$akun 	=$this->m_profil->getInfoAccount();
 		$data = array(
-			'Account'	=>$Account,
+			'Account'	=>$akun,
 			'agamaId'	=>$agamaId, 
 			'content'	=>'v_profil',
 			'title' 	=>'Account',
@@ -24,9 +24,23 @@ class C_profil extends CI_Controller
 		);
 		$this->load->view('tampilan/v_combine', $data);
 	}
-	public function Password()
+	public function formGantiPassword($id)
 	{
-		$this->load->view('v_editPassword');
+		$akun 		=$this->m_profil->getInfoAccount();
+		$password 	=$this->m_profil->getPassword();
+		$data = array(
+			'Account'	=>$akun,
+			'Password'	=>$password,
+			'content'	=>'v_editPassword',
+			'title' 	=>'Account',
+      		'menu'      =>'Ganti Password'
+		);
+		$this->load->view('tampilan/v_combine',$data);
+	}
+	public function gantiPassword($id)
+	{
+		$password = md5($_POST['password']);
+		'USER_PASSWORD' =$password
 	}
 	
 }

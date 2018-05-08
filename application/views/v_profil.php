@@ -43,7 +43,7 @@
                 <td><?php echo $row['AGAM_NAME']?></td>
                 <td>*******</td>
                 <td>
-                  <a href="<?php echo base_url()?>c_profil/UpdatePassword/<?php echo $row['PEGA_ID']?>">Ganti</a>
+                  <a href="<?php echo base_url()?>c_profil/formGantiPassword/<?php echo $row['PEGA_ID']?>">Ganti</a>
                 </td>
               </tr>
             <?php

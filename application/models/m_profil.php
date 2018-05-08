@@ -19,20 +19,17 @@ class M_profil extends CI_Model
       $return = $query->result_array();
       return $return;
     }
-	function Update($data)
+  	public function getPassword()
 	{
-	    $sql="select * from pegawai where PEGA_ID =".$_SESSION['USER_ID'];
-	    $query=$this->db->query($sql);
-	    $return = $query->result_array();
-	    return $return;
-  	}
-  	public function GetVerifPassowrd($password)
-	{
-		$sql = "select * from user,pegawai where USER_DAPE_ID = PEGA_ID AND USER_PASSWORD = '$password'";
+		$sql = "select * from user USER_ID=".$SESSION['USER_ID'];
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
-
+	public function UpdatePassword($data,$id)
+	{
+		$this->db->where('USER_ID', $id);
+		$this->db->update('user', $data);
+	}
 }
- ?>
+?>
