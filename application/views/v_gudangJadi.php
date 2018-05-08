@@ -349,6 +349,7 @@ function showStok() {
 
         // child
         document.getElementById("cmbKategori").value = $(this).attr('data-namaKategori');
+
         $('#myModalKategori').modal('hide');
         showStok();
         
@@ -476,6 +477,5 @@ var Id = [ <?php
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), Parent, Id);
-
 
 </script>
