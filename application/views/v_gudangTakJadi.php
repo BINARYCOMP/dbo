@@ -16,16 +16,16 @@
                       <label class="control-label">Parent</label>
                       <div class="input-group">
                         <!-- /btn-group -->
-                        <select name="cmbParent" id="cmbParentTakJadi" onchange="showChildTakJadi(this.value)" class="form-control">
+                        <!-- <select name="cmbParent" id="cmbParentTakJadi" onchange="showChildTakJadi(this.value)" class="form-control">
                           <option value="0">== Pilih Induk Barang ==</option>
                           <?php  
-                            foreach ($namaParent as $row){
+                            /* foreach ($namaParent as $row){
                               echo "<option value='".$row['BAPA_ID']."'>";
                               echo $row ['BAPA_NAME'];
                              echo "</option>";
-                            }
+                            } */
                           ?>
-                        </select>
+                        </select> -->
                         <div class="input-group-btn">
                           <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalTakJadi">Search</button>
                         </div>
