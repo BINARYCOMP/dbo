@@ -239,9 +239,13 @@
                           <a class="dropdown-toggle" style="cursor: pointer;" type="button" data-toggle="dropdown">Super User
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                            <li class="dropdown-header">Barang</li>
+                            <li class="dropdown-header">Barang Bawang</li>
                             <li><a href="<?php echo base_url()?>c_barangParent">Barang Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_barangChild">Barang Child</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Barang Cimuning</li>
+                            <li><a href="<?php echo base_url()?>c_barangParentCimuning">Barang Parent</a></li>
+                            <li><a href="<?php echo base_url()?>c_barangChildCimuning">Barang Child</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Material Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_materialParentCimuning">Material Parent</a></li>
@@ -314,6 +318,10 @@
                             <li><a href="<?php echo base_url()?>c_barangParent">Barang Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_barangChild">Barang Child</a></li>
                             <li class="divider"></li>
+                            <li class="dropdown-header">Barang Cimuning</li>
+                            <li><a href="<?php echo base_url()?>c_barangParentCimuning">Barang Parent</a></li>
+                            <li><a href="<?php echo base_url()?>c_barangChildCimuning">Barang Child</a></li>
+                            <li class="divider"></li>
                             <li class="dropdown-header">Material Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_materialParentCimuning">Material Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_materialChildCimuning">Material Child</a></li>
@@ -385,6 +393,10 @@
                             <li class="dropdown-header">Barang</li>
                             <li><a href="<?php echo base_url()?>c_barangParent">Barang Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_barangChild">Barang Child</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Barang Cimuning</li>
+                            <li><a href="<?php echo base_url()?>c_barangParentCimuning">Barang Parent</a></li>
+                            <li><a href="<?php echo base_url()?>c_barangChildCimuning">Barang Child</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Material Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_materialParentCimuning">Material Parent</a></li>
