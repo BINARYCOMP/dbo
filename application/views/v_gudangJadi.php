@@ -17,7 +17,7 @@
                   <label class="control-label">Parent</label>
                   <div class="input-group autocomplete">
                     <!-- /btn-group -->
-                    <input id="myInput" class="form-control" type="text" name="cmbParentMuncul"  placeholder="== Pilih Induk Barang ==">
+                    <input id="myInput" class="form-control" type="text" onchange="showChild(this.value)" name="cmbParentMuncul"  placeholder="== Pilih Induk Barang ==">
                     <input class="form-control" id="cmbParent" type="hidden" name="cmbParent">
                     <div class="input-group-btn">
                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Search</button>
@@ -171,7 +171,7 @@ function showChild(str) {
 <script>
 function showStok() {
   var bachId = document.getElementById('cmbChild').value;
-  var bapaId = document.getElementById('cmbParent').value;
+  var bapaId = document.getElementById('myInput').value;
   var kateId = document.getElementById('cmbKategori').value;
 
   var xhttp;
@@ -203,7 +203,7 @@ function showStok() {
   function modalKonfirmasiJadi() {
     var xhttp;
     var parent,child,kategori,keterangan,masuk,keluar,akhir;
-    parent      = document.getElementById('cmbParent').value;
+    parent      = document.getElementById('myInput').value;
     child       = document.getElementById('cmbChild').value;
     kategori    = document.getElementById('cmbKategori').value;
     keterangan  = document.getElementById('keterangan').value;
@@ -226,7 +226,7 @@ function showStok() {
   function modalChildJadi() {
     var xhttp;
     var parent;
-    parent    = document.getElementById('cmbParent').value;
+    parent    = document.getElementById('myInput').value;
 
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -327,7 +327,7 @@ function showStok() {
         // alert("test");
 
         // parent
-        document.getElementById("cmbParent").value = $(this).attr('data-brgParent');
+        document.getElementById("myInput").value = $(this).attr('data-brgParent');
         $('#myModal').modal('hide');
         showChild($(this).attr('data-brgParent'));
         
