@@ -3,7 +3,7 @@
   <!-- Stock Report -->
   <div class="box box-default">
     <div class="box-header with-border">
-      <h3 class="box-title"><span class="text-center">Stock Report</span></h3>
+      <h3 class="box-title"><span class="text-center">Laporan Barang [ Gudang Bawang ]</span></h3>
 
       <div class="box-tools pull-right">
         <button type="button" class="btn btn-box-tool" data-widget=" "><i class="fa fa-edit"></i> Edit</button>
@@ -94,7 +94,7 @@
   <!-- SELECT2 EXAMPLE -->
   <div class="box box-default">
     <div class="box-header with-border">
-      <h3 class="box-title"><span class="text-center">Finance Report</span></h3>
+      <h3 class="box-title"><span class="text-center">Laporan Keuangan</span></h3>
 
       <div class="box-tools pull-right">
         <button type="button" class="btn btn-box-tool" data-widget=" "><i class="fa fa-edit"></i> Edit</button>
@@ -140,10 +140,10 @@
   </div>
 
 
-    <!-- Inventaris Report -->
+    <!-- Inventaris Bawang Report -->
   <div class="box box-default">
     <div class="box-header with-border">
-      <h3 class="box-title"><span class="text-center">Inventaris Report</span></h3>
+      <h3 class="box-title"><span class="text-center">Laporan Inventaris Bawang </span></h3>
 
       <div class="box-tools pull-right">
         <button type="button" class="btn btn-box-tool" data-widget=" "><i class="fa fa-edit"></i> Edit</button>
@@ -203,12 +203,14 @@
 <script type="text/javascript">
     $(function () {
         $('#stock').dataTable( {
-          "bSort": false
+          "bSort": false,
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+          buttons: [ 'excel' ]
         } );
         $('#finance').dataTable( {
           "bSort": false,
-          lengthChange: false,
-          buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+          buttons: [ 'excel' ]
         } );
         table.buttons().container()
         .appendTo( '#example_wrapper .col-sm-6:eq(0)' );
