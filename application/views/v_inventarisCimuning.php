@@ -16,7 +16,7 @@
               <div class="box-body">
                 <div class="row">
                   <div class="col-md-12 ">
-                    <form action="<?php echo base_url()?>c_inventaris/save" method="POST">
+                    <form action="<?php echo base_url()?>c_inventarisCimuning/save" method="POST">
                       <div class="form-group">
                         <label class="control-label">Parent</label>
                         <div class="input-group">
@@ -132,8 +132,8 @@
                         <td><?php echo $row['INPA_NAME']?></td>
                         <td><?php echo $row['INCH_NAME']?></td>
                         <td><?php echo $row['INCH_QTY']?></td>
-                        <td><?php echo $row['INVE_KEADAAN']?></td>
-                        <td><?php echo $row['INVE_KETERANGAN']?></td>
+                        <td><?php echo $row['INCI_KEADAAN']?></td>
+                        <td><?php echo $row['INCI_KETERANGAN']?></td>
                       </tr>
                     <?php
                       $no++;
@@ -168,7 +168,7 @@
         document.getElementById("txtChild").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_inventaris/searchChild?q="+str, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_inventarisCimuning/searchChild?q="+str, true);
     xhttp.send();   
   }
   function showQty(str) {
@@ -179,7 +179,7 @@
         document.getElementById("qty").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_inventaris/searchQty?q="+str, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_inventarisCimuning/searchQty?q="+str, true);
     xhttp.send();   
   }
    function modalInventaris() {
@@ -207,7 +207,7 @@
       }
     };
 
-    xhttp.open("GET","<?php echo base_url()?>c_inventaris/modalInventaris?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&qty="+qty+"&kondisi="+kondisi,true);
+    xhttp.open("GET","<?php echo base_url()?>c_inventarisCimuning/modalInventaris?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&qty="+qty+"&kondisi="+kondisi,true);
     xhttp.send()
       
      

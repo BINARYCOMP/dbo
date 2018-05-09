@@ -13,18 +13,22 @@ class C_report extends CI_Controller
 
 	public function index()
 	{
-		$dataBarangParent 		= $this->m_report->getBarangParent();
-		$dataKeuangan 			= $this->m_report->getKeuangan();
-		$dataInventarisParent	= $this->m_report->getInventarisParent();
-		$dataRuangan 			= $this->m_report->getRuangan();
+		$dataBarangParent 					= $this->m_report->getBarangParent();
+		$dataMaterialCimuningParent 		= $this->m_report->getMaterialCimuningParent();
+		$dataMaterialBawangParent	 		= $this->m_report->getMaterialBawangParent();
+		$dataKeuangan 						= $this->m_report->getKeuangan();
+		$dataInventarisParent				= $this->m_report->getInventarisParent();
+		$dataRuangan 						= $this->m_report->getRuangan();
 		$data = array(
-			'dataBarangParent' 		=> $dataBarangParent,
-			'dataKeuangan' 			=> $dataKeuangan,
-			'dataInventarisParent'	=> $dataInventarisParent,
-			'dataRuangan'			=> $dataRuangan,
-			'content' 				=> 'v_report',
-			'title'					=> 'Laporan',
-			'menu'         			=> 'Report'
+			'dataBarangParent' 					=> $dataBarangParent,
+			'dataMaterialCimuningParent' 		=> $dataMaterialCimuningParent,
+			'dataMaterialBawangParent' 			=> $dataMaterialBawangParent,
+			'dataKeuangan' 						=> $dataKeuangan,
+			'dataInventarisParent'				=> $dataInventarisParent,
+			'dataRuangan'						=> $dataRuangan,
+			'content' 							=> 'v_report',
+			'title'								=> 'Laporan',
+			'menu'         						=> 'Report'
 		);
 		$this->load->view('tampilan/v_combine',$data);
 	}
@@ -36,6 +40,17 @@ class C_report extends CI_Controller
 			'dataBarang' 		=> $dataBarang,
 			'content' 			=> 'v_report_detailBarang',
 			'title'				=> 'Detail '.$dataBarang[0]['BAPA_NAME'],
+			'menu'         		=> 'Report'
+		);
+		$this->load->view('tampilan/v_combine',$data);	
+	}
+	public function detailMaterial($id)
+	{
+		$dataBarang		= $this->m_report->getMaterialChildByMpbaId($id);
+		$data = array(
+			'dataBarang' 		=> $dataBarang,
+			'content' 			=> 'v_report_detailMaterialBawang',
+			'title'				=> 'Detail '.$dataBarang[0]['MPBA_NAME'],
 			'menu'         		=> 'Report'
 		);
 		$this->load->view('tampilan/v_combine',$data);	

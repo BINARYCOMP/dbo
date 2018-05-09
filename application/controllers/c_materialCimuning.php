@@ -52,6 +52,7 @@ class C_materialCimuning extends CI_Controller
       'MACI_SALDO'    => $saldoAkhir
     );
     $simpanBarang = $this->m_materialCimuning->simpanBarang($data, $saldoAkhir, $child);
+    exit();
     echo "<script> window.location='".base_url()."C_materialCimuning?message=1' </script>";
   }
       public function delete($id)
@@ -113,7 +114,7 @@ class C_materialCimuning extends CI_Controller
       }
     }
   }
-  public function modalKonfirmasiCimuning()
+  public function modalKonfirmasi()
   {
     $cmbParent     = $_GET['parent'];
     $cmbChild      = $_GET['child'];
@@ -125,9 +126,16 @@ class C_materialCimuning extends CI_Controller
 
     $namaParentDariModel      = $this->m_materialCimuning->getParentBympciId($cmbParent);
     $namaChildDariModel       = $this->m_materialCimuning->getChildBymcciId($cmbChild);
+    $namaParentUntukDitampilkan = 0;
+    $namaChildUntukDitampilkan = 0;
 
-    $namaParentUntukDitampilkan      = $namaParentDariModel[0]['MPCI_NAME'];
-    $namaChildUntukDitampilkan       = $namaChildDariModel[0]['MCCI_NAME'] ;
+    if (!empty($namaParentDariModel[0]['MPCI_NAME'])) {
+      $namaParentUntukDitampilkan      = $namaParentDariModel[0]['MPCI_NAME'];
+    }
+    if (!empty($namaChildDariModel[0]['MCCI_NAME'])) {
+      $namaChildUntukDitampilkan       = $namaChildDariModel[0]['MCCI_NAME'] ;
+    } 
+
 
     ?>
       <div class="modal-content">

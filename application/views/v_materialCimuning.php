@@ -146,9 +146,8 @@
                           <td><?php echo $row['MACI_SALDO']?></td>
                           <?php
                             if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
-                              ?> 
-                                <td> <a href="#">Edit</a> | <a href="<?php echo base_url()?>c_materialCimuning/delete/<?php echo $row['MACI_ID']?>">Delete</a>  </td> 
-                              <?php
+                          echo "<td><a href='#'>Edit</a></td>";
+                          echo "<td><a href='".base_url()."c_materialCimuning/delete/".$row['MACI_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a></td>";
                             }
                           ?>
                         </tr>
@@ -321,7 +320,6 @@
     });
 
     $(function () {
-        $("#lookup").dataTable();
         $("#gujaChild").dataTable();
     });
 

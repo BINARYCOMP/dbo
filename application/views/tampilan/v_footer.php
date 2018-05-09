@@ -39,7 +39,7 @@
         $("#detailStock").dataTable();
         $('#lookup').dataTable( {
           "bSort": false,
-          dom:'B <"content-header" <"col-sm-2"l> f>tipH','fnRowCallBack',
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
           buttons: [ 'excel' ]
         } );
         $("#guja").dataTable({
