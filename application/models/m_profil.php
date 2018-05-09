@@ -19,16 +19,16 @@ class M_profil extends CI_Model
       $return = $query->result_array();
       return $return;
     }
-  	public function getPassword()
+    public function getPassword()
 	{
-		$sql = "select * from user USER_ID=".$_SESSION['USER_ID'];
+		$sql = "select * from user where USER_ID=".$_SESSION['USER_ID'];
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
-	public function UpdatePassword($id,$data)
+	public function UpdatePassword($data)
 	{
-		$this->db->where('USER_ID', $id);
+		$this->db->where('USER_ID', $_SESSION['USER_ID']);
 		$this->db->update('user', $data);
 	}
 }
