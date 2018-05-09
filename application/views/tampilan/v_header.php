@@ -36,6 +36,39 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <style>
+
+    .autocomplete {
+  /*the container must be positioned relative:*/
+      position: relative;
+      
+      }
+    .autocomplete-items {
+      position: absolute;
+      border: 1px solid #d4d4d4;
+      border-bottom: none;
+      border-top: none;
+      z-index: 99;
+      /*position the autocomplete items to be the same width as the container:*/
+      top: 100%;
+      left: 0;
+      right: 0;
+    }
+    .autocomplete-items div {
+      padding: 10px;
+      cursor: pointer;
+      background-color: #fff; 
+      border-bottom: 1px solid #d4d4d4; 
+    }
+    .autocomplete-items div:hover {
+      /*when hovering an item:*/
+      background-color: #e9e9e9; 
+    }
+    .autocomplete-active {
+      /*when navigating through the items using the arrow keys:*/
+      background-color: DodgerBlue !important; 
+      color: #ffffff; 
+    }
+
     .example-modal .modal {
       position: relative;
       top: auto;
@@ -126,7 +159,7 @@
                           </ul>
                       </li>
                       <li class="<?php if(isset($menu)) if($menu == 'Inventaris') echo 'active'?>" >
-                        <a href="<?php echo base_url()?>c_inventaris">
+                        <a href="<?php echo base_url()?>c_inventarisCimuning">
                           <i class="glyphicon glyphicon-list-alt"></i>
                           Inventaris
                         </a>
@@ -166,11 +199,11 @@
                           <ul class="dropdown-menu">
                             <li class="dropdown-header">Gudang Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_stok">View Barang</a></li>
-                            <li><a href="<?php echo base_url()?>">View Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialCimuning">View Material</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Gudang Bawang</li>
                             <li><a href="<?php echo base_url()?>c_gudangBawang">View Barang Jadi</a></li>
-                            <li><a href="<?php echo base_url()?>c_material"">View Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialBawang"">View Material</a></li>
                           </ul>
                       </li>
 
@@ -181,7 +214,8 @@
                           Inventaris
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url()?>c_inventaris">View Inventaris</a></li>
+                            <li><a href="<?php echo base_url()?>c_inventaris">View Inventaris Bawang</a></li>
+                            <li><a href="<?php echo base_url()?>c_inventarisCimuning">View Inventaris Cimuning</a></li>
                             <li><a href="<?php echo base_url()?>c_inventarisParent">Input Inventaris Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_inventarisChild">Input Inventaris Child</a></li>
                           </ul>
@@ -206,9 +240,13 @@
                           <a class="dropdown-toggle" style="cursor: pointer;" type="button" data-toggle="dropdown">Super User
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                            <li class="dropdown-header">Barang</li>
+                            <li class="dropdown-header">Barang Bawang</li>
                             <li><a href="<?php echo base_url()?>c_barangParent">Barang Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_barangChild">Barang Child</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Barang Cimuning</li>
+                            <li><a href="<?php echo base_url()?>c_barangParentCimuning">Barang Parent</a></li>
+                            <li><a href="<?php echo base_url()?>c_barangChildCimuning">Barang Child</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Material Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_materialParentCimuning">Material Parent</a></li>
@@ -237,11 +275,11 @@
                           <ul class="dropdown-menu">
                             <li class="dropdown-header">Gudang Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_stok">Input Barang</a></li>
-                            <li><a href="<?php echo base_url()?>c_materialBawang">Input Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialCimuning">Input Material</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Gudang Bawang</li>
-                            <li><a href="<?php echo base_url()?>">Input Barang Jadi</a></li>
-                            <li><a href="<?php echo base_url()?>c_materialCimuning">Input Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_gudangBawang">Input Barang Jadi</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialBawang">Input Material</a></li>
                           </ul>
                       </li>
 
@@ -252,7 +290,8 @@
                           Inventaris
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url()?>c_inventaris">Input Inventaris</a></li>
+                            <li><a href="<?php echo base_url()?>c_inventaris">Input Inventaris Bawang</a></li>
+                            <li><a href="<?php echo base_url()?>c_inventarisCimuning">Input Inventaris Cimuning</a></li>
                             <li><a href="<?php echo base_url()?>c_inventarisParent">Input Inventaris Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_inventarisChild">Input Inventaris Child</a></li>
                           </ul>
@@ -280,6 +319,10 @@
                             <li class="dropdown-header">Barang</li>
                             <li><a href="<?php echo base_url()?>c_barangParent">Barang Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_barangChild">Barang Child</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Barang Cimuning</li>
+                            <li><a href="<?php echo base_url()?>c_barangParentCimuning">Barang Parent</a></li>
+                            <li><a href="<?php echo base_url()?>c_barangChildCimuning">Barang Child</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Material Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_materialParentCimuning">Material Parent</a></li>
@@ -309,11 +352,11 @@
                           <ul class="dropdown-menu">
                             <li class="dropdown-header">Gudang Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_stok">Input Barang</a></li>
-                            <li><a href="<?php echo base_url()?>c_materialBawang">Input Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialCimuning">Input Material</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Gudang Bawang</li>
                             <li><a href="<?php echo base_url()?>c_gudangBawang">Input Barang Jadi</a></li>
-                            <li><a href="<?php echo base_url()?>c_materialCimuning">Input Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialBawang">Input Material</a></li>
                           </ul>
                       </li>
 
@@ -324,7 +367,8 @@
                           Inventaris
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url()?>c_inventaris">Input Inventaris</a></li>
+                            <li><a href="<?php echo base_url()?>c_inventaris">Input Inventaris Bawang</a></li>
+                            <li><a href="<?php echo base_url()?>c_inventarisCimuning">Input Inventaris Cimuning</a></li>
                             <li><a href="<?php echo base_url()?>c_inventarisParent">Input Inventaris Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_inventarisChild">Input Inventaris Child</a></li>
                           </ul>
@@ -352,6 +396,10 @@
                             <li class="dropdown-header">Barang</li>
                             <li><a href="<?php echo base_url()?>c_barangParent">Barang Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_barangChild">Barang Child</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Barang Cimuning</li>
+                            <li><a href="<?php echo base_url()?>c_barangParentCimuning">Barang Parent</a></li>
+                            <li><a href="<?php echo base_url()?>c_barangChildCimuning">Barang Child</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Material Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_materialParentCimuning">Material Parent</a></li>

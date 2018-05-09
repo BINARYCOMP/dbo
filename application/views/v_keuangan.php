@@ -116,7 +116,13 @@
 			 				<th>Debet</th>
 			 				<th>Kredit</th>
 			 				<th>Saldo</th>
-							<th style="text-align: center" >Action </th>
+			 				<?php
+			 				if ($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN' ) {
+			 					?>
+									<th style="text-align: center" >Action </th>
+			 					<?php
+			 				}
+			 				?>
 						</tr>
 					</thead>
 					<tbody>
@@ -129,10 +135,15 @@
 		 			  		<td class="right"><?php echo $row['KEUA_MASUK']; ?></td>
 		 			  		<td class="right"><?php echo $row['KEUA_KELUAR']; ?></td>
 		 			  		<td class="right"><?php echo $row['KEUA_SALDO']; ?></td>
-		 			  		<td class="center">
-		 			  			<a href="<?php echo base_url().'c_keuangan/delete/'.$row['KEUA_ID']; ?>" onclick="return confirm('Are you sure?');">Delete</a>
-		 			  		</td>
-		 			  			
+		 			  		<?php
+			 			  		if ($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN' ) {
+				 					?>
+					 			  		<td class="center">
+					 			  			<a href="<?php echo base_url().'c_keuangan/delete/'.$row['KEUA_ID']; ?>" onclick="return confirm('Are you sure?');">Delete</a>
+					 			  		</td>
+					 			  	<?php
+			 				}
+			 				?>	
 		 			  	</tr>
 		 			 <?php 
 		 			  	}

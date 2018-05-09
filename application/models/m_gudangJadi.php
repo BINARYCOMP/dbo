@@ -13,11 +13,6 @@
     public function simpanBarang($data, $saldo, $child)
     {
       $this->db->insert("gudang_jadi", $data);
-      $data = array(
-              'BACH_GUJA_TOTAL' => $saldo,
-      );
-      $this->db->where('bach_id', $child);
-      $this->db->update('barang_child', $data);
     }
 
     //nama Parent

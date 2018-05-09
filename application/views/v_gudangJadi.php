@@ -17,18 +17,9 @@
                   <label class="control-label">Parent</label>
                   <div class="input-group autocomplete">
                     <!-- /btn-group -->
-                    <input id="myInput" class="form-control" type="text" name="cmbParent" onchange="showChild(this.value)" placeholder="== Pilih Induk Barang ==">
-                    <!--  <select name="cmbParent" onchange="showChild(this.value)" id="cmbParent" class="form-control">
-                      <option value="0">== Pilih Induk Barang ==</option>
-                      <?php  
-                        /*foreach ($namaParent as $row){
-                          echo "<option value='".$row['BAPA_ID']."'>";
-                          echo $row ['BAPA_NAME'];
-                         echo "</option>"; 
-                        }
-                        */
-                      ?>
-                    </select> <br> -->
+                    <input id="myInput" class="form-control" type="text" onchange="showChild(this.value)" name="cmbParentMuncul"  placeholder="== Pilih Induk Barang ==">
+                    <input class="form-control" id="cmbParent" type="text" name="cmbParent">
+                    
                     <div class="input-group-btn">
                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Search</button>
                     </div>
@@ -181,7 +172,7 @@ function showChild(str) {
 <script>
 function showStok() {
   var bachId = document.getElementById('cmbChild').value;
-  var bapaId = document.getElementById('cmbParent').value;
+  var bapaId = document.getElementById('myInput').value;
   var kateId = document.getElementById('cmbKategori').value;
 
   var xhttp;
@@ -212,8 +203,9 @@ function showStok() {
 <script>
   function modalKonfirmasiJadi() {
     var xhttp;
+    
     var parent,child,kategori,keterangan,masuk,keluar,akhir;
-    parent      = document.getElementById('cmbParent').value;
+    parent      = document.getElementById('myInput').value;
     child       = document.getElementById('cmbChild').value;
     kategori    = document.getElementById('cmbKategori').value;
     keterangan  = document.getElementById('keterangan').value;
@@ -236,7 +228,7 @@ function showStok() {
   function modalChildJadi() {
     var xhttp;
     var parent;
-    parent    = document.getElementById('cmbParent').value;
+    parent    = document.getElementById('myInput').value;
 
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -274,9 +266,10 @@ function showStok() {
                       $no=1;
                       foreach ($namaParent as $row) {
                         ?>
-                          <tr class="isi" data-brgParent="<?php echo $row['BAPA_ID']; ?>">
+                          <tr class="isi" data-brgParent="<?php echo $row['BAPA_NAME']; ?>" data-brgParentValue="<?php echo $row['BAPA_ID']; ?>">
                             <td><?php echo $no?></td>
                             <td><?php echo $row['BAPA_NAME']?></td>
+                            
                             
                           </tr>
                         <?php
@@ -337,9 +330,11 @@ function showStok() {
         // alert("test");
 
         // parent
-        document.getElementById("cmbParent").value = $(this).attr('data-brgParent');
+        document.getElementById("myInput").value = $(this).attr('data-brgParent');
+        document.getElementById("cmbParent").value = $(this).attr('data-brgParentValue');
+        
         $('#myModal').modal('hide');
-        showChild($(this).attr('data-brgParent'));
+        showChild($(this).attr('data-brgParentValue'));
         
     });
 
@@ -359,13 +354,14 @@ function showStok() {
 
         // child
         document.getElementById("cmbKategori").value = $(this).attr('data-namaKategori');
+
         $('#myModalKategori').modal('hide');
         showStok();
         
 
     });
 
-function autocomplete(inp, arr) {
+function autocomplete(inp, arr,id) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
@@ -393,10 +389,13 @@ function autocomplete(inp, arr) {
           b.innerHTML += arr[i].substr(val.length);
           /*insert a input field that will hold the current array item's value:*/
           b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          b.innerHTML += "<li type='none' value='" + id[i] + "'>";
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function(e) {
               /*insert the value for the autocomplete text field:*/
               inp.value = this.getElementsByTagName("input")[0].value;
+              document.getElementById("cmbParent").value = this.getElementsByTagName("li")[0].value;
+              showChild(this.getElementsByTagName("li")[0].value);
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/
               closeAllLists();
@@ -464,11 +463,24 @@ function autocomplete(inp, arr) {
 
 /*An array containing all the country names in the world:*/
 
-var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+var Parent = [ <?php 
+                foreach ($namaParent as $row){
+                         
+                          echo "'".$row ['BAPA_NAME']."',";
+                         
+                        }
+                ?> 
+                ];
+var Id = [ <?php 
+                foreach ($namaParent as $row){
+                         
+                          echo "'".$row ['BAPA_ID']."',";
+                         
+                        }
+                ?> 
+                ];
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("myInput"), countries);
-alert( countries);
-
+autocomplete(document.getElementById("myInput"), Parent, Id);
 
 </script>

@@ -11,6 +11,7 @@
       $warna[3] = 'danger';
       $warna[4] = 'default';
       $noWarna  = 0;
+      $jumlah = 0;
       foreach ($dataBarang as $row) {
         if ($noWarna > 4) {
           $noWarna = 0;
@@ -30,7 +31,7 @@
               <!-- /.box-header -->
               <div class="box-body">
                 <?php $dataKategori = $this->m_report->getKategoriByBachId($row['BACH_ID']); ?>
-                <table id="detailStock<?php echo $noWarna?>" class="table table-bordered table-hover">
+                <table id="detailStock<?php echo $jumlah?>" class="table table-bordered table-hover">
                   <thead>
                     <tr>
                       <th colspan="120"><?php echo $row['BACH_NAME'] ?></th>
@@ -146,6 +147,7 @@
           <!-- /.col -->
         <?php
         $noWarna++;
+        $jumlah++;
       }
     ?>
   </div>  <!-- /Main Content -->

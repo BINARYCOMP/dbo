@@ -130,7 +130,7 @@
     	}else{
     		$month = $i;
     	}
-    	$dataReport = $this->m_dashboard->getReportStock($month);
+    	$dataReport = $this->m_dashboard->getReportStockBawang($month);
     	if ($dataReport[0]['masuk'] == null) {
     		$dataReport[0]['masuk'] = 0;
     	}

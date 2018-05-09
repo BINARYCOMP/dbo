@@ -128,17 +128,27 @@ class C_gudangJadi extends CI_Controller
     $cmbRuangan    = $_GET['ruangan'];
     $saldoAkhir    = $txtSaldoAwal + $txtMasuk - $txtKeluar;
 
+
     $namaParentDariModel      = $this->m_gudangJadi->getParentByBapaId($cmbParent);
     $namaChildDariModel       = $this->m_gudangJadi->getChildByBachId($cmbChild);
     $namaKategoriDariModel    = $this->m_gudangJadi->getKategoriByKateId($cmbKategori);
     $namaRuanganDariModel     = $this->m_gudangJadi->getRuanganByRuanId($cmbRuangan);
-
-    $namaParentUntukDitampilkan      = $namaParentDariModel[0]['BAPA_NAME'];
-    $namaChildUntukDitampilkan       = $namaChildDariModel[0]['BACH_NAME'] ;
-    $namaKategoriUntukDitampilkan    = $namaKategoriDariModel[0]['KATE_NAME'] = 0; 
-    $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER']; 
-
-
+    $namaParentUntukDitampilkan      = 0;
+    $namaChildUntukDitampilkan       = 0;
+    $namaKategoriUntukDitampilkan    = 0;
+    $nomorGudangUntukDitampilkan     = 0;
+    if (!empty($namaParentDariModel[0]['BAPA_NAME'])) {
+      $namaParentUntukDitampilkan      = $namaParentDariModel[0]['BAPA_NAME'];
+    }
+    if (!empty($namaChildDariModel[0]['BACH_NAME'])) {
+      $namaChildUntukDitampilkan       = $namaChildDariModel[0]['BACH_NAME'] ;
+    } 
+    if (!empty($namaKategoriDariModel[0]['KATE_NAME'])) {
+       $namaKategoriUntukDitampilkan    = $namaKategoriDariModel[0]['KATE_NAME'];
+    } 
+    if (!empty($namaRuanganDariModel[0]['RUAN_NUMBER'])) {
+      $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER'];
+    } 
     ?>
       <div class="modal-content">
         <div class="modal-header">
