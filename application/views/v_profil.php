@@ -47,7 +47,6 @@
               </tr>
         </tbody>
       </table>
-      <img src="<?php echo base_url($Account[0]['USER_PICTURE']) ?>" width="500">
        <form action="<?php echo base_url()?>c_profil/upload/" method="post" enctype="multipart/form-data">
         Select image to upload:
         <input type="file" name="fileToUpload" id="fileToUpload">
