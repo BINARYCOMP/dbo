@@ -76,29 +76,35 @@ class C_report extends CI_Controller
 	{
 		date_default_timezone_set("Asia/Bangkok");
 		header("Content-type: application/vnd-ms-excel");
-		header("Content-Disposition: attachment; filename=Laporan Barang [ Gudang Bawang ] 	 (".date("l jS \of F Y h:i:s A").").xls");
+		header("Content-Disposition: attachment; filename=Laporan Barang [ Gudang Bawang ] (".date("l jS \of F Y h:i:s A").").xls");
 
 		$data['barang_parent'] = $this->m_report->getBarangParent();
 
-		
+
 		$dataBarangParent 					= $this->m_report->getBarangParent();
-		$dataBarangParentCimuning			= $this->m_report->getBarangParentCimuning();
-		$dataMaterialCimuningParent 		= $this->m_report->getMaterialCimuningParent();
-		$dataMaterialBawangParent	 		= $this->m_report->getMaterialBawangParent();
-		$dataKeuangan 						= $this->m_report->getKeuangan();
-		$dataInventarisParent				= $this->m_report->getInventarisParent();
-		$dataInventarisParentCimuning		= $this->m_report->getInventarisParentCimuning();
 		$dataRuangan 						= $this->m_report->getRuangan();
 		$data = array(
 			'dataBarangParent' 					=> $dataBarangParent,
-			'dataBarangParentCimuning'			=> $dataBarangParentCimuning,
-			'dataMaterialCimuningParent' 		=> $dataMaterialCimuningParent,
-			'dataMaterialBawangParent' 			=> $dataMaterialBawangParent,
-			'dataKeuangan' 						=> $dataKeuangan,
-			'dataInventarisParent'				=> $dataInventarisParent,
-			'dataInventarisParentCimuning'		=> $dataInventarisParentCimuning,
 			'dataRuangan'						=> $dataRuangan
 		);
 		$this->load->view('export/export_xlsBarangBawang', $data);
+	}
+
+		public function exportBarangCimuning()
+	{
+		date_default_timezone_set("Asia/Bangkok");
+		header("Content-type: application/vnd-ms-excel");
+		header("Content-Disposition: attachment; filename=Laporan Barang [ Gudang Cimuning ] (".date("l jS \of F Y h:i:s A").").xls");
+
+		$data['barang_cimuning_parent'] = $this->m_report->getBarangParentCimuning();
+
+
+		$dataBarangParentCimuning			= $this->m_report->getBarangParentCimuning();
+		$dataRuangan 						= $this->m_report->getRuangan();
+		$data = array(
+			'dataBarangParentCimuning'			=> $dataBarangParentCimuning,
+			'dataRuangan'						=> $dataRuangan
+		);
+		$this->load->view('export/export_xlsBarangCimuning', $data);
 	}
 }
