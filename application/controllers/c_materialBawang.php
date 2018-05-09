@@ -52,7 +52,6 @@ class C_materialBawang extends CI_Controller
       'MABA_SALDO'    => $saldoAkhir
     );
     $simpanBarang = $this->m_materialBawang->simpanBarang($data, $saldoAkhir, $child);
-    exit();
     echo "<script> window.location='".base_url()."C_materialBawang' </script>";
   }
     public function delete($id)

@@ -52,7 +52,6 @@ class C_materialCimuning extends CI_Controller
       'MACI_SALDO'    => $saldoAkhir
     );
     $simpanBarang = $this->m_materialCimuning->simpanBarang($data, $saldoAkhir, $child);
-    exit();
     echo "<script> window.location='".base_url()."C_materialCimuning?message=1' </script>";
   }
       public function delete($id)
