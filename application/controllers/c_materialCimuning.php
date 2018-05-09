@@ -103,7 +103,7 @@ class C_materialCimuning extends CI_Controller
 
     if ($mpciId == 0 || $mcciId == 0 ) {
       ?>
-        <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly placeholder="0" value="0"> 
+        <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly value="0"> 
       <?php
     }else{
       if (isset($stokAwal[0]['MACI_SALDO'])) {
@@ -112,7 +112,7 @@ class C_materialCimuning extends CI_Controller
         <?php
       }else{
         ?>
-          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo '0' ?>"> 
+          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['MACI_SALDO']?>"> 
         <?php
       }
     }
@@ -191,7 +191,7 @@ class C_materialCimuning extends CI_Controller
     <?php
   }
 
-  public function modalChildCimuning()
+  public function modalChildJadi()
   {
     $cmbParent = $_GET['parent'];
     $namaChild = $this->m_materialCimuning->getChildBympciId($cmbParent);

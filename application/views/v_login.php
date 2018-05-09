@@ -2,25 +2,202 @@
 	header('location:'.base_url().'c_dashboard');
 ?>
 <!DOCTYPE html>
-<html>
-<head>
-	<title>login</title>
-</head>
-<body>
-<form action="<?php echo base_url() ?>c_login/login" method="POST">
-	<table>
-		<tr>
-			<td>Username</td>
-			<td><input type="text" name="username"></td>
-		</tr>
-		<tr>
-			<td>Password</td>
-			<td><input type="password" name="password"></td>
-		</tr>
-		<tr>
-			<td><input type="submit" name="login" value="Login"></td>
-		</tr>
-	</table>
-</form>
-</body>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Home</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/dbo/assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/dbo/assets/css/half-slider.css" rel="stylesheet">
+    <style media="screen">
+      .affix {
+      padding:0px;
+      -webkit-transition:padding 0.2s linear;
+      -moz-transition:padding 0.2s linear;
+      -o-transition:padding 0.2s linear;
+      transition:padding 0.2s linear;
+
+      }
+
+      .affix-top {
+      padding-top:15px;
+      padding-bottom:15px;
+      -webkit-transition:padding 0.5s linear;
+      -moz-transition:padding 0.5s linear;
+      -o-transition:padding 0.5s linear;
+      transition:padding 0.5s linear;
+      }
+    </style>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/dbo/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/dbo/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-spy="affix" data-offset-top="100">
+      <div class="container">
+        <a class="navbar-brand" href="#">Data Online</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <button type="submit" class="btn btn-info" name="button" data-toggle="modal" data-target="#myModal">Login</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal Content -->
+        <div class="modal-content">
+
+          <div class="modal-body">
+            <div class="container">
+              <form class="" action="<?php echo base_url() ?>c_login/login" method="post">
+                <button type="button" class="close" data-dismiss="modal">&times</button>
+                <div class="form-group text-center">
+                  <img src="/dbo/assets/dist/img/profile.png" alt="foto profile" class="rounded-circle" width="130" height="120" id="img-login">
+                </div>
+                <div class="form-group text-center">
+                  <h4 class="text-info">Login Here</h4>
+                </div>
+                <div class="form-group">
+
+                  <input type="text" class="form-control col-sm-10 offset-sm-1" placeholder="Username"  name="username" id="username">
+                </div>
+                <div class="form-group">
+                  <!-- <label class="">Password</label> -->
+                  <input type="password" class="form-control col-sm-10 offset-sm-1" placeholder="Password" name="password" id="password">
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <label for="" class="col-sm-4 offset-sm-1"> <input type="checkbox"> Remember Me</label>
+                    <label for="" class="col-sm-4 offset-sm-2 text-sm-center"> <a href="#" data-toggle="modal" id="forgot" data-target="#modalForgot"> Forgot Password? </a></label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-info col-sm-10 offset-sm-1" data-dismiss"modal">Sign In</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalForgot" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal Content -->
+        <div class="modal-content">
+
+          <div class="modal-body">
+            <div class="container">
+              <form class="" action="<?php echo base_url() ?>c_login/forgotPassword" method="post">
+                <button type="button" class="close" data-dismiss="modal">&times</button>
+                <div class="form-group text-center">
+                  <img src="/dbo/assets/dist/img/profile.png" alt="foto profile" class="rounded-circle" width="130" height="120" id="img-login">
+                </div>
+                <div class="form-group text-center">
+                  <h4 class="text-info">Forgot Your Password ?</h4>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control col-sm-10 offset-sm-1" placeholder="Email"  name="email" id="email">
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-info col-sm-10 offset-sm-1" data-dismiss"modal">Get My Password </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <header>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <!-- Slide One - Set the background image for this slide in the line below -->
+          <div class="carousel-item active">
+            <img src="/dbo/assets/dist/img/slide3.jpg" alt="" width="100%" height="500">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>First Slide</h3>
+              <p>This is a description for the first slide.</p>
+            </div>
+          </div>
+          <!-- Slide Two - Set the background image for this slide in the line below -->
+          <div class="carousel-item">
+              <img src="/dbo/assets/dist/img/slide2.jpg" alt="" width="100%" height="500">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Second Slide</h3>
+              <p>This is a description for the second slide.</p>
+            </div>
+          </div>
+          <!-- Slide Three - Set the background image for this slide in the line below -->
+          <div class="carousel-item">
+            <img src="/dbo/assets/dist/img/slide1.jpg" alt="" width="100%" height="500">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Third Slide</h3>
+              <p>This is a description for the third slide.</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <section class="py-5">
+      <div class="container">
+        <h1>Corporate Database Management System</h1>
+        <p>A database is an organized collection of data. A relational database, more restrictively, is a collection of schemas, tables, queries, reports, views, and other elements.
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; BINARY Corporate 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+
+    
+    <script type="text/javascript">
+    	$(document).on('click', '#forgot', function (e) {
+	        $('#myModal').modal('hide');
+	    });
+    </script>
+
+  </body>
+
 </html>
