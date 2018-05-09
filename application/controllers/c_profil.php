@@ -26,24 +26,27 @@ class C_profil extends CI_Controller
 	}
 	public function formGantiPassword($Password)
 	{
+		$akun 			=$this->m_profil->getInfoAccount();
 		$password 		=$this->m_profil->getPassword();
 		$data = array(
 			'Password'	=>$password,
 			'content'	=>'v_editPassword',
+			'akun'  	=>$akun,
 			'title' 	=>'Account',
       		'menu'      =>'Ganti Password'
 		);
 		$this->load->view('tampilan/v_combine',$data);
 	}
-	public function GantiPassword($id)
+	public function GantiPassword()
 	{
-		$password 			= $_POST['Password'];
+		$newPassword 		= md5($_POST['newPassword']);
+		$password 			= $this->m_profil->getPassword();
 		$data = array(
-			'USER_PASSWORD' =>$password
+			'USER_PASSWORD' 	=>$newPassword
 			);
-	}
-		$this->m_profil->UpdatePassword($id, $data);
+		$this->m_profil->UpdatePassword($data);
 		redirect('C_profil');
+	}
 }
 
  ?>
