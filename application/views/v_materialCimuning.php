@@ -129,7 +129,7 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <table class="table" id="example1">
+            <table class="table" id="mateCimuning" class="table table-bordered table-hover table-striped">
               <thead>
                 <tr>
                   <th>No.</th>
@@ -210,7 +210,7 @@
               <h4 class="modal-title" id="myModalLabel">Lookup Barang Child</h4>
           </div>
           <div class="modal-body">
-              <table id="gujaChild" class="table table-bordered table-hover table-striped">
+              <table id="cimuChild" class="table table-bordered table-hover table-striped">
                   <thead>
                     <tr>
                       <th>No.</th>
@@ -358,9 +358,15 @@
     });
 
     $(function () {
-        $("#gujaChild").dataTable();
-    });
-
+         $("#mateCimuning").dataTable( {
+          "bSort": true,
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+          buttons: [ 'excel' ]
+          });
+          $("#cimuChild").dataTable( {
+           "bSort": true,
+          });
+       });
     //child jadi
     function modalChildJadi() {
       var xhttp;
@@ -373,7 +379,7 @@
           document.getElementById("modalChild").innerHTML = this.responseText;
         }
       };
-      xhttp.open("GET", "<?php echo base_url()?>c_materialCimuning/modalChild?parent="+parent, true);
+      xhttp.open("GET", "<?php echo base_url()?>c_materialCimuning/modalChildJadi?parent="+parent, true);
       xhttp.send();
     }
 </script>

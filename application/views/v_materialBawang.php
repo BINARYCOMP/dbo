@@ -129,7 +129,7 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <table class="table" id="example1">
+            <table class="table" id="mateBawang" class="table table-bordered table-hover table-striped">
               <thead>
                 <tr>
                   <th>No.</th>
@@ -358,8 +358,16 @@
     });
 
     $(function () {
-        $("#gujaChild").dataTable();
+         $("#mateBawang").dataTable( {
+           "bSort": true,
+            dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+            buttons: [ 'excel' ]
+          });
+         $("#gujaChild").dataTable( {
+           "bSort": true,
+          });
     });
+
 
     //child jadi
     function modalChildJadi() {
@@ -370,7 +378,7 @@
       xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("modalChild").innerHTML = this.responseText;
+          document.getElementById("modalParent").innerHTML = this.responseText;
         }
       };
       xhttp.open("GET", "<?php echo base_url()?>c_materialBawang/modalChild?parent="+parent, true);
