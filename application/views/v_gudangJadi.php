@@ -203,6 +203,7 @@ function showStok() {
 <script>
   function modalKonfirmasiJadi() {
     var xhttp;
+    
     var parent,child,kategori,keterangan,masuk,keluar,akhir;
     parent      = document.getElementById('myInput').value;
     child       = document.getElementById('cmbChild').value;
