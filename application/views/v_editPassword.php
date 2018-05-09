@@ -13,7 +13,7 @@
 	      <div class="box-body">
 	        <div class="row">
 	          <div class="col-md-12 ">
-	            <form name="GantiPassword"action="<?php echo base_url ()?>C_profil/GantiPassword/?>" method="post">
+	            <form name="GantiPassword" action="<?php echo base_url ()?>C_profil/GantiPassword/?>" method="post">
 	            	<div>
 	                <div class="form-group">
 						  <label class=" control-label">New Password</label>
@@ -28,12 +28,6 @@
 						  <div>
 						    <span id="qty">
 						     <input class="form-control" type="password"  name="ConfirmPassword" onchange="isPasswordMatch();" id="confirmPassword"  required>
-						    </span>
-						  </div>
-						</div>
-						<div class="form-group">
-						  <div>
-						    <span id="qty">
 						     <div id="divCheckPassword"></div>
 						    </span>
 						  </div>
