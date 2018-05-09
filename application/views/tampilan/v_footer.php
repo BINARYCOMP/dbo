@@ -72,6 +72,7 @@
 
         //report
         $("#finance").dataTable();
+
     });
 </script>
 <!-- AdminLTE for demo purposes -->

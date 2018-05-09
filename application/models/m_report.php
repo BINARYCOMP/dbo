@@ -17,6 +17,13 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
+	public function getBarangParentCimuning()
+	{
+		$sql 	= "SELECT * FROM barang_cimuning_parent ";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 	public function getMaterialCimuningParent()
 	{
 		$sql 	= "SELECT * FROM material_parent_cimuning ";
@@ -48,6 +55,13 @@ class M_report extends CI_Model
 	public function getBarangChildByBapaId($id)
 	{
 		$sql 	= "SELECT * FROM  barang_parent, barang_child, satuan WHERE BACH_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_BAPA_ID =".$id;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getBarangChildCimuningByBacpId($id)
+	{
+		$sql 	= "SELECT * FROM  barang_cimuning_parent, barang_cimuning_child, satuan WHERE BACC_BACP_ID = BACP_ID AND BACC_SATU_ID = SATU_ID AND BACC_BACP_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -128,7 +142,14 @@ class M_report extends CI_Model
 	}
 	public function getTotalQtyByInpaId($id)
 	{
-		$sql 	= "SELECT sum(INCH_QTY) as 'Total' FROM  inventaris_child WHERE INCH_INPA_ID =".$id;
+		$sql 	= "SELECT sum(INCH_QTY) as 'Total' FROM  inventaris_child WHERE INCH_INPA_ID =".$id." AND INCH_KETERANGAN='Bawang'";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getTotalQtyCimuningByInpaId($id)
+	{
+		$sql 	= "SELECT sum(INCH_QTY) as 'Total' FROM  inventaris_child WHERE INCH_INPA_ID =".$id." AND INCH_KETERANGAN='Cimuning'";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -145,25 +166,40 @@ class M_report extends CI_Model
 		$sql="SELECT * from gudang_jadi, barang_parent, barang_child, kategori where guja_bach_id = bach_id and guja_bapa_id = bapa_id and guja_kate_id = kate_id and  guja_bach_id = ".$bach_id." and guja_bapa_id = ".$bapa_id." and guja_kate_id = ".$kate_id." group by guja_id desc limit 1";
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
-return $return;
+		return $return;
 	}
 	public function getInventarisParent()
 	{
-		$sql 	= "SELECT * FROM inventaris_parent ";
+		$sql 	= "SELECT * FROM inventaris_parent WHERE inpa_keterangan ='Bawang'";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
-
-		public function getInventarisChildByInpaId($id)
+	public function getInventarisParentCimuning()
 	{
-		$sql 	= "SELECT * FROM  inventaris_parent, inventaris_child, inventaris WHERE INCH_INPA_ID = INPA_ID AND INVE_INCH_ID = INCH_ID AND INVE_INPA_ID = INPA_ID AND INPA_ID =".$id;
+		$sql 	= "SELECT * FROM inventaris_parent WHERE inpa_keterangan ='Cimuning'";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 
-		public function getInventarisByChildId($id)
+	public function getInventarisChildByInpaId($id)
+	{
+		$sql 	= "SELECT * FROM  inventaris_parent, inventaris_child, inventaris WHERE INCH_INPA_ID = INPA_ID AND INVE_INCH_ID = INCH_ID AND INVE_INPA_ID = INPA_ID AND INPA_ID =".$id." AND INPA_KETERANGAN ='Bawang' AND INCH_KETERANGAN ='Bawang'";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+
+	public function getInventarisChildCimuningByInpaId($id)
+	{
+		$sql 	= "SELECT * FROM  inventaris_parent, inventaris_child, inventaris WHERE INCH_INPA_ID = INPA_ID AND INVE_INCH_ID = INCH_ID AND INVE_INPA_ID = INPA_ID AND INPA_ID =".$id." AND INPA_KETERANGAN ='Cimuning' AND INCH_KETERANGAN = 'Cimuning'";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+
+	public function getInventarisByChildId($id)
 	{
 		$sql 	= "SELECT * FROM  inventaris, inventaris_parent, inventaris_child WHERE INVE_INCH_ID = INCH_ID AND INVE_INPA_ID = INPA_ID AND INCH_ID =".$id;
 		$query = $this->db->query($sql);

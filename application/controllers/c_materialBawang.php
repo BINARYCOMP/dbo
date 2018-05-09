@@ -25,9 +25,11 @@ class C_materialBawang extends CI_Controller
 
       $namaParent       = $this->m_materialBawang->getParentName();
       $datamaterial     = $this->m_materialBawang->getDataGudang();
+      $dataRuangan      = $this->m_materialBawang->getRuangan();
       $data = array(
         'dataParent'      => $namaParent,
         'datamaterial'    => $datamaterial,
+        'dataRuangan'     => $dataRuangan,
         'message'         => $message,
         'content'         => 'v_materialBawang',
         'title'           => 'Input Material Bawang',
@@ -40,6 +42,7 @@ class C_materialBawang extends CI_Controller
     $parent     = $_POST['cmbParent'];
     $child      = $_POST['cmbChild'];
     $uraian     = $_POST['txtUraian'];
+    $cmbRuangan     = $_POST['cmbRuangan'];
     $masuk      = $_POST['txtMasuk'];
     $keluar     = $_POST['txtKeluar'];
     $saldoAkhir = $_POST['txtSaldoAwal'] + $masuk - $keluar;
@@ -48,6 +51,7 @@ class C_materialBawang extends CI_Controller
       'MABA_URAIAN'   => $uraian ,
       'MABA_MASUK'    => $masuk ,
       'MABA_MPBA_ID'  => $parent ,
+      'MABA_RUAN_ID'  => $cmbRuangan,
       'MABA_MCBA_ID'  => $child ,
       'MABA_SALDO'    => $saldoAkhir
     );
@@ -121,14 +125,26 @@ class C_materialBawang extends CI_Controller
     $txtMasuk      = $_GET['masuk'];
     $txtKeluar     = $_GET['keluar'];
     $txtSaldoAwal  = $_GET['awal'];
+    $cmbRuangan    = $_GET['ruangan'];
     $saldoAkhir    = $txtSaldoAwal + intval($txtMasuk) - intval($txtKeluar);
 
     $namaParentDariModel      = $this->m_materialBawang->getParentBympbaId($cmbParent);
     $namaChildDariModel       = $this->m_materialBawang->getChildBymcbaId($cmbChild);
+    $namaRuanganDariModel     = $this->m_materialBawang->getRuanganByRuanId($cmbRuangan);
 
-    $namaParentUntukDitampilkan      = $namaParentDariModel[0]['MPBA_NAME'];
-    $namaChildUntukDitampilkan       = $namaChildDariModel[0]['MCBA_NAME'] ;
+    $namaParentUntukDitampilkan = 0;
+    $namaChildUntukDitampilkan = 0;
+    $nomorGudangUntukDitampilkan  = 0;
 
+      if (!empty($namaParentDariModel[0]['MPBA_NAME'])) {
+      $namaParentUntukDitampilkan      = $namaParentDariModel[0]['MPBA_NAME'];
+    }
+      if (!empty($namaChildDariModel[0]['MCBA_NAME'])) {
+      $namaChildUntukDitampilkan       = $namaChildDariModel[0]['MCBA_NAME'] ;
+    } 
+      if (!empty($namaRuanganDariModel[0]['RUAN_NUMBER'])) {
+      $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER'];
+    }
     ?>
       <div class="modal-content">
         <div class="modal-header">
@@ -140,7 +156,8 @@ class C_materialBawang extends CI_Controller
           <table class="table table-bordered">
             <tr>
               <th>Induk Material</th>
-              <th>Anak Material
+              <th>Anak Material</th>
+              <th>Ruangan</th>
               <th>Material Masuk</th>
               <th>Material Keluar</th>
               <th>Saldo Akhir</th>
@@ -148,6 +165,7 @@ class C_materialBawang extends CI_Controller
             <tr>
               <td><?php echo $namaParentUntukDitampilkan  ?></td>
               <td><?php echo $namaChildUntukDitampilkan ?></td>
+              <td><?php echo $nomorGudangUntukDitampilkan ?></td>
               <td><?php echo intval($txtMasuk) ?></td>
               <td><?php echo intval($txtKeluar) ?></td>
               <td><?php echo $saldoAkhir ?> </td>
@@ -162,6 +180,7 @@ class C_materialBawang extends CI_Controller
             <input type="hidden" name="txtMasuk" value="<?php echo $txtMasuk?>">
             <input type="hidden" name="txtKeluar" value="<?php echo $txtKeluar?>">
             <input type="hidden" name="txtUraian" value="<?php echo $txtUraian?>">
+            <input type="hidden" name="cmbRuangan" value="<?php echo $cmbRuangan?>">
             <input type="hidden" name="txtSaldoAwal" value="<?php echo $txtSaldoAwal?>">
             <input type="submit" class="btn btn-outline" value="Simpan">
           </form>

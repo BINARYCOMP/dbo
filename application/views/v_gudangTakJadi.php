@@ -73,7 +73,7 @@
                   <label class="control-label">Nomor Gudang</label>
                   
                     <!-- /btn-group -->
-                    <select name="cmbRuangan" id="cmbRuangan"  class="form-control">
+                    <select name="cmbRuangan" id="cmbRuanganTakJadi"  class="form-control">
                       <option value="0">== Pilih Gudang ==</option>
                       <?php  
                         foreach ($dataRuangan as $row){
@@ -209,8 +209,13 @@ function showStokTakJadi(str) {
 <script>
   function modalKonfirmasiTakJadi() {
     var xhttp;
+<<<<<<< HEAD
+    var parent,child,kategori,keterangan,masuk,keluar,akhir,awal,ruangan;
+    parent      = document.getElementById('cmbParentTakJadi').value;
+=======
     var parent,child,kategori,keterangan,masuk,keluar,akhir;
     parent      = document.getElementById('myInputTakJadi').value;
+>>>>>>> 99c128949bf8ca9adb143fedab43160d187e2e3d
     child       = document.getElementById('cmbChildTakJadi').value;
     kategori    = document.getElementById('cmbKategoriTakJadi').value;
     keterangan  = document.getElementById('keteranganTakJadi').value;
@@ -218,7 +223,7 @@ function showStokTakJadi(str) {
     keluar      = document.getElementById('brgKeluarTakJadi').value;
     akhir       = document.getElementById('saldoAkhirTakJadi').value;
     awal        = document.getElementById('saldoAwalTakJadi').value;
-    ruangan     = document.getElementById('cmbRuangan').value;
+    ruangan     = document.getElementById('cmbRuanganTakJadi').value;
     
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -226,7 +231,7 @@ function showStokTakJadi(str) {
         document.getElementById("modalKonfirmasiTakJadi").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&kategori="+kategori+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&kategori="+kategori+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal+"&ruangan="+ruangan, true);
     xhttp.send();   
   }
 

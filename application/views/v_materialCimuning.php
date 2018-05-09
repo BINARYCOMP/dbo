@@ -52,6 +52,23 @@
                   <textarea name="txtUraian" class="form-control" id="txtUraian" rows="3" placeholder="Keterangan barang.."></textarea>
                 </div>
 
+                <div class="form-group">
+                  <label class="control-label">Nomor Gudang</label>
+                  <div >
+                    <!-- /btn-group -->
+                    <select name="cmbRuangan" id="cmbRuangan"  class="form-control">
+                      <option value="0">== Pilih Gudang ==</option>
+                      <?php  
+                        foreach ($dataRuangan as $row){
+                          echo "<option value='".$row['RUAN_ID']."'>";
+                          echo $row ['RUAN_NUMBER'];
+                         echo "</option>";
+                        }
+                      ?>
+                    </select> 
+                  </div>
+                </div>
+
                   <div class="form-group">
                       <label class=" control-label">Masuk</label>
                       <div>
@@ -119,6 +136,7 @@
                   <th>Material Parent</th>
                   <th>Material Child</th>
                   <th>Keterangan</th>
+                  <th>Ruangan</th>
                   <th>masuk</th>
                   <th>Keluar</th>
                   <th>Saldo</th>
@@ -139,16 +157,34 @@
                         <tr>
                           <td><?php echo $no ?></td>
                           <td><?php echo $row['MPCI_NAME']?></td>
-                          <td><?php echo $row['MCCI_NAME']?></td>
+                          <td>
+                            <?php 
+                              $child = $this->m_materialCimuning->getChildBymcciId($row['MACI_MCCI_ID']);
+                              if (isset($child[0]['MCCI_NAME'])) {
+                                echo $child[0]['MCCI_NAME'];
+                              }else{
+                                echo "-";
+                              }
+                            ?>
+                          </td>
                           <td><?php echo $row['MACI_URAIAN']?></td>
+                            <td>
+                            <?php 
+                              $ruangan = $this->m_materialCimuning->getRuanganByRuanId($row['MACI_RUAN_ID']);
+                              if (isset($ruangan[0]['RUAN_NUMBER'])) {
+                                echo $ruangan[0]['RUAN_NUMBER'];
+                              }else{
+                                echo "-";
+                              }
+                            ?>
+                          </td>
                           <td><?php echo $row['MACI_MASUK']?></td>
                           <td><?php echo $row['MACI_KELUAR']?></td>
                           <td><?php echo $row['MACI_SALDO']?></td>
                           <?php
                             if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
-                              ?> 
-                                <td> <a href="#">Edit</a> | <a href="<?php echo base_url()?>c_materialCimuning/delete/<?php echo $row['MACI_ID']?>">Delete</a>  </td> 
-                              <?php
+                          echo "<td><a href='#'>Edit</a></td>";
+                          echo "<td><a href='".base_url()."c_materialCimuning/delete/".$row['MACI_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a></td>";
                             }
                           ?>
                         </tr>
@@ -266,7 +302,7 @@
   }
    function modalMaterial() {
     var xhttp;
-    var parent,child,keterangan,masuk,keluar,kondisi;
+    var parent,child,keterangan,masuk,keluar,kondisi,ruangan;
     // try{
       parent      = document.getElementById('cmbParent').value;
       child       = document.getElementById('cmbChild').value;
@@ -275,6 +311,7 @@
       keluar      = document.getElementById('keluar').value;
       awal        = document.getElementById('saldoAwal').value;
       akhir       = document.getElementById('saldoAkhir').value;
+      ruangan     = document.getElementById('cmbRuangan').value;
 
 
     xhttp = new XMLHttpRequest();
@@ -284,7 +321,7 @@
       }
     };
 
-    xhttp.open("GET","<?php echo base_url()?>c_materialCimuning/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&awal="+awal+"&akhir="+akhir,true);
+    xhttp.open("GET","<?php echo base_url()?>c_materialCimuning/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&awal="+awal+"&akhir="+akhir+"&ruangan="+ruangan,true);
     xhttp.send()
   }
 
@@ -321,7 +358,6 @@
     });
 
     $(function () {
-        $("#lookup").dataTable();
         $("#gujaChild").dataTable();
     });
 
