@@ -52,6 +52,23 @@
                   <textarea name="txtUraian" class="form-control" id="txtUraian" rows="3" placeholder="Keterangan barang.."></textarea>
                 </div>
 
+                <div class="form-group">
+                  <label class="control-label">Nomor Gudang</label>
+                  <div >
+                    <!-- /btn-group -->
+                    <select name="cmbRuangan" id="cmbRuangan"  class="form-control">
+                      <option value="0">== Pilih Gudang ==</option>
+                      <?php  
+                        foreach ($dataRuangan as $row){
+                          echo "<option value='".$row['RUAN_ID']."'>";
+                          echo $row ['RUAN_NUMBER'];
+                         echo "</option>";
+                        }
+                      ?>
+                    </select> 
+                  </div>
+                </div>
+
                   <div class="form-group">
                       <label class=" control-label">Masuk</label>
                       <div>
@@ -119,6 +136,7 @@
                   <th>Material Parent</th>
                   <th>Material Child</th>
                   <th>Keterangan</th>
+                  <th>Gudang</th>
                   <th>masuk</th>
                   <th>Keluar</th>
                   <th>Saldo</th>
@@ -139,8 +157,27 @@
                         <tr>
                           <td><?php echo $no ?></td>
                           <td><?php echo $row['MPBA_NAME']?></td>
-                          <td><?php echo $row['MCBA_NAME']?></td>
+                          <td>
+                            <?php 
+                              $child = $this->m_materialBawang->getChildBymcbaId($row['MABA_MCBA_ID']);
+                              if (isset($child[0]['MCBA_NAME'])) {
+                                echo $child[0]['MCBA_NAME'];
+                              }else{
+                                echo "-";
+                              }
+                            ?>
+                          </td>
                           <td><?php echo $row['MABA_URAIAN']?></td>
+                          <td>
+                            <?php 
+                              $ruangan = $this->m_materialBawang->getRuanganByRuanId($row['MABA_RUAN_ID']);
+                              if (isset($ruangan[0]['RUAN_NUMBER'])) {
+                                echo $ruangan[0]['RUAN_NUMBER'];
+                              }else{
+                                echo "-";
+                              }
+                            ?>
+                          </td>
                           <td><?php echo $row['MABA_MASUK']?></td>
                           <td><?php echo $row['MABA_KELUAR']?></td>
                           <td><?php echo $row['MABA_SALDO']?></td>
@@ -265,7 +302,7 @@
   }
    function modalMaterial() {
     var xhttp;
-    var parent,child,keterangan,masuk,keluar,kondisi;
+    var parent,child,keterangan,masuk,keluar,kondisi,ruangan;
     // try{
       parent      = document.getElementById('cmbParent').value;
       child       = document.getElementById('cmbChild').value;
@@ -274,6 +311,7 @@
       keluar      = document.getElementById('keluar').value;
       awal        = document.getElementById('saldoAwal').value;
       akhir       = document.getElementById('saldoAkhir').value;
+      ruangan     = document.getElementById('cmbRuangan').value;
 
 
     xhttp = new XMLHttpRequest();
@@ -283,7 +321,7 @@
       }
     };
 
-    xhttp.open("GET","<?php echo base_url()?>c_materialBawang/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&awal="+awal+"&akhir="+akhir,true);
+    xhttp.open("GET","<?php echo base_url()?>c_materialBawang/modalKonfirmasi?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&awal="+awal+"&akhir="+akhir+"&ruangan="+ruangan,true);
     xhttp.send()
   }
 

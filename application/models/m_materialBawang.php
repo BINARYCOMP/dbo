@@ -55,7 +55,7 @@
     }
     public function getDataGudang()
     {
-      $sql    = "SELECT * from material_bawang,material_child_bawang,material_parent_bawang where MABA_MCBA_ID = MCBA_ID AND MABA_MPBA_ID = MPBA_ID";
+      $sql    = "SELECT * from material_bawang,material_parent_bawang where MABA_MPBA_ID = MPBA_ID";
       $query  = $this->db->query($sql);
       $return = $query->result_array();
       return $return;
@@ -80,6 +80,20 @@
     {
       $sql    = "SELECT * from material_parent_bawang where mpba_id = ".$id;
       $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+    public function getRuanganByRuanId($id)
+    {
+      $sql    = "SELECT * from ruangan where ruan_id = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+    public function getRuangan()
+    {
+      $sql="select * from ruangan";
+      $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;
     }
