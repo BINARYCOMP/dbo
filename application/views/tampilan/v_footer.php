@@ -39,7 +39,7 @@
         $("#detailStock").dataTable();
         $('#lookup').dataTable( {
           "bSort": false,
-          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH','fnRowCallBack',
           buttons: [ 'excel' ]
         } );
         $("#guja").dataTable({
@@ -72,6 +72,7 @@
 
         //report
         $("#finance").dataTable();
+
     });
 </script>
 <!-- AdminLTE for demo purposes -->

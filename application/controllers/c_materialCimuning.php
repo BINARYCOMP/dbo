@@ -113,7 +113,7 @@ class C_materialCimuning extends CI_Controller
       }
     }
   }
-  public function modalKonfirmasi()
+  public function modalKonfirmasiCimuning()
   {
     $cmbParent     = $_GET['parent'];
     $cmbChild      = $_GET['child'];
@@ -171,7 +171,7 @@ class C_materialCimuning extends CI_Controller
     <?php
   }
 
-  public function modalChild()
+  public function modalChildCimuning()
   {
     $cmbParent = $_GET['parent'];
     $namaChild = $this->m_materialCimuning->getChildBympciId($cmbParent);

@@ -25,7 +25,7 @@ class C_gudangTakJadi extends CI_Controller
 
       $namaParent          = $this->m_gudangTakJadi->getParentName();
       $dataGudangTakJadi   = $this->m_gudangTakJadi->getDataGudang();
-      $dataRuangan      = $this->m_gudangJadi->getRuangan();
+      $dataRuangan      = $this->m_gudangTakJadi->getRuangan();
       $namaKategori        = $this->m_gudangTakJadi->getKategoriName();
       $data = array(
         'namaKategori'    => $namaKategori,
@@ -60,6 +60,12 @@ class C_gudangTakJadi extends CI_Controller
     $simpanBarang = $this->m_gudangTakJadi->simpanBarang($data, $saldoAkhir, $child);
     echo "<script> window.location='".base_url()."c_stok?message=1' </script>";
   }
+      public function delete($id)
+  {
+    $this->db->delete('gudang_tak_jadi', array('GUTA_ID' => $id));
+    redirect('c_stok');
+  }
+
 
   // nama child
   public function searchChild()
@@ -131,13 +137,12 @@ class C_gudangTakJadi extends CI_Controller
     $namaParentDariModel      = $this->m_gudangTakJadi->getParentByBapaId($cmbParent);
     $namaChildDariModel       = $this->m_gudangTakJadi->getChildByBachId($cmbChild);
     $namaKategoriDariModel    = $this->m_gudangTakJadi->getKategoriByKateId($cmbKategori);
-    $namaRuanganDariModel     = $this->m_gudangJadi->getRuanganByRuanId($cmbRuangan);
+    $namaRuanganDariModel     = $this->m_gudangTakJadi->getRuanganByRuanId($cmbRuangan);
 
     $namaParentUntukDitampilkan      = $namaParentDariModel[0]['BAPA_NAME'];
     $namaChildUntukDitampilkan       = $namaChildDariModel[0]['BACH_NAME'] ;
     $namaKategoriUntukDitampilkan    = $namaKategoriDariModel[0]['KATE_NAME'] = 0;
-    $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER'];   
-
+    $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER'];
 
     ?>
       <div class="modal-content">

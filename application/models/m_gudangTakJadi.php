@@ -13,11 +13,7 @@
     public function simpanBarang($data, $saldo, $child)
     {
       $this->db->insert("gudang_tak_jadi", $data);
-      $data = array(
-              'BACH_GUTA_TOTAL' => $saldo,
-      );
-      $this->db->where('gutA_id', $child);
-      $this->db->update('barang_child', $data);
+      
     }
 
     //nama Parent
@@ -108,6 +104,7 @@
      public function getRuanganByRuanId($id)
     {
       $sql    = "SELECT * from ruangan where ruan_id = ".$id;
+
       $query  = $this->db->query($sql);
       $return = $query->result_array();
       return $return;
@@ -117,6 +114,13 @@
     {
       $sql    = "SELECT * from ruangan where ruan_id = ".$id;
       $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+        public function getRuangan()
+    {
+      $sql="select * from ruangan";
+      $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;
     }
