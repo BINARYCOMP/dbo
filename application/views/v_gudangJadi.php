@@ -18,7 +18,8 @@
                   <div class="input-group autocomplete">
                     <!-- /btn-group -->
                     <input id="myInput" class="form-control" type="text" onchange="showChild(this.value)" name="cmbParentMuncul"  placeholder="== Pilih Induk Barang ==">
-                    <input class="form-control" id="cmbParent" type="hidden" name="cmbParent">
+                    <input class="form-control" id="cmbParent" type="text" name="cmbParent">
+                    
                     <div class="input-group-btn">
                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Search</button>
                     </div>
@@ -264,9 +265,10 @@ function showStok() {
                       $no=1;
                       foreach ($namaParent as $row) {
                         ?>
-                          <tr class="isi" data-brgParent="<?php echo $row['BAPA_ID']; ?>">
+                          <tr class="isi" data-brgParent="<?php echo $row['BAPA_NAME']; ?>" data-brgParentValue="<?php echo $row['BAPA_ID']; ?>">
                             <td><?php echo $no?></td>
                             <td><?php echo $row['BAPA_NAME']?></td>
+                            
                             
                           </tr>
                         <?php
@@ -328,8 +330,10 @@ function showStok() {
 
         // parent
         document.getElementById("myInput").value = $(this).attr('data-brgParent');
+        document.getElementById("cmbParent").value = $(this).attr('data-brgParentValue');
+        
         $('#myModal').modal('hide');
-        showChild($(this).attr('data-brgParent'));
+        showChild($(this).attr('data-brgParentValue'));
         
     });
 
