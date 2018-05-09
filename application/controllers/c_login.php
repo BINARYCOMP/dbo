@@ -40,26 +40,16 @@ class C_login extends CI_controller
 	}
 	public function forgotPassword()
 	{
-        $objMail = $this->phpmailer_library->load();
-        $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
-        $mail->SMTPAuth = true; // authentication enabled
-        $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
-        $mail->Host = "smtp.gmail.com";
-        $mail->Port = 465; // or 587
-        $mail->IsHTML(true);
-        $mail->Username = "kresnaaji28@gmail.com";
-        $mail->Password = "Rizkiani2315";
-        $mail->SetFrom("kresnaaji28@gmail.com");
-        $mail->Subject = "Test";
-        $mail->Body = "hello";
-        $mail->AddAddress("kreskiani23@gmail.com");
-
-         if(!$mail->Send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
-         } else {
-            echo "Message has been sent";
-         }
-
+		$subject = "Atur Ulang Kata Sandi";
+		$message = "Anda baru saja mengatur ulang kata sandi anda <br> Kata sandi anda yang baru adalah : ".$this->random_password();
+		$email 	 = $this->input->post('email');
+        $objMail = $this->phpmailer_library->load($subject, $message, $email);
+	}
+	function random_password() {
+		$length = 8;
+	    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	    $password = substr( str_shuffle( $chars ), 0, $length );
+	    return $password;
 	}
 	public function logout()
 	{
