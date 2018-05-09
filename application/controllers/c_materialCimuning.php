@@ -127,7 +127,7 @@ class C_materialCimuning extends CI_Controller
     $namaChildDariModel       = $this->m_materialCimuning->getChildBymcciId($cmbChild);
 
     $namaParentUntukDitampilkan      = $namaParentDariModel[0]['MPCI_NAME'];
-    $namaChildUntukDitampilkan       = $namaChildDariModel[0]['MCCI_NAME'] ;
+    $namaChildUntukDitampilkan       = $namaChildDariModel[0]['MCCI_NAME'];
 
     ?>
       <div class="modal-content">

@@ -17,7 +17,7 @@
                   <label class="control-label">Parent</label>
                   <div class="input-group autocomplete">
                     <!-- /btn-group -->
-                    <input id="myInput" class="form-control" type="text" name="cmbParentMuncul"  placeholder="== Pilih Induk Barang ==">
+                    <input id="myInput" class="form-control" type="text" onchange="showChild(this.value)" name="cmbParentMuncul"  placeholder="== Pilih Induk Barang ==">
                     <input class="form-control" id="cmbParent" type="hidden" name="cmbParent">
                     <div class="input-group-btn">
                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Search</button>
@@ -171,7 +171,7 @@ function showChild(str) {
 <script>
 function showStok() {
   var bachId = document.getElementById('cmbChild').value;
-  var bapaId = document.getElementById('cmbParent').value;
+  var bapaId = document.getElementById('myInput').value;
   var kateId = document.getElementById('cmbKategori').value;
 
   var xhttp;
@@ -203,7 +203,7 @@ function showStok() {
   function modalKonfirmasiJadi() {
     var xhttp;
     var parent,child,kategori,keterangan,masuk,keluar,akhir;
-    parent      = document.getElementById('cmbParent').value;
+    parent      = document.getElementById('myInput').value;
     child       = document.getElementById('cmbChild').value;
     kategori    = document.getElementById('cmbKategori').value;
     keterangan  = document.getElementById('keterangan').value;
@@ -226,7 +226,7 @@ function showStok() {
   function modalChildJadi() {
     var xhttp;
     var parent;
-    parent    = document.getElementById('cmbParent').value;
+    parent    = document.getElementById('myInput').value;
 
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -327,7 +327,7 @@ function showStok() {
         // alert("test");
 
         // parent
-        document.getElementById("cmbParent").value = $(this).attr('data-brgParent');
+        document.getElementById("myInput").value = $(this).attr('data-brgParent');
         $('#myModal').modal('hide');
         showChild($(this).attr('data-brgParent'));
         
@@ -349,6 +349,7 @@ function showStok() {
 
         // child
         document.getElementById("cmbKategori").value = $(this).attr('data-namaKategori');
+
         $('#myModalKategori').modal('hide');
         showStok();
         
@@ -383,7 +384,7 @@ function autocomplete(inp, arr,id) {
           b.innerHTML += arr[i].substr(val.length);
           /*insert a input field that will hold the current array item's value:*/
           b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-          b.innerHTML += "<li type='hidden' value='" + id[i] + "'>";
+          b.innerHTML += "<li type='none' value='" + id[i] + "'>";
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function(e) {
               /*insert the value for the autocomplete text field:*/
@@ -476,6 +477,5 @@ var Id = [ <?php
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), Parent, Id);
-
 
 </script>
