@@ -9,6 +9,10 @@ class C_login extends CI_controller
 	function __construct(){
 		parent::__construct();
 		$this->load->model('m_login');
+		$this->load->library("phpmailer_library");
+        $objMail = $this->phpmailer_library->load();
+        var_dump($objMail);
+        exit();
 	}
 	public function index()
 	{
@@ -36,6 +40,10 @@ class C_login extends CI_controller
 		}else{
 			header('Location:' .base_url().'c_login');
 		}
+	}
+	public function forgotPassword()
+	{
+
 	}
 	public function logout()
 	{
