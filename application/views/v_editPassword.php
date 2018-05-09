@@ -4,7 +4,7 @@
 	  <div class="col-md-6">
 	    <div class="box box-info">
 	      <div class="box-header with-border">
-	        <h3 class="box-title">Edit Data</h3>
+	        <h3 class="box-title">Edit Password</h3>
 
 	        <div class="box-tools pull-right">
 	          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -19,7 +19,7 @@
 					  <label class=" control-label">Password</label>
 					  <div>
 					    <span id="qty">
-					     <input class="form-control" type="password"  name="txtpassword" >  
+					     <input class="form-control" type="password"  name="password" >  
 					    </span>
 					  </div>
 					</div>
@@ -29,7 +29,7 @@
 	                    <button type="reset" class="btn btn-default pull-right">Cancel</button>
 	                  </div>
 	                  <div class="col-md-2">
-	                    <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >Input Data</button>
+	                    <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal-success2" onclick="modalKonfirmasiTakJadi()" >GantiPassword</button>
 	                  </div>
 	                </div>
 	              </div>

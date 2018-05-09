@@ -24,12 +24,10 @@ class C_profil extends CI_Controller
 		);
 		$this->load->view('tampilan/v_combine', $data);
 	}
-	public function formGantiPassword($id)
+	public function formGantiPassword($Password)
 	{
-		$akun 		=$this->m_profil->getInfoAccount();
-		$password 	=$this->m_profil->getPassword();
+		$password 		=$this->m_profil->getPassword();
 		$data = array(
-			'Account'	=>$akun,
 			'Password'	=>$password,
 			'content'	=>'v_editPassword',
 			'title' 	=>'Account',
@@ -37,12 +35,15 @@ class C_profil extends CI_Controller
 		);
 		$this->load->view('tampilan/v_combine',$data);
 	}
-	public function gantiPassword($id)
+	public function GantiPassword($id)
 	{
-		$password = md5($_POST['password']);
-		'USER_PASSWORD' =$password
+		$password 			= $_POST['Password'];
+		$data = array(
+			'USER_PASSWORD' =>$password
+			);
 	}
-	
+		$this->m_profil->UpdatePassword($id, $data);
+		redirect('C_profil');
 }
 
  ?>
