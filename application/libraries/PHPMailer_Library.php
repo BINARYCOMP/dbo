@@ -19,7 +19,7 @@ class PHPMailer_Library
         $mail->Port = 465; // or 587
         $mail->IsHTML(true);
         $mail->Username = "kresnaaji28@gmail.com";
-        $mail->Password = "Rizkiani2315";
+        $mail->Password = "";
         $mail->SetFrom("BINARY_CORP@gmail.com");
         $mail->Subject = $subject;
         $mail->Body = $message;
@@ -28,7 +28,7 @@ class PHPMailer_Library
          if(!$mail->Send()) {
             echo "Mailer Error: " . $mail->ErrorInfo;
          } else {
-            redirect('c_login','refresh');
+            redirect('c_login','refresh');  
          }
     }
 }
