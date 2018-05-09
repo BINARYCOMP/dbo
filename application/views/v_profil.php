@@ -31,27 +31,28 @@
         <tbody>
           <?php 
           $no = 1;
-          foreach ($Account as $row) {
             ?>
               <tr>
                 <td><?php echo $no ?></td>
-                <td><?php echo $row['PEGA_NAME']?></td>
-                <td><?php echo $row['PEGA_EMAIL']?></td>
-                <td><?php echo $row['PEGA_ALAMAT']?></td>
-                <td><?php echo $row['PEGA_NO_TLP']?></td>
-                <td><?php echo $row['PEGA_JENKEL']?></td>
-                <td><?php echo $row['AGAM_NAME']?></td>
+                <td><?php echo $Account[0]['PEGA_NAME']?></td>
+                <td><?php echo $Account[0]['PEGA_EMAIL']?></td>
+                <td><?php echo $Account[0]['PEGA_ALAMAT']?></td>
+                <td><?php echo $Account[0]['PEGA_NO_TLP']?></td>
+                <td><?php echo $Account[0]['PEGA_JENKEL']?></td>
+                <td><?php echo $Account[0]['AGAM_NAME']?></td>
                 <td>*******</td>
                 <td>
-                  <a href="<?php echo base_url()?>c_profil/formGantiPassword/<?php echo $row['PEGA_ID']?>">Ganti</a>
+                  <a href="<?php echo base_url()?>c_profil/formGantiPassword/<?php echo $Account[0]['PEGA_ID']?>">Ganti</a>
                 </td>
               </tr>
-            <?php
-            $no++;
-          }
-          ?>
         </tbody>
       </table>
+      <img src="<?php echo base_url($Account[0]['USER_PICTURE']) ?>" width="500">
+       <form action="<?php echo base_url()?>c_profil/upload/" method="post" enctype="multipart/form-data">
+        Select image to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit">
+        </form>
         </div>
       </div>
         <!-- /.box -->

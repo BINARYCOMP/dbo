@@ -26,7 +26,7 @@ class M_profil extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
-	public function UpdatePassword($data)
+	public function Update($data)
 	{
 		$this->db->where('USER_ID', $_SESSION['USER_ID']);
 		$this->db->update('user', $data);
