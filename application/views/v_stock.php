@@ -141,7 +141,16 @@
                           <td><?php echo $no ?></td>
                           <td><?php echo $row['BAPA_NAME']?></td>
                           <td><?php echo $row['BACH_NAME']?></td>
-                          <td><?php echo $row['KATE_NAME']?></td>
+                          <td>
+                            <?php 
+                              $kategori = $this->m_gudangJadi->getKateNameByGujaKateId($row['GUTA_KATE_ID']);
+                              if (isset($kategori[0]['KATE_NAME'])) {
+                                echo $kategori[0]['KATE_NAME'];
+                              }else{
+                                echo "-";
+                              }
+                            ?>
+                          </td>
                           <td><?php echo $row['GUTA_URAIAN']?></td>
                           <td><?php echo $row['GUTA_MASUK']?></td>
                           <td><?php echo $row['GUTA_KELUAR']?></td>
@@ -149,7 +158,7 @@
                           <?php
                             if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
                               ?> 
-                                <td> <a href="#">Edit</a> | <a href="#">Delete</a>  </td> 
+                                <td> <a href="#">Edit</a> | <a href="<?php echo base_url()?>c_gudangTakJadi/delete/<?php echo $row['GUTA_ID']?>">Delete</a>  </td> 
                               <?php
                             }
                           ?>

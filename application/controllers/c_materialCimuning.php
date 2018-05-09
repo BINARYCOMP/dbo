@@ -125,9 +125,16 @@ class C_materialCimuning extends CI_Controller
 
     $namaParentDariModel      = $this->m_materialCimuning->getParentBympciId($cmbParent);
     $namaChildDariModel       = $this->m_materialCimuning->getChildBymcciId($cmbChild);
+    $namaParentUntukDitampilkan = 0;
+    $namaChildUntukDitampilkan = 0;
 
-    $namaParentUntukDitampilkan      = $namaParentDariModel[0]['MPCI_NAME'];
-    $namaChildUntukDitampilkan       = $namaChildDariModel[0]['MCCI_NAME'];
+    if (!empty($namaParentDariModel[0]['MPCI_NAME'])) {
+      $namaParentUntukDitampilkan      = $namaParentDariModel[0]['MPCI_NAME'];
+    }
+    if (!empty($namaChildDariModel[0]['MCCI_NAME'])) {
+      $namaChildUntukDitampilkan       = $namaChildDariModel[0]['MCCI_NAME'] ;
+    } 
+
 
     ?>
       <div class="modal-content">
@@ -171,7 +178,7 @@ class C_materialCimuning extends CI_Controller
     <?php
   }
 
-  public function modalChild()
+  public function modalChildCimuning()
   {
     $cmbParent = $_GET['parent'];
     $namaChild = $this->m_materialCimuning->getChildBympciId($cmbParent);
