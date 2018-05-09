@@ -14,6 +14,7 @@ class C_report extends CI_Controller
 	public function index()
 	{
 		$dataBarangParent 					= $this->m_report->getBarangParent();
+		$dataBarangParentCimuning			= $this->m_report->getBarangParentCimuning();
 		$dataMaterialCimuningParent 		= $this->m_report->getMaterialCimuningParent();
 		$dataMaterialBawangParent	 		= $this->m_report->getMaterialBawangParent();
 		$dataKeuangan 						= $this->m_report->getKeuangan();
@@ -22,6 +23,7 @@ class C_report extends CI_Controller
 		$dataRuangan 						= $this->m_report->getRuangan();
 		$data = array(
 			'dataBarangParent' 					=> $dataBarangParent,
+			'dataBarangParentCimuning'			=> $dataBarangParentCimuning,
 			'dataMaterialCimuningParent' 		=> $dataMaterialCimuningParent,
 			'dataMaterialBawangParent' 			=> $dataMaterialBawangParent,
 			'dataKeuangan' 						=> $dataKeuangan,

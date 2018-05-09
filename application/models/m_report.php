@@ -17,6 +17,13 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
+	public function getBarangParentCimuning()
+	{
+		$sql 	= "SELECT * FROM barang_cimuning_parent ";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 	public function getMaterialCimuningParent()
 	{
 		$sql 	= "SELECT * FROM material_parent_cimuning ";
@@ -48,6 +55,13 @@ class M_report extends CI_Model
 	public function getBarangChildByBapaId($id)
 	{
 		$sql 	= "SELECT * FROM  barang_parent, barang_child, satuan WHERE BACH_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_BAPA_ID =".$id;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getBarangChildCimuningByBacpId($id)
+	{
+		$sql 	= "SELECT * FROM  barang_cimuning_parent, barang_cimuning_child, satuan WHERE BACC_BACP_ID = BACP_ID AND BACC_SATU_ID = SATU_ID AND BACC_BACP_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
