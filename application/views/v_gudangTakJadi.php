@@ -209,13 +209,13 @@ function showStokTakJadi(str) {
 <script>
   function modalKonfirmasiTakJadi() {
     var xhttp;
-<<<<<<< HEAD
+
     var parent,child,kategori,keterangan,masuk,keluar,akhir,awal,ruangan;
     parent      = document.getElementById('cmbParentTakJadi').value;
-=======
+
     var parent,child,kategori,keterangan,masuk,keluar,akhir;
     parent      = document.getElementById('myInputTakJadi').value;
->>>>>>> 99c128949bf8ca9adb143fedab43160d187e2e3d
+
     child       = document.getElementById('cmbChildTakJadi').value;
     kategori    = document.getElementById('cmbKategoriTakJadi').value;
     keterangan  = document.getElementById('keteranganTakJadi').value;
