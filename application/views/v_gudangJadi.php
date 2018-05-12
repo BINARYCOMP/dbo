@@ -18,7 +18,7 @@
                   <div class="input-group autocomplete">
                     <!-- /btn-group -->
                     <input id="myInput" class="form-control" type="text" onchange="showChild(this.value)" name="cmbParentMuncul"  placeholder="== Pilih Induk Barang ==">
-                    <input class="form-control" id="cmbParent" type="text" name="cmbParent">
+                    <input class="form-control" id="cmbParent" type="hidden" name="cmbParent">
                     
                     <div class="input-group-btn">
                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Search</button>
@@ -205,7 +205,7 @@ function showStok() {
     var xhttp;
     
     var parent,child,kategori,keterangan,masuk,keluar,akhir;
-    parent      = document.getElementById('myInput').value;
+    parent      = document.getElementById('cmbParent').value;
     child       = document.getElementById('cmbChild').value;
     kategori    = document.getElementById('cmbKategori').value;
     keterangan  = document.getElementById('keterangan').value;
