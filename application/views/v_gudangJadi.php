@@ -64,7 +64,7 @@
                   <label class="control-label">Nomor Gudang</label>
                   <div >
                     <!-- /btn-group -->
-                    <select name="cmbRuangan" id="cmbRuangan"  class="form-control">
+                    <select name="cmbRuangan" id="cmbRuangan" onchange="showStok()" class="form-control">
                       <option value="0">== Pilih Gudang ==</option>
                       <?php  
                         foreach ($dataRuangan as $row){
@@ -172,8 +172,9 @@ function showChild(str) {
 <script>
 function showStok() {
   var bachId = document.getElementById('cmbChild').value;
-  var bapaId = document.getElementById('myInput').value;
+  var bapaId = document.getElementById('cmbParent').value;
   var kateId = document.getElementById('cmbKategori').value;
+  var ruanId = document.getElementById('cmbRuangan').value;
 
   var xhttp;
   xhttp = new XMLHttpRequest();
@@ -182,7 +183,7 @@ function showStok() {
       document.getElementById("txtStok").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchStok?kateId="+kateId+"&bachId="+bachId+"&bapaId="+bapaId, true);
+  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchStok?kateId="+kateId+"&bachId="+bachId+"&bapaId="+bapaId+"&ruanId="+ruanId, true);
   xhttp.send();   
 }
 </script>
@@ -228,7 +229,7 @@ function showStok() {
   function modalChildJadi() {
     var xhttp;
     var parent;
-    parent    = document.getElementById('myInput').value;
+    parent    = document.getElementById('cmbParent').value;
 
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

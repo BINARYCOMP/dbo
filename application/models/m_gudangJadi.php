@@ -42,16 +42,30 @@
       return $return;
     }
 
-    public function getFirstStock($bach_id,$bapa_id,$kate_id)
+    public function getFirstStock($bach_id,$bapa_id,$kate_id,$ruan_id)
+    {
+      $sql="SELECT * from gudang_jadi, barang_parent, barang_child, kategori, ruangan where guja_bach_id = bach_id and guja_bapa_id = bapa_id and guja_kate_id = kate_id and  guja_bach_id = ".$bach_id." and guja_bapa_id = ".$bapa_id." and guja_kate_id = ".$kate_id." and guja_ruan_id = ".$ruan_id." group by guja_id desc limit 1";
+      $query=$this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+    public function getFirstStockWithoutRuangan($bach_id,$bapa_id,$kate_id)
     {
       $sql="SELECT * from gudang_jadi, barang_parent, barang_child, kategori where guja_bach_id = bach_id and guja_bapa_id = bapa_id and guja_kate_id = kate_id and  guja_bach_id = ".$bach_id." and guja_bapa_id = ".$bapa_id." and guja_kate_id = ".$kate_id." group by guja_id desc limit 1";
       $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;
     }
-    public function getFirstStockWithoutKategori($bach_id,$bapa_id)
+    public function getFirstStockWithoutKategori($bach_id,$bapa_id, $ruan_id)
     {
-      $sql="SELECT * from gudang_jadi, barang_parent, barang_child where guja_bach_id = bach_id and guja_bapa_id = bapa_id and guja_bach_id = ".$bach_id." and guja_bapa_id = ".$bapa_id." group by guja_id desc limit 1";
+      $sql="SELECT * from gudang_jadi, barang_parent, barang_child, ruangan where guja_bach_id = bach_id and guja_bapa_id = bapa_id and guja_bach_id = ".$bach_id." and guja_bapa_id = ".$bapa_id." and guja_ruan_id = ".$ruan_id." group by guja_id desc limit 1";
+      $query=$this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+    public function getFirstStockWithoutRuanganAndKategori($bach_id,$bapa_id)
+    {
+      $sql="SELECT * from gudang_jadi, barang_parent, barang_child, where guja_bach_id = bach_id and guja_bapa_id = bapa_id and guja_kate_id = kate_id and  guja_bach_id = ".$bach_id." and guja_bapa_id = ".$bapa_id." group by guja_id desc limit 1";
       $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;
