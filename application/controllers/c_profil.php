@@ -126,7 +126,7 @@ class C_profil extends CI_Controller
 		} else 
 			{
 		    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $nama_picture)) {
-		        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " Berhasil Di Upload.";
+		        // echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " Berhasil Di Upload.";
 		        $picture 		= $nama_picture;
 		        $data = array(
 				'USER_PICTURE' 	=>$picture
@@ -145,5 +145,3 @@ class C_profil extends CI_Controller
 		}
 	}
 }
-
- ?>
