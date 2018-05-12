@@ -64,7 +64,7 @@
                   <label class="control-label">Nomor Gudang</label>
                   <div >
                     <!-- /btn-group -->
-                    <select name="cmbRuangan" id="cmbRuangan" onchange="showStok()" class="form-control">
+                    <select required name="cmbRuangan" id="cmbRuangan" onchange="showStok()" class="form-control">
                       <option value="0">== Pilih Gudang ==</option>
                       <?php  
                         foreach ($dataRuangan as $row){
@@ -122,7 +122,7 @@
                       <button type="reset" class="btn btn-default pull-right">Cancel</button>
                     </div>
                     <div class="col-md-2">
-                      <button class="btn btn-success pull-right" type="button" data-toggle="modal" data-target="#modal-success" onclick="modalKonfirmasiJadi()" >Input Data</button>
+                      <button class="btn btn-success pull-right" type="button" onclick="modalKonfirmasiJadi()" >Input Data</button>
                     </div>
                   </div>
                 </div>
@@ -205,6 +205,15 @@ function showStok() {
   function modalKonfirmasiJadi() {
     var xhttp;
     
+    //validation start
+    if (document.getElementById('cmbRuangan').value == 0) {
+      alert('Harap isi Ruangan Gudang terlebih dahulu');
+      return;
+    }
+    //validation finish
+
+    $('#modal-success').modal('show');
+
     var parent,child,kategori,keterangan,masuk,keluar,akhir;
     parent      = document.getElementById('cmbParent').value;
     child       = document.getElementById('cmbChild').value;
@@ -224,6 +233,7 @@ function showStok() {
     };
     xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&kategori="+kategori+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal+"&ruangan="+ruangan, true);
     xhttp.send();   
+
   }
 
   function modalChildJadi() {
