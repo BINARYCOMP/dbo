@@ -1,9 +1,155 @@
-<form method="POST" autocomplete="off">      
-  <!-- Main content -->
-      <div class="col-md-6">
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+      <!-- isi content -->
+
+      <?php 
+      if ($_SESSION['level'] == 'ADMIN BAWANG' || $_SESSION['level'] == 'ADMIN CIMUNING' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN') {
+      ?>
+      <!-- Main content -->
+        <form method="POST" autocomplete="off">
+              <div class="col-md-12">
+                <div class="box box-success">
+                  <div class="box-header with-border autocomplete">
+                    <h3 class="box-title">Input Stock Jadi</h3>
+
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <div class="row">
+                      <div class="col-md-12 ">
+                        <div class="form-group">
+                          <label class="control-label">Parent</label>
+                          <div class="input-group autocomplete">
+                            <!-- /btn-group -->
+                            <input id="myInput" class="form-control" type="text" onchange="showChild(this.value)" name="cmbParentMuncul"  placeholder="== Pilih Induk Barang ==">
+                            <input class="form-control" id="cmbParent" type="hidden" name="cmbParent">
+                            
+                            <div class="input-group-btn">
+                              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Search</button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Child</label>
+                            <div class="input-group">
+                              <span id="txtChild">
+                                <select class="form-control">
+                                  <option>== Pilih Anak Barang ==</option>
+                                </select> 
+                              </span>
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2" onclick="modalChildJadi()">Search</button>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label">Kategori</label>
+                          <div class="input-group">
+                            <!-- /btn-group -->
+                            <select name="cmbKategori" onchange="showStok();" onmousemove="showStok();" id="cmbKategori" class="form-control">
+                              <option value="0">== Pilih Kategori ==</option>
+                              <?php  
+                                foreach ($namaKategori as $row){
+                                  echo "<option value='".$row['KATE_ID']."'>";
+                                  echo $row ['KATE_NAME'];
+                                 echo "</option>";
+                                }
+                              ?>
+                            </select> <br>
+                            <div class="input-group-btn">
+                              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalKategori">Search</button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label">Nomor Gudang</label>
+                          <div >
+                            <!-- /btn-group -->
+                            <select required name="cmbRuangan" id="cmbRuangan" onchange="showStok()" class="form-control">
+                              <option value="0">== Pilih Gudang ==</option>
+                              <?php  
+                                foreach ($dataRuangan as $row){
+                                  echo "<option value='".$row['RUAN_ID']."'>";
+                                  echo $row ['RUAN_NUMBER'];
+                                 echo "</option>";
+                                }
+                              ?>
+                            </select> 
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label>Keterangan</label>
+                          <textarea name="txtUraian" class="form-control" id="keterangan" rows="3" placeholder="Keterangan barang.."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class=" control-label">Masuk</label>
+                            <div>
+                              <input type="number" name="txtMasuk" id="brgMasuk" onkeyup="showSaldo()" onclick="showSaldo()" value="0" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Keluar</label>
+                            <div class="">
+                              <input type="number" name="txtKeluar" id="brgKeluar" onkeyup="showSaldo()" onclick="showSaldo()" value="0" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <label class=" control-label">Stock Awal</label>
+                              <div>
+                                <!-- <input type="text" class="form-control" name="" value=""> -->
+                                <span id="txtStok"> 
+                                  <input type="text" name="txtSaldoAwal" required id="saldoAwal" readonly value="0" class="form-control">  
+                                </span>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label class=" control-label">Stock Akhir</label>
+                              <div>
+                                <input type="number" readonly name="txtSaldoAkhir" id="saldoAkhir" class="form-control">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-md-10">
+                              <button type="reset" class="btn btn-default pull-right">Cancel</button>
+                            </div>
+                            <div class="col-md-2">
+                              <button class="btn btn-success pull-right" type="button" onclick="modalKonfirmasiJadi()" >Input Data</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                  </div>
+                </div>
+              </div>
+        </form>
+      <?php
+      }
+      ?>
+      <div class="col-md-12">
         <div class="box box-success">
-          <div class="box-header with-border autocomplete">
-            <h3 class="box-title">Input Stock Jadi</h3>
+          <div class="box-header with-border">
+            <h3 class="box-title">Tabel Gudang Jadi</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -13,119 +159,73 @@
           <div class="box-body">
             <div class="row">
               <div class="col-md-12 ">
-                <div class="form-group">
-                  <label class="control-label">Parent</label>
-                  <div class="input-group autocomplete">
-                    <!-- /btn-group -->
-                    <input id="myInput" class="form-control" type="text" onchange="showChild(this.value)" name="cmbParentMuncul"  placeholder="== Pilih Induk Barang ==">
-                    <input class="form-control" id="cmbParent" type="hidden" name="cmbParent">
-                    
-                    <div class="input-group-btn">
-                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Search</button>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label">Child</label>
-                    <div class="input-group">
-                      <span id="txtChild">
-                        <select class="form-control">
-                          <option>== Pilih Anak Barang ==</option>
-                        </select> 
-                      </span>
-                      <div class="input-group-btn">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2" onclick="modalChildJadi()">Search</button>
-                      </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="control-label">Kategori</label>
-                  <div class="input-group">
-                    <!-- /btn-group -->
-                    <select name="cmbKategori" onchange="showStok();" onmousemove="showStok();" id="cmbKategori" class="form-control">
-                      <option value="0">== Pilih Kategori ==</option>
-                      <?php  
-                        foreach ($namaKategori as $row){
-                          echo "<option value='".$row['KATE_ID']."'>";
-                          echo $row ['KATE_NAME'];
-                         echo "</option>";
+                <table class="table table-bordered table-hover table-striped" id="guja">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Induk Barang</th>
+                      <th>Anak Barang</th>
+                      <th>Kategori</th>
+                      <th>Keterangan</th>
+                      <th>Ruangan</th>
+                      <th>Masuk</th>
+                      <th>Keluar</th>
+                      <th>Saldo</th>
+                      <?php
+                        if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
+                          ?> 
+                            <th> Action </th>
+                          <?php
                         }
                       ?>
-                    </select> <br>
-                    <div class="input-group-btn">
-                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalKategori">Search</button>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="control-label">Nomor Gudang</label>
-                  <div >
-                    <!-- /btn-group -->
-                    <select required name="cmbRuangan" id="cmbRuangan" onchange="showStok()" class="form-control">
-                      <option value="0">== Pilih Gudang ==</option>
-                      <?php  
-                        foreach ($dataRuangan as $row){
-                          echo "<option value='".$row['RUAN_ID']."'>";
-                          echo $row ['RUAN_NUMBER'];
-                         echo "</option>";
-                        }
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php 
+                    $no = 1;
+                    foreach ($dataGudangJadi as $row) {
                       ?>
-                    </select> 
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label>Keterangan</label>
-                  <textarea name="txtUraian" class="form-control" id="keterangan" rows="3" placeholder="Keterangan barang.."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class=" control-label">Masuk</label>
-                    <div>
-                      <input type="number" name="txtMasuk" id="brgMasuk" onkeyup="showSaldo()" onclick="showSaldo()" value="0" class="form-control">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label">Keluar</label>
-                    <div class="">
-                      <input type="number" name="txtKeluar" id="brgKeluar" onkeyup="showSaldo()" onclick="showSaldo()" value="0" class="form-control">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label class=" control-label">Stock Awal</label>
-                      <div>
-                        <!-- <input type="text" class="form-control" name="" value=""> -->
-                        <span id="txtStok"> 
-                          <input type="text" name="txtSaldoAwal" required id="saldoAwal" readonly value="0" class="form-control">  
-                        </span>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <label class=" control-label">Stock Akhir</label>
-                      <div>
-                        <input type="number" readonly name="txtSaldoAkhir" id="saldoAkhir" class="form-control">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-md-10">
-                      <button type="reset" class="btn btn-default pull-right">Cancel</button>
-                    </div>
-                    <div class="col-md-2">
-                      <button class="btn btn-success pull-right" type="button" onclick="modalKonfirmasiJadi()" >Input Data</button>
-                    </div>
-                  </div>
-                </div>
+                        <tr>
+                          <td><?php echo $no ?></td>
+                          <td><?php echo $row['BAPA_NAME']?></td>
+                          <td><?php echo $row['BACH_NAME']?></td>
+                          <td>
+                            <?php 
+                              $kategori = $this->m_gudangJadi->getKateNameByGujaKateId($row['GUJA_KATE_ID']);
+                              if (isset($kategori[0]['KATE_NAME'])) {
+                                echo $kategori[0]['KATE_NAME'];
+                              }else{
+                                echo "-";
+                              }
+                            ?>
+                          </td>
+                          <td><?php echo $row['GUJA_URAIAN']?></td>
+                          <td>
+                            <?php 
+                              $kategori = $this->m_gudangJadi->getRuanNumberByGujaRuanId($row['GUJA_RUAN_ID']);
+                              if (isset($kategori[0]['RUAN_NUMBER'])) {
+                                echo $kategori[0]['RUAN_NUMBER'];
+                              }else{
+                                echo "-";
+                              }
+                            ?>
+                          <td><?php echo $row['GUJA_MASUK']?></td>
+                          <td><?php echo $row['GUJA_KELUAR']?></td>
+                          <td><?php echo $row['GUJA_SALDO']?></td>
+                          <?php
+                            if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
+                              ?> 
+                                <td> <a href="#">Edit</a> | <a href="#">Delete</a>  </td> 
+                              <?php
+                            }
+                          ?>
+                        </tr>
+                      <?php
+                      $no++;
+                    }
+                    ?>
+                  </tbody>
+                </table>
               </div>
               <!-- /.col -->
             </div>
@@ -133,9 +233,11 @@
           </div>
         </div>
       </div>
-</form>
+  </div>
+  <!-- /.box -->
 
-
+</section>
+<!-- /.content -->
 <!-- modal konfirmasiJadi -->
 <div class="modal modal-success fade" id="modal-success">
   <div class="modal-dialog" id="modalKonfirmasiJadi">

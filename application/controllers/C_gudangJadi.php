@@ -32,6 +32,7 @@ class C_gudangJadi extends CI_Controller
         'namaParent'      => $namaParent,
         'dataGudangJadi'  => $dataGudangJadi,
         'dataRuangan'     => $dataRuangan,
+        'title'           => 'Input Barang Jadi Gudang Cimuning ',
         'content'         => 'v_gudangJadi',
         'message'         => $message,
       );
