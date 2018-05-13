@@ -351,7 +351,8 @@
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
                             <li class="dropdown-header">Gudang Cimuning</li>
-                            <li><a href="<?php echo base_url()?>c_stok">Input Barang</a></li>
+                            <li><a href="<?php echo base_url()?>c_gudangJadi">Input Barang Jadi</a></li>
+                            <li><a href="<?php echo base_url()?>c_gudangTakJadi">Input Barang Setengah Jadi</a></li>
                             <li><a href="<?php echo base_url()?>c_materialCimuning">Input Material</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Gudang Bawang</li>
