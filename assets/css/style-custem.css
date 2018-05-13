@@ -1,0 +1,37 @@
+#animated {
+  background-color: #333;
+  position: fixed;
+  top: -5px;
+  width: 100%;
+  display:block;
+  transition: top 0.5s;
+
+}
+
+#animated a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+#animated a:hover {
+  background-color: #ddd;
+  color: black;
+    top: -10px;
+}
+
+/*
+.carousel-item {
+  height: 65vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+} */
