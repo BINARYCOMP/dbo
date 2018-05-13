@@ -105,7 +105,7 @@
                         <button type="reset" class="btn btn-default pull-right">Cancel</button>
                       </div>
                       <div class="col-md-2">
-                        <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#modalMaterialShow" onclick="modalMaterial()" >Input Data</button>
+                        <button type="button" class="btn btn-info pull-right" onclick="modalMaterial()" >Input Data</button>
                       </div>
                     </div>
                   </div>
@@ -302,6 +302,14 @@
   }
    function modalMaterial() {
     var xhttp;
+    //validation start
+    if (document.getElementById('cmbRuangan').value == 0) {
+      alert('Harap isi Ruangan Gudang terlebih dahulu');
+      return;
+    }
+    //validation finish
+
+    $('#modalMaterialShow').modal('show');
     var parent,child,keterangan,masuk,keluar,kondisi,ruangan;
     // try{
       parent      = document.getElementById('cmbParent').value;

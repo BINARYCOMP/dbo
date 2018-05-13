@@ -97,6 +97,11 @@
       $return = $query->result_array();
       return $return;
     }
+    public function getFirstStockWithoutRuangan($mcba_id,$mpba_id)
+    {
+      $sql="SELECT * from material_bawang, material_parent_bawang, material_child_bawang where maba_mcba_id = mcba_id and maba_mpba_id = mpba_id and maba_mcba_id = ".$mcba_id." and maba_mpba_id = ".$mpba_id." group by mpba_id desc limit 1";
+      $query=$this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
   }
-
- ?>

@@ -56,7 +56,7 @@
                   <label class="control-label">Nomor Gudang</label>
                   <div >
                     <!-- /btn-group -->
-                    <select name="cmbRuangan" id="cmbRuangan"  class="form-control">
+                    <select name="cmbRuangan" id="cmbRuangan" onchange="showStok()" class="form-control">
                       <option value="0">== Pilih Gudang ==</option>
                       <?php  
                         foreach ($dataRuangan as $row){
@@ -105,7 +105,7 @@
                         <button type="reset" class="btn btn-default pull-right">Cancel</button>
                       </div>
                       <div class="col-md-2">
-                        <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#modalMaterialShow" onclick="modalMaterial()" >Input Data</button>
+                        <button type="button" class="btn btn-info pull-right"  onclick="modalMaterial()" >Input Data</button>
                       </div>
                     </div>
                   </div>
@@ -290,6 +290,7 @@
     var xhttp;
     var mcbaId = document.getElementById('cmbChild').value;
     var mpbaId = document.getElementById('cmbParent').value;
+    var ruanId = document.getElementById('cmbRuangan').value;
 
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -297,11 +298,21 @@
         document.getElementById("stok").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_materialBawang/searchStok?mpbaId="+mpbaId+"&mcbaId="+mcbaId, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_materialBawang/searchStok?mcbaId="+mcbaId+"&mpbaId="+mpbaId+"&ruanId="+ruanId, true);
     xhttp.send();   
   }
+  
    function modalMaterial() {
     var xhttp;
+
+     //validation start
+    if (document.getElementById('cmbRuangan').value == 0) {
+      alert('Harap isi Ruangan Gudang terlebih dahulu');
+      return;
+    }
+    //validation finish
+
+    $('#modalMaterialShow').modal('show');
     var parent,child,keterangan,masuk,keluar,kondisi,ruangan;
     // try{
       parent      = document.getElementById('cmbParent').value;

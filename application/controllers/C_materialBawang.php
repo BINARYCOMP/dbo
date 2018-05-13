@@ -94,25 +94,31 @@ class C_materialBawang extends CI_Controller
   // cari stok
   public function searchStok()
   {
-    ?>
-    <script type="text/javascript">alert("masuk");</script>
-    <?php
-    $mpbaId = $_GET['mpbaId'];
-    $mcbaId = $_GET['mcbaId'];
-    $stokAwal = $this->m_materialBawang->getFirstStock($mcbaId,$mpbaId);
+    $mpba_id = $_GET['mpbaId'];
+    $mcba_id = $_GET['mcbaId'];
+    $ruan_id = $_GET['ruanId'];
 
-    if ($mpbaId == 0 || $mcbaId == 0 ) {
+      if ($ruan_id != 0) {
+        $stokAwal = $this->m_materialBawang->getFirstStock($mcba_id,$mpba_id,$ruan_id);
+      }else{
+        $stokAwal = $this->m_materialBawang->getFirstStockWithoutRuangan($mcba_id,$mpba_id);
+      }
+      var_dump($stokAwal);
+      exit();
+
+
+    if ($mpba_id == 0 || $mcba_id == 0) {
       ?>
-        <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly placeholder="0" value="0"> 
+        <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly value="0"> 
       <?php
     }else{
-      if (isset($stokAwal[0]['MABA_SALDO'])) {
+      if (empty($stokAwal[0]['MABA_SALDO'])) {
         ?>
-          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['MABA_SALDO'] ?>"> 
+          <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly value="0"> 
         <?php
       }else{
         ?>
-          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo '0' ?>"> 
+          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['MABA_SALDO']?>">
         <?php
       }
     }
