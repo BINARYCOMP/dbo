@@ -56,7 +56,7 @@
                   <label class="control-label">Nomor Gudang</label>
                   <div >
                     <!-- /btn-group -->
-                    <select name="cmbRuangan" id="cmbRuangan"  class="form-control">
+                    <select name="cmbRuangan" id="cmbRuangan" onchange="showStok()" class="form-control">
                       <option value="0">== Pilih Gudang ==</option>
                       <?php  
                         foreach ($dataRuangan as $row){
@@ -297,7 +297,7 @@
         document.getElementById("stok").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_materialCimuning/searchStok?mpciId="+mpbaId+"&mcciId="+mcbaId+"&ruanId="+ruanId, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_materialCimuning/searchStok?mcciId="+mcciId+"&mpciId="+mpciId+"&ruanId="+ruanId, true);
     xhttp.send();   
   }
    function modalMaterial() {

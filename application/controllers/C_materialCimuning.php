@@ -97,8 +97,8 @@ class C_materialCimuning extends CI_Controller
     ?>
     <script type="text/javascript">alert("masuk");</script>
     <?php
-    $mpciId = $_GET['mpciId'];
-    $mcciId = $_GET['mcciId'];
+    $mpci_id = $_GET['mpciId'];
+    $mcci_id = $_GET['mcciId'];
     $ruan_id = $_GET['ruanId'];
 
       if ($ruan_id != 0) {
@@ -107,18 +107,18 @@ class C_materialCimuning extends CI_Controller
         $stokAwal = $this->m_materialCimuning->getFirstStockWithoutRuangan($mcci_id,$mpci_id);
       }
 
-    if ($mpciId == 0 || $mcciId == 0 ) {
+    if ($mpci_id == 0 || $mcci_id == 0) {
       ?>
         <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly value="0"> 
       <?php
     }else{
-      if (isset($stokAwal[0]['MACI_SALDO'])) {
+      if (empty($stokAwal[0]['MACI_SALDO'])) {
         ?>
-          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['MACI_SALDO'] ?>"> 
+          <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly value="0"> 
         <?php
       }else{
         ?>
-          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['MACI_SALDO']?>"> 
+          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['MACI_SALDO']?>">
         <?php
       }
     }

@@ -22,9 +22,15 @@
 						  <option value="0">== Pilih Material Induk ==</option>
 						  <?php 
 						    foreach ($bawang_Parent as $row){
-						      echo "<option value='".$row['MPBA_ID']."'>";
-						      echo $row ['MPBA_NAME'];
-						     echo "</option>";
+						      if ($row['MPBA_ID'] == $bawangChild[0]['MCBA_MPBA_ID']){
+			 					?>
+			 					<option value="<?php echo $row['MPBA_ID'] ?>" selected><?php echo $row['MPBA_NAME']?></option>
+                                <?php
+                              } else {                               
+                                ?>
+                                <option value="<?php echo $row['MPBA_ID'] ?>" ><?php echo $row['MPBA_NAME']?></option>
+                                <?php
+                              }
 						    }
 						  ?>
 						</select>  
@@ -42,9 +48,15 @@
 						  <option value="0">== Pilih Satuan ==</option>
 						  <?php  
 						    foreach ($satuan as $row){
-						      echo "<option value='".$row['SATU_ID']."'>";
-						      echo $row ['SATU_NAME'];
-						     echo "</option>";
+						     if ($row['SATU_ID'] == $bawangChild[0]['MCBA_SATU_ID']){
+                                ?>
+                                <option value="<?php echo $row['SATU_ID'] ?>" selected><?php echo $row['SATU_NAME']?></option>
+                                <?php
+                              } else {                               
+                                ?>
+                                <option value="<?php echo $row['SATU_ID'] ?>" ><?php echo $row['SATU_NAME']?></option>
+                                <?php
+                              }
 						    }
 						  ?>
 						</select>  

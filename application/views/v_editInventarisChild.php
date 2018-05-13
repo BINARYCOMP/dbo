@@ -23,7 +23,15 @@
 					      <option value="0">== Pilih Inventaris Barang ==</option>
 					      <?php  
 					        foreach ($inventaris_parent as $row) {
-			 						echo "<option value ='".$row['INPA_ID']."'> ".$row['INPA_NAME']." </option>";
+					        	if ($row['INPA_ID'] == $inventarisChild[0]['INCH_INPA_ID']){
+			 					?>
+			 					<option value="<?php echo $row['INPA_ID'] ?>" selected><?php echo $row['INPA_NAME']?></option>
+                                <?php
+                              } else {                               
+                                ?>
+                                <option value="<?php echo $row['INPA_ID'] ?>" ><?php echo $row['INPA_NAME']?></option>
+                                <?php
+                              }
 					        }
 					      ?>
 					    </select> <br>

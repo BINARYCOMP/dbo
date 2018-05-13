@@ -47,12 +47,14 @@ class C_materialChildCimuning extends CI_Controller
 		$cimuningChild=$this->m_materialChildCimuning->view();
 		$cimuningParent=$this->m_materialChildCimuning->getBarangParent();
 		$satuan=$this->m_materialChildCimuning->getSatuan();
+		$child=$this->m_materialChildCimuning->Update($id);
 		$data = array(
 			'cimuning_child' =>$cimuningChild,
 			'cimuning_Parent' =>$cimuningParent,
 			'satuan' =>$satuan,
 			'title'=>' Edit Material Child Cimuning',
 			'content' => 'v_editMaterialChildCimuning',
+			'cimuningChild' => $child,
 			'menu'         => 'Material Child Cimuning'
 		);
 		$this->load->view('tampilan/v_combine',$data);
