@@ -48,7 +48,7 @@
                                 <div class="input-group">
                                   <!-- /btn-group -->
                                   <span id="txtChildTakJadi">
-                                    <select name="cmbChild" id="cmbChildTakJadi" onclick="showStokTakJadi(this.value)" class="form-control">
+                                    <select name="cmbChild" id="cmbChildTakJadi" onclick="modalChildTakJadi(this.value)" class="form-control">
                                       <option>== Pilih Anak Barang ==</option>
                                     </select>
                                   </span>
