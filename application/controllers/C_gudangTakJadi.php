@@ -9,6 +9,7 @@ class C_gudangTakJadi extends CI_Controller
   {
     parent::__construct();
     $this->load->model('m_gudangTakJadi');
+    $this->load->model('m_gudangJadi');
   }
   public function index()
   {
@@ -32,8 +33,9 @@ class C_gudangTakJadi extends CI_Controller
         'namaParent'      => $namaParent,
         'dataGudangTakJadi'  => $dataGudangTakJadi,
         'dataRuangan'     => $dataRuangan,
-        'content'         => 'v_gudangTakJadi',
         'message'         => $message,
+        'title'           => 'Input Barang Setengah Jadi Gudang Cimuning ',
+        'content'         => 'v_gudangTakJadi',
       );
       $this->load->view('tampilan/v_combine',$data);
   }
