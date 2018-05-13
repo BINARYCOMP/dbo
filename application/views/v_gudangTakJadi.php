@@ -16,7 +16,7 @@
                       <label class="control-label">Parent</label>
                       <div class="input-group autocomplete">
                         <input id="myInputTakJadi" class="form-control" type="text" onchange="showChildTakJadi(this.value)" name="cmbParentMuncul"  placeholder="== Pilih Induk Barang ==">
-                        <input class="form-control" id="cmbParentTakJadi" type="hidden" name="cmbParent">
+                        <input class="form-control" id="cmbParentTakJadi" type="text" name="cmbParent">
                         <!-- /btn-group -->
                         <!-- <select name="cmbParent" id="cmbParentTakJadi" onchange="showChildTakJadi(this.value)" class="form-control">
                           <option value="0">== Pilih Induk Barang ==</option>
@@ -178,7 +178,7 @@ function showChildTakJadi(str) {
 <script>
 function showStokTakJadi(str) {
   var bachId = document.getElementById('cmbChildTakJadi').value;
-  var bapaId = document.getElementById('myInputTakJadi').value;
+  var bapaId = document.getElementById('cmbParentTakJadi').value;
   var kateId = document.getElementById('cmbKategoriTakJadi').value;
   var xhttp;
   xhttp = new XMLHttpRequest();
@@ -212,10 +212,8 @@ function showStokTakJadi(str) {
 
     var parent,child,kategori,keterangan,masuk,keluar,akhir,awal,ruangan;
     parent      = document.getElementById('cmbParentTakJadi').value;
-
-    var parent,child,kategori,keterangan,masuk,keluar,akhir;
-    parent      = document.getElementById('myInputTakJadi').value;
-
+    // var parent,child,kategori,keterangan,masuk,keluar,akhir;
+    // parent      = document.getElementById('myInputTakJadi').value;
     child       = document.getElementById('cmbChildTakJadi').value;
     kategori    = document.getElementById('cmbKategoriTakJadi').value;
     keterangan  = document.getElementById('keteranganTakJadi').value;
@@ -238,7 +236,7 @@ function showStokTakJadi(str) {
    function modalChildTakJadi() {
     var xhttp;
     var parent;
-    parent    = document.getElementById('myInputTakJadi').value;
+    parent    = document.getElementById('cmbParentTakJadi').value;
 
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -274,7 +272,7 @@ function showStokTakJadi(str) {
                       $no=1;
                       foreach ($namaParent as $row) {
                         ?>
-                          <tr class="pilih" data-brgParentTakJadi="<?php echo $row['BAPA_ID']; ?>">
+                          <tr class="pilih" data-brgParentTakJadi="<?php echo $row['BAPA_NAME']; ?>" data-brgParentTakJadiValue="<?php echo $row['BAPA_ID']; ?>">
                             <td><?php echo $no ?></td>
                             <td><?php echo $row['BAPA_NAME']?></td>
                             
@@ -375,8 +373,10 @@ function showStokTakJadi(str) {
 
         // parent
         document.getElementById("myInputTakJadi").value = $(this).attr('data-brgParentTakJadi');
+        document.getElementById("cmbParentTakJadi").value = $(this).attr('data-brgParentTakJadiValue');
+
         $('#myModalTakJadi').modal('hide');
-        showChildTakJadi($(this).attr('data-brgParentTakJadi'));
+        showChildTakJadi($(this).attr('data-brgParentTakJadiValue'));
 
         
 
