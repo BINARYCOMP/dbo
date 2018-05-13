@@ -94,7 +94,7 @@
 		 					echo "<td>".$row['MPCI_NAME']."</td>";
 		 					echo "<td>".$row['SATU_NAME']."</td>";
 		 					echo "<td>".$row['MCCI_TIMESTAMP']."</td>";
-		 					echo "<td><a href='".base_url()."c_materialChildCimuning/FormUpdate/".$row['MCCI_ID']."'>Edit</a> | <a href='".base_url()."c_materialChildCimuning/delete/".$row['MCCI_ID']."'>Delete</a></td>";
+		 					echo "<td><a href='".base_url()."c_materialChildCimuning/FormUpdate/".$row['MCCI_ID']."'>Edit</a> | <a href='".base_url()."c_materialChildCimuning/delete/".$row['MCCI_ID']."'  onclick= 'return confirm(\"Are you sure?\")'>Delete</a></td>";
 		 					echo "</tr>";
 		 					$no++;
 		 				}
