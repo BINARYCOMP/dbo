@@ -107,4 +107,38 @@ class C_report extends CI_Controller
 		);
 		$this->load->view('export/export_xlsBarangCimuning', $data);
 	}
+
+	public function exportMaterialBawang()
+	{
+		date_default_timezone_set("Asia/Bangkok");
+		header("Content-type: application/vnd-ms-excel");
+		header("Content-Disposition: attachment; filename=Laporan Material [ Gudang Bawang ] (".date("l jS \of F Y h:i:s A").").xls");
+
+		$data['material_parent_bawang'] = $this->m_report->getMaterialBawangParent();
+
+
+		$dataMaterialBawangParent	 		= $this->m_report->getMaterialBawangParent();
+		$dataRuangan 						= $this->m_report->getRuangan();
+		$data = array(
+			'dataMaterialBawangParent' 			=> $dataMaterialBawangParent,
+			'dataRuangan'						=> $dataRuangan
+		);
+		$this->load->view('export/export_xlsMaterialBawang', $data);
+	}
+
+		public function exportKeuangan()
+	{
+		date_default_timezone_set("Asia/Bangkok");
+		header("Content-type: application/vnd-ms-excel");
+		header("Content-Disposition: attachment; filename=Laporan Keuangan (".date("l jS \of F Y h:i:s A").").xls");
+
+		$data['keuangan'] = $this->m_report->getKeuangan();
+
+
+		$dataKeuangan 						= $this->m_report->getKeuangan();
+		$data = array(
+			'dataKeuangan' 						=> $dataKeuangan
+		);
+		$this->load->view('export/export_xlsKeuangan', $data);
+	}
 }

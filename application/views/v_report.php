@@ -183,7 +183,8 @@
   <!-- Material Bawang Report -->
   <div class="box box-default">
     <div class="box-header with-border">
-      <h3 class="box-title"><span class="text-center">Laporan Material [ Gudang Bawang ]</span></h3>
+      <h3 class="box-title"><span class="text-center">Laporan Material [ Gudang Bawang ]</span></h3><br>
+      <a href="<?php echo base_url('index.php/c_report/exportMaterialBawang') ?>">Export ke Excel</a><br>
 
       <div class="box-tools pull-right">
         <button type="button" class="btn btn-box-tool" data-widget=" "><i class="fa fa-edit"></i> Edit</button>
@@ -274,7 +275,8 @@
   <!-- SELECT2 EXAMPLE -->
   <div class="box box-default">
     <div class="box-header with-border">
-      <h3 class="box-title"><span class="text-center">Laporan Keuangan</span></h3>
+      <h3 class="box-title"><span class="text-center">Laporan Keuangan</span></h3><br>
+      <a href="<?php echo base_url('index.php/c_report/exportKeuangan') ?>">Export ke Excel</a><br>
 
       <div class="box-tools pull-right">
         <button type="button" class="btn btn-box-tool" data-widget=" "><i class="fa fa-edit"></i> Edit</button>
