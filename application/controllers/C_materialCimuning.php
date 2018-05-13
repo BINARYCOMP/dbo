@@ -99,7 +99,13 @@ class C_materialCimuning extends CI_Controller
     <?php
     $mpciId = $_GET['mpciId'];
     $mcciId = $_GET['mcciId'];
-    $stokAwal = $this->m_materialCimuning->getFirstStock($mcciId,$mpciId);
+    $ruan_id = $_GET['ruanId'];
+
+      if ($ruan_id != 0) {
+        $stokAwal = $this->m_materialCimuning->getFirstStock($mcci_id,$mpci_id,$ruan_id);
+      }else{
+        $stokAwal = $this->m_materialCimuning->getFirstStockWithoutRuangan($mcci_id,$mpci_id);
+      }
 
     if ($mpciId == 0 || $mcciId == 0 ) {
       ?>
