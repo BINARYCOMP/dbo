@@ -24,10 +24,10 @@ class C_gudangTakJadi extends CI_Controller
       $message ="";
     }
 
-      $namaParent          = $this->m_gudangTakJadi->getParentName();
-      $dataGudangTakJadi   = $this->m_gudangTakJadi->getDataGudang();
-      $dataRuangan      = $this->m_gudangTakJadi->getRuangan();
-      $namaKategori        = $this->m_gudangTakJadi->getKategoriName();
+      $namaParent           = $this->m_gudangTakJadi->getParentName();
+      $dataGudangTakJadi    = $this->m_gudangTakJadi->getDataGudang();
+      $dataRuangan          = $this->m_gudangTakJadi->getRuangan();
+      $namaKategori         = $this->m_gudangTakJadi->getKategoriName();
       $data = array(
         'namaKategori'    => $namaKategori,
         'namaParent'      => $namaParent,
