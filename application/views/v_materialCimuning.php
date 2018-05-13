@@ -288,16 +288,16 @@
   }
   function showStok() {
     var xhttp;
-    var mcbaId = document.getElementById('cmbChild').value;
-    var mpbaId = document.getElementById('cmbParent').value;
-
+    var mcciId = document.getElementById('cmbChild').value;
+    var mpciId = document.getElementById('cmbParent').value;
+    var ruanId = document.getElementById('cmbRuangan').value;
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         document.getElementById("stok").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_materialCimuning/searchStok?mpciId="+mpbaId+"&mcciId="+mcbaId, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_materialCimuning/searchStok?mpciId="+mpbaId+"&mcciId="+mcbaId+"&ruanId="+ruanId, true);
     xhttp.send();   
   }
    function modalMaterial() {
