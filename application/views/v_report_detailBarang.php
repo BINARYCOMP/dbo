@@ -83,19 +83,19 @@
                           <tr>
                             <th scope="row">
                               <?php 
-                                echo date("D d M Y ( h:m:s a )", strtotime($row2['GUJA_TIMESTAMP']));
+                                echo date("D d M Y ( h:m:s a )", strtotime($row2['GUBA_TIMESTAMP']));
                               ?>
                             </th>
-                            <td><?php echo $row2['GUJA_URAIAN'] ?></td>
+                            <td><?php echo $row2['GUBA_URAIAN'] ?></td>
                             <?php
                             $subTotal = 0;
                             if (empty($dataKategori)) {
                               ?>
-                                <td><?php echo $row2['GUJA_MASUK'] ?></td>
-                                <td><?php echo $row2['GUJA_KELUAR'] ?></td>
-                                <td><?php echo $row2['GUJA_SALDO'] ?></td>
+                                <td><?php echo $row2['GUBA_MASUK'] ?></td>
+                                <td><?php echo $row2['GUBA_KELUAR'] ?></td>
+                                <td><?php echo $row2['GUBA_SALDO'] ?></td>
                               <?php
-                              $subTotal = $subTotal + $row2['GUJA_SALDO'];
+                              $subTotal = $subTotal + $row2['GUBA_SALDO'];
                             }
                             $r =0;
                             $a = 0;
@@ -107,7 +107,7 @@
 
                               $dataStok   = $this->m_report->getStokByKateId($daka['KATE_ID'], $row['BAPA_ID']);
                               $lastSaldo  = $this->m_report->getLastStok($row['BAPA_ID'], $row['BACH_ID'], $daka['KATE_ID']);
-                              if ($daka['KATE_ID'] != $row2['GUJA_KATE_ID']) {
+                              if ($daka['KATE_ID'] != $row2['GUBA_KATE_ID']) {
                                 ?>
                                   <td>0</td>
                                   <td>0</td>
@@ -118,11 +118,11 @@
                                   </td>
                                 <?php
                               }else{
-                                $saldo[$a]  = $row2['GUJA_SALDO'];
+                                $saldo[$a]  = $row2['GUBA_SALDO'];
                                 ?>
-                                  <td><?php echo $row2['GUJA_MASUK'] ?></td>
-                                  <td><?php echo $row2['GUJA_KELUAR'] ?></td>
-                                  <td><?php echo $row2['GUJA_SALDO'] ?></td>
+                                  <td><?php echo $row2['GUBA_MASUK'] ?></td>
+                                  <td><?php echo $row2['GUBA_KELUAR'] ?></td>
+                                  <td><?php echo $row2['GUBA_SALDO'] ?></td>
                                 <?php
                               }
                               $subTotal = $subTotal + $saldo[$a];

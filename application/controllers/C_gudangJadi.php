@@ -109,6 +109,7 @@ class C_gudangJadi extends CI_Controller
         $stokAwal = $this->m_gudangJadi->getFirstStockWithoutRuanganAndKategori($bach_id,$bapa_id);
       }
     }
+    var_dump($stokAwal);
 
     if ($bapa_id == 0 || $bach_id == 0) {
       ?>
