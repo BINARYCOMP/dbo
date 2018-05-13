@@ -75,7 +75,7 @@ class M_report extends CI_Model
 	}
 	public function getTotalByRuangan($bapaId, $bachId, $ruanId)
 	{
-		$sql 	= "SELECT SUM(GUJA_MASUK) as 'TOTAL_RUANGAN' FROM  gudang_jadi WHERE GUJA_BAPA_ID = ".$bapaId." AND GUJA_BACH_ID = ".$bachId." AND GUJA_RUAN_ID = ".$ruanId;
+		$sql 	= "SELECT SUM(GUBA_MASUK) as 'TOTAL_RUANGAN' FROM  gudang_bawang WHERE GUBA_BAPA_ID = ".$bapaId." AND GUBA_BACH_ID = ".$bachId." AND GUBA_RUAN_ID = ".$ruanId;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;	
@@ -89,7 +89,7 @@ class M_report extends CI_Model
 	}
 	public function getTotalSaldo($bapaId, $bachId)
 	{
-		$sql 	= "SELECT SUM(GUJA_MASUK) as 'MASUK', SUM(GUJA_KELUAR) as 'KELUAR' FROM  gudang_jadi WHERE GUJA_BAPA_ID = ".$bapaId." AND GUJA_BACH_ID = ".$bachId;
+		$sql 	= "SELECT SUM(GUBA_MASUK) as 'MASUK', SUM(GUBA_KELUAR) as 'KELUAR' FROM  gudang_bawang WHERE GUBA_BAPA_ID = ".$bapaId." AND GUBA_BACH_ID = ".$bachId;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		$return = $return[0]['MASUK'] - $return[0]['KELUAR'];
@@ -109,7 +109,7 @@ class M_report extends CI_Model
 	}
 	public function getBarangJadiByChildId($id)
 	{
-		$sql 	= "SELECT * FROM  gudang_jadi, barang_parent, barang_child, satuan WHERE GUJA_BACH_ID = BACH_ID AND GUJA_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_ID =".$id;
+		$sql 	= "SELECT * FROM  gudang_bawang, barang_parent, barang_child, satuan WHERE GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -156,7 +156,7 @@ class M_report extends CI_Model
 	}
 	public function getKategoriByBachId($id)
 	{
-		$sql	= "SELECT * FROM gudang_jadi, kategori WHERE guja_kate_id = kate_id AND GUJA_BACH_ID = ".$id." GROUP BY kate_id";
+		$sql	= "SELECT * FROM gudang_bawang, kategori WHERE GUBA_KATE_ID = kate_id AND GUBA_BACH_ID = ".$id." GROUP BY kate_id";
 		$query 	= $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
