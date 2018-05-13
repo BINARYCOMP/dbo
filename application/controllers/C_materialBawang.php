@@ -103,8 +103,6 @@ class C_materialBawang extends CI_Controller
       }else{
         $stokAwal = $this->m_materialBawang->getFirstStockWithoutRuangan($mcba_id,$mpba_id);
       }
-      var_dump($stokAwal);
-      exit();
 
 
     if ($mpba_id == 0 || $mcba_id == 0) {
