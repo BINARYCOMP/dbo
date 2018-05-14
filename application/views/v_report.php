@@ -128,52 +128,34 @@
         <tbody>
           <?php
           $no = 1;
-            foreach ($dataBarangParentCimuning as $row) {
-              ?>
-              <tr>
-                    <th scope="row"></th>
-                    <td><b><a href="<?php echo base_url()?>c_report/detailBarangCimuning/<?php echo $row['BACP_ID']?>"><?php echo $row['BACP_NAME'] ?></a></b></td>
-                    <th></th>
-                    <?php
-                      foreach ($dataRuangan as $r) {
-                        ?>
-                            <th scope="1"></th>
-                        <?php
-                      }
-                    ?>
-                    <th scope="1"></th>
-                </tr>
+          foreach ($dataBarangJadiCimuning as $row) {
+          ?>
+            <tr>
+              <th scope="row" class="center"><?php echo $no ?></th>
+              <td><b><a href="<?php echo base_url()?>c_report/detailBarangCimuning/<?php echo $row['BACC_ID']?>"><?php echo $row['BACC_NAME'] ?></a></b></td>
+              <td><?php echo $row['SATU_NAME'] ?></td>
               <?php
-              $dataBarangChildById = $this->m_report->getBarangChildCimuningByBacpId($row['BACP_ID']); 
-              foreach ($dataBarangChildById as $row) {
-                ?>
-                <tr>
-                  <th scope="row" class="center"><?php echo $no ?></th>
-                  <td><?php echo $row['BACC_NAME'] ?></td>
-                  <td><?php echo $row['SATU_NAME'] ?></td>
-                  <?php
-                    foreach ($dataRuangan as $key) {
-                      $total = $this->m_report->getTotalCimuningByRuangan($row['BACP_ID'],$row['BACC_ID'],$key['RUAN_ID']);
-                      ?>
-                        <td scope="1">
-                          <?php
-                            if (isset($total[0]['TOTAL_RUANGAN'])) {
-                              echo $total[0]['TOTAL_RUANGAN'];
-                            }else{
-                              echo "-";
-                            }
-                          ?>
-                        </td>
-                      <?php
-                    }
-                    $total = $this->m_report->getTotalSaldoCimuning($row['BACP_ID'],$row['BACC_ID']);
+                foreach ($dataRuangan as $key) {
+                  $total = $this->m_report->getTotalCimuningByRuangan($row['BACC_ID'],$key['RUAN_ID']);
                   ?>
-                  <td class="right" ><?php echo $total['TOTAL'] ?></td>
-                </tr>
-                <?php
-                $no++;
-              }
-            }
+                    <td scope="1">
+                      <?php
+                        if (isset($total[0]['TOTAL_RUANGAN'])) {
+                          echo $total[0]['TOTAL_RUANGAN'];
+                        }else{
+                          echo "-";
+                        }
+                      ?>
+                    </td>
+                  <?php
+                }
+                $total = $this->m_report->getTotalSaldoCimuning($row['BACC_ID']);
+              ?>
+              <td class="right" ><?php echo $total['TOTAL'] ?></td>
+            </tr>
+            <?php
+            $no++;
+          }
           ?>
         </tbody>
       </table>
