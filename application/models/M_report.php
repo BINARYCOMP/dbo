@@ -17,9 +17,9 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
-	public function getBarangParentCimuning()
+	public function getBarangJadiCimuning()
 	{
-		$sql 	= "SELECT * FROM barang_cimuning_parent ";
+		$sql 	= "SELECT * FROM barang_cimuning_child, satuan WHERE BACC_SATU_ID = SATU_ID ";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -61,7 +61,7 @@ class M_report extends CI_Model
 	}
 	public function getBarangChildCimuningByBacpId($id)
 	{
-		$sql 	= "SELECT * FROM  barang_cimuning_parent, barang_cimuning_child, satuan WHERE BACC_BACP_ID = BACP_ID AND BACC_SATU_ID = SATU_ID AND BACC_BACP_ID =".$id;
+		$sql 	= "SELECT * FROM  barang_cimuning_child, barang_cimuning_child, satuan WHERE BACC_BACP_ID = BACP_ID AND BACC_SATU_ID = SATU_ID AND BACC_BACP_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -80,6 +80,13 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;	
 	}
+	public function getTotalCimuningByRuangan($BaccId, $ruanId)
+	{
+		$sql 	= "SELECT SUM(GUJA_MASUK) as 'TOTAL_RUANGAN' FROM  gudang_jadi WHERE GUJA_BACC_ID = ".$BaccId." AND GUJA_RUAN_ID = ".$ruanId;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;	
+	}
 	public function getTotalMaterialBawangByRuangan($mpbaId, $mcbaId, $ruanId)
 	{
 		$sql 	= "SELECT SUM(MABA_MASUK) as 'TOTAL_RUANGAN' FROM  material_bawang WHERE MABA_MPBA_ID = ".$mpbaId." AND MABA_MCBA_ID = ".$mcbaId." AND MABA_RUAN_ID = ".$ruanId;
@@ -90,6 +97,16 @@ class M_report extends CI_Model
 	public function getTotalSaldo($bapaId, $bachId)
 	{
 		$sql 	= "SELECT SUM(GUBA_MASUK) as 'MASUK', SUM(GUBA_KELUAR) as 'KELUAR' FROM  gudang_bawang WHERE GUBA_BAPA_ID = ".$bapaId." AND GUBA_BACH_ID = ".$bachId;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		$return = $return[0]['MASUK'] - $return[0]['KELUAR'];
+		$return = array(
+			'TOTAL' => $return);
+		return $return;	
+	}
+	public function getTotalSaldoCimuning($baccId)
+	{
+		$sql 	= "SELECT SUM(GUJA_MASUK) as 'MASUK', SUM(GUJA_KELUAR) as 'KELUAR' FROM  gudang_jadi WHERE GUJA_BACC_ID = ".$baccId;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		$return = $return[0]['MASUK'] - $return[0]['KELUAR'];

@@ -9,7 +9,6 @@ class C_gudangTakJadi extends CI_Controller
   {
     parent::__construct();
     $this->load->model('m_gudangTakJadi');
-    $this->load->model('m_gudangJadi');
   }
   public function index()
   {
@@ -24,50 +23,44 @@ class C_gudangTakJadi extends CI_Controller
       $message ="";
     }
 
-      $namaParent          = $this->m_gudangTakJadi->getParentName();
-      $dataGudangTakJadi   = $this->m_gudangTakJadi->getDataGudang();
+      $namaBarang       = $this->m_gudangTakJadi->getBarangName();
+      $datagudangTakJadi   = $this->m_gudangTakJadi->getDataGudang();
       $dataRuangan      = $this->m_gudangTakJadi->getRuangan();
-      $namaKategori        = $this->m_gudangTakJadi->getKategoriName();
+      $namaKategori     = $this->m_gudangTakJadi->getKategoriName();
       $data = array(
         'namaKategori'    => $namaKategori,
-        'namaParent'      => $namaParent,
-        'dataGudangTakJadi'  => $dataGudangTakJadi,
+        'namaBarang'      => $namaBarang,
+        'datagudangTakJadi'  => $datagudangTakJadi,
         'dataRuangan'     => $dataRuangan,
-        'message'         => $message,
-        'title'           => 'Input Barang Setengah Jadi Gudang Cimuning ',
+        'title'           => 'Input barang tak jadi Gudang Cimuning ',
         'content'         => 'v_gudangTakJadi',
+        'message'         => $message,
       );
       $this->load->view('tampilan/v_combine',$data);
   }
   public function inputStok()
   {
     $parent     = $_POST['cmbParent'];
-    $child      = $_POST['cmbChild'];
+    // $child      = $_POST['cmbChild'];
     $kategori   = $_POST['cmbKategori'];
     $uraian     = $_POST['txtUraian'];
     $masuk      = $_POST['txtMasuk'];
     $keluar     = $_POST['txtKeluar'];
-    $cmbRuangan = $_POST['cmbRuangan'];
+    $cmbRuangan     = $_POST['cmbRuangan'];
     $saldoAkhir = $_POST['txtSaldoAwal'] + $masuk - $keluar;
     $data = array(
       'GUTA_KATE_ID'  => $kategori,
       'GUTA_KELUAR'   => $keluar ,
       'GUTA_URAIAN'   => $uraian ,
       'GUTA_MASUK'    => $masuk ,
-      'GUTA_BAPA_ID'  => $parent ,
-      'GUTA_BACH_ID'  => $child ,
+      'GUTA_BACC_ID'  => $parent ,
+      // 'GUTA_BACH_ID'  => $child ,
       'GUTA_SALDO'    => $saldoAkhir,
       'GUTA_RUAN_ID'  => $cmbRuangan
     );
-    $simpanBarang = $this->m_gudangTakJadi->simpanBarang($data, $saldoAkhir, $child);
-    echo "<script> window.location='".base_url()."c_stok?message=1' </script>";
+    $simpanBarang = $this->m_gudangTakJadi->simpanBarang($data, $saldoAkhir);
+    echo "<script> window.location='".base_url()."c_gudangTakJadi?message=1' </script>";
   }
-      public function delete($id)
-  {
-    $this->db->delete('gudang_tak_jadi', array('GUTA_ID' => $id));
-    redirect('c_stok');
-  }
-
 
   // nama child
   public function searchChild()
@@ -75,7 +68,7 @@ class C_gudangTakJadi extends CI_Controller
     $str = $_GET['q'];
     $namaChild  = $this->m_gudangTakJadi->getChildName($str);
     ?>
-      <select required name="cmbChild" id="cmbChildTakJadi" onchange="showStok();" onmousemove ="showStok();" class="form-control">
+      <select required name="cmbChild" id="cmbChild" onchange="showStok();" onmousemove ="showStok();" class="form-control">
         <?php
           if ($str == 0) {
             ?>
@@ -99,27 +92,36 @@ class C_gudangTakJadi extends CI_Controller
   // cari stok
   public function searchStok()
   {
-    $bapa_id = $_GET['bapaId'];
-    $bach_id = $_GET['bachId'];
+    $BACC_id = $_GET['BACCId'];
     $kate_id = $_GET['kateId'];
-    if ($kate_id != 0) {
-      $stokAwal = $this->m_gudangTakJadi->getFirstStock($bach_id,$bapa_id,$kate_id);
-    }else{
-      $stokAwal = $this->m_gudangTakJadi->getFirstStockWithoutKategori($bach_id,$bapa_id);
-    }
+    $ruan_id = $_GET['ruanId'];
+    
 
-    if ($bapa_id == 0 || $bach_id == 0) {
+    if ($kate_id != 0) {
+      if ($ruan_id != 0) {
+        $stokAwal = $this->m_gudangTakJadi->getFirstStock($BACC_id,$kate_id,$ruan_id);
+      }else{
+        $stokAwal = $this->m_gudangTakJadi->getFirstStockWithoutRuangan($BACC_id,$kate_id);
+      }
+    }else{
+      if ($ruan_id != 0) {
+        $stokAwal = $this->m_gudangTakJadi->getFirstStockWithoutKategori($BACC_id, $ruan_id);
+      }else{
+        $stokAwal = $this->m_gudangTakJadi->getFirstStockWithoutRuanganAndKategori( $BACC_id);
+      }
+    }
+    if ($BACC_id == 0 ) {
       ?>
-        <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwalTakJadi" required readonly value="0"> 
+        <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly value="0"> 
       <?php
     }else{
       if (empty($stokAwal[0]['GUTA_SALDO'])) {
         ?>
-          <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwalTakJadi" required readonly value="0"> 
+          <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly value="0"> 
         <?php
       }else{
         ?>
-          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwalTakJadi" required readonly value="<?php echo $stokAwal[0]['GUTA_SALDO']?>">
+          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['GUTA_SALDO']?>">
         <?php
       }
     }
@@ -127,7 +129,7 @@ class C_gudangTakJadi extends CI_Controller
   public function modalKonfirmasi()
   {
     $cmbParent     = $_GET['parent'];
-    $cmbChild      = $_GET['child'];
+    // $cmbChild      = $_GET['child'];
     $cmbKategori   = $_GET['kategori'];
     $txtUraian     = $_GET['keterangan'];
     $txtMasuk      = $_GET['masuk'];
@@ -136,16 +138,27 @@ class C_gudangTakJadi extends CI_Controller
     $cmbRuangan    = $_GET['ruangan'];
     $saldoAkhir    = $txtSaldoAwal + $txtMasuk - $txtKeluar;
 
-    $namaParentDariModel      = $this->m_gudangTakJadi->getParentByBapaId($cmbParent);
-    $namaChildDariModel       = $this->m_gudangTakJadi->getChildByBachId($cmbChild);
+
+    $namaParentDariModel      = $this->m_gudangTakJadi->getParentByBACCId($cmbParent);
+    // $namaChildDariModel       = $this->m_gudangTakJadi->getChildByBachId($cmbChild);
     $namaKategoriDariModel    = $this->m_gudangTakJadi->getKategoriByKateId($cmbKategori);
     $namaRuanganDariModel     = $this->m_gudangTakJadi->getRuanganByRuanId($cmbRuangan);
-
-    $namaParentUntukDitampilkan      = $namaParentDariModel[0]['BAPA_NAME'];
-    $namaChildUntukDitampilkan       = $namaChildDariModel[0]['BACH_NAME'] ;
-    $namaKategoriUntukDitampilkan    = $namaKategoriDariModel[0]['KATE_NAME'] = 0;
-    $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER'];
-
+    $namaParentUntukDitampilkan      = 0;
+    // $namaChildUntukDitampilkan       = 0;
+    $namaKategoriUntukDitampilkan    = 0;
+    $nomorGudangUntukDitampilkan     = 0;
+    if (!empty($namaParentDariModel[0]['BACC_NAME'])) {
+      $namaParentUntukDitampilkan      = $namaParentDariModel[0]['BACC_NAME'];
+    }
+    // if (!empty($namaChildDariModel[0]['BACH_NAME'])) {
+    //   $namaChildUntukDitampilkan       = $namaChildDariModel[0]['BACH_NAME'] ;
+    // } 
+    if (!empty($namaKategoriDariModel[0]['KATE_NAME'])) {
+       $namaKategoriUntukDitampilkan    = $namaKategoriDariModel[0]['KATE_NAME'];
+    } 
+    if (!empty($namaRuanganDariModel[0]['RUAN_NUMBER'])) {
+      $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER'];
+    } 
     ?>
       <div class="modal-content">
         <div class="modal-header">
@@ -156,8 +169,8 @@ class C_gudangTakJadi extends CI_Controller
         <div class="modal-body">
           <table class="table table-bordered">
             <tr>
-              <th>Induk Barang</th>
-              <th>Anak Barang</th>
+              <th>Nama Barang</th>
+              <!-- <th>Anak Barang</th> -->
               <th>Kategori</th>
               <th>Ruangan</th>
               <th>Barang Masuk</th>
@@ -166,7 +179,7 @@ class C_gudangTakJadi extends CI_Controller
             </tr>
             <tr>
               <td><?php echo $namaParentUntukDitampilkan ?></td>
-              <td><?php echo $namaChildUntukDitampilkan?></td>
+              <!-- <td><?php echo $namaChildUntukDitampilkan?></td> -->
               <td><?php echo $namaKategoriUntukDitampilkan ?></td>
               <td><?php echo $nomorGudangUntukDitampilkan ?></td>
               <td><?php echo $txtMasuk ?></td>
@@ -179,7 +192,7 @@ class C_gudangTakJadi extends CI_Controller
           <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
           <form action="<?php echo base_url()?>c_gudangTakJadi/inputStok" method="POST">
             <input type="hidden" name="cmbParent" value="<?php echo $cmbParent?>">
-            <input type="hidden" name="cmbChild" value="<?php echo $cmbChild?>">
+            <!-- <input type="hidden" name="cmbChild" value="<?php echo $cmbChild?>"> -->
             <input type="hidden" name="cmbKategori" value="<?php echo $cmbKategori?>">
             <input type="hidden" name="txtMasuk" value="<?php echo $txtMasuk?>">
             <input type="hidden" name="txtKeluar" value="<?php echo $txtKeluar?>">
@@ -197,44 +210,11 @@ class C_gudangTakJadi extends CI_Controller
   public function modalChild()
    {
      $cmbParent = $_GET['parent'];
-     $namaChild = $this->m_gudangTakJadi->getChildByBapaId($cmbParent);
-    ?>
-    <!-- modal child -->
-      <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Lookup Barang Child</h4>
-          </div>
-          <div class="modal-body">
-              <table id="gutaChild" class="table table-bordered table-hover table-striped">
-                  <thead>
-                    <tr>
-                      <th>No.</th>
-                      <th>Nama Barang</th>
-                      <th>Satuan</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    if (is_array($namaChild) || is_object($namaChild)){
-                      $no=1;
-                      foreach ($namaChild as $row) {
-                        ?>
-                          <tr class="pilih2" data-brgChildTakJadi="<?php echo $row['BACH_ID']; ?>">
-                            <!-- <td><?php echo $no ?></td> -->
-                            <td><?php echo $no ?></td>
-                            <td><?php echo $row['BACH_NAME']?></td>
-                            <td><?php echo $row['SATU_NAME']?></td>
-                          </tr>
-                        <?php
-                        $no++;
-                      }
-                    }
-                    ?>
-                  </tbody>
-              </table>  
-          </div>
-      </div>
-    <?php
+     $namaChild = $this->m_gudangTakJadi->getChildByBACCId($cmbParent);
+     $data = array(
+      'cmbParent' => $cmbParent ,
+      'namaChild' => $namaChild 
+    );
+     $this->load->view('modal/v_modalChildgudangTakJadi', $data);
   } 
 }

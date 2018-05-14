@@ -14,7 +14,7 @@
 	      <div class="box-body">
 	        <div class="row">
 	          <div class="col-md-12 ">
-	            <form action="<?php echo base_url ()?>c_materialChildCimuning/UpdateData/<?php  echo $cimuning_child[0]['MCCI_ID'] ?>" method="POST">
+	            <form action="<?php echo base_url ()?>c_materialChildCimuning/UpdateData/<?php  echo $cimuningChild[0]['MCCI_ID'] ?>" method="POST">
 	              <div class="form-group">
 	                  <label class=" control-label">Material Induk</label>
 	                  <div>
@@ -22,9 +22,15 @@
 						  <option value="0">== Pilih Material Induk ==</option>
 						  <?php 
 						    foreach ($cimuning_Parent as $row){
-						      echo "<option value='".$row['MPCI_ID']."'>";
-						      echo $row ['MPCI_NAME'];
-						     echo "</option>";
+						      if ($row['MPCI_ID'] == $cimuningChild[0]['MCCI_MPCI_ID']){
+			 					?>
+			 					<option value="<?php echo $row['MPCI_ID'] ?>" selected><?php echo $row['MPCI_NAME']?></option>
+                                <?php
+                              } else {                               
+                                ?>
+                                <option value="<?php echo $row['MPCI_ID'] ?>" ><?php echo $row['MPCI_NAME']?></option>
+                                <?php
+                              }
 						    }
 						  ?>
 						</select>  
@@ -34,7 +40,7 @@
 	                  <label class=" control-label">Nama Material Anak</label>
 	                  <div>
 	                    <span >
-	                      <input class="form-control" type="text"  name="txtnama" required="true">  
+	                      <input class="form-control" type="text"  name="txtnama" required="true" value="<?php echo($cimuningChild[0]['MCCI_NAME'])?>">  
 	                    </span>
 	                  </div>
 	              </div>
@@ -44,10 +50,16 @@
 						  <option value="0">== Pilih Satuan ==</option>
 						  <?php  
 						    foreach ($satuan as $row){
-						      echo "<option value='".$row['SATU_ID']."'>";
-						      echo $row ['SATU_NAME'];
-						     echo "</option>";
-						    }
+						     if ($row['SATU_ID'] == $cimuningChild[0]['MCCI_SATU_ID']){
+                                ?>
+                                <option value="<?php echo $row['SATU_ID'] ?>" selected><?php echo $row['SATU_NAME']?></option>
+                                <?php
+                              } else {                               
+                                ?>
+                                <option value="<?php echo $row['SATU_ID'] ?>" ><?php echo $row['SATU_NAME']?></option>
+                                <?php
+                              }
+                          }
 						  ?>
 						</select>  
 	              </div>

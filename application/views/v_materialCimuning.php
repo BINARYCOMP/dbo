@@ -56,7 +56,7 @@
                   <label class="control-label">Nomor Gudang</label>
                   <div >
                     <!-- /btn-group -->
-                    <select name="cmbRuangan" id="cmbRuangan"  class="form-control">
+                    <select name="cmbRuangan" id="cmbRuangan" onchange="showStok()" class="form-control">
                       <option value="0">== Pilih Gudang ==</option>
                       <?php  
                         foreach ($dataRuangan as $row){
@@ -181,12 +181,15 @@
                           <td><?php echo $row['MACI_MASUK']?></td>
                           <td><?php echo $row['MACI_KELUAR']?></td>
                           <td><?php echo $row['MACI_SALDO']?></td>
+                          <td>
                           <?php
                             if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
-                          echo "<td><a href='#'>Edit</a></td>";
-                          echo "<td><a href='".base_url()."c_materialCimuning/delete/".$row['MACI_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a></td>";
+                          echo "<a href='#'>Edit</a>" ;
+                          echo " | ";
+                          echo "<a href='".base_url()."c_materialCimuning/delete/".$row['MACI_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a>";
                             }
                           ?>
+                          </td>
                         </tr>
                       <?php
                       $no++;
@@ -210,7 +213,7 @@
               <h4 class="modal-title" id="myModalLabel">Lookup Barang Child</h4>
           </div>
           <div class="modal-body">
-              <table id="cimuChild" class="table table-bordered table-hover table-striped">
+              <table class="table" id="cimuChild" class="table table-bordered table-hover table-striped">
                   <thead>
                     <tr>
                       <th>No.</th>
@@ -297,7 +300,7 @@
         document.getElementById("stok").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_materialCimuning/searchStok?mpciId="+mpbaId+"&mcciId="+mcbaId+"&ruanId="+ruanId, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_materialCimuning/searchStok?mcciId="+mcciId+"&mpciId="+mpciId+"&ruanId="+ruanId, true);
     xhttp.send();   
   }
    function modalMaterial() {
