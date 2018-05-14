@@ -322,7 +322,7 @@
                             <li><a href="<?php echo base_url()?>c_barangChild">Input Barang Child</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Barang Cimuning</li>
-                            li><a href="<?php echo base_url()?>c_barangChildCimuning">Input Barang</a></li>>
+                            <li><a href="<?php echo base_url()?>c_barangChildCimuning">Input Barang</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Material Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_materialParentCimuning">Material Parent</a></li>
@@ -399,7 +399,7 @@
                             <li><a href="<?php echo base_url()?>c_barangChild">Input Barang Child</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Barang Cimuning</li>
-                            li><a href="<?php echo base_url()?>c_barangChildCimuning">Input Barang</a></li>>
+                            <li><a href="<?php echo base_url()?>c_barangChildCimuning">Input Barang</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Material Cimuning</li>
                             <li><a href="<?php echo base_url()?>c_materialParentCimuning">Material Parent</a></li>
