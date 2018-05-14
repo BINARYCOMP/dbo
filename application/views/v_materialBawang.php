@@ -181,12 +181,15 @@
                           <td><?php echo $row['MABA_MASUK']?></td>
                           <td><?php echo $row['MABA_KELUAR']?></td>
                           <td><?php echo $row['MABA_SALDO']?></td>
+                          <td>
                           <?php
                             if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
-                          echo "<td><a href='#'>Edit</a></td>";
-                          echo "<td><a href='".base_url()."c_materialBawang/delete/".$row['MABA_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a></td>";
+                          echo "<a href='#'>Edit</a>";
+                          echo " | " ;
+                          echo "<a href='".base_url()."c_materialBawang/delete/".$row['MABA_ID']."' onclick='return confirm(\"Are you sure?\")'>Delete</a>";
                             }
                           ?>
+                          </td>
                         </tr>
                       <?php
                       $no++;
@@ -389,7 +392,7 @@
       xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("modalParent").innerHTML = this.responseText;
+          document.getElementById("modalChild").innerHTML = this.responseText;
         }
       };
       xhttp.open("GET", "<?php echo base_url()?>c_materialBawang/modalChild?parent="+parent, true);
