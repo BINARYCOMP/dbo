@@ -35,7 +35,7 @@
                           </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="control-label">Child</label>
                             <div class="input-group">
                               <span id="txtChild">
@@ -47,7 +47,7 @@
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2" onclick="modalChildJadi()">Search</button>
                               </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                           <label class="control-label">Kategori</label>
@@ -159,12 +159,12 @@
           <div class="box-body">
             <div class="row">
               <div class="col-md-12 ">
-                <table class="table table-bordered table-hover table-striped" id="guta">
+                <table class="table table-bordered table-hover table-striped" id="GUTA">
                   <thead>
                     <tr>
                       <th>No</th>
                       <th>Induk Barang</th>
-                      <th>Anak Barang</th>
+                      <!-- <th>Anak Barang</th> -->
                       <th>Kategori</th>
                       <th>Keterangan</th>
                       <th>Ruangan</th>
@@ -183,15 +183,15 @@
                   <tbody>
                     <?php 
                     $no = 1;
-                    foreach ($dataGudangTakJadi as $row) {
+                    foreach ($datagudangTakJadi as $row) {
                       ?>
                         <tr>
                           <td><?php echo $no ?></td>
-                          <td><?php echo $row['BAPA_NAME']?></td>
-                          <td><?php echo $row['BACH_NAME']?></td>
+                          <td><?php echo $row['BACC_NAME']?></td>
+                          <!-- <td><?php echo $row['BACH_NAME']?></td> -->
                           <td>
                             <?php 
-                              $kategori = $this->m_gudangTakJadi->getKateNameByGujaKateId($row['GUTA_KATE_ID']);
+                              $kategori = $this->m_gudangTakJadi->getKateNameByGUTAKateId($row['GUTA_KATE_ID']);
                               if (isset($kategori[0]['KATE_NAME'])) {
                                 echo $kategori[0]['KATE_NAME'];
                               }else{
@@ -202,7 +202,7 @@
                           <td><?php echo $row['GUTA_URAIAN']?></td>
                           <td>
                             <?php 
-                              $kategori = $this->m_gudangJadi->getRuanNumberByGujaRuanId($row['GUTA_RUAN_ID']);
+                              $kategori = $this->m_gudangTakJadi->getRuanNumberByGUTARuanId($row['GUTA_RUAN_ID']);
                               if (isset($kategori[0]['RUAN_NUMBER'])) {
                                 echo $kategori[0]['RUAN_NUMBER'];
                               }else{
@@ -258,23 +258,22 @@
 <!-- SCRIPT -->
 <!-- javascript child -->
 <script>
-function showChild(str) {
-  var xhttp;
-  xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("txtChild").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/searchChild?q="+str, true);
-  xhttp.send();   
-}
+// function showChild(str) {
+//   var xhttp;
+//   xhttp = new XMLHttpRequest();
+//   xhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//       document.getElementById("txtChild").innerHTML = this.responseText;
+//     }
+//   };
+//   xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/searchChild?q="+str, true);
+//   xhttp.send();   
+// }
 </script>
 <!-- javascript saldo Awal -->
 <script>
 function showStok() {
-  var bachId = document.getElementById('cmbChild').value;
-  var bapaId = document.getElementById('cmbParent').value;
+  var BACCId = document.getElementById('cmbParent').value;
   var kateId = document.getElementById('cmbKategori').value;
   var ruanId = document.getElementById('cmbRuangan').value;
 
@@ -285,7 +284,7 @@ function showStok() {
       document.getElementById("txtStok").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/searchStok?kateId="+kateId+"&bachId="+bachId+"&bapaId="+bapaId+"&ruanId="+ruanId, true);
+  xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/searchStok?kateId="+kateId+"&BACCId="+BACCId+"&ruanId="+ruanId, true);
   xhttp.send();   
 }
 </script>
@@ -318,7 +317,7 @@ function showStok() {
 
     var parent,child,kategori,keterangan,masuk,keluar,akhir;
     parent      = document.getElementById('cmbParent').value;
-    child       = document.getElementById('cmbChild').value;
+    // child       = document.getElementById('cmbChild').value;
     kategori    = document.getElementById('cmbKategori').value;
     keterangan  = document.getElementById('keterangan').value;
     masuk       = document.getElementById('brgMasuk').value;
@@ -333,7 +332,7 @@ function showStok() {
         document.getElementById("modalKonfirmasiJadi").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&kategori="+kategori+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal+"&ruangan="+ruangan, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_gudangTakJadi/modalKonfirmasi?parent="+parent+"&kategori="+kategori+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal+"&ruangan="+ruangan, true);
     xhttp.send();   
 
   }
@@ -366,7 +365,7 @@ function showStok() {
                 <h4 class="modal-title" id="myModalLabel">Lookup Barang Parent</h4>
             </div>
             <div class="modal-body">
-                <table id="gujaParent" class="table table-bordered table-hover table-striped">
+                <table id="GUTAParent" class="table table-bordered table-hover table-striped">
                     <thead>
                       <tr>
                         <th>No.</th>
@@ -377,11 +376,11 @@ function showStok() {
                     <tbody>
                       <?php 
                       $no=1;
-                      foreach ($namaParent as $row) {
+                      foreach ($namaBarang as $row) {
                         ?>
-                          <tr class="isi" data-brgParent="<?php echo $row['BAPA_NAME']; ?>" data-brgParentValue="<?php echo $row['BAPA_ID']; ?>">
+                          <tr class="isi" data-brgParent="<?php echo $row['BACC_NAME']; ?>" data-brgParentValue="<?php echo $row['BACC_ID']; ?>">
                             <td><?php echo $no?></td>
-                            <td><?php echo $row['BAPA_NAME']?></td>
+                            <td><?php echo $row['BACC_NAME']?></td>
                             
                             
                           </tr>
@@ -406,7 +405,7 @@ function showStok() {
                 <h4 class="modal-title" id="myModalLabel">Lookup Barang Parent</h4>
             </div>
             <div class="modal-body">
-                <table id="gujaKategori" class="table table-bordered table-hover table-striped">
+                <table id="GUTAKategori" class="table table-bordered table-hover table-striped">
                     <thead>
                       <tr>
                         <th>No.</th>
@@ -577,17 +576,17 @@ function autocomplete(inp, arr,id) {
 /*An array containing all the country names in the world:*/
 
 var Parent = [ <?php 
-                foreach ($namaParent as $row){
+                foreach ($namaBarang as $row){
                          
-                          echo "'".$row ['BAPA_NAME']."',";
+                          echo "'".$row ['BACC_NAME']."',";
                          
                         }
                 ?> 
                 ];
 var Id = [ <?php 
-                foreach ($namaParent as $row){
+                foreach ($namaBarang as $row){
                          
-                          echo "'".$row ['BAPA_ID']."',";
+                          echo "'".$row ['BACC_ID']."',";
                          
                         }
                 ?> 
