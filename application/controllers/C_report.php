@@ -48,6 +48,17 @@ class C_report extends CI_Controller
 		);
 		$this->load->view('tampilan/v_combine',$data);	
 	}
+	public function detailBarangCimuning($id)
+	{
+		$dataBarang		= $this->m_report->getBarangCimuningJadiByBaccId($id);
+		$data = array(
+			'dataBarang' 		=> $dataBarang,
+			'content' 			=> 'v_report_detailBarangCimuning',
+			'title'				=> 'Detail '.$dataBarang[0]['BAPA_NAME'],
+			'menu'         		=> 'Report'
+		);
+		$this->load->view('tampilan/v_combine',$data);	
+	}
 	public function detailMaterial($id)
 	{
 		$dataBarang		= $this->m_report->getMaterialChildByMpbaId($id);
