@@ -35,7 +35,7 @@
                           </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="control-label">Child</label>
                             <div class="input-group">
                               <span id="txtChild">
@@ -47,7 +47,7 @@
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2" onclick="modalChildJadi()">Search</button>
                               </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                           <label class="control-label">Kategori</label>
@@ -164,7 +164,7 @@
                     <tr>
                       <th>No</th>
                       <th>Induk Barang</th>
-                      <th>Anak Barang</th>
+                      <!-- <th>Anak Barang</th> -->
                       <th>Kategori</th>
                       <th>Keterangan</th>
                       <th>Ruangan</th>
@@ -187,8 +187,8 @@
                       ?>
                         <tr>
                           <td><?php echo $no ?></td>
-                          <td><?php echo $row['BAPA_NAME']?></td>
-                          <td><?php echo $row['BACH_NAME']?></td>
+                          <td><?php echo $row['BACC_NAME']?></td>
+                          <!-- <td><?php echo $row['BACH_NAME']?></td> -->
                           <td>
                             <?php 
                               $kategori = $this->m_gudangJadi->getKateNameByGujaKateId($row['GUJA_KATE_ID']);
@@ -258,23 +258,22 @@
 <!-- SCRIPT -->
 <!-- javascript child -->
 <script>
-function showChild(str) {
-  var xhttp;
-  xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("txtChild").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchChild?q="+str, true);
-  xhttp.send();   
-}
+// function showChild(str) {
+//   var xhttp;
+//   xhttp = new XMLHttpRequest();
+//   xhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//       document.getElementById("txtChild").innerHTML = this.responseText;
+//     }
+//   };
+//   xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchChild?q="+str, true);
+//   xhttp.send();   
+// }
 </script>
 <!-- javascript saldo Awal -->
 <script>
 function showStok() {
-  var bachId = document.getElementById('cmbChild').value;
-  var bapaId = document.getElementById('cmbParent').value;
+  var BACCId = document.getElementById('cmbParent').value;
   var kateId = document.getElementById('cmbKategori').value;
   var ruanId = document.getElementById('cmbRuangan').value;
 
@@ -285,7 +284,7 @@ function showStok() {
       document.getElementById("txtStok").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchStok?kateId="+kateId+"&bachId="+bachId+"&bapaId="+bapaId+"&ruanId="+ruanId, true);
+  xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/searchStok?kateId="+kateId+"&BACCId="+BACCId+"&ruanId="+ruanId, true);
   xhttp.send();   
 }
 </script>
@@ -318,7 +317,7 @@ function showStok() {
 
     var parent,child,kategori,keterangan,masuk,keluar,akhir;
     parent      = document.getElementById('cmbParent').value;
-    child       = document.getElementById('cmbChild').value;
+    // child       = document.getElementById('cmbChild').value;
     kategori    = document.getElementById('cmbKategori').value;
     keterangan  = document.getElementById('keterangan').value;
     masuk       = document.getElementById('brgMasuk').value;
@@ -333,7 +332,7 @@ function showStok() {
         document.getElementById("modalKonfirmasiJadi").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/modalKonfirmasi?parent="+parent+"&child="+child+"&kategori="+kategori+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal+"&ruangan="+ruangan, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_gudangJadi/modalKonfirmasi?parent="+parent+"&kategori="+kategori+"&keterangan="+keterangan+"&masuk="+masuk+"&keluar="+keluar+"&akhir="+akhir+"&awal="+awal+"&ruangan="+ruangan, true);
     xhttp.send();   
 
   }
@@ -377,11 +376,11 @@ function showStok() {
                     <tbody>
                       <?php 
                       $no=1;
-                      foreach ($namaParent as $row) {
+                      foreach ($namaBarang as $row) {
                         ?>
-                          <tr class="isi" data-brgParent="<?php echo $row['BAPA_NAME']; ?>" data-brgParentValue="<?php echo $row['BAPA_ID']; ?>">
+                          <tr class="isi" data-brgParent="<?php echo $row['BACC_NAME']; ?>" data-brgParentValue="<?php echo $row['BACC_ID']; ?>">
                             <td><?php echo $no?></td>
-                            <td><?php echo $row['BAPA_NAME']?></td>
+                            <td><?php echo $row['BACC_NAME']?></td>
                             
                             
                           </tr>
@@ -577,17 +576,17 @@ function autocomplete(inp, arr,id) {
 /*An array containing all the country names in the world:*/
 
 var Parent = [ <?php 
-                foreach ($namaParent as $row){
+                foreach ($namaBarang as $row){
                          
-                          echo "'".$row ['BAPA_NAME']."',";
+                          echo "'".$row ['BACC_NAME']."',";
                          
                         }
                 ?> 
                 ];
 var Id = [ <?php 
-                foreach ($namaParent as $row){
+                foreach ($namaBarang as $row){
                          
-                          echo "'".$row ['BAPA_ID']."',";
+                          echo "'".$row ['BACC_ID']."',";
                          
                         }
                 ?> 
