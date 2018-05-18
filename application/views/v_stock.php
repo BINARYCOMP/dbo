@@ -2,15 +2,6 @@
 <!-- Main content -->
 <section class="content">
   <div class="row">
-      <!-- isi content -->
-
-      <?php 
-      if ($_SESSION['level'] == 'ADMIN BAWANG' || $_SESSION['level'] == 'ADMIN CIMUNING' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN') {
-        $this->load->view('v_gudangJadi') ;
-        $this->load->view('v_gudangTakJadi'); 
-      }
-      ?>
-      <!-- Main content -->
       <div class="col-md-6">
         <div class="box box-success">
           <div class="box-header with-border">
@@ -29,7 +20,6 @@
                     <tr>
                       <th>No</th>
                       <th>Induk Barang</th>
-                      <th>Anak Barang</th>
                       <th>Kategori</th>
                       <th>Keterangan</th>
                       <th>Ruangan</th>
@@ -52,8 +42,7 @@
                       ?>
                         <tr>
                           <td><?php echo $no ?></td>
-                          <td><?php echo $row['BAPA_NAME']?></td>
-                          <td><?php echo $row['BACH_NAME']?></td>
+                          <td><?php echo $row['BACC_NAME']?></td>
                           <td>
                             <?php 
                               $kategori = $this->m_gudangJadi->getKateNameByGujaKateId($row['GUJA_KATE_ID']);
@@ -117,7 +106,6 @@
                     <tr>
                       <th>No</th>
                       <th>Induk Barang</th>
-                      <th>Anak Barang</th>
                       <th>Kategori</th>
                       <th>Keterangan</th>
                       <th>Masuk</th>
@@ -139,8 +127,7 @@
                       ?>
                         <tr>
                           <td><?php echo $no ?></td>
-                          <td><?php echo $row['BAPA_NAME']?></td>
-                          <td><?php echo $row['BACH_NAME']?></td>
+                          <td><?php echo $row['BACC_NAME']?></td>
                           <td>
                             <?php 
                               $kategori = $this->m_gudangJadi->getKateNameByGujaKateId($row['GUTA_KATE_ID']);

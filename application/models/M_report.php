@@ -140,12 +140,12 @@ class M_report extends CI_Model
 	}
 	public function getStokByKateId($id,$bachId)
 	{
-		$sql 	= "SELECT * FROM kategori, gudang_jadi, barang_child, barang_parent WHERE 
-					GUJA_BACH_ID = BACH_ID AND
-					GUJA_BAPA_ID = BAPA_ID AND
-					GUJA_KATE_ID = KATE_ID AND
-					GUJA_KATE_ID = ".$id." AND
-					GUJA_BACH_ID = ".$bachId;
+		$sql 	= "SELECT * FROM kategori, gudang_bawang, barang_child, barang_parent WHERE 
+					GUBA_BACH_ID = BACH_ID AND
+					GUBA_BAPA_ID = BAPA_ID AND
+					GUBA_KATE_ID = KATE_ID AND
+					GUBA_KATE_ID = ".$id." AND
+					GUBA_BACH_ID = ".$bachId;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -180,7 +180,7 @@ class M_report extends CI_Model
 	}
 	public function getLastStok($bapa_id,$bach_id, $kate_id)
 	{
-		$sql="SELECT * from gudang_jadi, barang_parent, barang_child, kategori where guja_bach_id = bach_id and guja_bapa_id = bapa_id and guja_kate_id = kate_id and  guja_bach_id = ".$bach_id." and guja_bapa_id = ".$bapa_id." and guja_kate_id = ".$kate_id." group by guja_id desc limit 1";
+		$sql="SELECT * from gudang_bawang, barang_parent, barang_child, kategori where guba_bach_id = bach_id and guba_bapa_id = bapa_id and guba_kate_id = kate_id and  guba_bach_id = ".$bach_id." and guba_bapa_id = ".$bapa_id." and guba_kate_id = ".$kate_id." group by guba_id desc limit 1";
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

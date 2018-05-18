@@ -1,123 +1,129 @@
   <div class="content">
     <div class="row">
-      <div class="col-md-12">
-        <div class="box box-info">
-          <div class="box-header with-border">
-            <h3 class="box-title">Input Material Cimuning</h3>
+      <?php
+        if ($_SESSION['level'] == 'ADMIN_CIMUNING' || $_SESSION['level'] == 'ADMIN_BAWANG' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN' ) {
+      ?>
+        <div class="col-md-12">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Input Material Cimuning</h3>
 
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+              </div>
             </div>
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <div class="row">
-              <div class="col-md-12 ">
-                <form action="<?php echo base_url()?>c_materialCimuning/save" method="POST">
-                  <div class="form-group">
-                    <label class="control-label">Parent</label>
-                    <div class="input-group">
-                      <!-- /btn-group -->
-                      <select class="form-control" name="cmbParent" id="cmbParent" onchange="showChild(this.value)">
-                        <option value="0">=== Pilih Induk Material ===</option>
-                        <?php
-                          foreach ($dataParent as $row) {
-                            echo "<option value ='".$row['MPCI_ID']."'> ".$row['MPCI_NAME']." </option>";
-                          }
-                        ?>
-                      </select>
-                      <div class="input-group-btn">
-                        <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">Search</button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                      <label class="control-label">Child</label>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-12 ">
+                  <form action="<?php echo base_url()?>c_materialCimuning/save" method="POST">
+                    <div class="form-group">
+                      <label class="control-label">Parent</label>
                       <div class="input-group">
                         <!-- /btn-group -->
-                        <span name="cmbChild" id="txtChild">
-                          <select class="form-control">
-                            <option>== Pilih Anak Material ==</option>
-                          </select> 
-                        </span>
+                        <select class="form-control" name="cmbParent" id="cmbParent" onchange="showChild(this.value)">
+                          <option value="0">=== Pilih Induk Material ===</option>
+                          <?php
+                            foreach ($dataParent as $row) {
+                              echo "<option value ='".$row['MPCI_ID']."'> ".$row['MPCI_NAME']." </option>";
+                            }
+                          ?>
+                        </select>
                         <div class="input-group-btn">
-                          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal" onclick="modalChildJadi()" >Search</button>
+                          <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">Search</button>
                         </div>
                       </div>
-                  </div>
+                    </div>
 
-                <div class="form-group">
-                  <label>Keterangan</label>
-                  <textarea name="txtUraian" class="form-control" id="txtUraian" rows="3" placeholder="Keterangan barang.."></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label class="control-label">Nomor Gudang</label>
-                  <div >
-                    <!-- /btn-group -->
-                    <select name="cmbRuangan" id="cmbRuangan" onchange="showStok()" class="form-control">
-                      <option value="0">== Pilih Gudang ==</option>
-                      <?php  
-                        foreach ($dataRuangan as $row){
-                          echo "<option value='".$row['RUAN_ID']."'>";
-                          echo $row ['RUAN_NUMBER'];
-                         echo "</option>";
-                        }
-                      ?>
-                    </select> 
-                  </div>
-                </div>
-
-                  <div class="form-group">
-                      <label class=" control-label">Masuk</label>
-                      <div>
-                          <input class="form-control" type="number" id="masuk" onkeyup ="showSaldo(this.value)" placeholder="Material Masuk" name="txtMasuk" required >  
-                      </div>
-                  </div>
-
-                  <div class="form-group">
-                      <label class=" control-label">Keluar</label>
-                      <div>
-                          <input class="form-control" type="number" id="keluar" onkeyup ="showSaldo(this.value)" placeholder="Material Keluar" name="txtMasuk" required >  
-                      </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class=" control-label">Saldo Awal</label>
-                        <div id="stok">
-                            <input class="form-control" type="number" id="saldoAwal" placeholder="Saldo Awal" name="txtSaldoAwal" required >
+                    <div class="form-group">
+                        <label class="control-label">Child</label>
+                        <div class="input-group">
+                          <!-- /btn-group -->
+                          <span name="cmbChild" id="txtChild">
+                            <select class="form-control">
+                              <option>== Pilih Anak Material ==</option>
+                            </select> 
+                          </span>
+                          <div class="input-group-btn">
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal" onclick="modalChildJadi()" >Search</button>
+                          </div>
                         </div>
                     </div>
 
-                    <div class="form-group col-md-6">
-                        <label class=" control-label">Saldo Akhir</label>
+                  <div class="form-group">
+                    <label>Keterangan</label>
+                    <textarea name="txtUraian" class="form-control" id="txtUraian" rows="3" placeholder="Keterangan barang.."></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label">Nomor Gudang</label>
+                    <div >
+                      <!-- /btn-group -->
+                      <select name="cmbRuangan" id="cmbRuangan" onchange="showStok()" class="form-control">
+                        <option value="0">== Pilih Gudang ==</option>
+                        <?php  
+                          foreach ($dataRuangan as $row){
+                            echo "<option value='".$row['RUAN_ID']."'>";
+                            echo $row ['RUAN_NUMBER'];
+                           echo "</option>";
+                          }
+                        ?>
+                      </select> 
+                    </div>
+                  </div>
+
+                    <div class="form-group">
+                        <label class=" control-label">Masuk</label>
                         <div>
-                            <input class="form-control" type="number" id="saldoAkhir" placeholder="Saldo Akhir" name="txtSaldoAkhir" required >  
+                            <input class="form-control" type="number" id="masuk" onkeyup ="showSaldo(this.value)" placeholder="Material Masuk" name="txtMasuk" required >  
                         </div>
                     </div>
-                  </div>
 
-                  <div class="form-group">
+                    <div class="form-group">
+                        <label class=" control-label">Keluar</label>
+                        <div>
+                            <input class="form-control" type="number" id="keluar" onkeyup ="showSaldo(this.value)" placeholder="Material Keluar" name="txtMasuk" required >  
+                        </div>
+                    </div>
+
                     <div class="row">
-                      <div class="col-md-10">
-                        <button type="reset" class="btn btn-default pull-right">Cancel</button>
+                      <div class="form-group col-md-6">
+                          <label class=" control-label">Saldo Awal</label>
+                          <div id="stok">
+                              <input class="form-control" type="number" id="saldoAwal" placeholder="Saldo Awal" name="txtSaldoAwal" required >
+                          </div>
                       </div>
-                      <div class="col-md-2">
-                        <button type="button" class="btn btn-info pull-right" onclick="modalMaterial()" >Input Data</button>
+
+                      <div class="form-group col-md-6">
+                          <label class=" control-label">Saldo Akhir</label>
+                          <div>
+                              <input class="form-control" type="number" id="saldoAkhir" placeholder="Saldo Akhir" name="txtSaldoAkhir" required >  
+                          </div>
                       </div>
                     </div>
-                  </div>
-                </form>
+
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-10">
+                          <button type="reset" class="btn btn-default pull-right">Cancel</button>
+                        </div>
+                        <div class="col-md-2">
+                          <button type="button" class="btn btn-info pull-right" onclick="modalMaterial()" >Input Data</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!-- /.col -->
               </div>
-              <!-- /.col -->
+              <!-- /.row -->
             </div>
-            <!-- /.row -->
           </div>
-        </div>
-          <!-- /.box -->
-      </div> <!-- col-input -->
+            <!-- /.box -->
+        </div> <!-- col-input -->
+      <?php
+        }
+      ?>
       <div class="col-md-12">
         <div class="box box-info">
           <div class="box-header with-border">
