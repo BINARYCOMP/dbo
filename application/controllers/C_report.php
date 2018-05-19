@@ -50,14 +50,29 @@ class C_report extends CI_Controller
 	}
 	public function detailBarangCimuning($id)
 	{
-		$dataBarang		= $this->m_report->getBarangCimuningJadiByBaccId($id);
+		$dataBarang		= $this->m_report->getBarangDetailCimuningByBaccId($id);
 		$data = array(
 			'dataBarang' 		=> $dataBarang,
 			'content' 			=> 'v_report_detailBarangCimuning',
-			'title'				=> 'Detail '.$dataBarang[0]['BAPA_NAME'],
+			'title'				=> 'Detail '.$dataBarang[0]['BACC_NAME'],
 			'menu'         		=> 'Report'
 		);
 		$this->load->view('tampilan/v_combine',$data);	
+	}
+	public function detailBarangCimuningSetengahJadi($id)
+	{
+		$dataBarang		= $this->m_report->getBarangDetailSetengahJadiCimuningByBaccId($id);
+		if (empty($dataBarang[0]['BACC_NAME'])) {
+			echo "<script> alert('Data Barang Tidak ada'); window.location ='".base_url()."c_report' </script>";
+		}else{
+			$data = array(
+				'dataBarang' 		=> $dataBarang,
+				'content' 			=> 'v_report_detailBarangCimuningSetengahJadi',
+				'title'				=> 'Detail '.$dataBarang[0]['BACC_NAME'],
+				'menu'         		=> 'Report'
+			);
+			$this->load->view('tampilan/v_combine',$data);	
+		}
 	}
 	public function detailMaterial($id)
 	{

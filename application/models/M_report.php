@@ -59,9 +59,17 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
-	public function getBarangChildCimuningByBacpId($id)
+
+	public function getBarangDetailCimuningByBaccId($id)
 	{
-		$sql 	= "SELECT * FROM  barang_cimuning_child, barang_cimuning_child, satuan WHERE BACC_BACP_ID = BACP_ID AND BACC_SATU_ID = SATU_ID AND BACC_BACP_ID =".$id;
+		$sql 	= "SELECT * FROM  gudang_jadi, barang_cimuning_child, satuan WHERE GUJA_BACC_ID = BACC_ID AND BACC_SATU_ID = SATU_ID AND BACC_ID =".$id;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getBarangDetailSetengahJadiCimuningByBaccId($id)
+	{
+		$sql 	= "SELECT * FROM  gudang_tak_jadi, barang_cimuning_child, satuan WHERE GUTA_BACC_ID = BACC_ID AND BACC_SATU_ID = SATU_ID AND BACC_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -87,6 +95,13 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;	
 	}
+	public function getTotalSetengahJadiCimuningByRuangan($BaccId, $ruanId)
+	{
+		$sql 	= "SELECT SUM(GUTA_MASUK) as 'TOTAL_RUANGAN' FROM  gudang_tak_jadi WHERE GUTA_BACC_ID = ".$BaccId." AND GUTA_RUAN_ID = ".$ruanId;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;	
+	}
 	public function getTotalMaterialBawangByRuangan($mpbaId, $mcbaId, $ruanId)
 	{
 		$sql 	= "SELECT SUM(MABA_MASUK) as 'TOTAL_RUANGAN' FROM  material_bawang WHERE MABA_MPBA_ID = ".$mpbaId." AND MABA_MCBA_ID = ".$mcbaId." AND MABA_RUAN_ID = ".$ruanId;
@@ -107,6 +122,16 @@ class M_report extends CI_Model
 	public function getTotalSaldoCimuning($baccId)
 	{
 		$sql 	= "SELECT SUM(GUJA_MASUK) as 'MASUK', SUM(GUJA_KELUAR) as 'KELUAR' FROM  gudang_jadi WHERE GUJA_BACC_ID = ".$baccId;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		$return = $return[0]['MASUK'] - $return[0]['KELUAR'];
+		$return = array(
+			'TOTAL' => $return);
+		return $return;	
+	}
+	public function getTotalSaldoSetengahJadiCimuning($baccId)
+	{
+		$sql 	= "SELECT SUM(GUTA_MASUK) as 'MASUK', SUM(GUTA_KELUAR) as 'KELUAR' FROM  gudang_tak_jadi WHERE GUTA_BACC_ID = ".$baccId;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		$return = $return[0]['MASUK'] - $return[0]['KELUAR'];
@@ -174,6 +199,20 @@ class M_report extends CI_Model
 	public function getKategoriByBachId($id)
 	{
 		$sql	= "SELECT * FROM gudang_bawang, kategori WHERE GUBA_KATE_ID = kate_id AND GUBA_BACH_ID = ".$id." GROUP BY kate_id";
+		$query 	= $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getKategoriByBaccId($id)
+	{
+		$sql	= "SELECT * FROM gudang_jadi, kategori WHERE GUJA_KATE_ID = KATE_ID AND GUJA_BACC_ID = ".$id." GROUP BY KATE_ID";
+		$query 	= $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getKategoriSetengahJadiByBaccId($id)
+	{
+		$sql	= "SELECT * FROM gudang_tak_jadi, kategori WHERE GUTA_KATE_ID = KATE_ID AND GUTA_BACC_ID = ".$id." GROUP BY KATE_ID";
 		$query 	= $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

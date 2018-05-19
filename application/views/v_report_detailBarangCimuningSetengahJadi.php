@@ -30,7 +30,7 @@
               </div>
               <!-- /.box-header -->
               <div class="box-body">
-                <?php $dataKategori = $this->m_report->getKategoriByBaccId($dataBarang[0]['BACC_ID']); ?>
+                <?php $dataKategori = $this->m_report->getKategoriSetengahJadiByBaccId($dataBarang[0]['BACC_ID']); ?>
                 <table id="detailStock<?php echo $jumlah?>" class="table table-bordered table-hover">
                   <thead>
                     <tr>
@@ -75,7 +75,7 @@
                   </thead>
                   <tbody>
                     <?php
-                      $dataBarangChild = $this->m_report->getBarangDetailCimuningByBaccId($dataBarang[0]['BACC_ID']);
+                      $dataBarangChild = $this->m_report->getBarangDetailSetengahJadiCimuningByBaccId($dataBarang[0]['BACC_ID']);
                       $k= 0;
                       $saldo = array();
                       foreach ($dataBarangChild as $row2) {
@@ -83,19 +83,19 @@
                           <tr>
                             <th scope="row">
                               <?php 
-                                echo date("D d M Y ( h:m:s a )", strtotime($row2['GUJA_TIMESTAMP']));
+                                echo date("D d M Y ( h:m:s a )", strtotime($row2['GUTA_TIMESTAMP']));
                               ?>
                             </th>
-                            <td><?php echo $row2['GUJA_URAIAN'] ?></td>
+                            <td><?php echo $row2['GUTA_URAIAN'] ?></td>
                             <?php
                             $subTotal = 0;
                             if (empty($dataKategori)) {
                               ?>
-                                <td><?php echo $row2['GUJA_MASUK'] ?></td>
-                                <td><?php echo $row2['GUJA_KELUAR'] ?></td>
-                                <td><?php echo $row2['GUJA_SALDO'] ?></td>
+                                <td><?php echo $row2['GUTA_MASUK'] ?></td>
+                                <td><?php echo $row2['GUTA_KELUAR'] ?></td>
+                                <td><?php echo $row2['GUTA_SALDO'] ?></td>
                               <?php
-                              $subTotal = $subTotal + $row2['GUJA_SALDO'];
+                              $subTotal = $subTotal + $row2['GUTA_SALDO'];
                             }
                             $r =0;
                             $a = 0;
@@ -107,7 +107,7 @@
 
                               $dataStok   = $this->m_report->getStokByKateId($daka['KATE_ID'], $dataBarang[0]['BACC_ID']);
                               $lastSaldo  = $this->m_report->getLastStok($dataBarang[0]['BACC_ID'], $dataBarang[0]['BACC_ID'], $daka['KATE_ID']);
-                              if ($daka['KATE_ID'] != $row2['GUJA_KATE_ID']) {
+                              if ($daka['KATE_ID'] != $row2['GUTA_KATE_ID']) {
                                 ?>
                                   <td>0</td>
                                   <td>0</td>
@@ -118,11 +118,11 @@
                                   </td>
                                 <?php
                               }else{
-                                $saldo[$a]  = $row2['GUJA_SALDO'];
+                                $saldo[$a]  = $row2['GUTA_SALDO'];
                                 ?>
-                                  <td><?php echo $row2['GUJA_MASUK'] ?></td>
-                                  <td><?php echo $row2['GUJA_KELUAR'] ?></td>
-                                  <td><?php echo $row2['GUJA_SALDO'] ?></td>
+                                  <td><?php echo $row2['GUTA_MASUK'] ?></td>
+                                  <td><?php echo $row2['GUTA_KELUAR'] ?></td>
+                                  <td><?php echo $row2['GUTA_SALDO'] ?></td>
                                 <?php
                               }
                               $subTotal = $subTotal + $saldo[$a];
