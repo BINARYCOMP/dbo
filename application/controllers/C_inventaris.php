@@ -135,4 +135,9 @@ class C_inventaris extends CI_Controller
 		  <!-- /.modal-content -->
 		<?php
 	}
+	public function delete($id)
+	{
+		$this->db->delete('inventaris', array('INVE_ID' => $id));
+		redirect('C_inventaris','refresh');
+	}
 }

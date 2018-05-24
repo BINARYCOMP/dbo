@@ -211,7 +211,7 @@
                         <?php
                           if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
                             ?> 
-                              <td> <a href="#">Edit</a> | <a href="<?php echo base_url()?>c_gudangBawang/delete/<?php echo $row['GUBA_ID']?>">Delete</a>  </td> 
+                              <td> <a href="#">Edit</a> | <a onclick="return confirm('Are you sure?')" href="<?php echo base_url()?>c_gudangBawang/delete/<?php echo $row['GUBA_ID']?>">Delete</a>  </td> 
                             <?php
                           }
                         ?>
@@ -375,7 +375,7 @@ function showStok() {
                       $no=1;
                       foreach ($namaParent as $row) {
                         ?>
-                          <tr class="isi" data-brgParent="<?php echo $row['BAPA_ID']; ?>">
+                          <tr class="isi" style="cursor: pointer;" data-brgParentValue="<?php echo $row['BAPA_NAME']; ?>" data-brgParent="<?php echo $row['BAPA_ID']; ?>">
                             <td><?php echo $no?></td>
                             <td><?php echo $row['BAPA_NAME']?></td>
                             
@@ -439,6 +439,7 @@ function showStok() {
 
         // parent
         document.getElementById("cmbParent").value = $(this).attr('data-brgParent');
+        document.getElementById("myInput").value = $(this).attr('data-brgParentValue');
         $('#myModal').modal('hide');
         showChild($(this).attr('data-brgParent'));
         

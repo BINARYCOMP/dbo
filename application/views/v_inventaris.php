@@ -120,6 +120,13 @@
                   <th>Qty</th>
                   <th>Kondisi</th>
                   <th>Keterangan</th>
+                  <?php
+                    if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
+                      ?> 
+                        <th> Action </th>
+                      <?php
+                    }
+                  ?>
                 </tr>
               </thead>
               <tbody>
@@ -134,6 +141,13 @@
                         <td><?php echo $row['INCH_QTY']?></td>
                         <td><?php echo $row['INVE_KEADAAN']?></td>
                         <td><?php echo $row['INVE_KETERANGAN']?></td>
+                        <?php
+                          if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
+                            ?> 
+                              <td> <a href="#">Edit</a> | <a onclick="return confirm('Are you sure?')" href="<?php echo base_url() ?>c_inventaris/delete/<?php echo $row['INVE_ID']?>" >Delete</a>  </td> 
+                            <?php
+                          }
+                        ?>
                       </tr>
                     <?php
                       $no++;

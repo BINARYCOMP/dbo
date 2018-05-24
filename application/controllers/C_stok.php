@@ -10,6 +10,7 @@ class C_stok extends CI_Controller
     parent::__construct();
     $this->load->model('m_gudangJadi');
     $this->load->model('m_gudangTakJadi');
+    $this->load->model('m_gudangBawang');
   }
   public function index()
   {
@@ -29,11 +30,13 @@ class C_stok extends CI_Controller
       $dataGudangJadi       = $this->m_gudangJadi->getDataGudang();
       $dataRuangan          = $this->m_gudangJadi->getRuangan();
       $dataGudangTakJadi    = $this->m_gudangTakJadi->getDataGudang();
+      $dataGudangBawang   = $this->m_gudangBawang->getDataGudang();
       $data = array(
         'namaParent'        => $namaParent,
         'namaKategori'      => $namaKategori,
         'dataGudangJadi'    => $dataGudangJadi,
         'dataGudangTakJadi' => $dataGudangTakJadi,
+        'dataGudangBawang'  => $dataGudangBawang,
         'dataRuangan'       => $dataRuangan,
         'content'           => 'v_stock',
         'message'           => $message,

@@ -40,17 +40,28 @@
         $('#lookup').dataTable( {
           "bSort": false,
           dom:'B <"content-header" <"col-sm-2"l> f>tipH',
-          buttons: [ 'excel' ]
+          buttons: [ 'excel', 'pdf' ]
         } );
         $("#guja").dataTable({
               dom: 'Bfrtip',
               buttons: [
-                  'excel'
+                  'excel', 'pdf'
+              ]
+          });
+        $("#guba").dataTable({
+              dom: 'Bfrtip',
+              buttons: [
+                  'excel', 'pdf'
+              ]
+          });
+        $("#guta").dataTable({
+              dom: 'Bfrtip',
+              buttons: [
+                  'excel', 'pdf'
               ]
           });
 
         // gudang
-        $("#guta").dataTable();
         $("#gujaParent").dataTable();
         $("#gujaKategori").dataTable();
         $("#gutaChild").dataTable();
