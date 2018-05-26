@@ -42,10 +42,10 @@ class C_materialCimuning extends CI_Controller
     $parent     = $_POST['cmbParent'];
     $child      = $_POST['cmbChild'];
     $uraian     = $_POST['txtUraian'];
-    $cmbRuangan     = $_POST['cmbRuangan'];
+    $cmbRuangan = $_POST['cmbRuangan'];
     $masuk      = $_POST['txtMasuk'];
     $keluar     = $_POST['txtKeluar'];
-    $saldoAkhir = $_POST['txtSaldoAwal'] + $masuk - $keluar;
+    $saldoAkhir = intval($_POST['txtSaldoAwal']) + intval($masuk) - intval($keluar);
     $data = array(
       'MACI_KELUAR'   => $keluar ,
       'MACI_URAIAN'   => $uraian ,

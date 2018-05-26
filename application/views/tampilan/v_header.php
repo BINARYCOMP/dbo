@@ -159,12 +159,6 @@
                             <li><a href="<?php echo base_url()?>c_materialCimuning">Input Stok Material</a></li>
                           </ul>
                       </li>
-                      <li class="<?php if(isset($menu)) if($menu == 'Inventaris') echo 'active'?>" >
-                        <a href="<?php echo base_url()?>c_inventarisCimuning">
-                          <i class="glyphicon glyphicon-list-alt"></i>
-                          Inventaris
-                        </a>
-                      </li>
                     <?php
                   }else if ($_SESSION['level'] == 'KEUANGAN') {
                     ?>
@@ -291,7 +285,7 @@
                           Inventaris
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url()?>c_inventaris">Input Inventaris Bawang</a></li>
+                            <li><a href="<?php echo base_url()?>c_inventaris">Input Inventaris Cimuning</a></li>
                             <!-- <li><a href="<?php echo base_url()?>c_inventarisCimuning">Input Inventaris Cimuning</a></li> -->
                             <li><a href="<?php echo base_url()?>c_inventarisParent">Input Inventaris Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_inventarisChild">Input Inventaris Child</a></li>
@@ -368,7 +362,7 @@
                           Inventaris
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url()?>c_inventaris">Input Inventaris Bawang</a></li>
+                            <li><a href="<?php echo base_url()?>c_inventaris">Input Inventaris Cimuning</a></li>
                             <!-- <li><a href="<?php echo base_url()?>c_inventarisCimuning">Input Inventaris Cimuning</a></li> -->
                             <li><a href="<?php echo base_url()?>c_inventarisParent">Input Inventaris Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_inventarisChild">Input Inventaris Child</a></li>

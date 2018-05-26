@@ -81,6 +81,13 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
+	public function getMaterialChildByMpciId($id)
+	{
+		$sql 	= "SELECT * FROM  material_parent_cimuning, material_child_cimuning, satuan WHERE MCCI_MPCI_ID = MPCI_ID AND MCCI_SATU_ID = SATU_ID AND MCCI_MPCI_ID =".$id;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 	public function getTotalByRuangan($bapaId, $bachId, $ruanId)
 	{
 		$sql 	= "SELECT SUM(GUBA_MASUK) as 'TOTAL_RUANGAN' FROM  gudang_bawang WHERE GUBA_BAPA_ID = ".$bapaId." AND GUBA_BACH_ID = ".$bachId." AND GUBA_RUAN_ID = ".$ruanId;
@@ -105,6 +112,13 @@ class M_report extends CI_Model
 	public function getTotalMaterialBawangByRuangan($mpbaId, $mcbaId, $ruanId)
 	{
 		$sql 	= "SELECT SUM(MABA_MASUK) as 'TOTAL_RUANGAN' FROM  material_bawang WHERE MABA_MPBA_ID = ".$mpbaId." AND MABA_MCBA_ID = ".$mcbaId." AND MABA_RUAN_ID = ".$ruanId;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;	
+	}
+	public function getTotalMaterialCimuningByRuangan($mpbaId, $mcbaId, $ruanId)
+	{
+		$sql 	= "SELECT SUM(MACI_MASUK) as 'TOTAL_RUANGAN' FROM  material_cimuning WHERE MACI_MPCI_ID = ".$mpbaId." AND MACI_MCCI_ID = ".$mcbaId." AND MACI_RUAN_ID = ".$ruanId;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;	
@@ -149,6 +163,16 @@ class M_report extends CI_Model
 			'TOTAL' => $return);
 		return $return;	
 	}
+	public function getTotalSaldoMaterialCimuning($mpbaId, $mcbaId)
+	{
+		$sql 	= "SELECT SUM(MACI_MASUK) as 'MASUK', SUM(MACI_KELUAR) as 'KELUAR' FROM  material_cimuning WHERE MACI_MPCI_ID = ".$mpbaId." AND MACI_MCCI_ID = ".$mcbaId;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		$return = $return[0]['MASUK'] - $return[0]['KELUAR'];
+		$return = array(
+			'TOTAL' => $return);
+		return $return;	
+	}
 	public function getBarangJadiByChildId($id)
 	{
 		$sql 	= "SELECT * FROM  gudang_bawang, barang_parent, barang_child, satuan WHERE GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_ID =".$id;
@@ -159,6 +183,13 @@ class M_report extends CI_Model
 	public function getMaterialBawangByMcbaId($id)
 	{
 		$sql 	= "SELECT * FROM  material_bawang, material_parent_bawang, material_child_bawang, satuan WHERE MABA_MCBA_ID = MCBA_ID AND MABA_MPBA_ID = MPBA_ID AND MCBA_SATU_ID = SATU_ID AND MCBA_ID =".$id;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getMaterialCimuningByMcciId($id)
+	{
+		$sql 	= "SELECT * FROM  material_cimuning, material_parent_cimuning, material_child_cimuning, satuan WHERE MACI_MCCI_ID = MCCI_ID AND MACI_MPCI_ID = MPCI_ID AND MCCI_SATU_ID = SATU_ID AND MCCI_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

@@ -1,7 +1,7 @@
   <div class="content">
     <div class="row">
       <?php
-        if ($_SESSION['level'] == 'ADMIN_CIMUNING' || $_SESSION['level'] == 'ADMIN_BAWANG' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN' ) {
+        if ($_SESSION['level'] == 'ADMIN CIMUNING' || $_SESSION['level'] == 'ADMIN BAWANG' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN' ) {
       ?>
         <div class="col-md-12">
           <div class="box box-info">

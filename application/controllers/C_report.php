@@ -85,6 +85,17 @@ class C_report extends CI_Controller
 		);
 		$this->load->view('tampilan/v_combine',$data);	
 	}
+	public function detailMaterialCimuning($id)
+	{
+		$dataBarang		= $this->m_report->getMaterialChildByMpciId($id);
+		$data = array(
+			'dataBarang' 		=> $dataBarang,
+			'content' 			=> 'v_report_detailMaterialCimuning',
+			'title'				=> 'Detail '.$dataBarang[0]['MPCI_NAME'],
+			'menu'         		=> 'Report'
+		);
+		$this->load->view('tampilan/v_combine',$data);	
+	}
 
 		public function detailInventaris($id)
 	{
