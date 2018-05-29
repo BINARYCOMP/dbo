@@ -103,10 +103,20 @@ class C_gudangBawang extends CI_Controller
     $bapa_id = $_GET['bapaId'];
     $bach_id = $_GET['bachId'];
     $kate_id = $_GET['kateId'];
+    $ruan_id = $_GET['ruanId'];
+
     if ($kate_id != 0) {
-      $stokAwal = $this->m_gudangBawang->getFirstStock($bach_id,$bapa_id,$kate_id);
+      if ($ruan_id != 0) {
+        $stokAwal = $this->m_gudangBawang->getFirstStock($bach_id,$bapa_id,$kate_id,$ruan_id);
+      }else{
+        $stokAwal = $this->m_gudangBawang->getFirstStockWithoutRuangan($bach_id,$bapa_id,$kate_id);
+      }
     }else{
-      $stokAwal = $this->m_gudangBawang->getFirstStockWithoutKategori($bach_id,$bapa_id);
+      if ($ruan_id != 0) {
+        $stokAwal = $this->m_gudangBawang->getFirstStockWithoutKategori($bach_id,$bapa_id,$ruan_id);
+      }else{
+        $stokAwal = $this->m_gudangBawang->getFirstStockWithoutKategoriAndRuangan($bach_id,$bapa_id,$ruan_id);
+      }
     }
 
     if ($bapa_id == 0 || $bach_id == 0) {

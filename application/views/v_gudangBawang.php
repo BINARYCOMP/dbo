@@ -273,6 +273,7 @@ function showStok() {
   var bachId = document.getElementById('cmbChild').value;
   var bapaId = document.getElementById('cmbParent').value;
   var kateId = document.getElementById('cmbKategori').value;
+  var ruanId = document.getElementById('cmbRuangan').value;
 
   var xhttp;
   xhttp = new XMLHttpRequest();
@@ -281,7 +282,7 @@ function showStok() {
       document.getElementById("txtStok").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "<?php echo base_url()?>c_gudangBawang/searchStok?kateId="+kateId+"&bachId="+bachId+"&bapaId="+bapaId, true);
+  xhttp.open("GET", "<?php echo base_url()?>c_gudangBawang/searchStok?kateId="+kateId+"&bachId="+bachId+"&bapaId="+bapaId+"&ruanId="+ruanId, true);
   xhttp.send();   
 }
 </script>
