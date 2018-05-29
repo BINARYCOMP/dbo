@@ -238,9 +238,6 @@ class C_gudangBawang extends CI_Controller
             </table>  
         </div>
     </div>
-    <script type="text/javascript">
-      $("#gubaChild").dataTable();
-    </script>
      <?php
   } 
 }

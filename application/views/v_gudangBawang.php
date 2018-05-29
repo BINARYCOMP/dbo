@@ -24,8 +24,8 @@
                         <label class="control-label">Parent</label>
                         <div class="input-group autocomplete">
                           <!-- /btn-group -->
-                          <input id="myInput" class="form-control" type="text" name="cmbParentMuncul" onchange="showChild(this.value)" placeholder="== Pilih Induk Barang ==">
-                          <input class="form-control" id="cmbParent" type="hidden" name="cmbParent">
+                          <input id="myInput" class="form-control" type="text" name="cmbParentMuncul"  placeholder="== Pilih Induk Barang ==">
+                          <input class="form-control" id="cmbParent" type="hidden" onchange="showChild(this.value)" name="cmbParent">
                           <div class="input-group-btn">
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Search</button>
                           </div>
@@ -35,11 +35,11 @@
                       <div class="form-group">
                           <label class="control-label">Child</label>
                           <div class="input-group">
-                            <span id="txtChild">
-                              <select class="form-control">
-                                <option>== Pilih Anak Barang ==</option>
-                              </select> 
-                            </span>
+                            <div id="txtChild">
+                              <select required name="cmbChild" id="cmbChild" onchange="showStok();" onmousemove ="showStok();" class="form-control">
+                                <option value='0' selected>== Pilih Anak Barang ==</option>
+                              </select>
+                            </div>
                             <div class="input-group-btn">
                               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal2" onclick="modalChildJadi()">Search</button>
                             </div>
@@ -71,7 +71,7 @@
                         <label class="control-label">Nomor Gudang</label>
                         <div>
                           <!-- /btn-group -->
-                          <select name="cmbRuangan" id="cmbRuangan" class="form-control">
+                          <select name="cmbRuangan"  onchange="showStok();" onmousemove="showStok()" id="cmbRuangan" class="form-control">
                             <option value="0">== Pilih Gudang ==</option>
                             <?php  
                               foreach ($dataRuangan as $row){
@@ -335,18 +335,16 @@ function showStok() {
   }
 
   function modalChildJadi() {
-    var xhttp;
-    var parent;
     parent    = document.getElementById('cmbParent').value;
-
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("modalChildJadi").innerHTML = this.responseText;
-      }
-    };
-    xhttp.open("GET", "<?php echo base_url()?>c_gudangBawang/modalChild?parent="+parent, true);
-    xhttp.send();
+    $.ajax({
+        type: "GET", 
+        url: "<?php echo base_url()?>c_gudangBawang/modalChild?parent="+parent,
+        success: function(html) {
+            $("#modalChildJadi").html(html);
+            $('#gubaChild').DataTable({ 
+           });
+        }
+    });
   }
 
 </script>
@@ -468,6 +466,7 @@ function showStok() {
     });
 </script>
 
+<!-- Auto complete Parent -->
 <script type="text/javascript">
   function autocomplete(inp, arr,id) {
     /*the autocomplete function takes two arguments,
