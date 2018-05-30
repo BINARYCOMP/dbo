@@ -82,7 +82,7 @@
                   </thead>
                   <tbody>
                     <?php
-                      $dataBarangChild = $this->m_report->getMaterialCimuningByMcciId($row['MCCI_ID']);
+                      $dataBarangChild = $this->m_report->getMaterialCimuningByMcciIdFilter($row['MCCI_ID'],$bulan,$tahun);
                       $saldo = array();
                       $subTotal = 0;
                       $k= 0;

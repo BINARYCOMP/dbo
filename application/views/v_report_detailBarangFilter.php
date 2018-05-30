@@ -1,6 +1,6 @@
 <!-- content -->
 <section class="content">
-<form action="<?php echo base_url()?>c_report/filterBarang/<?php echo $id ?>" method="POST">
+  <form action="<?php echo base_url()?>c_report/filterBarang/<?php echo $id ?>" method="POST">
   <select name="bulan">
     <option value="0">=== Pilih Bulan ====</option>
     <option value="1">Januari</option>

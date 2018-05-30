@@ -70,7 +70,24 @@ class C_report extends CI_Controller
 		$dataBarang		= $this->m_report->getBarangDetailCimuningByBaccId($id);
 		$data = array(
 			'dataBarang' 		=> $dataBarang,
+			'id' 				=> $id,
 			'content' 			=> 'v_report_detailBarangCimuning',
+			'title'				=> 'Detail '.$dataBarang[0]['BACC_NAME'],
+			'menu'         		=> 'Report'
+		);
+		$this->load->view('tampilan/v_combine',$data);	
+	}
+	public function filterBarangCimuning($id)
+	{
+		$bulan 			= $_POST['bulan'];
+		$tahun 			= $_POST['tahun'];
+		$dataBarang		= $this->m_report->getBarangDetailCimuningByBaccId($id);
+		$data = array(
+			'dataBarang' 		=> $dataBarang,
+			'id' 				=> $id,
+			'bulan'				=> $bulan,
+			'tahun'				=> $tahun,
+			'content' 			=> 'v_report_detailBarangCimuningFilter',
 			'title'				=> 'Detail '.$dataBarang[0]['BACC_NAME'],
 			'menu'         		=> 'Report'
 		);
@@ -84,6 +101,7 @@ class C_report extends CI_Controller
 		}else{
 			$data = array(
 				'dataBarang' 		=> $dataBarang,
+				'id' 				=> $id,
 				'content' 			=> 'v_report_detailBarangCimuningSetengahJadi',
 				'title'				=> 'Detail '.$dataBarang[0]['BACC_NAME'],
 				'menu'         		=> 'Report'
@@ -91,23 +109,82 @@ class C_report extends CI_Controller
 			$this->load->view('tampilan/v_combine',$data);	
 		}
 	}
+	
+	public function filterBarangCimuningSetengahJadi($id)
+	{
+		$bulan 			= $_POST['bulan'];
+		$tahun 			= $_POST['tahun'];
+		$dataBarang		= $this->m_report->getBarangDetailSetengahJadiCimuningByBaccId($id);
+		if (empty($dataBarang[0]['BACC_NAME'])) {
+			echo "<script> alert('Data Barang Tidak ada'); window.location ='".base_url()."c_report' </script>";
+		}else{
+			$data = array(
+				'dataBarang' 		=> $dataBarang,
+				'id' 				=> $id,
+				'bulan'				=> $bulan,
+				'tahun'				=> $tahun,
+				'content' 			=> 'v_report_detailBarangCimuningSetengahJadiFilter',
+				'title'				=> 'Detail '.$dataBarang[0]['BACC_NAME'],
+				'menu'         		=> 'Report'
+			);
+			$this->load->view('tampilan/v_combine',$data);	
+		}
+	}
+	
 	public function detailMaterial($id)
 	{
 		$dataBarang		= $this->m_report->getMaterialChildByMpbaId($id);
 		$data = array(
 			'dataBarang' 		=> $dataBarang,
+			'id' 				=> $id,
 			'content' 			=> 'v_report_detailMaterialBawang',
 			'title'				=> 'Detail '.$dataBarang[0]['MPBA_NAME'],
 			'menu'         		=> 'Report'
 		);
 		$this->load->view('tampilan/v_combine',$data);	
 	}
+
+	public function filterMaterialBawang($id)
+	{
+		$bulan 			= $_POST['bulan'];
+		$tahun 			= $_POST['tahun'];
+		$dataBarang		= $this->m_report->getMaterialChildByMpbaId($id);
+		$data = array(
+			'dataBarang' 		=> $dataBarang,
+			'id' 				=> $id,
+			'bulan'				=> $bulan,
+			'tahun'				=> $tahun,
+			'content' 			=> 'v_report_detailMaterialBawangFilter',
+			'title'				=> 'Detail '.$dataBarang[0]['MPBA_NAME'],
+			'menu'         		=> 'Report'
+		);
+		$this->load->view('tampilan/v_combine',$data);	
+	}
+
 	public function detailMaterialCimuning($id)
 	{
 		$dataBarang		= $this->m_report->getMaterialChildByMpciId($id);
 		$data = array(
 			'dataBarang' 		=> $dataBarang,
+			'id' 				=> $id,
 			'content' 			=> 'v_report_detailMaterialCimuning',
+			'title'				=> 'Detail '.$dataBarang[0]['MPCI_NAME'],
+			'menu'         		=> 'Report'
+		);
+		$this->load->view('tampilan/v_combine',$data);	
+	}
+
+	public function filterMaterialCimuning($id)
+	{
+		$bulan 			= $_POST['bulan'];
+		$tahun 			= $_POST['tahun'];
+		$dataBarang		= $this->m_report->getMaterialChildByMpciId($id);
+		$data = array(
+			'dataBarang' 		=> $dataBarang,
+			'id' 				=> $id,
+			'bulan'				=> $bulan,
+			'tahun'				=> $tahun,
+			'content' 			=> 'v_report_detailMaterialCimuningFilter',
 			'title'				=> 'Detail '.$dataBarang[0]['MPCI_NAME'],
 			'menu'         		=> 'Report'
 		);

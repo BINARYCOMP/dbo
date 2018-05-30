@@ -1,6 +1,35 @@
 <!-- content -->
 <section class="content">
-
+  <form action="<?php echo base_url()?>c_report/filterMaterialBawang/<?php echo $id ?>" method="POST">
+    <select name="bulan">
+      <option value="0">=== Pilih Bulan ====</option>
+      <option value="1">Januari</option>
+      <option value="2">Februari</option>
+      <option value="3">Maret</option>
+      <option value="4">April</option>
+      <option value="5">Mei</option>
+      <option value="6">Juni</option>
+      <option value="7">Juli</option>
+      <option value="8">Agustus</option>
+      <option value="9">September</option>
+      <option value="10">Oktober</option>
+      <option value="11">November</option>
+      <option value="12">Desember</option>
+    </select>
+    <select name="tahun">
+      <option value="0">=== Pilih Tahun ====</option>
+      <?php
+        $tahun_sekarang = date('Y');
+        $tahun_dulu     = date('Y')-10;
+        for ($i=$tahun_dulu; $i <= $tahun_sekarang ; $i++) { 
+          ?>
+            <option value="<?php echo $i ?>"><?php echo $i ?></option>
+          <?php
+        }
+      ?>
+    </select>
+    <input type="Submit" name="btnFilter" value="Filter">
+  </form>
 <!-- Main Content -->
   <div class="row">
 

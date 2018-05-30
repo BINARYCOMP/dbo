@@ -1,6 +1,6 @@
 <!-- content -->
 <section class="content">
-  <form action="<?php echo base_url()?>c_report/filterMaterialCimuning/<?php echo $id ?>" method="POST">
+  <form action="<?php echo base_url()?>c_report/filterMaterialBawang/<?php echo $id ?>" method="POST">
     <select name="bulan">
       <option value="0">=== Pilih Bulan ====</option>
       <option value="1">Januari</option>
@@ -49,7 +49,7 @@
           <div class="col-md-12">
             <div class="box box-<?php echo $warna[$noWarna] ?> box-solid">
               <div class="box-header with-border">
-                <h3 class="box-title">Detail dari <?php echo $row['MCCI_NAME'] ?></h3>
+                <h3 class="box-title">Detail dari <?php echo $row['MCBA_NAME'] ?></h3>
 
                 <div class="box-tools pull-right">
                   <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -62,7 +62,7 @@
                 <table id="detailStock<?php echo $jumlah?>" class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th colspan="120"><?php echo $row['MCCI_NAME'] ?></th>
+                      <th colspan="120"><?php echo $row['MCBA_NAME'] ?></th>
                     </tr>
                     <tr>
                       <?php
@@ -82,11 +82,11 @@
                   </thead>
                   <tbody>
                     <?php
-                      $dataBarangChild = $this->m_report->getMaterialCimuningByMcciId($row['MCCI_ID']);
+                      $dataBarangChild = $this->m_report->getMaterialBawangByMcbaIdFilter($row['MCBA_ID'], $bulan, $tahun);
                       $saldo = array();
                       $subTotal = 0;
-                      $k= 0;
                       $count = count($dataBarangChild);
+                      $k=0;
                       foreach ($dataBarangChild as $row2) {
                         ?>
                           <tr>
@@ -95,9 +95,7 @@
                               if (($k+1) == $count) {
                                 ?>
                                   <td class="center">
-                                    <a 
-                                    onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo date("D d M Y ( h:m:s a )", strtotime($row2['MACI_TIMESTAMP']))?>')" 
-                                      href="<?php echo base_url()?>c_materialCimuning/delete/<?php echo $row2['MACI_ID']?>">Delete</a>
+                                    <a  onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo date("D d M Y ( h:m:s a )", strtotime($row2['MABA_TIMESTAMP']))?>')" href="<?php echo base_url()?>C_materialBawang/delete/<?php echo $row2['MABA_ID']?>">Delete</a>
                                   </td>
                                 <?php
                               }else{
@@ -109,15 +107,15 @@
                             ?>
                             <th scope="row">
                               <?php 
-                                echo date("D d M Y ( h:m:s a )", strtotime($row2['MACI_TIMESTAMP']));
+                                echo date("D d M Y ( h:m:s a )", strtotime($row2['MABA_TIMESTAMP']));
                               ?>
                             </th>
-                            <td><?php echo $row2['MACI_URAIAN'] ?></td>
-                            <td><?php echo $row2['MACI_MASUK'] ?></td>
-                            <td><?php echo $row2['MACI_KELUAR'] ?></td>
-                            <td><?php echo $row2['MACI_SALDO'] ?></td>
+                            <td><?php echo $row2['MABA_URAIAN'] ?></td>
+                            <td><?php echo $row2['MABA_MASUK'] ?></td>
+                            <td><?php echo $row2['MABA_KELUAR'] ?></td>
+                            <td><?php echo $row2['MABA_SALDO'] ?></td>
                             <?php 
-                              $subTotal = $subTotal + $row2['MACI_SALDO'];
+                              $subTotal = $subTotal + $row2['MABA_SALDO'];
                             ?>
                               <td><?php echo $subTotal; ?></td>
                           </tr>
