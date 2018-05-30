@@ -1,6 +1,35 @@
 <!-- content -->
 <section class="content">
-
+<form action="<?php echo base_url()?>c_report/filterBarang/<?php echo $id ?>" method="POST">
+  <select name="bulan">
+    <option value="0">=== Pilih Bulan ====</option>
+    <option value="1">Januari</option>
+    <option value="2">Februari</option>
+    <option value="3">Maret</option>
+    <option value="4">April</option>
+    <option value="5">Mei</option>
+    <option value="6">Juni</option>
+    <option value="7">Juli</option>
+    <option value="8">Agustus</option>
+    <option value="9">September</option>
+    <option value="10">Oktober</option>
+    <option value="11">November</option>
+    <option value="12">Desember</option>
+  </select>
+  <select name="tahun">
+    <option value="0">=== Pilih Tahun ====</option>
+    <?php
+      $tahun_sekarang = date('Y');
+      $tahun_dulu     = date('Y')-10;
+      for ($i=$tahun_dulu; $i <= $tahun_sekarang ; $i++) { 
+        ?>
+          <option value="$i"><?php echo $i ?></option>
+        <?php
+      }
+    ?>
+  </select>
+  <input type="Submit" name="btnFilter" value="Filter">
+</form>
 <!-- Main Content -->
   <div class="row">
 
@@ -37,6 +66,13 @@
                       <th colspan="120"><?php echo $row['BACH_NAME'] ?></th>
                     </tr>
                     <tr>
+                      <?php
+                      if ($_SESSION['level'] == 'SUPER ADMIN' || $_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' ) {
+                        ?>
+                        <th scope="col" <?php if(!empty($dataKategori)) echo 'rowspan="2"'?> >ACTION</th>
+                        <?php
+                      }
+                      ?>
                       <th scope="col" <?php if(!empty($dataKategori)) echo 'rowspan="2"'?> >TANGGAL</th>
                       <th scope="col" <?php if(!empty($dataKategori)) echo 'rowspan="2"'?> >KETERANGAN</th>
                       <?php
@@ -78,9 +114,25 @@
                       $dataBarangChild = $this->m_report->getBarangJadiByChildId($row['BACH_ID']);
                       $k= 0;
                       $saldo = array();
+                      $count = count($dataBarangChild);
                       foreach ($dataBarangChild as $row2) {
                         ?>
                           <tr>
+                            <?php
+                            if ($_SESSION['level'] == 'SUPER ADMIN' || $_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' ) {
+                              if (($k+1) == $count) {
+                                ?>
+                                  <td class="center">
+                                    <a  onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo date("D d M Y ( h:m:s a )", strtotime($row2['GUBA_TIMESTAMP']))?>')" href="<?php echo base_url()?>c_gudangBawang/delete/<?php echo $row2['GUBA_ID']?>">Delete</a>
+                                  </td>
+                                <?php
+                              }else{
+                                ?>
+                                  <td></td>
+                                <?php
+                              }
+                            }
+                            ?>
                             <th scope="row">
                               <?php 
                                 echo date("D d M Y ( h:m:s a )", strtotime($row2['GUBA_TIMESTAMP']));

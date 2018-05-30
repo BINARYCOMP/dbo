@@ -58,10 +58,11 @@ class C_materialCimuning extends CI_Controller
     $simpanBarang = $this->m_materialCimuning->simpanBarang($data, $saldoAkhir, $child);
     echo "<script> window.location='".base_url()."C_materialCimuning?message=1' </script>";
   }
-      public function delete($id)
+  
+  public function delete($id)
   {
     $this->db->delete('material_Cimuning', array('MACI_ID' => $id));
-    redirect('C_materialCimuning');
+    redirect('c_managerial/material_cimuning');
   }
 
   // nama child

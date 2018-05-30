@@ -216,5 +216,10 @@ class C_gudangTakJadi extends CI_Controller
       'namaChild' => $namaChild 
     );
      $this->load->view('modal/v_modalChildgudangTakJadi', $data);
-  } 
+  }
+  public function delete($id)
+  {
+    $this->db->delete('gudang_tak_jadi', array('GUTA_ID' => $id));
+    redirect('C_managerial','refresh');
+  }
 }

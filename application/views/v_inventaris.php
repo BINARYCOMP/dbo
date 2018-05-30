@@ -21,8 +21,8 @@
                         <label class="control-label">Parent</label>
                         <div class="input-group">
                           <!-- /btn-group -->
-                          <select class="form-control" name="cmbParent" id="cmbParent" onchange="showChild(this.value)"">
-                            <option>=== Pilih Induk Inventaris ===</option>
+                          <select class="form-control" name="cmbParent" id="cmbParent" onchange="showChild(this.value)">
+                            <option value="0">=== Pilih Induk Inventaris ===</option>
                             <?php
                               foreach ($dataParent as $row) {
                                 echo "<option value ='".$row['INPA_ID']."'> ".$row['INPA_NAME']." </option>";
@@ -41,7 +41,7 @@
                             <!-- /btn-group -->
                             <span name="cmbChild" id="txtChild">
                               <select class="form-control">
-                                <option>== Pilih Anak Inventaris ==</option>
+                                <option value="0">== Pilih Anak Inventaris ==</option>
                               </select> 
                             </span>
                             <div class="input-group-btn">
@@ -111,7 +111,7 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <table class="table" id="lookup">
+            <table class="table table-bordered table-hover dataTable no-footer" id="lookup">
               <thead>
                 <tr>
                   <th>No.</th>
@@ -138,7 +138,7 @@
                         <td><?php echo $no++ ?></td>
                         <td><?php echo $row['INPA_NAME']?></td>
                         <td><?php echo $row['INCH_NAME']?></td>
-                        <td><?php echo $row['INCH_QTY']?></td>
+                        <td><?php echo $row['INVE_QTY']?></td>
                         <td><?php echo $row['INVE_KEADAAN']?></td>
                         <td><?php echo $row['INVE_KETERANGAN']?></td>
                         <?php
@@ -182,7 +182,6 @@
 <!-- javascript child -->
 <script>
   function showChild(str) {
-    showQty(str);
     var xhttp;
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -192,6 +191,7 @@
     };
     xhttp.open("GET", "<?php echo base_url()?>c_inventaris/searchChild?q="+str, true);
     xhttp.send();   
+    showQty(str);
   }
   function modalChild() {
     parent    = document.getElementById('cmbParent').value;
@@ -205,15 +205,21 @@
         }
     });
   }
-  function showQty(str) {
+  function showQty() {
     var xhttp;
+    var child = '0';
+    var parent      = document.getElementById('cmbParent').value;
+    if (document.getElementById('cmbChild').value == null) {
+    }else{
+      child       = document.getElementById('cmbChild').value;
+    }
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         document.getElementById("qty").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_inventaris/searchQty?q="+str, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_inventaris/searchQty?parent="+parent+"&child="+child, true);
     xhttp.send();   
   }
    function modalInventaris() {

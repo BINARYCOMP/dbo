@@ -37,6 +37,13 @@
                       <th colspan="120"><?php echo $dataBarang[0]['BACC_NAME'] ?></th>
                     </tr>
                     <tr>
+                      <?php
+                      if ($_SESSION['level'] == 'SUPER ADMIN' || $_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' ) {
+                        ?>
+                          <th scope="col" <?php if(!empty($dataKategori)) echo 'rowspan="2"'?> >ACTION</th>
+                        <?php
+                      }
+                      ?>
                       <th scope="col" <?php if(!empty($dataKategori)) echo 'rowspan="2"'?> >TANGGAL</th>
                       <th scope="col" <?php if(!empty($dataKategori)) echo 'rowspan="2"'?> >KETERANGAN</th>
                       <?php
@@ -78,9 +85,27 @@
                       $dataBarangChild = $this->m_report->getBarangDetailCimuningByBaccId($dataBarang[0]['BACC_ID']);
                       $k= 0;
                       $saldo = array();
+                      $count = count($dataBarangChild);
                       foreach ($dataBarangChild as $row2) {
                         ?>
                           <tr>
+                            <?php
+                            if ($_SESSION['level'] == 'SUPER ADMIN' || $_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' ) {
+                              if (($k+1) == $count) {
+                                ?>
+                                  <td class="center">
+                                    <a 
+                                    onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo date("D d M Y ( h:m:s a )", strtotime($row2['GUJA_TIMESTAMP']))?>')" 
+                                      href="<?php echo base_url()?>c_gudangJadi/delete/<?php echo $row2['GUJA_ID']?>">Delete</a>
+                                  </td>
+                                <?php
+                              }else{
+                                ?>
+                                  <td></td>
+                                <?php
+                              }
+                            }
+                            ?>
                             <th scope="row">
                               <?php 
                                 echo date("D d M Y ( h:m:s a )", strtotime($row2['GUJA_TIMESTAMP']));

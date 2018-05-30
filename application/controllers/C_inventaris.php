@@ -38,13 +38,10 @@ class C_inventaris extends CI_Controller
 			'INVE_INCH_ID' 		=> $child , 
 			'INVE_INPA_ID' 		=> $parent ,
 			'INVE_KETERANGAN' 	=> $keterangan , 
-			'INVE_KEADAAN' 		=> $kondisi 
+			'INVE_KEADAAN' 		=> $kondisi,
+			'INVE_QTY' 			=> $qty 
 		);
-		$dataChild = array(
-			'INCH_QTY' => $qty , 
-			'INCH_ID' => $child 
-		);
-		$setInventaris = $this->m_inventaris->setInventaris($data,$dataChild);
+		$setInventaris = $this->m_inventaris->setInventaris($data);
 		redirect('c_inventaris','refresh');
 	}
 	public function searchChild()
@@ -52,7 +49,7 @@ class C_inventaris extends CI_Controller
 		$str = $_GET['q'];
 	    $namaChild  = $this->m_inventaris->getChildByInpaId($str);
 	    ?>
-	      <select required name="cmbChild" id="cmbChild" class="form-control" onchange="showQty(this.value);" onmousemove="showQty(this.value);">
+	      <select required name="cmbChild" id="cmbChild" class="form-control" onchange="showQty();" onmousemove="showQty();">
 	        <?php
 	          if ($str == 0) {
 	            ?>
@@ -74,17 +71,35 @@ class C_inventaris extends CI_Controller
 	}
 	public function searchQty()
 	{
-		$str 		= $_GET['q'];
-	    $data 		= $this->m_inventaris->getChildById($str);
-	    if ($str == 0) {
+		$parent 	= $_GET['parent'];
+		$child 		= $_GET['child'];
+
+	    if ($child == 0 && $parent == 0) {
 	      ?>
 	        <input type="text" name="txtQty" id="txtQty" class="form-control" required readonly placeholder="0"> 
 	      <?php
 	    }else{
-	    	$qtyAwal 	= $data[0]['INCH_QTY'];
-	      ?>
-	        <input type="text" name="txtQty" id="txtQty" class="form-control" required value="<?php echo $qtyAwal ?>"> 
-	      <?php
+	    	if ($child == 0) {
+	    		$data 		= $this->m_inventaris->getLastStokWithoutChild($parent);
+	    		if (isset($data[0]['INVE_QTY'])) {
+	    			$qtyAwal 	= $data[0]['INVE_QTY'];
+	    		}else{
+	    			$qtyAwal 	= 0;
+	    		}
+				?>
+					<input type="text" name="txtQty" id="txtQty" class="form-control" required value="<?php echo $qtyAwal ?>"> 
+				<?php
+	    	}else{
+	    		$data 		= $this->m_inventaris->getLastStok($parent, $child);
+	    		if (isset($data[0]['INVE_QTY'])) {
+	    			$qtyAwal 	= $data[0]['INVE_QTY'];
+	    		}else{
+	    			$qtyAwal 	= 0;
+	    		}
+	    		?>
+					<input type="text" name="txtQty" id="txtQty" class="form-control" required value="<?php echo $qtyAwal ?>"> 
+				<?php
+	    	}
 	    }
 	}
 	public function modalInventaris()
@@ -180,6 +195,6 @@ class C_inventaris extends CI_Controller
 	public function delete($id)
 	{
 		$this->db->delete('inventaris', array('INVE_ID' => $id));
-		redirect('C_inventaris','refresh');
+		redirect('c_managerial/inventaris','refresh');
 	}
 }

@@ -209,7 +209,7 @@
                           Inventaris
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url()?>c_inventaris">View Inventaris Bawang</a></li>
+                            <li><a href="<?php echo base_url()?>c_managerial/inventaris">View Inventaris Cimuning</a></li>
                             <!-- <li><a href="<?php echo base_url()?>c_inventarisCimuning">View Inventaris Cimuning</a></li> -->
                             <li><a href="<?php echo base_url()?>c_inventarisParent">Input Inventaris Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_inventarisChild">Input Inventaris Child</a></li>
@@ -252,6 +252,7 @@
                             <li class="divider"></li>
                             <li class="dropdown-header">Managerial</li>
                             <li><a href="<?php echo base_url()?>c_pegawai">Input Pegawai</a></li>
+                            <li><a href="<?php echo base_url()?>c_ruangan">Input Ruangan</a></li>
                             <li><a href="<?php echo base_url()?>c_satuan">Input Satuan</a></li>
                             <li><a href="<?php echo base_url()?>c_kategori">Input Kategori</a></li>
                             <li><a href="<?php echo base_url()?>c_level">Input Level</a></li>
@@ -329,6 +330,7 @@
                             <li class="dropdown-header">Owner</li>
                             <li><a href="<?php echo base_url()?>c_form1">Input User</a></li>
                             <li><a href="<?php echo base_url()?>c_pegawai">Input Pegawai</a></li>
+                            <li><a href="<?php echo base_url()?>c_ruangan">Input Ruangan</a></li>
                             <li><a href="<?php echo base_url()?>c_satuan">Input Satuan</a></li>
                             <li><a href="<?php echo base_url()?>c_kategori">Input Kategori</a></li>
                             <li><a href="<?php echo base_url()?>c_level">Input Level</a></li>
@@ -406,6 +408,7 @@
                             <li class="dropdown-header">Owner</li>
                             <li><a href="<?php echo base_url()?>c_form1">Input User</a></li>
                             <li><a href="<?php echo base_url()?>c_pegawai">Input Pegawai</a></li>
+                            <li><a href="<?php echo base_url()?>c_ruangan">Input Ruangan</a></li>
                             <li><a href="<?php echo base_url()?>c_satuan">Input Satuan</a></li>
                             <li><a href="<?php echo base_url()?>c_kategori">Input Kategori</a></li>
                             <li><a href="<?php echo base_url()?>c_level">Input Level</a></li>

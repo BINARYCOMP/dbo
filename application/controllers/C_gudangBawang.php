@@ -94,7 +94,7 @@ class C_gudangBawang extends CI_Controller
   public function delete($id)
   {
     $this->db->delete('gudang_bawang', array('GUBA_ID' => $id));
-    redirect('C_gudangBawang','refresh');
+    redirect('C_managerial/gudang_bawang','refresh');
   }
 
   // cari stok

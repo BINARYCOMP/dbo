@@ -66,14 +66,18 @@ class C_managerial extends CI_Controller
 		);
 		$this->load->view('tampilan/v_combine',$data);
 	}
-	public function detailMaterial($id)
+	public function inventaris()
 	{
-		$dataBarang		= $this->m_report->getMaterialChildByMpbaId($id);
+		$dataInventarisParent				= $this->m_report->getInventarisParent();
+		$dataInventarisParentCimuning		= $this->m_report->getInventarisParentCimuning();
+		$dataRuangan 						= $this->m_report->getRuangan();
 		$data = array(
-			'dataBarang' 		=> $dataBarang,
-			'content' 			=> 'v_report_detailMaterialBawang',
-			'title'				=> 'Detail '.$dataBarang[0]['MPBA_NAME'],
-			'menu'         		=> 'Report'
+			'dataInventarisParent'				=> $dataInventarisParent,
+			'dataInventarisParentCimuning'		=> $dataInventarisParentCimuning,
+			'dataRuangan'						=> $dataRuangan,
+			'content' 							=> 'v_managerial_view_inventaris',
+			'title'								=> 'Laporan',
+			'menu'         						=> 'Report'
 		);
 		$this->load->view('tampilan/v_combine',$data);	
 	}

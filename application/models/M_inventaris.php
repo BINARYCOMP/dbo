@@ -38,6 +38,20 @@ class M_inventaris extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
+	public function getLastStok($parent,$child)
+	{
+		$sql = "select * from inventaris, inventaris_child, inventaris_parent where inve_inch_id = inch_id and inve_inpa_id = inpa_id and inpa_id ='".$parent."' and inch_id = '".$child."'";
+		$query=$this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getLastStokWithoutChild($parent,$child)
+	{
+		$sql = "select * from inventaris, inventaris_parent where inve_inpa_id = inpa_id and inpa_id ='".$parent."'";
+		$query=$this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 	public function getChildByInpaId($id)
 	{
 		$sql = "select * from inventaris_child where INCH_KETERANGAN ='CIMUNING' AND INCH_INPA_ID = ".$id;
@@ -73,10 +87,8 @@ class M_inventaris extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
-	public function setInventaris($data, $dataChild)
+	public function setInventaris($data)
 	{
-		$sql = "update inventaris_child set INCH_QTY ='".$dataChild['INCH_QTY']."' where INCH_ID = '".$dataChild['INCH_ID']."'";
-		$query=$this->db->query($sql);
 		$this->db->insert('inventaris', $data);
 	}
 }

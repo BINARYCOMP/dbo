@@ -217,4 +217,9 @@ class C_gudangJadi extends CI_Controller
     );
      $this->load->view('modal/v_modalChildGudangJadi', $data);
   } 
+  public function delete($id)
+  {
+    $this->db->delete('gudang_jadi', array('GUJA_ID' => $id));
+    redirect('C_managerial','refresh');
+  }
 }

@@ -36,6 +36,13 @@
                       <th colspan="120"><?php echo $row['MCCI_NAME'] ?></th>
                     </tr>
                     <tr>
+                      <?php
+                      if ($_SESSION['level'] == 'SUPER ADMIN' || $_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' ) {
+                        ?>
+                          <th scope="col">ACTION</th>
+                        <?php
+                      }
+                      ?>
                       <th scope="col">TANGGAL</th>
                       <th scope="col">KETERANGAN</th>
                       <th scope="1">MASUK</th>
@@ -49,9 +56,28 @@
                       $dataBarangChild = $this->m_report->getMaterialCimuningByMcciId($row['MCCI_ID']);
                       $saldo = array();
                       $subTotal = 0;
+                      $k= 0;
+                      $count = count($dataBarangChild);
                       foreach ($dataBarangChild as $row2) {
                         ?>
                           <tr>
+                            <?php
+                            if ($_SESSION['level'] == 'SUPER ADMIN' || $_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' ) {
+                              if (($k+1) == $count) {
+                                ?>
+                                  <td class="center">
+                                    <a 
+                                    onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo date("D d M Y ( h:m:s a )", strtotime($row2['MACI_TIMESTAMP']))?>')" 
+                                      href="<?php echo base_url()?>c_materialCimuning/delete/<?php echo $row2['MACI_ID']?>">Delete</a>
+                                  </td>
+                                <?php
+                              }else{
+                                ?>
+                                  <td></td>
+                                <?php
+                              }
+                            }
+                            ?>
                             <th scope="row">
                               <?php 
                                 echo date("D d M Y ( h:m:s a )", strtotime($row2['MACI_TIMESTAMP']));

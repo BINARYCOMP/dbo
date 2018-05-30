@@ -59,6 +59,13 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
+	public function getBarangChildByBapaIdFilter($id, $month, $year)
+	{
+		$sql 	= "SELECT * FROM  barang_parent, barang_child, satuan WHERE BAPA_ BACH_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_BAPA_ID =".$id;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 
 	public function getBarangDetailCimuningByBaccId($id)
 	{
@@ -240,14 +247,14 @@ class M_report extends CI_Model
 	}
 	public function getTotalQtyByInpaId($id)
 	{
-		$sql 	= "SELECT sum(INCH_QTY) as 'Total' FROM  inventaris_child WHERE INCH_INPA_ID =".$id." AND INCH_KETERANGAN='Bawang'";
+		$sql 	= "SELECT sum(INVE_QTY) as 'Total' FROM  inventaris_child WHERE INCH_INPA_ID =".$id." AND INCH_KETERANGAN='Bawang'";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getTotalQtyCimuningByInpaId($id)
 	{
-		$sql 	= "SELECT sum(INCH_QTY) as 'Total' FROM  inventaris_child WHERE INCH_INPA_ID =".$id." AND INCH_KETERANGAN='Cimuning'";
+		$sql 	= "SELECT sum(INVE_QTY) as 'Total' FROM inventaris, inventaris_child WHERE INVE_INCH_ID = INCH_ID AND INCH_INPA_ID =".$id." AND INCH_KETERANGAN='Cimuning'";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

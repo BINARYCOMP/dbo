@@ -61,7 +61,7 @@ class C_materialBawang extends CI_Controller
     public function delete($id)
   {
     $this->db->delete('material_bawang', array('MABA_ID' => $id));
-    redirect('C_materialBawang');
+    redirect('C_managerial/material_bawang');
   }
 
   // nama child
