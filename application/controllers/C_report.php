@@ -53,11 +53,13 @@ class C_report extends CI_Controller
 	{
 		$bulan 			= $_POST['bulan'];
 		$tahun 			= $_POST['tahun'];
-		$dataBarang		= $this->m_report->getBarangChildByBapaIdFilter($id);
+		$dataBarang		= $this->m_report->getBarangChildByBapaId($id);
 		$data = array(
 			'dataBarang' 		=> $dataBarang,
 			'id' 				=> $id,
-			'content' 			=> 'v_report_detailBarang',
+			'bulan'				=> $bulan,
+			'tahun'				=> $tahun,
+			'content' 			=> 'v_report_detailBarangFilter',
 			'title'				=> 'Detail '.$dataBarang[0]['BAPA_NAME'],
 			'menu'         		=> 'Report'
 		);

@@ -59,13 +59,6 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
-	public function getBarangChildByBapaIdFilter($id, $month, $year)
-	{
-		$sql 	= "SELECT * FROM  barang_parent, barang_child, satuan WHERE BAPA_ BACH_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_BAPA_ID =".$id;
-		$query = $this->db->query($sql);
-		$return = $query->result_array();
-		return $return;
-	}
 
 	public function getBarangDetailCimuningByBaccId($id)
 	{
@@ -208,6 +201,13 @@ class M_report extends CI_Model
 	public function getBarangJadiByChildId($id)
 	{
 		$sql 	= "SELECT * FROM  gudang_bawang, barang_parent, barang_child, satuan WHERE GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_ID =".$id;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getBarangJadiByChildIdFilter($id, $month, $year)
+	{
+		$sql 	= "SELECT * FROM  gudang_bawang, barang_parent, barang_child, satuan WHERE MONTH(GUBA_TIMESTAMP) = '".$month."' AND YEAR(GUBA_TIMESTAMP) = '".$year."' AND GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

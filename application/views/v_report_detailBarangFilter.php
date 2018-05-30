@@ -111,7 +111,7 @@
                   </thead>
                   <tbody>
                     <?php
-                      $dataBarangChild = $this->m_report->getBarangJadiByChildId($row['BACH_ID']);
+                      $dataBarangChild = $this->m_report->getBarangJadiByChildIdFilter($row['BACH_ID'], $bulan, $tahun);
                       $k= 0;
                       $saldo = array();
                       $count = count($dataBarangChild);
