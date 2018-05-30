@@ -21,7 +21,7 @@
                         <label class="control-label">Parent</label>
                         <div class="input-group">
                           <!-- /btn-group -->
-                          <select class="form-control" name="cmbParent" id="cmbParent" onchange="showChild(this.value)" onclick="showChild(this.value)">
+                          <select class="form-control" name="cmbParent" id="cmbParent" onchange="showChild(this.value)"">
                             <option>=== Pilih Induk Inventaris ===</option>
                             <?php
                               foreach ($dataParent as $row) {
@@ -45,7 +45,7 @@
                               </select> 
                             </span>
                             <div class="input-group-btn">
-                              <button type="button" class="btn btn-info">Search</button>
+                              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal2" onclick="modalChild()">Search</button>
                             </div>
                           </div>
                       </div>
@@ -169,12 +169,20 @@
   </div>
 </div>
 
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:800px" id="modalChild">
+
+   </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
 
 <!-- SCRIPT -->
 <!-- javascript child -->
 <script>
   function showChild(str) {
+    showQty(str);
     var xhttp;
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -184,6 +192,18 @@
     };
     xhttp.open("GET", "<?php echo base_url()?>c_inventaris/searchChild?q="+str, true);
     xhttp.send();   
+  }
+  function modalChild() {
+    parent    = document.getElementById('cmbParent').value;
+    $.ajax({
+        type: "GET", 
+        url: "<?php echo base_url()?>c_inventaris/modalChild?parent="+parent,
+        success: function(html) {
+            $("#modalChild").html(html);
+            $('#inveChild').DataTable({ 
+           });
+        }
+    });
   }
   function showQty(str) {
     var xhttp;
@@ -241,7 +261,7 @@
                 <h4 class="modal-title" id="myModalLabel">Lookup Inventaris</h4>
             </div>
             <div class="modal-body">
-                <table id="lookup" class="table table-bordered table-hover table-striped">
+                <table id="modalParentInventaris" class="table table-bordered table-hover table-striped">
                     <thead>
                       <tr>
                         <th>Id Barang</th>
@@ -277,5 +297,11 @@
         document.getElementById("cmbParent").value = $(this).attr('data-brgParent');
         $('#myModal').modal('hide');
         showChild($(this).attr('data-brgParent'));
+    });
+    $(document).on('click', '.isi2', function (e) {
+        // alert("test");
+        document.getElementById("cmbChild").value = $(this).attr('data-brgChild');
+        $('#myModal2').modal('hide');
+        showQty($(this).attr('data-brgChild'));
     });
 </script>

@@ -38,6 +38,7 @@
                   <tbody>
                     <?php 
                     $no = 1;
+
                     foreach ($dataGudangJadi as $row) {
                       ?>
                         <tr>
@@ -186,7 +187,7 @@
                         <tr>
                           <th>No</th>
                           <th>Induk Barang</th>
-                          <!-- <th>Anak Barang</th> -->
+                          <th>Anak Barang</th>
                           <th>Kategori</th>
                           <th>Keterangan</th>
                           <th>Ruangan</th>
@@ -205,15 +206,15 @@
                       <tbody>
                         <?php 
                         $no = 1;
-                        foreach ($dataGudangJadi as $row) {
+                        foreach ($dataGudangBawang as $row) {
                           ?>
                             <tr>
                               <td><?php echo $no ?></td>
-                              <td><?php echo $row['BACC_NAME']?></td>
-                              <!-- <td><?php echo $row['BACH_NAME']?></td> -->
+                              <td><?php echo $row['BAPA_NAME']?></td>
+                              <td><?php echo $row['BACH_NAME']?></td> 
                               <td>
                                 <?php 
-                                  $kategori = $this->m_gudangJadi->getKateNameByGujaKateId($row['GUJA_KATE_ID']);
+                                  $kategori = $this->m_gudangJadi->getKateNameByGujaKateId($row['GUBA_KATE_ID']);
                                   if (isset($kategori[0]['KATE_NAME'])) {
                                     echo $kategori[0]['KATE_NAME'];
                                   }else{
@@ -221,19 +222,19 @@
                                   }
                                 ?>
                               </td>
-                              <td><?php echo $row['GUJA_URAIAN']?></td>
+                              <td><?php echo $row['GUBA_URAIAN']?></td>
                               <td>
                                 <?php 
-                                  $kategori = $this->m_gudangJadi->getRuanNumberByGujaRuanId($row['GUJA_RUAN_ID']);
+                                  $kategori = $this->m_gudangJadi->getRuanNumberByGujaRuanId($row['GUBA_RUAN_ID']);
                                   if (isset($kategori[0]['RUAN_NUMBER'])) {
                                     echo $kategori[0]['RUAN_NUMBER'];
                                   }else{
                                     echo "-";
                                   }
                                 ?>
-                              <td><?php echo $row['GUJA_MASUK']?></td>
-                              <td><?php echo $row['GUJA_KELUAR']?></td>
-                              <td><?php echo $row['GUJA_SALDO']?></td>
+                              <td><?php echo $row['GUBA_MASUK']?></td>
+                              <td><?php echo $row['GUBA_KELUAR']?></td>
+                              <td><?php echo $row['GUBA_SALDO']?></td>
                               <?php
                                 if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
                                   ?> 

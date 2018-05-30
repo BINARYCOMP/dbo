@@ -60,7 +60,8 @@
                   'excel', 'pdf'
               ]
           });
-
+        $("#modalParentInventaris").dataTable({
+          });
         // gudang
         $("#gujaParent").dataTable();
         $("#gujaKategori").dataTable();

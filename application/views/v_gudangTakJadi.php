@@ -365,7 +365,7 @@ function showStok() {
                 <h4 class="modal-title" id="myModalLabel">Lookup Barang Parent</h4>
             </div>
             <div class="modal-body">
-                <table id="GUTAParent" class="table table-bordered table-hover table-striped">
+                <table id="gutaParent" class="table table-bordered table-hover table-striped">
                     <thead>
                       <tr>
                         <th>No.</th>
@@ -405,7 +405,7 @@ function showStok() {
                 <h4 class="modal-title" id="myModalLabel">Lookup Barang Parent</h4>
             </div>
             <div class="modal-body">
-                <table id="GUTAKategori" class="table table-bordered table-hover table-striped">
+                <table id="gutaKategori" class="table table-bordered table-hover table-striped">
                     <thead>
                       <tr>
                         <th>No.</th>

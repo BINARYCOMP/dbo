@@ -135,6 +135,48 @@ class C_inventaris extends CI_Controller
 		  <!-- /.modal-content -->
 		<?php
 	}
+	public function modalChild()
+	{
+	    $cmbParent = $_GET['parent'];
+	    $namaChild = $this->m_inventaris->getChildByInpaId($cmbParent);
+	    $data = array(
+		     'cmbParent' => $cmbParent ,
+		     'namaChild' => $namaChild 
+		);
+	    ?>
+	    <!-- modal child -->
+	    <div class="modal-content">
+	        <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	            <h4 class="modal-title" id="myModalLabel">Lookup Anak Inventaris</h4>
+	        </div>
+	        <div class="modal-body">
+	            <table id="inveChild" class="table table-bordered table-hover table-striped">
+	                <thead>
+	                  <tr>
+	                    <th>No.</th>
+	                    <th>Nama Anak Inventaris</th>
+	                  </tr>
+	                </thead>
+	                <tbody>
+	                  <?php
+	                    $no=1;
+	                    foreach ($namaChild as $row) {
+	                      ?>
+	                        <tr class="isi2" data-brgChild="<?php echo $row['INCH_ID']; ?>">
+	                          <td> <?php echo $no ?> </td>
+	                          <td> <?php echo $row['INCH_NAME']?> </td>
+	                        </tr>
+	                      <?php
+	                      $no++;
+	                    }
+	                  ?>
+	                </tbody>
+	            </table>  
+	        </div>
+	    </div>
+	    <?php
+	} 
 	public function delete($id)
 	{
 		$this->db->delete('inventaris', array('INVE_ID' => $id));

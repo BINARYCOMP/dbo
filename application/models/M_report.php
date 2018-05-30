@@ -90,38 +90,63 @@ class M_report extends CI_Model
 	}
 	public function getTotalByRuangan($bapaId, $bachId, $ruanId)
 	{
-		$sql 	= "SELECT SUM(GUBA_MASUK) as 'TOTAL_RUANGAN' FROM  gudang_bawang WHERE GUBA_BAPA_ID = ".$bapaId." AND GUBA_BACH_ID = ".$bachId." AND GUBA_RUAN_ID = ".$ruanId;
+		$sql 	= "SELECT SUM(GUBA_MASUK) as 'TOTAL_RUANGAN' FROM  gudang_bawang WHERE GUBA_BAPA_ID = ".$bapaId." AND GUBA_BACH_ID = ".$bachId." AND GUBA_RUAN_ID = ".$ruanId."";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
-		return $return;	
+		$TOTAL_RUANGAN = $return[0]['TOTAL_RUANGAN'];
+		$sql 	= "SELECT SUM(GUBA_KELUAR) as 'TOTAL_RUANGAN' FROM  gudang_bawang WHERE GUBA_BAPA_ID = ".$bapaId." AND GUBA_BACH_ID = ".$bachId." AND GUBA_RUAN_ID = ".$ruanId."";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		$TOTAL_RUANGAN = $TOTAL_RUANGAN-$return[0]['TOTAL_RUANGAN'];
+		return $TOTAL_RUANGAN;	
 	}
 	public function getTotalCimuningByRuangan($BaccId, $ruanId)
 	{
 		$sql 	= "SELECT SUM(GUJA_MASUK) as 'TOTAL_RUANGAN' FROM  gudang_jadi WHERE GUJA_BACC_ID = ".$BaccId." AND GUJA_RUAN_ID = ".$ruanId;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
-		return $return;	
+		$TOTAL_RUANGAN = $return[0]['TOTAL_RUANGAN'];
+		$sql 	= "SELECT SUM(GUJA_KELUAR) as 'TOTAL_RUANGAN' FROM  gudang_jadi WHERE GUJA_BACC_ID = ".$BaccId." AND GUJA_RUAN_ID = ".$ruanId;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		$TOTAL_RUANGAN = $TOTAL_RUANGAN-$return[0]['TOTAL_RUANGAN'];
+		return $TOTAL_RUANGAN;	
 	}
 	public function getTotalSetengahJadiCimuningByRuangan($BaccId, $ruanId)
 	{
 		$sql 	= "SELECT SUM(GUTA_MASUK) as 'TOTAL_RUANGAN' FROM  gudang_tak_jadi WHERE GUTA_BACC_ID = ".$BaccId." AND GUTA_RUAN_ID = ".$ruanId;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
-		return $return;	
+		$TOTAL_RUANGAN = $return[0]['TOTAL_RUANGAN'];
+		$sql 	= "SELECT SUM(GUTA_KELUAR) as 'TOTAL_RUANGAN' FROM  gudang_tak_jadi WHERE GUTA_BACC_ID = ".$BaccId." AND GUTA_RUAN_ID = ".$ruanId;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		$TOTAL_RUANGAN = $TOTAL_RUANGAN-$return[0]['TOTAL_RUANGAN'];
+		return $TOTAL_RUANGAN;
 	}
 	public function getTotalMaterialBawangByRuangan($mpbaId, $mcbaId, $ruanId)
 	{
 		$sql 	= "SELECT SUM(MABA_MASUK) as 'TOTAL_RUANGAN' FROM  material_bawang WHERE MABA_MPBA_ID = ".$mpbaId." AND MABA_MCBA_ID = ".$mcbaId." AND MABA_RUAN_ID = ".$ruanId;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
-		return $return;	
+		$TOTAL_RUANGAN = $return[0]['TOTAL_RUANGAN'];
+		$sql 	= "SELECT SUM(MABA_KELUAR) as 'TOTAL_RUANGAN' FROM  material_bawang WHERE MABA_MPBA_ID = ".$mpbaId." AND MABA_MCBA_ID = ".$mcbaId." AND MABA_RUAN_ID = ".$ruanId;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		$TOTAL_RUANGAN = $TOTAL_RUANGAN-$return[0]['TOTAL_RUANGAN'];
+		return $TOTAL_RUANGAN;	
 	}
 	public function getTotalMaterialCimuningByRuangan($mpbaId, $mcbaId, $ruanId)
 	{
 		$sql 	= "SELECT SUM(MACI_MASUK) as 'TOTAL_RUANGAN' FROM  material_cimuning WHERE MACI_MPCI_ID = ".$mpbaId." AND MACI_MCCI_ID = ".$mcbaId." AND MACI_RUAN_ID = ".$ruanId;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
-		return $return;	
+		$TOTAL_RUANGAN = $return[0]['TOTAL_RUANGAN'];
+		$sql 	= "SELECT SUM(MACI_KELUAR) as 'TOTAL_RUANGAN' FROM  material_cimuning WHERE MACI_MPCI_ID = ".$mpbaId." AND MACI_MCCI_ID = ".$mcbaId." AND MACI_RUAN_ID = ".$ruanId;
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		$TOTAL_RUANGAN = $TOTAL_RUANGAN-$return[0]['TOTAL_RUANGAN'];
+		return $TOTAL_RUANGAN;
 	}
 	public function getTotalSaldo($bapaId, $bachId)
 	{

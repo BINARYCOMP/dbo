@@ -67,8 +67,8 @@
                       ?>
                         <td scope="1">
                           <?php
-                            if (isset($total[0]['TOTAL_RUANGAN'])) {
-                              echo $total[0]['TOTAL_RUANGAN'];
+                            if (isset($total)) {
+                              echo $total;
                             }else{
                               echo "-";
                             }
@@ -139,8 +139,8 @@
                   ?>
                     <td scope="1">
                       <?php
-                        if (isset($total[0]['TOTAL_RUANGAN'])) {
-                          echo $total[0]['TOTAL_RUANGAN'];
+                        if (isset($total)) {
+                          echo $total;
                         }else{
                           echo "-";
                         }
@@ -210,8 +210,8 @@
                   ?>
                     <td scope="1">
                       <?php
-                        if (isset($total[0]['TOTAL_RUANGAN'])) {
-                          echo $total[0]['TOTAL_RUANGAN'];
+                        if (isset($total)) {
+                          echo $total;
                         }else{
                           echo "-";
                         }
@@ -298,8 +298,8 @@
                       ?>
                         <td scope="1">
                           <?php
-                            if (isset($total[0]['TOTAL_RUANGAN'])) {
-                              echo $total[0]['TOTAL_RUANGAN'];
+                            if (isset($total)) {
+                              echo $total;
                             }else{
                               echo "-";
                             }
@@ -387,8 +387,8 @@
                       ?>
                         <td scope="1">
                           <?php
-                            if (isset($total[0]['TOTAL_RUANGAN'])) {
-                              echo $total[0]['TOTAL_RUANGAN'];
+                            if (isset($total)) {
+                              echo $total;
                             }else{
                               echo "-";
                             }
