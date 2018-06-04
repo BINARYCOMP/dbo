@@ -509,7 +509,7 @@
               <tr>
                 <th scope="row"></th>
                 <td ><?php echo $row['INCH_NAME'] ?></td>
-                <td class="right"><?php echo $row['INCH_QTY'] ?></td>
+                <td class="right"><?php echo $row['INVE_QTY'] ?></td>
                 <td><?php echo $row['INVE_KEADAAN'] ?></td>
                 <td><?php echo $row['INVE_KETERANGAN'] ?></td>
               </tr>
@@ -549,7 +549,7 @@
         $('#inventaris_bawang').dataTable( {
           "bSort": false,
           dom:'B <"content-header" <"col-sm-2"l> f>tipH',
-          buttons: [ 'pdf' ]
+          buttons: [ 'pdf', 'excel' ]
         } );
         $('#finance').dataTable( {
           "bSort": false,
