@@ -198,7 +198,7 @@
                             <li class="divider"></li>
                             <li class="dropdown-header">Gudang Bawang</li>
                             <li><a href="<?php echo base_url()?>c_managerial/gudang_bawang">View Stok Gudang Bawang</a></li>
-                            <li><a href="<?php echo base_url()?>c_managerial/material_bawang"">View Stok Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_managerial/material_bawang">View Stok Material</a></li>
                           </ul>
                       </li>
 
@@ -269,13 +269,13 @@
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
                             <li class="dropdown-header">Gudang Cimuning</li>
-                            <li><a href="<?php echo base_url()?>c_gudangJadi">Input Barang Jadi</a></li>
-                            <li><a href="<?php echo base_url()?>c_gudangTakJadi">Input Barang Setengah Jadi</a></li>
-                            <li><a href="<?php echo base_url()?>c_materialCimuning">Input Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_gudangJadi/view_barang_jadi">Lihat Barang Jadi</a></li>
+                            <li><a href="<?php echo base_url()?>c_gudangTakJadi/view_setengah_jadi">Lihat Barang Setengah Jadi</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialCimuning/view_material">Lihat Material</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Gudang Bawang</li>
-                            <li><a href="<?php echo base_url()?>c_gudangBawang">Input Barang Jadi</a></li>
-                            <li><a href="<?php echo base_url()?>c_materialBawang">Input Material</a></li>
+                            <li><a href="<?php echo base_url()?>c_gudangBawang/view_barang_jadi">Lihat Barang</a></li>
+                            <li><a href="<?php echo base_url()?>c_materialBawang/view_material">Lihat Material</a></li>
                           </ul>
                       </li>
 
@@ -286,18 +286,16 @@
                           Inventaris
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url()?>c_inventaris">Input Inventaris Cimuning</a></li>
-                            <!-- <li><a href="<?php echo base_url()?>c_inventarisCimuning">Input Inventaris Cimuning</a></li> -->
-                            <li><a href="<?php echo base_url()?>c_inventarisParent">Input Inventaris Parent</a></li>
-                            <li><a href="<?php echo base_url()?>c_inventarisChild">Input Inventaris Child</a></li>
+                            <li><a href="<?php echo base_url()?>c_inventaris/view_inventaris">Lihat Inventaris Cimuning</a></li>
+                            <li><a href="<?php echo base_url()?>c_inventaris_bawang/view_inventaris">Lihat Inventaris Bawang</a></li>
                           </ul>
                       </li>
 
                       <!-- Keuangan -->
                       <li class="<?php if(isset($menu)) if($menu == 'Keuangan') echo 'active'?>" >
-                        <a href="<?php echo base_url()?>c_keuangan">
+                        <a href="<?php echo base_url()?>c_keuangan/view_keuangan">
                           <i class="fa fa-balance-scale"></i>
-                          Keuangan
+                          Lihat Keuangan
                         </a>
                       </li>
                     <!-- Report -->
@@ -307,36 +305,6 @@
                         Report
                       </a>
                     </li>
-                    <!-- Super User -->
-                      <li class="dropdown <?php if(isset($menu)) if($menu == 'Barang Parent' || $menu == 'Barang Child' || $menu == 'Input User' || $menu == 'Input Agama' ||  $menu == 'Input Level' ||  $menu == 'Input Satuan' ||  $menu == 'Input Pegawai'  ) echo 'active'?>">
-                          <a class="dropdown-toggle" style="cursor: pointer;" type="button" data-toggle="dropdown">System
-                          <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                            <li class="dropdown-header">Barang</li>
-                            <li><a href="<?php echo base_url()?>c_barangParent">Input Barang Parent</a></li>
-                            <li><a href="<?php echo base_url()?>c_barangChild">Input Barang Child</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Barang Cimuning</li>
-                            <li><a href="<?php echo base_url()?>c_barangChildCimuning">Input Barang</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Material Cimuning</li>
-                            <li><a href="<?php echo base_url()?>c_materialParentCimuning">Material Parent</a></li>
-                            <li><a href="<?php echo base_url()?>c_materialChildCimuning">Material Child</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Material Bawang</li>
-                            <li><a href="<?php echo base_url()?>c_materialParentBawang">Material Parent</a></li>
-                            <li><a href="<?php echo base_url()?>c_materialBawangChild">Material Child</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Owner</li>
-                            <li><a href="<?php echo base_url()?>c_form1">Input User</a></li>
-                            <li><a href="<?php echo base_url()?>c_pegawai">Input Pegawai</a></li>
-                            <li><a href="<?php echo base_url()?>c_ruangan">Input Ruangan</a></li>
-                            <li><a href="<?php echo base_url()?>c_satuan">Input Satuan</a></li>
-                            <li><a href="<?php echo base_url()?>c_kategori">Input Kategori</a></li>
-                            <li><a href="<?php echo base_url()?>c_level">Input Level</a></li>
-                            <li><a href="<?php echo base_url()?>c_viewAgama">Input Agama</a></li>
-                          </ul>
-                      </li>
                     <?php
                   }else if ($_SESSION['level'] == 'SUPER ADMIN') {
                     ?>

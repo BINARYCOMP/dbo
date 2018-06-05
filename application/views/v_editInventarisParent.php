@@ -1,7 +1,7 @@
 <!-- Main content -->	  
 <div class="content">
 	<div class="row">
-	  <div class="col-md-6">
+	  <div class="col-md-12">
 	    <div class="box box-info">
 	      <div class="box-header with-border">
 	        <h3 class="box-title">Edit Inventaris Parent</h3>
@@ -23,6 +23,26 @@
 	                    </span>
 	                  </div>
 	              </div>
+				<div class="form-group">
+				  <label class=" control-label">Kategori Gudang</label>
+				  <div>
+				    <span id="qty">
+				      <select name="cmbKategori" class="form-control" required="true">
+				      <?php
+				      	if ($inventarisParent[0]['INPA_KETERANGAN'] == 'BAWANG') {
+				      		?>
+				      		<option selected="true">BAWANG</option>
+				      		<?php
+				      	}else{
+					      	?>
+					      	<option selected="true">CIMUNING</option>
+					      	<?php	
+				      	}
+				      ?>
+				      </select>
+				    </span>
+				  </div>
+				</div>
 	              <div class="form-group">
 	                <div class="row">
 	                  <div class="col-md-10">

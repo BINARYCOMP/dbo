@@ -9,6 +9,7 @@ class C_gudangBawang extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('m_gudangBawang');
+    $this->load->model('m_report');
 	}
 
 	public function index()
@@ -39,6 +40,25 @@ class C_gudangBawang extends CI_Controller
 		);
 		$this->load->view('tampilan/v_combine',$data);
 	}
+
+  public function view_barang_jadi()
+  {
+    $dataBarangParent           = $this->m_report->getBarangParent();
+    $namaParent         = $this->m_gudangBawang->getParentName();
+    $namaKategori       = $this->m_gudangBawang->getKategoriName();
+    $dataGudangBawang   = $this->m_gudangBawang->getDataGudang();
+    $dataRuangan        = $this->m_gudangBawang->getRuangan();
+    $data = array(
+      'dataBarangParent'          => $dataBarangParent,
+      'namaKategori'      => $namaKategori,
+      'namaParent'        => $namaParent,
+      'dataGudangBawang'  => $dataGudangBawang,
+      'dataRuangan'   => $dataRuangan,
+      'content'           => 'owner/v_gudangBawang',
+      'title'             => 'Lihat Gudang Bawang',
+    );
+    $this->load->view('tampilan/v_combine',$data);
+  }
 
 	public function inputStok()
   {

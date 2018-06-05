@@ -24,10 +24,12 @@ class C_InventarisParent extends CI_Controller
 	}
 	public function save()
 	{
-		$nama = $_POST['txtnama'];
+		$nama 		= $_POST['txtnama'];
+		$keterangan = $_POST['cmbKategori'];
 
 		$data = array(
-			'INPA_NAME' =>$nama
+			'INPA_NAME' =>$nama,
+			'INPA_KETERANGAN' => $keterangan
 			);
 		$parent=$this->m_inventarisParent->Insert($data);
 		 redirect('C_inventarisParent');

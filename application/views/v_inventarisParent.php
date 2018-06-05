@@ -1,7 +1,7 @@
 <!-- Main content -->
 <div class="content">
 	<div class="row">
-	  <div class="col-md-6">
+	  <div class="col-md-12">
 	    <div class="box box-info">
 	      <div class="box-header with-border">
 	        <h3 class="box-title">Input Inventaris Parent</h3>
@@ -24,6 +24,17 @@
 	                  </div>
 	              </div>
 	              <div class="form-group">
+					  <label class=" control-label">Kategori Gudang</label>
+					  <div>
+					    <span id="qty">
+					      <select name="cmbKategori" class="form-control" required="true">
+					      	<option>BAWANG</option>
+					      	<option>CIMUNING</option>
+					      </select>
+					    </span>
+					  </div>
+					</div>
+	              <div class="form-group">
 	                <div class="row">
 	                  <div class="col-md-10">
 	                    <button type="reset" class="btn btn-default pull-right">Cancel</button>
@@ -42,7 +53,7 @@
 	    </div>
 	      <!-- /.box -->
 	  </div> <!-- col-input -->
-	  <div class="col-md-6">
+	  <div class="col-md-12">
 	    <div class="box box-info">
 	      <div class="box-header with-border">
 	        <h3 class="box-title">Data Inventaris Parent</h3>
@@ -57,8 +68,9 @@
 				<thead>
 					<tr>
 						<th>No.</th>
-						<th>nama inventaris</th>
-						<th>Tanggal Di tambahkan</th>	
+						<th>Nama Inventaris</th>
+						<th>Keterangan Gudang</th>
+						<th>Tanggal Di Tambahkan</th>	
 						<th style="text-align: center" >Action </th>
 					</tr>
 				</thead>
@@ -70,6 +82,7 @@
 				      <tr>
 				        <td><?php echo $no++ ?></td>
 				        <td><?php echo $row['INPA_NAME']?></td>
+						<td><?php echo $row['INPA_KETERANGAN']?></td>
 						<td><?php echo $row['INPA_TIME']?></td>
 				        <td>
 				        	<a href="<?php echo base_url()?>c_inventarisParent/FormUpdate/<?php echo $row['INPA_ID']?>">Edit</a> |

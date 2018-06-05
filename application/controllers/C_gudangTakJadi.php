@@ -9,6 +9,7 @@ class C_gudangTakJadi extends CI_Controller
   {
     parent::__construct();
     $this->load->model('m_gudangTakJadi');
+    $this->load->model('m_report');
   }
   public function index()
   {
@@ -35,6 +36,26 @@ class C_gudangTakJadi extends CI_Controller
         'title'           => 'Input barang tak jadi Gudang Cimuning ',
         'content'         => 'v_gudangTakJadi',
         'message'         => $message,
+      );
+      $this->load->view('tampilan/v_combine',$data);
+  }
+  public function view_setengah_jadi()
+  {
+      $dataBarangJadiCimuning       = $this->m_report->getBarangJadiCimuning();
+      $dataRuangan            = $this->m_report->getRuangan();
+      $namaBarang           = $this->m_gudangTakJadi->getBarangName();
+      $datagudangTakJadi    = $this->m_gudangTakJadi->getDataGudang();
+      $dataRuangan          = $this->m_gudangTakJadi->getRuangan();
+      $namaKategori         = $this->m_gudangTakJadi->getKategoriName();
+      $data = array(
+        'dataBarangJadiCimuning'      => $dataBarangJadiCimuning,
+        'dataRuangan'           => $dataRuangan,
+        'namaKategori'      => $namaKategori,
+        'namaBarang'        => $namaBarang,
+        'datagudangTakJadi' => $datagudangTakJadi,
+        'dataRuangan'       => $dataRuangan,
+        'title'             => 'Lihat Barang Setengah Jadi ',
+        'content'           => 'owner/v_gudangTakJadi',
       );
       $this->load->view('tampilan/v_combine',$data);
   }

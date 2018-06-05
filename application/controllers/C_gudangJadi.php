@@ -9,6 +9,7 @@ class C_gudangJadi extends CI_Controller
   {
     parent::__construct();
     $this->load->model('m_gudangJadi');
+    $this->load->model('m_report');
   }
   public function index()
   {
@@ -37,6 +38,18 @@ class C_gudangJadi extends CI_Controller
         'message'         => $message,
       );
       $this->load->view('tampilan/v_combine',$data);
+  }
+  public function view_barang_jadi()
+  {
+    $dataBarangJadiCimuning       = $this->m_report->getBarangJadiCimuning();
+    $dataRuangan                  = $this->m_report->getRuangan();
+    $data = array(
+      'dataBarangJadiCimuning'      => $dataBarangJadiCimuning,
+      'dataRuangan'                 => $dataRuangan,
+      'title'                       => 'Lihat Barang Jadi Gudang Cimuning ',
+      'content'                     => 'owner/v_gudangJadi',
+    );
+    $this->load->view('tampilan/v_combine',$data);
   }
   public function inputStok()
   {

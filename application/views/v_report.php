@@ -321,7 +321,7 @@
     </div>
   </div>
 
-    <!-- Material Cimuning Report -->
+  <!-- Material Cimuning Report -->
   <div class="box box-default">
     <div class="box-header with-border">
       <h3 class="box-title"><span class="text-center">Laporan Material [ Gudang Cimuning ]</span></h3><br>

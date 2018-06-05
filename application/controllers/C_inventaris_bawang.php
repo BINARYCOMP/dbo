@@ -2,23 +2,23 @@
 /**
  * 
  */
-class C_inventaris extends CI_Controller
+class C_inventaris_bawang extends CI_Controller
 {
 	
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('m_inventaris');
+		$this->load->model('m_inventaris_bawang');
 		$this->load->model('m_report');
 	}
 
 	public function index()
 	{
-		$getParent 		= $this->m_inventaris->getParent();
-		$getChild 		= $this->m_inventaris->getChild();
-		$getInventaris 	= $this->m_inventaris->getInventaris();
+		$getParent 		= $this->m_inventaris_bawang->getParent();
+		$getChild 		= $this->m_inventaris_bawang->getChild();
+		$getInventaris 	= $this->m_inventaris_bawang->getInventaris();
 		$data = array(
-			'content' 		=> 'v_inventaris' , 
+			'content' 		=> 'v_inventaris_bawang' , 
 			'dataParent' 	=> $getParent ,
 			'dataChild' 	=> $getChild ,
 			'title'			=> 'Inventaris', 
@@ -29,17 +29,17 @@ class C_inventaris extends CI_Controller
 	}
 	public function view_inventaris()
 	{
-		$dataInventarisParentCimuning		= $this->m_report->getInventarisParentCimuning();
-		$getParent 							= $this->m_inventaris->getParent();
-		$getChild 							= $this->m_inventaris->getChild();
-		$getInventaris 						= $this->m_inventaris->getInventaris();
+		$dataInventarisParentBawang		= $this->m_report->getInventarisParentBawang();
+		$getParent 							= $this->m_inventaris_bawang->getParent();
+		$getChild 							= $this->m_inventaris_bawang->getChild();
+		$getInventaris 						= $this->m_inventaris_bawang->getInventaris();
 		$data = array(
-			'dataInventarisParentCimuning'		=> $dataInventarisParentCimuning,
+			'dataInventarisParentBawang'		=> $dataInventarisParentBawang,
 			'dataParent' 						=> $getParent ,
 			'dataChild' 						=> $getChild ,
 			'dataInventaris' 					=> $getInventaris,
-			'content' 							=> 'owner/v_inventarisCimuning.php' , 
-			'title'								=> 'Lihat Inventaris Cimuning', 
+			'content' 							=> 'owner/v_inventarisBawang.php' , 
+			'title'								=> 'Lihat Inventaris Bawang', 
 			'menu'         						=> 'Inventaris'
 		);
 		$this->load->view('tampilan/v_combine', $data);
@@ -59,13 +59,13 @@ class C_inventaris extends CI_Controller
 			'INVE_KEADAAN' 		=> $kondisi,
 			'INVE_QTY' 			=> $qty 
 		);
-		$setInventaris = $this->m_inventaris->setInventaris($data);
-		redirect('c_inventaris','refresh');
+		$setInventaris = $this->m_inventaris_bawang->setInventaris($data);
+		redirect('c_inventaris_bawang','refresh');
 	}
 	public function searchChild()
 	{
 		$str = $_GET['q'];
-	    $namaChild  = $this->m_inventaris->getChildByInpaId($str);
+	    $namaChild  = $this->m_inventaris_bawang->getChildByInpaId($str);
 	    ?>
 	      <select required name="cmbChild" id="cmbChild" class="form-control" onchange="showQty();" onmousemove="showQty();">
 	        <?php
@@ -98,7 +98,7 @@ class C_inventaris extends CI_Controller
 	      <?php
 	    }else{
 	    	if ($child == 0) {
-	    		$data 		= $this->m_inventaris->getLastStokWithoutChild($parent);
+	    		$data 		= $this->m_inventaris_bawang->getLastStokWithoutChild($parent);
 	    		if (isset($data[0]['INVE_QTY'])) {
 	    			$qtyAwal 	= $data[0]['INVE_QTY'];
 	    		}else{
@@ -108,7 +108,7 @@ class C_inventaris extends CI_Controller
 					<input type="text" name="txtQty" id="txtQty" class="form-control" required value="<?php echo $qtyAwal ?>"> 
 				<?php
 	    	}else{
-	    		$data 		= $this->m_inventaris->getLastStok($parent, $child);
+	    		$data 		= $this->m_inventaris_bawang->getLastStok($parent, $child);
 	    		if (isset($data[0]['INVE_QTY'])) {
 	    			$qtyAwal 	= $data[0]['INVE_QTY'];
 	    		}else{
@@ -155,7 +155,7 @@ class C_inventaris extends CI_Controller
 		    </div>
 		    <div class="modal-footer">
 		      <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-		      <form action="<?php echo base_url()?>c_inventaris/save" method="POST">
+		      <form action="<?php echo base_url()?>c_inventaris_bawang/save" method="POST">
 		        <input type="hidden" name="cmbParent" value="<?php echo $cmbParent?>">
 		        <input type="hidden" name="cmbChild" value="<?php echo $cmbChild?>">
 		        <input type="hidden" name="txtQty" value="<?php echo $txtQty?>">
@@ -171,7 +171,7 @@ class C_inventaris extends CI_Controller
 	public function modalChild()
 	{
 	    $cmbParent = $_GET['parent'];
-	    $namaChild = $this->m_inventaris->getChildByInpaId($cmbParent);
+	    $namaChild = $this->m_inventaris_bawang->getChildByInpaId($cmbParent);
 	    $data = array(
 		     'cmbParent' => $cmbParent ,
 		     'namaChild' => $namaChild 
@@ -212,7 +212,7 @@ class C_inventaris extends CI_Controller
 	} 
 	public function delete($id)
 	{
-		$this->db->delete('inventaris', array('INVE_ID' => $id));
-		redirect('c_managerial/inventaris','refresh');
+		$this->db->delete('inventaris_bawang', array('INVE_ID' => $id));
+		redirect('c_managerial/inventaris_bawang','refresh');
 	}
 }

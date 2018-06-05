@@ -9,6 +9,7 @@ class C_materialCimuning extends CI_Controller
   {
     parent::__construct();
     $this->load->model('m_materialCimuning');
+    $this->load->model('m_report');
   }
   public function index()
   {
@@ -36,6 +37,23 @@ class C_materialCimuning extends CI_Controller
         'menu'            => 'Input Material'
       );
       $this->load->view('tampilan/v_combine',$data);
+  }
+  public function view_material()
+  {
+    $dataMaterialCimuningParent     = $this->m_report->getMaterialCimuningParent();
+    $namaParent       = $this->m_materialCimuning->getParentName();
+    $datamaterial     = $this->m_materialCimuning->getDataGudang();
+    $dataRuangan      = $this->m_materialCimuning->getRuangan();
+    $data = array(
+      'dataMaterialCimuningParent'    => $dataMaterialCimuningParent,
+      'dataParent'      => $namaParent,
+      'datamaterial'    => $datamaterial,
+      'dataRuangan'     => $dataRuangan,
+      'content'         => 'owner/v_materialCimuning',
+      'title'           => 'Input Material Cimuning',
+      'menu'            => 'Input Material'
+    );
+    $this->load->view('tampilan/v_combine',$data);  
   }
   public function inputStok()
   {

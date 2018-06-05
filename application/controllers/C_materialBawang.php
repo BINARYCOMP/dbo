@@ -9,6 +9,7 @@ class C_materialBawang extends CI_Controller
   {
     parent::__construct();
     $this->load->model('m_materialBawang');
+    $this->load->model('m_report');
   }
   public function index()
   {
@@ -36,6 +37,23 @@ class C_materialBawang extends CI_Controller
         'menu'            => 'Input Material'
       );
       $this->load->view('tampilan/v_combine',$data);
+  }
+  public function view_material()
+  {
+    $dataMaterialBawangParent     = $this->m_report->getMaterialBawangParent();
+    $namaParent       = $this->m_materialBawang->getParentName();
+    $datamaterial     = $this->m_materialBawang->getDataGudang();
+    $dataRuangan      = $this->m_materialBawang->getRuangan();
+    $data = array(
+      'dataMaterialBawangParent'      => $dataMaterialBawangParent,
+      'dataParent'      => $namaParent,
+      'datamaterial'    => $datamaterial,
+      'dataRuangan'     => $dataRuangan,
+      'content'         => 'owner/v_materialBawang',
+      'title'           => 'Lihat Material Bawang',
+      'menu'            => 'Stok'
+    );
+    $this->load->view('tampilan/v_combine',$data);
   }
   public function inputStok()
   {
