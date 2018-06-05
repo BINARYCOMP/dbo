@@ -183,7 +183,7 @@ class C_gudangBawang extends CI_Controller
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Input Barang Setengah Jadi</h4>
+          <h4 class="modal-title">Konfirmasi Barang</h4>
         </div>
         <div class="modal-body">
           <table class="table table-bordered">
