@@ -15,7 +15,7 @@ class M_inventarisChild extends CI_Model
 	}
 	function viewParent()
 	{
-		$sql = "select * from inventaris_parent";
+		$sql = "select * from inventaris_parent WHERE INPA_KETERANGAN = 'BAWANG'";
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
