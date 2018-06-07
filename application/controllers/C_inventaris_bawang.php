@@ -18,7 +18,7 @@ class C_inventaris_bawang extends CI_Controller
 		$getChild 		= $this->m_inventaris_bawang->getChild();
 		$getInventaris 	= $this->m_inventaris_bawang->getInventaris();
 		$data = array(
-			'content' 		=> 'v_inventaris_bawang' , 
+			'content' 		=> 'v_inventarisBawang' , 
 			'dataParent' 	=> $getParent ,
 			'dataChild' 	=> $getChild ,
 			'title'			=> 'Inventaris', 

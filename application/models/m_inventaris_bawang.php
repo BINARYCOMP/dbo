@@ -12,14 +12,14 @@ class M_inventaris_bawang extends CI_Model
 
 	public function getParent()
 	{
-		$sql = "select * from inventaris_parent";
+		$sql = "select * from inventaris_parent where INPA_KETERANGAN = 'BAWANG'";
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getParentById($id)
 	{
-		$sql = "select * from inventaris_parent where INPA_ID = ".$id;
+		$sql = "select * from inventaris_parent where INPA_KETERANGAN = 'BAWANG' AND  INPA_ID = ".$id;
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -33,7 +33,7 @@ class M_inventaris_bawang extends CI_Model
 	}
 	public function getChildById($id)
 	{
-		$sql = "select * from inventaris_child where INCH_ID = ".$id;
+		$sql = "select * from inventaris_child where INCH_KETERANGAN = 'BAWANG' AND  INCH_ID = ".$id;
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -55,13 +55,15 @@ class M_inventaris_bawang extends CI_Model
 	public function getChildByInpaId($id)
 	{
 		$sql = "select * from inventaris_child where INCH_KETERANGAN ='BAWANG' AND INCH_INPA_ID = ".$id;
+		var_dump($sql);
+		exit();
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getChildJoinByInpaId($id)
 	{
-		$sql = "select * from inventaris_child, inventaris where INCH_ID = INVE_INCH_ID AND INCH_INPA_ID = ".$id;
+		$sql = "select * from inventaris_child, inventaris where INCH_KETERANGAN = 'BAWANG' AND  INCH_ID = INVE_INCH_ID AND INCH_INPA_ID = ".$id;
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -82,7 +84,7 @@ class M_inventaris_bawang extends CI_Model
 	}
 	public function getInventaris()
 	{
-		$sql = "select * from inventaris_parent,inventaris,inventaris_child where  INPA_ID = INVE_INPA_ID AND INVE_INCH_ID = INCH_ID order by INVE_ID ";
+		$sql = "select * from inventaris_parent,inventaris,inventaris_child where INPA_KETERANGAN = 'BAWANG' AND INCH_KETERANGAN = 'BAWANG' AND  INPA_ID = INVE_INPA_ID AND INVE_INCH_ID = INCH_ID order by INVE_ID ";
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

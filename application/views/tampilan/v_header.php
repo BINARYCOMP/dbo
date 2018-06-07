@@ -333,7 +333,7 @@
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url()?>c_inventaris">Input Inventaris Cimuning</a></li>
-                            <!-- <li><a href="<?php echo base_url()?>c_inventarisCimuning">Input Inventaris Cimuning</a></li> -->
+                            <li><a href="<?php echo base_url()?>c_inventaris_bawang">Input Inventaris Bawang</a></li>
                             <li><a href="<?php echo base_url()?>c_inventarisParent">Input Inventaris Parent</a></li>
                             <li><a href="<?php echo base_url()?>c_inventarisChild">Input Inventaris Child</a></li>
                           </ul>

@@ -48,14 +48,6 @@
 	                    </span>
 	                  </div>
 	              </div>
-	               <div class="form-group">
-	                  <label class=" control-label">QTY Inventaris</label>
-	                  <div>
-	                    <span id="qty">
-	                      <input class="form-control" type="text"  required="true" name="txtqty" value="<?php echo($inventarisChild[0]['INCH_QTY'])?>" >  
-	                    </span>
-	                  </div>
-	              </div>
 	              <div class="form-group">
 	                <div class="row">
 	                  <div class="col-md-10">

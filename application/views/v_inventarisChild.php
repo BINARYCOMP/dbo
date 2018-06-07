@@ -19,9 +19,9 @@
 					  <label class=" control-label">Kategori Gudang</label>
 					  <div>
 					    <span id="qty">
-					      <select name="cmbKategori" class="form-control" required="true">
-					      	<option>BAWANG</option>
-					      	<option>CIMUNING</option>
+					      <select name="cmbKategori" onchange="inventaris_parent(this.value)" class="form-control" required="true">
+					      	<option value="BAWANG">BAWANG</option>
+					      	<option value="CIMUNING">CIMUNING</option>
 					      </select>
 					    </span>
 					  </div>
@@ -29,7 +29,6 @@
 					<div class="form-group">
 						<label class="control-label">Nama Inventaris Parent</label>
 						<div class="input-group">
-							<!-- /btn-group -->
 							<select name="txtParent" id="cmbParent" class="form-control">
 							  <option value="0">== Pilih Inventaris Barang ==</option>
 							  <?php  
@@ -84,10 +83,11 @@
 			<table class="table table-bordered table-hover table-striped" id="lookup">
 				<thead>
 					<tr>	
-							<th>No.</th>
-							<th>Induk Inventaris</th>
-							<th>Nama inventaris</th>
-							<th>Tanggal Di tambahkan</th>	
+						<th>No.</th>
+						<th>Induk Inventaris</th>
+						<th>Nama Inventaris</th>
+						<th>Keterangan Gudang</th>
+						<th>Tanggal Di tambahkan</th>	
 						<th style="text-align: center" >Action </th>
 					</tr>
 				</thead>
@@ -100,6 +100,7 @@
 				      	<td><?php echo $no?></td>  
 						<td><?php echo $row['INPA_NAME']?></td>
 				        <td><?php echo $row['INCH_NAME']?></td>
+				        <td><?php echo $row['INCH_KETERANGAN']?></td>
 						<td><?php echo $row['INCH_TIME']?></td>
 				        <td>
 				        	<a href="<?php echo base_url()?>c_inventarisChild/FormUpdate/<?php echo $row['INCH_ID']?>">Edit</a> |
@@ -136,7 +137,7 @@
                         <th>Barang Parent</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="ajax-modal-inpa">
                       <?php
                       $no = 1; 
                       foreach ($inventaris_parent as $row) {
@@ -167,4 +168,23 @@
         $('#myModalInven').modal('hide');
 
     });
+
+    function inventaris_parent(keterangan) {
+    	$.ajax({
+	        type: "POST",
+	        data: {keterangan : keterangan}, 
+	        url: "<?php echo base_url()?>c_inventarisChild/show_parent",
+	        success: function(html) {
+	            $("#cmbParent").html(html);
+	        }
+	    });
+	    $.ajax({
+	        type: "POST",
+	        data: {keterangan : keterangan}, 
+	        url: "<?php echo base_url()?>c_inventarisChild/modal_parent",
+	        success: function(html) {
+	            $("#ajax-modal-inpa").html(html);
+	        }
+	    });
+    }
 </script>
