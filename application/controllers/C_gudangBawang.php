@@ -25,12 +25,14 @@ class C_gudangBawang extends CI_Controller
       $message ="";
     }
 
-		$namaParent       	= $this->m_gudangBawang->getParentName();
+    $dataBarangParent   = $this->m_report->getBarangParent();
+    $namaParent         = $this->m_gudangBawang->getParentName();
 		$namaKategori     	= $this->m_gudangBawang->getKategoriName();
 		$dataGudangBawang   = $this->m_gudangBawang->getDataGudang();
 		$dataRuangan      	= $this->m_gudangBawang->getRuangan();
 		$data = array(
-			'namaKategori'    	=> $namaKategori,
+      'dataBarangParent'          => $dataBarangParent,
+      'namaKategori'      => $namaKategori,
 			'namaParent'      	=> $namaParent,
 			'dataGudangBawang'  => $dataGudangBawang,
 			'dataRuangan'		=> $dataRuangan,

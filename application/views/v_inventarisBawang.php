@@ -101,63 +101,7 @@
       ?>
 
       <div class="col-md-12">
-        <div class="box box-info">
-          <div class="box-header with-border">
-            <h3 class="box-title">Data Inventaris</h3>
-
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            </div>
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <table class="table table-bordered table-hover dataTable no-footer" id="lookup">
-              <thead>
-                <tr>
-                  <th>No.</th>
-                  <th>Induk Inventaris</th>
-                  <th>Anak Inventaris</th>
-                  <th>Qty</th>
-                  <th>Kondisi</th>
-                  <th>Keterangan</th>
-                  <?php
-                    if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
-                      ?> 
-                        <th> Action </th>
-                      <?php
-                    }
-                  ?>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                $no = 1;
-                foreach ($dataInventaris as $row) {
-                    ?>
-                      <tr>
-                        <td><?php echo $no++ ?></td>
-                        <td><?php echo $row['INPA_NAME']?></td>
-                        <td><?php echo $row['INCH_NAME']?></td>
-                        <td><?php echo $row['INVE_QTY']?></td>
-                        <td><?php echo $row['INVE_KEADAAN']?></td>
-                        <td><?php echo $row['INVE_KETERANGAN']?></td>
-                        <?php
-                          if($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN'){
-                            ?> 
-                              <td> <a href="#">Edit</a> | <a onclick="return confirm('Are you sure?')" href="<?php echo base_url() ?>c_inventaris/delete/<?php echo $row['INVE_ID']?>" >Delete</a>  </td> 
-                            <?php
-                          }
-                        ?>
-                      </tr>
-                    <?php
-                      $no++;
-                      }
-                    ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-          <!-- /.box -->
+       <?php $this->load->view('table/table_inventaris_bawang') ?>
       </div> <!-- col-input -->
     </div>
   </div>

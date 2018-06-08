@@ -24,10 +24,12 @@ class C_materialCimuning extends CI_Controller
       $message ="";
     }
 
+      $dataMaterialCimuningParent     = $this->m_report->getMaterialCimuningParent();
       $namaParent       = $this->m_materialCimuning->getParentName();
       $datamaterial     = $this->m_materialCimuning->getDataGudang();
       $dataRuangan      = $this->m_materialCimuning->getRuangan();
       $data = array(
+        'dataMaterialCimuningParent'    => $dataMaterialCimuningParent,
         'dataParent'      => $namaParent,
         'datamaterial'    => $datamaterial,
         'dataRuangan'     => $dataRuangan,

@@ -14,10 +14,12 @@ class C_inventaris extends CI_Controller
 
 	public function index()
 	{
+		$dataInventarisParentCimuning		= $this->m_report->getInventarisParentCimuning();
 		$getParent 		= $this->m_inventaris->getParent();
 		$getChild 		= $this->m_inventaris->getChild();
 		$getInventaris 	= $this->m_inventaris->getInventaris();
 		$data = array(
+			'dataInventarisParentCimuning'		=> $dataInventarisParentCimuning,
 			'content' 		=> 'v_inventaris' , 
 			'dataParent' 	=> $getParent ,
 			'dataChild' 	=> $getChild ,

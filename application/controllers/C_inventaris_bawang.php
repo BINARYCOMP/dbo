@@ -14,10 +14,12 @@ class C_inventaris_bawang extends CI_Controller
 
 	public function index()
 	{
+		$dataInventarisParentBawang			= $this->m_report->getInventarisParentBawang();
 		$getParent 		= $this->m_inventaris_bawang->getParent();
 		$getChild 		= $this->m_inventaris_bawang->getChild();
 		$getInventaris 	= $this->m_inventaris_bawang->getInventaris();
 		$data = array(
+			'dataInventarisParentBawang'		=> $dataInventarisParentBawang,
 			'content' 		=> 'v_inventarisBawang' , 
 			'dataParent' 	=> $getParent ,
 			'dataChild' 	=> $getChild ,
@@ -29,7 +31,7 @@ class C_inventaris_bawang extends CI_Controller
 	}
 	public function view_inventaris()
 	{
-		$dataInventarisParentBawang		= $this->m_report->getInventarisParentBawang();
+		$dataInventarisParentBawang			= $this->m_report->getInventarisParentBawang();
 		$getParent 							= $this->m_inventaris_bawang->getParent();
 		$getChild 							= $this->m_inventaris_bawang->getChild();
 		$getInventaris 						= $this->m_inventaris_bawang->getInventaris();

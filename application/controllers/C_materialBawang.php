@@ -24,10 +24,12 @@ class C_materialBawang extends CI_Controller
       $message ="";
     }
 
+      $dataMaterialBawangParent     = $this->m_report->getMaterialBawangParent();
       $namaParent       = $this->m_materialBawang->getParentName();
       $datamaterial     = $this->m_materialBawang->getDataGudang();
       $dataRuangan      = $this->m_materialBawang->getRuangan();
       $data = array(
+        'dataMaterialBawangParent'      => $dataMaterialBawangParent,
         'dataParent'      => $namaParent,
         'datamaterial'    => $datamaterial,
         'dataRuangan'     => $dataRuangan,

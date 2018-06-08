@@ -24,11 +24,13 @@ class C_gudangTakJadi extends CI_Controller
       $message ="";
     }
 
+      $dataBarangJadiCimuning       = $this->m_report->getBarangJadiCimuning();
       $namaBarang       = $this->m_gudangTakJadi->getBarangName();
       $datagudangTakJadi   = $this->m_gudangTakJadi->getDataGudang();
       $dataRuangan      = $this->m_gudangTakJadi->getRuangan();
       $namaKategori     = $this->m_gudangTakJadi->getKategoriName();
       $data = array(
+        'dataBarangJadiCimuning'      => $dataBarangJadiCimuning,
         'namaKategori'    => $namaKategori,
         'namaBarang'      => $namaBarang,
         'datagudangTakJadi'  => $datagudangTakJadi,

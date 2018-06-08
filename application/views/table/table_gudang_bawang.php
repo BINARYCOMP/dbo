@@ -87,3 +87,39 @@
           </table>
         </div>
       </div>
+<script type="text/javascript">
+    $(function () {
+        $('#stock').dataTable( {
+          "bSort": false,
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+          buttons: [ 'pdf' ]
+        } );
+        $('#stock_cimuning_jadi').dataTable( {
+          "bSort": false,
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+          buttons: [ 'pdf' ]
+        } );
+        $('#stock_cimuning_setengah_jadi').dataTable( {
+          "bSort": false,
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+          buttons: [ 'pdf' ]
+        } );
+        $('#material_bawang').dataTable( {
+          "bSort": false,
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+          buttons: [ 'pdf' ]
+        } );
+        $('#inventaris_bawang').dataTable( {
+          "bSort": false,
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+          buttons: [ 'pdf', 'excel' ]
+        } );
+        $('#finance').dataTable( {
+          "bSort": false,
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+          buttons: [ 'pdf' ]
+        } );
+        table.buttons().container()
+        .appendTo( '#example_wrapper .col-sm-6:eq(0)' );
+    });
+</script>
