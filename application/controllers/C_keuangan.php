@@ -63,7 +63,8 @@ class C_keuangan extends CI_Controller
 			'KEUA_RINCIAN' 	=>$uraian,
 			'KEUA_MASUK'	=>$debet,
 			'KEUA_KELUAR' 	=>$kredit,
-			'KEUA_SALDO' 	=>$saldo  
+			'KEUA_SALDO' 	=>$saldo,
+			'KEUA_USER_ID'  => $_SESSION['USER_ID']
 			);
 		$Insert=$this->m_keuangan->Insert($data);
 		redirect('c_keuangan');

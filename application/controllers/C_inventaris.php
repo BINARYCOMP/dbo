@@ -59,7 +59,8 @@ class C_inventaris extends CI_Controller
 			'INVE_INPA_ID' 		=> $parent ,
 			'INVE_KETERANGAN' 	=> $keterangan , 
 			'INVE_KEADAAN' 		=> $kondisi,
-			'INVE_QTY' 			=> $qty 
+			'INVE_QTY' 			=> $qty ,
+			'INVE_USER_ID'  => $_SESSION['USER_ID']
 		);
 		$setInventaris = $this->m_inventaris->setInventaris($data);
 		redirect('c_inventaris','refresh');

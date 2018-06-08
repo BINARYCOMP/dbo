@@ -73,6 +73,7 @@
                         <?php
                       }
                       ?>
+                      <th scope="col" <?php if(!empty($dataKategori)) echo 'rowspan="2"'?> >DI INPUT OLEH</th>
                       <th scope="col" <?php if(!empty($dataKategori)) echo 'rowspan="2"'?> >TANGGAL</th>
                       <th scope="col" <?php if(!empty($dataKategori)) echo 'rowspan="2"'?> >KETERANGAN</th>
                       <?php
@@ -135,6 +136,7 @@
                               }
                             }
                             ?>
+                            <td><?php echo $row2['PEGA_NAME'] ?></td>
                             <th scope="row">
                               <?php 
                                 echo date("D d M Y ( h:m:s a )", strtotime($row2['GUJA_TIMESTAMP']));

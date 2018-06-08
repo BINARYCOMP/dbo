@@ -79,7 +79,8 @@ class C_gudangTakJadi extends CI_Controller
       'GUTA_BACC_ID'  => $parent ,
       // 'GUTA_BACH_ID'  => $child ,
       'GUTA_SALDO'    => $saldoAkhir,
-      'GUTA_RUAN_ID'  => $cmbRuangan
+      'GUTA_RUAN_ID'  => $cmbRuangan,
+      'GUTA_USER_ID'  => $_SESSION['USER_ID']
     );
     $simpanBarang = $this->m_gudangTakJadi->simpanBarang($data, $saldoAkhir);
     echo "<script> window.location='".base_url()."c_gudangTakJadi?message=1' </script>";

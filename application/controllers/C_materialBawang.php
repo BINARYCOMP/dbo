@@ -73,7 +73,8 @@ class C_materialBawang extends CI_Controller
       'MABA_MPBA_ID'  => $parent ,
       'MABA_RUAN_ID'  => $cmbRuangan,
       'MABA_MCBA_ID'  => $child ,
-      'MABA_SALDO'    => $saldoAkhir
+      'MABA_SALDO'    => $saldoAkhir,
+      'MABA_USER_ID'  => $_SESSION['USER_ID']
     );
     $simpanBarang = $this->m_materialBawang->simpanBarang($data, $saldoAkhir, $child);
     echo "<script> window.location='".base_url()."C_materialBawang' </script>";

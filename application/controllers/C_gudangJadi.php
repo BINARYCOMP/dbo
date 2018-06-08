@@ -71,7 +71,8 @@ class C_gudangJadi extends CI_Controller
       'GUJA_BACC_ID'  => $parent ,
       // 'GUJA_BACH_ID'  => $child ,
       'GUJA_SALDO'    => $saldoAkhir,
-      'GUJA_RUAN_ID'  => $cmbRuangan
+      'GUJA_RUAN_ID'  => $cmbRuangan,
+      'GUJA_USER_ID'  => $_SESSION['USER_ID']
     );
     $simpanBarang = $this->m_gudangJadi->simpanBarang($data, $saldoAkhir);
     echo "<script> window.location='".base_url()."c_gudangJadi?message=1' </script>";
@@ -179,7 +180,7 @@ class C_gudangJadi extends CI_Controller
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Input Barang Setengah Jadi</h4>
+          <h4 class="modal-title">Input Barang Jadi</h4>
         </div>
         <div class="modal-body">
           <table class="table table-bordered">
