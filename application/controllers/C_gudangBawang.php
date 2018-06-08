@@ -43,7 +43,7 @@ class C_gudangBawang extends CI_Controller
 
   public function view_barang_jadi()
   {
-    $dataBarangParent           = $this->m_report->getBarangParent();
+    $dataBarangParent   = $this->m_report->getBarangParent();
     $namaParent         = $this->m_gudangBawang->getParentName();
     $namaKategori       = $this->m_gudangBawang->getKategoriName();
     $dataGudangBawang   = $this->m_gudangBawang->getDataGudang();

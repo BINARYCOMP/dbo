@@ -28,8 +28,10 @@ class C_gudangJadi extends CI_Controller
       $dataGudangJadi   = $this->m_gudangJadi->getDataGudang();
       $dataRuangan      = $this->m_gudangJadi->getRuangan();
       $namaKategori     = $this->m_gudangJadi->getKategoriName();
+      $dataBarangJadiCimuning       = $this->m_report->getBarangJadiCimuning();
       $data = array(
         'namaKategori'    => $namaKategori,
+        'dataBarangJadiCimuning'      => $dataBarangJadiCimuning,
         'namaBarang'      => $namaBarang,
         'dataGudangJadi'  => $dataGudangJadi,
         'dataRuangan'     => $dataRuangan,

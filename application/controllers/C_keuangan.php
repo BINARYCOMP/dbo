@@ -9,6 +9,7 @@ class C_keuangan extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('m_keuangan');
+		$this->load->model('m_report');
 	}
 
 	public function index()
@@ -26,6 +27,27 @@ class C_keuangan extends CI_Controller
 			'keuangan' => $keuangan,
 			'saldoAkhir'=> $getSaldoAkhir,
 			'menu'         => 'Keuangan'
+		);
+		$this->load->view('tampilan/v_combine',$data);
+	}
+
+	public function view_keuangan()
+	{
+		$keuangan=$this->m_keuangan->view();
+		$getSaldoAkhir = $this->m_keuangan->getSaldoAkhir();
+		if ($getSaldoAkhir == null) {
+			$getSaldoAkhir = 0;
+		}else{
+			$getSaldoAkhir = $getSaldoAkhir[0]['KEUA_SALDO'];
+		}
+		$dataKeuangan 						= $this->m_report->getKeuangan();
+		$data = array(
+			'dataKeuangan'	=> $dataKeuangan,
+			'keuangan' 		=> $keuangan,
+			'saldoAkhir'	=> $getSaldoAkhir,
+			'title'			=> 'Keuangan',
+			'content' 		=> 'owner/v_keuangan',
+			'menu'         	=> 'Keuangan'
 		);
 		$this->load->view('tampilan/v_combine',$data);
 	}

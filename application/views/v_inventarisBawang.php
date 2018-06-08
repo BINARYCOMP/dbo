@@ -189,7 +189,7 @@
         document.getElementById("txtChild").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_inventaris/searchChild?q="+str, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_inventaris_bawang/searchChild?q="+str, true);
     xhttp.send();   
     showQty(str);
   }
@@ -247,7 +247,7 @@
       }
     };
 
-    xhttp.open("GET","<?php echo base_url()?>c_inventaris/modalInventaris?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&qty="+qty+"&kondisi="+kondisi,true);
+    xhttp.open("GET","<?php echo base_url()?>c_inventaris_bawang/modalInventaris?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&qty="+qty+"&kondisi="+kondisi,true);
     xhttp.send()
       
      

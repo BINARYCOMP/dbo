@@ -55,8 +55,6 @@ class M_inventaris_bawang extends CI_Model
 	public function getChildByInpaId($id)
 	{
 		$sql = "select * from inventaris_child where INCH_KETERANGAN ='BAWANG' AND INCH_INPA_ID = ".$id;
-		var_dump($sql);
-		exit();
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
