@@ -124,7 +124,7 @@
                               if (($k+1) == $count) {
                                 ?>
                                   <td class="center">
-                                    <a  onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo date("D d M Y ( h:m:s a )", strtotime($row2['GUBA_TIMESTAMP']))?>')" href="<?php echo base_url()?>c_gudangBawang/delete/<?php echo $row2['GUBA_ID']?>">Delete</a>
+                                    <a  onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo C_report::format(date("D d M Y h:i:s", strtotime($row2['GUBA_TIMESTAMP'])))?>')" href="<?php echo base_url()?>c_gudangBawang/delete/<?php echo $row2['GUBA_ID']?>">Delete</a>
                                   </td>
                                 <?php
                               }else{
@@ -137,7 +137,7 @@
                             <td><?php echo $row2['PEGA_NAME'] ?></td>
                             <th scope="row">
                               <?php 
-                                echo date("D d M Y ( h:m:s a )", strtotime($row2['GUBA_TIMESTAMP']));
+                                echo C_report::format(date("D d M Y h:i:s", strtotime($row2['GUBA_TIMESTAMP'])));
                               ?>
                             </th>
                             <td><?php echo $row2['GUBA_URAIAN'] ?></td>
