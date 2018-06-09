@@ -479,6 +479,7 @@
         <thead >
           <tr>
             <th scope="col">N0</th>
+            <th scope="col">DI INPUT OLEH</th>
             <th scope="col">NAMA BARANG</th>
             <th scope="col">QTY</th>
             <th>Kondisi</th>
@@ -493,6 +494,7 @@
             ?>
             <tr class="success">
               <th scope="row" class="center"><?php echo $no ?></th>
+              <th></th>
               <th><b><?php echo $row['INPA_NAME'] ?></b></th>
               <th class="right"><?php echo $getTotal[0]['Total']?></th>
               <td></td>
@@ -504,6 +506,7 @@
               ?>
               <tr>
                 <th scope="row"></th>
+                <th scope="row"><?= $row['PEGA_NAME']?></th>
                 <td ><?php echo $row['INCH_NAME'] ?></td>
                 <td class="right"><?php echo $row['INVE_QTY'] ?></td>
                 <td><?php echo $row['INVE_KEADAAN'] ?></td>
@@ -539,6 +542,7 @@
         <thead >
           <tr>
             <th scope="col">N0</th>
+            <th scope="col">DI INPUT OLEH</th>
             <th scope="col">NAMA BARANG</th>
             <th scope="col">QTY</th>
             <th>Kondisi</th>
@@ -553,6 +557,7 @@
             ?>
             <tr class="success">
               <th scope="row" class="center"><?php echo $no ?></th>
+              <th></th>
               <th><b><?php echo $row['INPA_NAME'] ?></b></th>
               <th class="right"><?php echo $getTotal[0]['Total']?></th>
               <td></td>
@@ -564,6 +569,7 @@
               ?>
               <tr>
                 <th scope="row"></th>
+                <th scope="row"><?= $row['PEGA_NAME']?></th>
                 <td ><?php echo $row['INCH_NAME'] ?></td>
                 <td class="right"><?php echo $row['INVE_QTY'] ?></td>
                 <td><?php echo $row['INVE_KEADAAN'] ?></td>

@@ -32,6 +32,7 @@
                       <th colspan="9"><?php echo $row['INCH_NAME'] ?></th>
                     </tr>
                     <tr>
+                      <th scope="col" rowspan="">DI INPUT OLEH</th>
                       <th scope="col" rowspan="">TANGGAL</th>
                       <th scope="col" rowspan="">KETERANGAN</th>
                       <th scope="col" colspan="">QTY</th>
@@ -44,6 +45,7 @@
                       foreach ($dataInventarisChild as $row2) {
                         ?>
                           <tr>
+                          <td><?php echo $row2['PEGA_NAME'] ?></td>
                             <th scope="row">
                               <?php 
                                 echo date("D d M Y ( h:m:s a )", strtotime($row2['INVE_TIME']));

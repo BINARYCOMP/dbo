@@ -20,6 +20,7 @@ class C_report extends CI_Controller
 		$dataKeuangan 						= $this->m_report->getKeuangan();
 		$dataInventarisParent				= $this->m_report->getInventarisParent();
 		$dataInventarisParentCimuning		= $this->m_report->getInventarisParentCimuning();
+		$dataInventarisParentBawang			= $this->m_report->getInventarisParentBawang();
 		$dataRuangan 						= $this->m_report->getRuangan();
 		$data = array(
 			'dataBarangParent' 					=> $dataBarangParent,
@@ -29,6 +30,7 @@ class C_report extends CI_Controller
 			'dataKeuangan' 						=> $dataKeuangan,
 			'dataInventarisParent'				=> $dataInventarisParent,
 			'dataInventarisParentCimuning'		=> $dataInventarisParentCimuning,
+			'dataInventarisParentBawang'		=> $dataInventarisParentBawang,
 			'dataRuangan'						=> $dataRuangan,
 			'content' 							=> 'v_report',
 			'title'								=> 'Laporan',

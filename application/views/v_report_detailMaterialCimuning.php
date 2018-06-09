@@ -72,6 +72,7 @@
                         <?php
                       }
                       ?>
+                      <th scope="col">DI INPUT OLEH</th>
                       <th scope="col">TANGGAL</th>
                       <th scope="col">KETERANGAN</th>
                       <th scope="1">MASUK</th>
@@ -107,6 +108,7 @@
                               }
                             }
                             ?>
+                            <td><?php echo $row2['PEGA_NAME'] ?></td>
                             <th scope="row">
                               <?php 
                                 echo date("D d M Y ( h:m:s a )", strtotime($row2['MACI_TIMESTAMP']));
