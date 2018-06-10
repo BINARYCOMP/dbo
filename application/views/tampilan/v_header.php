@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -139,7 +140,7 @@
                           </ul>
                       </li>
                       <li class="<?php if(isset($menu)) if($menu == 'Inventaris') echo 'active'?>" >
-                        <a href="<?php echo base_url()?>c_inventaris">
+                        <a href="<?php echo base_url()?>c_inventaris_bawang">
                           <i class="glyphicon glyphicon-list-alt"></i>
                           Inventaris
                         </a>
@@ -158,6 +159,12 @@
                             <li><a href="<?php echo base_url()?>c_gudangTakJadi">Input Barang Setengah Jadi</a></li>
                             <li><a href="<?php echo base_url()?>c_materialCimuning">Input Stok Material</a></li>
                           </ul>
+                      </li>
+                      <li class="<?php if(isset($menu)) if($menu == 'Inventaris') echo 'active'?>" >
+                        <a href="<?php echo base_url()?>c_inventaris">
+                          <i class="glyphicon glyphicon-list-alt"></i>
+                          Inventaris
+                        </a>
                       </li>
                     <?php
                   }else if ($_SESSION['level'] == 'KEUANGAN') {

@@ -1,6 +1,6 @@
 <?php
-if (empty($_SESSION['level']))
-	header('location:'.base_url().'c_login');
+if (!isset($_SESSION['level']))
+	echo "<script> alert('Sesi anda telah habis, silahkan login kembali'); window.location = '".base_url()."c_login' </script>";
 include('v_header.php') ;
 if (isset($_SERVER['HTTPS'])) {
 	$http = $_SERVER['HTTPS'];

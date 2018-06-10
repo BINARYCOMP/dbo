@@ -131,7 +131,7 @@
                         <td><?php echo $no++ ?></td>
                         <td><?php echo $row['INPA_NAME']?></td>
                         <td><?php echo $row['INCH_NAME']?></td>
-                        <td><?php echo $row['INCH_QTY']?></td>
+                        <td><?php echo $row['INVE_QTY']?></td>
                         <td><?php echo $row['INCI_KEADAAN']?></td>
                         <td><?php echo $row['INCI_KETERANGAN']?></td>
                       </tr>

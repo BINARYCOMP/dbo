@@ -66,7 +66,7 @@
                     </tr>
                     <tr>
                       <?php
-                      if ($_SESSION['level'] == 'SUPER ADMIN' || $_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' ) {
+                      if ($_SESSION['level'] == 'SUPER ADMIN') {
                         ?>
                           <th scope="col">ACTION</th>
                         <?php
@@ -92,7 +92,7 @@
                         ?>
                           <tr>
                             <?php
-                            if ($_SESSION['level'] == 'SUPER ADMIN' || $_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' ) {
+                            if ($_SESSION['level'] == 'SUPER ADMIN') {
                               if (($k+1) == $count) {
                                 ?>
                                   <td class="center">
