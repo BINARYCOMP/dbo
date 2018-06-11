@@ -66,6 +66,8 @@ class C_filter extends CI_Controller
 		$tahun 			= $this->input->post('tahun');
 		$dataBarang		= $this->report->getBarangChildByBapaId($id);
 		$bach 			= 'BACH';
+		$variable 		= 'GUBA';
+		$d_parent		= 'BAPA';
 		$dataKategori 	= 'getKategoriByBachId';
 		$datanyaChild 	= 'getBarangJadiByChildIdFilter';
 
@@ -76,9 +78,130 @@ class C_filter extends CI_Controller
 			'tahun' 	=> $tahun,
 			'datanya' 	=> $dataBarang,
 			'bach' 		=> $bach,
+			'variable' 	=> $variable,
 			'model1' 	=> $dataKategori,
 			'model2' 	=> $datanyaChild,
 			'title'		=> 'Detail '.$dataBarang[0]['BAPA_NAME'],
+			'menu'      => 'Report'
+		);
+		$this->load->view('v_filter',$data);
+	}
+
+	public function gudang_cimuning_jadi($id)
+	{
+		$awal 			= $this->input->post('awal');
+		$akhir 			= $this->input->post('akhir');
+		$bulan 			= $this->input->post('bulan');
+		$tahun 			= $this->input->post('tahun');
+		$dataBarang		= $this->report->getBarangDetailCimuningByBaccId($id);
+		$bach 			= 'BACC';
+		$variable 		= 'GUJA';
+		$d_parent 		= 'BACC';
+		$dataKategori 	= 'getKategoriByBaccId';
+		$datanyaChild 	= 'getBarangDetailCimuningByBaccIdFilter';
+
+		$data = array(
+			'awal' 		=> $awal ,
+			'akhir' 	=> $akhir, 
+			'bulan' 	=> $bulan,
+			'tahun' 	=> $tahun,
+			'variable' 	=> $variable,
+			'd_parent'	=> $d_parent,
+			'datanya' 	=> $dataBarang,
+			'bach' 		=> $bach,
+			'model1' 	=> $dataKategori,
+			'model2' 	=> $datanyaChild,
+			'title'		=> 'Detail '.$dataBarang[0]['BACC_NAME'],
+			'menu'      => 'Report'
+		);
+		$this->load->view('v_filter',$data);
+	}
+
+	public function gudang_cimuning_sJadi($id)
+	{
+		$awal 			= $this->input->post('awal');
+		$akhir 			= $this->input->post('akhir');
+		$bulan 			= $this->input->post('bulan');
+		$tahun 			= $this->input->post('tahun');
+		$dataBarang		= $this->report->getBarangDetailCimuningByBaccId($id);
+		$bach 			= 'BACC';
+		$variable 		= 'GUTA';
+		$d_parent 		= 'BACC';
+		$dataKategori 	= 'getKategoriSetengahJadiByBaccId';
+		$datanyaChild 	= 'getBarangDetailSetengahJadiCimuningByBaccIdFilter';
+		
+		$data = array(
+			'awal' 		=> $awal ,
+			'akhir' 	=> $akhir, 
+			'bulan' 	=> $bulan,
+			'tahun' 	=> $tahun,
+			'variable' 	=> $variable,
+			'd_parent'	=> $d_parent,
+			'datanya' 	=> $dataBarang,
+			'bach' 		=> $bach,
+			'model1' 	=> $dataKategori,
+			'model2' 	=> $datanyaChild,
+			'title'		=> 'Detail '.$dataBarang[0]['BACC_NAME'],
+			'menu'      => 'Report'
+		);
+		$this->load->view('v_filter',$data);
+	}
+
+	public function material_bawang($id)
+	{
+		$awal 			= $this->input->post('awal');
+		$akhir 			= $this->input->post('akhir');
+		$bulan 			= $this->input->post('bulan');
+		$tahun 			= $this->input->post('tahun');
+		$dataBarang		= $this->report->getMaterialChildByMpbaId($id);
+		$bach 			= 'MCBA';
+		$variable 		= 'MABA';
+		$d_parent 		= 'MPBA';
+		$dataKategori 	= '0';
+		$datanyaChild 	= 'getMaterialBawangByMcbaIdFilter';
+		
+		$data = array(
+			'awal' 		=> $awal ,
+			'akhir' 	=> $akhir, 
+			'bulan' 	=> $bulan,
+			'tahun' 	=> $tahun,
+			'variable' 	=> $variable,
+			'd_parent'	=> $d_parent,
+			'datanya' 	=> $dataBarang,
+			'bach' 		=> $bach,
+			'model1' 	=> $dataKategori,
+			'model2' 	=> $datanyaChild,
+			'title'		=> 'Detail '.$dataBarang[0]['MPBA_NAME'],
+			'menu'      => 'Report'
+		);
+		$this->load->view('v_filter',$data);
+	}
+
+	public function material_cimuning($id)
+	{
+		$awal 			= $this->input->post('awal');
+		$akhir 			= $this->input->post('akhir');
+		$bulan 			= $this->input->post('bulan');
+		$tahun 			= $this->input->post('tahun');
+		$dataBarang		= $this->report->getMaterialChildByMpciId($id);
+		$bach 			= 'MCCI';
+		$variable 		= 'MACI';
+		$d_parent 		= 'MPCI';
+		$dataKategori 	= '0';
+		$datanyaChild 	= 'getMaterialCimuningByMcciIdFilter';
+		
+		$data = array(
+			'awal' 		=> $awal ,
+			'akhir' 	=> $akhir, 
+			'bulan' 	=> $bulan,
+			'tahun' 	=> $tahun,
+			'variable' 	=> $variable,
+			'd_parent'	=> $d_parent,
+			'datanya' 	=> $dataBarang,
+			'bach' 		=> $bach,
+			'model1' 	=> $dataKategori,
+			'model2' 	=> $datanyaChild,
+			'title'		=> 'Detail '.$dataBarang[0]['MPCI_NAME'],
 			'menu'      => 'Report'
 		);
 		$this->load->view('v_filter',$data);
