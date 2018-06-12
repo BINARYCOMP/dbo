@@ -238,18 +238,22 @@
     }
     //validation finish
 
-    $('#modalMaterialShow').modal('show');
     var parent,child,keterangan,masuk,keluar,kondisi,ruangan;
     // try{
-      parent      = document.getElementById('cmbParent').value;
-      child       = document.getElementById('cmbChild').value;
-      keterangan  = document.getElementById('txtUraian').value;
-      masuk       = document.getElementById('masuk').value;
-      keluar      = document.getElementById('keluar').value;
-      awal        = document.getElementById('saldoAwal').value;
-      akhir       = document.getElementById('saldoAkhir').value;
-      ruangan     = document.getElementById('cmbRuangan').value;
+    parent      = document.getElementById('cmbParent').value;
+    child       = document.getElementById('cmbChild').value;
+    keterangan  = document.getElementById('txtUraian').value;
+    masuk       = document.getElementById('masuk').value;
+    keluar      = document.getElementById('keluar').value;
+    awal        = document.getElementById('saldoAwal').value;
+    akhir       = document.getElementById('saldoAkhir').value;
+    ruangan     = document.getElementById('cmbRuangan').value;
 
+    if (awal - keluar <= 0 ) {
+      alert('Stok akhir tidak boleh kurang dari 0');
+      return;
+    }
+    $('#modalMaterialShow').modal('show');
 
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

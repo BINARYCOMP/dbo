@@ -229,7 +229,6 @@ function showStok() {
     }
     //validation finish
 
-    $('#modal-success').modal('show');
 
     var parent,child,kategori,keterangan,masuk,keluar,akhir;
     parent      = document.getElementById('cmbParent').value;
@@ -241,6 +240,13 @@ function showStok() {
     akhir       = document.getElementById('saldoAkhir').value;
     awal        = document.getElementById('saldoAwal').value;
     ruangan     = document.getElementById('cmbRuangan').value;
+    
+    if (awal - keluar <= 0 ) {
+      alert('Stok akhir tidak boleh kurang dari 0');
+      return;
+    }
+
+    $('#modal-success').modal('show');
     
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
