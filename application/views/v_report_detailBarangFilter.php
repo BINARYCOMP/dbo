@@ -119,18 +119,12 @@
                         ?>
                           <tr>
                             <?php
-                            if ($_SESSION['level'] == 'SUPER ADMIN' || $_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' ) {
-                              if (($k+1) == $count) {
-                                ?>
-                                  <td class="center">
-                                    <a  onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo date("D d M Y ( h:m:s a )", strtotime($row2['GUBA_TIMESTAMP']))?>')" href="<?php echo base_url()?>c_gudangBawang/delete/<?php echo $row2['GUBA_ID']?>">Delete</a>
-                                  </td>
-                                <?php
-                              }else{
-                                ?>
-                                  <td></td>
-                                <?php
-                              }
+                            if ($_SESSION['level'] == 'SUPER ADMIN') {
+                              ?>
+                                <td class="center">
+                                  <a  onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo date("D d M Y ( h:m:s a )", strtotime($row2['GUBA_TIMESTAMP']))?>')" href="<?php echo base_url()?>c_gudangBawang/delete/<?php echo $row2['GUBA_ID']?>">Delete</a>
+                                </td>
+                              <?php
                             }
                             ?>
                             <th scope="row">

@@ -141,21 +141,18 @@ class C_gudangBawang extends CI_Controller
         $stokAwal = $this->m_gudangBawang->getFirstStockWithoutKategoriAndRuangan($bach_id,$bapa_id,$ruan_id);
       }
     }
-
+    $saldo = 0;
+    foreach ($stokAwal as $row) {
+      $saldo = $saldo + $row['GUBA_MASUK'] - $row['GUBA_KELUAR'];
+    }
     if ($bapa_id == 0 || $bach_id == 0) {
       ?>
         <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly value="0"> 
       <?php
     }else{
-      if (empty($stokAwal[0]['GUBA_SALDO'])) {
         ?>
-          <input type="text"  class="form-control" name="txtSaldoAwal" id="saldoAwal" required readonly value="0"> 
+          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?=$saldo?>">
         <?php
-      }else{
-        ?>
-          <input type="text" class="form-control"  name="txtSaldoAwal" id="saldoAwal" required readonly value="<?php echo $stokAwal[0]['GUBA_SALDO']?>">
-        <?php
-      }
     }
   }
   public function modalKonfirmasi()

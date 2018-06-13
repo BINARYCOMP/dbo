@@ -35,14 +35,15 @@
 
     public function getFirstStock($bach_id,$bapa_id,$kate_id,$ruan_id)
     {
-      $sql="SELECT * from gudang_bawang, barang_parent, barang_child, kategori where GUBA_bach_id = bach_id and GUBA_bapa_id = bapa_id and GUBA_kate_id = kate_id and  GUBA_bach_id = ".$bach_id." and GUBA_bapa_id = ".$bapa_id." and GUBA_kate_id = ".$kate_id." and guba_ruan_id = ".$ruan_id." group by GUBA_id desc limit 1";
+      $sql="SELECT * from gudang_bawang, barang_parent, barang_child, kategori where GUBA_bach_id = bach_id and GUBA_bapa_id = bapa_id and GUBA_kate_id = kate_id and  GUBA_bach_id = ".$bach_id." and GUBA_bapa_id = ".$bapa_id." and GUBA_kate_id = ".$kate_id." and guba_ruan_id = ".$ruan_id." ";
+      var_dump($sql);
       $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;
     }
     public function getFirstStockWithoutRuangan($bach_id,$bapa_id,$kate_id)
     {
-      $sql="SELECT * from gudang_bawang, barang_parent, barang_child, kategori where GUBA_bach_id = bach_id and GUBA_bapa_id = bapa_id and GUBA_kate_id = kate_id and  GUBA_bach_id = ".$bach_id." and GUBA_bapa_id = ".$bapa_id." and GUBA_kate_id = ".$kate_id." group by GUBA_id desc limit 1";
+      $sql="SELECT * from gudang_bawang, barang_parent, barang_child, kategori where GUBA_bach_id = bach_id and GUBA_bapa_id = bapa_id and GUBA_kate_id = kate_id and  GUBA_bach_id = ".$bach_id." and GUBA_bapa_id = ".$bapa_id." and GUBA_kate_id = ".$kate_id." ";
       $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;
@@ -50,14 +51,14 @@
 
     public function getFirstStockWithoutKategori($bach_id,$bapa_id,$ruan_id)
     {
-      $sql="SELECT * from gudang_bawang, barang_parent, barang_child where guba_bach_id = bach_id and guba_bapa_id = bapa_id and guba_bach_id = ".$bach_id." and guba_bapa_id = ".$bapa_id." and guba_ruan_id = ".$ruan_id." group by guba_id desc limit 1";
+      $sql="SELECT * from gudang_bawang, barang_parent, barang_child where guba_bach_id = bach_id and guba_bapa_id = bapa_id and guba_bach_id = ".$bach_id." and guba_bapa_id = ".$bapa_id." and guba_ruan_id = ".$ruan_id." ";
       $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;
     }
     public function getFirstStockWithoutKategoriAndRuangan($bach_id,$bapa_id)
     {
-      $sql="SELECT * from gudang_bawang, barang_parent, barang_child where guba_bach_id = bach_id and guba_bapa_id = bapa_id and guba_bach_id = ".$bach_id." and guba_bapa_id = ".$bapa_id." group by guba_id desc limit 1";
+      $sql="SELECT * from gudang_bawang, barang_parent, barang_child where guba_bach_id = bach_id and guba_bapa_id = bapa_id and guba_bach_id = ".$bach_id." and guba_bapa_id = ".$bapa_id." ";
       $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;

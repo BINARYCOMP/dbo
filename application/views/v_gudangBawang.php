@@ -239,7 +239,7 @@ function showStok() {
     ruangan     = document.getElementById('cmbRuangan').value;
     
 
-    if (awal - keluar <= 0 ) {
+    if (awal - keluar <= 0 && masuk == 0 ) {
       alert('Stok akhir tidak boleh kurang dari 0');
       return;
     }

@@ -78,6 +78,7 @@ class C_filter extends CI_Controller
 			'tahun' 	=> $tahun,
 			'datanya' 	=> $dataBarang,
 			'bach' 		=> $bach,
+			'd_parent'	=> $d_parent,
 			'variable' 	=> $variable,
 			'model1' 	=> $dataKategori,
 			'model2' 	=> $datanyaChild,
@@ -93,7 +94,7 @@ class C_filter extends CI_Controller
 		$akhir 			= $this->input->post('akhir');
 		$bulan 			= $this->input->post('bulan');
 		$tahun 			= $this->input->post('tahun');
-		$dataBarang		= $this->report->getBarangDetailCimuningByBaccId($id);
+		$dataBarang		= $this->report->getBarangDetailCimuningByBaccIdLimit($id);
 		$bach 			= 'BACC';
 		$variable 		= 'GUJA';
 		$d_parent 		= 'BACC';

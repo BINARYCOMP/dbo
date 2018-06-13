@@ -176,17 +176,11 @@
                               <tr>
                                 <?php
                                 if ($_SESSION['level'] == 'SUPER ADMIN') {
-                                  if (($k+1) == $count) {
                                     ?>
                                       <td class="center">
                                         <a  onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo C_report::format(date("D d M Y h:i:s", strtotime($row2['GUBA_TIMESTAMP'])))?>')" href="<?php echo base_url()?>c_gudangBawang/delete/<?php echo $row2['GUBA_ID']?>">Delete</a>
                                       </td>
                                     <?php
-                                  }else{
-                                    ?>
-                                      <td></td>
-                                    <?php
-                                  }
                                 }
                                 ?>
                                 <td><?php echo $row2['PEGA_NAME'] ?></td>
@@ -227,11 +221,11 @@
                                       </td>
                                     <?php
                                   }else{
-                                    $saldo[$a]  = $row2['GUBA_SALDO'];
+                                    $saldo[$a]  = $saldo[$a] + $row2['GUBA_MASUK'] - $row2['GUBA_KELUAR'];
                                     ?>
                                       <td><?php echo $row2['GUBA_MASUK'] ?></td>
                                       <td><?php echo $row2['GUBA_KELUAR'] ?></td>
-                                      <td><?php echo $row2['GUBA_SALDO'] ?></td>
+                                      <td><?=$saldo[$a]?></td>
                                     <?php
                                   }
                                   $subTotal = $subTotal + $saldo[$a];

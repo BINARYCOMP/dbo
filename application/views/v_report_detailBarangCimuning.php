@@ -176,7 +176,6 @@
                             <tr>
                               <?php
                               if ($_SESSION['level'] == 'SUPER ADMIN') {
-                                if (($k+1) == $count) {
                                   ?>
                                     <td class="center">
                                       <a 
@@ -184,11 +183,6 @@
                                         href="<?php echo base_url()?>c_gudangJadi/delete/<?php echo $row2['GUJA_ID']?>">Delete</a>
                                     </td>
                                   <?php
-                                }else{
-                                  ?>
-                                    <td></td>
-                                  <?php
-                                }
                               }
                               ?>
                               <td><?php echo $row2['PEGA_NAME'] ?></td>
@@ -229,11 +223,11 @@
                                     </td>
                                   <?php
                                 }else{
-                                  $saldo[$a]  = $row2['GUJA_SALDO'];
+                                  $saldo[$a]  = $saldo[$a] + $row2['GUJA_MASUK'] - $row2['GUJA_KELUAR'];
                                   ?>
                                     <td><?php echo $row2['GUJA_MASUK'] ?></td>
                                     <td><?php echo $row2['GUJA_KELUAR'] ?></td>
-                                    <td><?php echo $row2['GUJA_SALDO'] ?></td>
+                                    <td><?=$saldo[$a]?></td>
                                   <?php
                                 }
                                 $subTotal = $subTotal + $saldo[$a];
