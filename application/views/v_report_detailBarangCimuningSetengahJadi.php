@@ -169,26 +169,23 @@
                       <?php
                         $dataBarangChild = $this->m_report->getBarangDetailSetengahJadiCimuningByBaccId($dataBarang[0]['BACC_ID']);
                         $k= 0;
+                        $subTotal = 0;
                         $saldo = array();
+                        $saldo2= 0;
                         $count = count($dataBarangChild);
                         foreach ($dataBarangChild as $row2) {
+                          $saldo2 = $saldo2 + $row2['GUTA_MASUK'] - $row2['GUTA_KELUAR'];
                           ?>
                             <tr>
                               <?php
                               if ($_SESSION['level'] == 'SUPER ADMIN') {
-                                if (($k+1) == $count) {
-                                  ?>
-                                    <td class="center">
-                                      <a 
-                                      onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo C_report::format(date("D d M Y h:i:s ", strtotime($row2['GUTA_TIMESTAMP'])))?>')" 
-                                        href="<?php echo base_url()?>c_gudang_tak_jadi/delete/<?php echo $row2['GUTA_ID']?>">Delete</a>
-                                    </td>
-                                  <?php
-                                }else{
-                                  ?>
-                                    <td></td>
-                                  <?php
-                                }                              
+                                ?>
+                                  <td class="center">
+                                    <a 
+                                    onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo C_report::format(date("D d M Y h:i:s ", strtotime($row2['GUTA_TIMESTAMP'])))?>')" 
+                                      href="<?php echo base_url()?>C_gudangTakJadi/delete/<?php echo $row2['GUTA_ID']?>">Delete</a>
+                                  </td>
+                                <?php                          
                               }
                               ?>
                               <td><?php echo $row2['PEGA_NAME'] ?></td>
@@ -199,17 +196,19 @@
                               </th>
                               <td><?php echo $row2['GUTA_URAIAN'] ?></td>
                               <?php
-                              $subTotal = 0;
                               if (empty($dataKategori)) {
                                 ?>
                                   <td><?php echo $row2['GUTA_MASUK'] ?></td>
                                   <td><?php echo $row2['GUTA_KELUAR'] ?></td>
-                                  <td><?php echo $row2['GUTA_SALDO'] ?></td>
+                                  <td><?=$saldo2?></td>
                                 <?php
-                                $subTotal = $subTotal + $row2['GUTA_SALDO'];
+                                $subTotal = $saldo2;
                               }
                               $r =0;
                               $a = 0;
+                              if (!empty($dataKategori)) {
+                                $subTotal = 0;
+                              }
                               foreach ($dataKategori as $daka) {
                                 if(isset($saldo[$a])) 
                                    $saldo[$a] ;
@@ -229,11 +228,11 @@
                                     </td>
                                   <?php
                                 }else{
-                                  $saldo[$a]  = $row2['GUTA_SALDO'];
+                                  $saldo[$a]  = $saldo[$a] + $row2['GUTA_MASUK'] - $row2['GUTA_KELUAR'];
                                   ?>
                                     <td><?php echo $row2['GUTA_MASUK'] ?></td>
                                     <td><?php echo $row2['GUTA_KELUAR'] ?></td>
-                                    <td><?php echo $row2['GUTA_SALDO'] ?></td>
+                                    <td><?= $saldo[$a]?></td>
                                   <?php
                                 }
                                 $subTotal = $subTotal + $saldo[$a];

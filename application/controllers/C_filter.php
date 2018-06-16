@@ -83,7 +83,8 @@ class C_filter extends CI_Controller
 			'model1' 	=> $dataKategori,
 			'model2' 	=> $datanyaChild,
 			'title'		=> 'Detail '.$dataBarang[0]['BAPA_NAME'],
-			'menu'      => 'Report'
+			'menu'      => 'Report',
+			'controller' => 'C_gudangBawang'
 		);
 		$this->load->view('v_filter',$data);
 	}
@@ -113,7 +114,8 @@ class C_filter extends CI_Controller
 			'model1' 	=> $dataKategori,
 			'model2' 	=> $datanyaChild,
 			'title'		=> 'Detail '.$dataBarang[0]['BACC_NAME'],
-			'menu'      => 'Report'
+			'menu'      => 'Report',
+			'controller' => 'C_gudangJadi'
 		);
 		$this->load->view('v_filter',$data);
 	}
@@ -143,7 +145,8 @@ class C_filter extends CI_Controller
 			'model1' 	=> $dataKategori,
 			'model2' 	=> $datanyaChild,
 			'title'		=> 'Detail '.$dataBarang[0]['BACC_NAME'],
-			'menu'      => 'Report'
+			'menu'      => 'Report',
+			'controller' => 'C_gudangTakJadi'
 		);
 		$this->load->view('v_filter',$data);
 	}
@@ -173,7 +176,8 @@ class C_filter extends CI_Controller
 			'model1' 	=> $dataKategori,
 			'model2' 	=> $datanyaChild,
 			'title'		=> 'Detail '.$dataBarang[0]['MPBA_NAME'],
-			'menu'      => 'Report'
+			'menu'      => 'Report',
+			'controller' => 'C_materialBawang'
 		);
 		$this->load->view('v_filter',$data);
 	}
@@ -203,8 +207,31 @@ class C_filter extends CI_Controller
 			'model1' 	=> $dataKategori,
 			'model2' 	=> $datanyaChild,
 			'title'		=> 'Detail '.$dataBarang[0]['MPCI_NAME'],
-			'menu'      => 'Report'
+			'menu'      => 'Report',
+			'controller' => 'C_materialCimuning'
 		);
 		$this->load->view('v_filter',$data);
+	}
+	public function inventaris()
+	{
+		$awal 			= $this->input->post('awal');
+		$akhir 			= $this->input->post('akhir');
+		$bulan 			= $this->input->post('bulan');
+		$tahun 			= $this->input->post('tahun');
+		$keterangan  	= $this->input->post('keterangan');
+		$dataBarang		= $this->report->getInventarisParentFilter($awal, $akhir, $bulan, $tahun, $keterangan);		
+		$data = array(
+			'awal' 		=> $awal ,
+			'akhir' 	=> $akhir, 
+			'bulan' 	=> $bulan,
+			'tahun' 	=> $tahun,
+			'keterangan'=> $keterangan,
+			'datanya' 	=> $dataBarang,
+			'model1' 	=> 'getTotalQtyCimuningByInpaId',
+			'model2' 	=> 'getInventarisChildGudangByInpaId',
+			'menu'      => 'Report',
+			'controller' => 'C_inventaris_'.$keterangan
+		);
+		$this->load->view('v_filter_inventaris',$data);
 	}
 }

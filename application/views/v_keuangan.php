@@ -19,10 +19,21 @@
 			          <div class="col-md-12 ">
 			            <form action="<?php echo base_url().'c_keuangan/simpan'; ?>" method="POST">
 			              <div class="form-group">
-			                  <label class=" control-label">Tanggal</label>
+	                        <label class="control-label">Nama Perusahaan</label>
+	                        <div class="input-group autocomplete">
+	                          <!-- /btn-group -->
+	                          <input id="myInput" class="form-control" type="text" name="txtPerusahaanMuncul"  placeholder="== Pilih Perusahaan ==">
+	                          <input class="form-control" id="txtPerusahaan" type="hidden" name="txtPerusahaan">
+	                          <div class="input-group-btn">
+	                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalRekening">Search</button>
+	                          </div>
+	                        </div>
+	                      </div>
+	                      <div class="form-group">
+			                  <label class=" control-label">Nomor Rekening</label>
 			                  <div>
 			                    <span >
-			                      <input class="form-control" type="date" placeholder="Tanggal" name="dtmTanggal" required="true">  
+			                      <input class="form-control" type="number" placeholder="Nomor Rekening" id="noRek" name="txtNorek">  
 			                    </span>
 			                  </div>
 			              </div>
@@ -158,6 +169,47 @@
 	</div>
 </div>
 <!-- /.content -->
+
+<div class="modal fade" id="modalRekening" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Data Perusahaan</h4>
+            </div>
+            <div class="modal-body">
+                <table id="gujaParent" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>No.</th>
+                        <th>Nama</th>
+                        <th>Alamat</th>
+                        <th>Nomo Telepon</th>
+                        <th>Nomor Rekening</th>
+                      </tr>
+                    </thead>        
+                    <tbody>
+                      <?php 
+                      $no=1;
+                      foreach ($dataPerusahaan as $row) {
+                        ?>
+                          <tr class="isi" style="cursor: pointer;" data-norek="<?php echo $row['PERU_NOMORREKENING']; ?>" data-perusahaan="<?php echo $row['PERU_NAME']; ?>">
+                            <td><?php echo $no?></td>
+                            <td><?php echo $row['PERU_NAME']?></td>
+                            <td><?php echo $row['PERU_ALAMAT']?></td>
+                            <td><?php echo $row['PERU_NOMORHP']?></td>                            
+                            <td><?php echo $row['PERU_NOMORREKENING']?></td>
+                          </tr>
+                        <?php
+                        $no++;
+                      }
+                      ?>
+                    </tbody>
+                </table>  
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
 	function saldo(id) {
 		var masuk,keluar,rumus,awal; 
@@ -176,4 +228,21 @@
 		document.getElementById('saldoAkhir').value = rumus;
 		
 	}
+</script>
+<script type="text/javascript">
+  function showPerusahaan() {
+      $.ajax({
+          type: "GET",
+          url: "<?php echo base_url()?>c_keuangan/putRekening/",
+          success: function(html) {
+            $("#rekening").html(html);
+          }
+      });
+    }
+    $(document).on('click', '.isi', function (e) {
+		document.getElementById("txtPerusahaan").value 	= $(this).attr('data-perusahaan');
+        document.getElementById("myInput").value 		= $(this).attr('data-id');
+        document.getElementById("noRek").value 			= $(this).attr('data-norek');
+        $('#myModal').modal('hide');        
+    });
 </script>

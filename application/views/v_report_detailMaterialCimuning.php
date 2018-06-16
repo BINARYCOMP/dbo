@@ -139,16 +139,16 @@
                     <tbody>
                       <?php
                         $dataBarangChild = $this->m_report->getMaterialCimuningByMcciId($row['MCCI_ID']);
-                        $saldo = array();
+                        $saldo = '0';
                         $subTotal = 0;
                         $k= 0;
                         $count = count($dataBarangChild);
                         foreach ($dataBarangChild as $row2) {
+                          $saldo = $saldo + $row2['MACI_MASUK'] - $row2['MACI_KELUAR'];
                           ?>
                             <tr>
                               <?php
                               if ($_SESSION['level'] == 'SUPER ADMIN') {
-                                if (($k+1) == $count) {
                                   ?>
                                     <td class="center">
                                       <a 
@@ -156,11 +156,6 @@
                                         href="<?php echo base_url()?>c_materialCimuning/delete/<?php echo $row2['MACI_ID']?>">Delete</a>
                                     </td>
                                   <?php
-                                }else{
-                                  ?>
-                                    <td></td>
-                                  <?php
-                                }
                               }
                               ?>
                               <td><?php echo $row2['PEGA_NAME'] ?></td>
@@ -172,9 +167,9 @@
                               <td><?php echo $row2['MACI_URAIAN'] ?></td>
                               <td><?php echo $row2['MACI_MASUK'] ?></td>
                               <td><?php echo $row2['MACI_KELUAR'] ?></td>
-                              <td><?php echo $row2['MACI_SALDO'] ?></td>
+                              <td><?=$saldo?></td>
                               <?php 
-                                $subTotal = $subTotal + $row2['MACI_SALDO'];
+                                $subTotal = $saldo;
                               ?>
                                 <td><?php echo $subTotal; ?></td>
                             </tr>

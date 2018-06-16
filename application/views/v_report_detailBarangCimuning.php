@@ -170,6 +170,7 @@
                         $dataBarangChild = $this->m_report->getBarangDetailCimuningByBaccId($dataBarang[0]['BACC_ID']);
                         $k= 0;
                         $saldo = array();
+                        $saldo2 = 0;
                         $count = count($dataBarangChild);
                         foreach ($dataBarangChild as $row2) {
                           ?>
@@ -193,17 +194,20 @@
                               </th>
                               <td><?php echo $row2['GUJA_URAIAN'] ?></td>
                               <?php
-                              $subTotal = 0;
+                              $saldo2 = $saldo2 + $row2['GUJA_MASUK'] - $row2['GUJA_KELUAR'];
                               if (empty($dataKategori)) {
                                 ?>
                                   <td><?php echo $row2['GUJA_MASUK'] ?></td>
                                   <td><?php echo $row2['GUJA_KELUAR'] ?></td>
-                                  <td><?php echo $row2['GUJA_SALDO'] ?></td>
+                                  <td><?php echo $saldo2 ?></td>
                                 <?php
-                                $subTotal = $subTotal + $row2['GUJA_SALDO'];
+                                $subTotal =$saldo2;
                               }
                               $r =0;
                               $a = 0;
+                              if (!empty($dataKategori)) {
+                                $subTotal = 0;
+                              }
                               foreach ($dataKategori as $daka) {
                                 if(isset($saldo[$a])) 
                                    $saldo[$a] ;

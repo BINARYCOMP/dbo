@@ -170,7 +170,9 @@
                           $dataBarangChild = $this->m_report->getBarangJadiByChildId($row['BACH_ID']);
                           $k= 0;
                           $saldo = array();
+                          $saldo2 = 0;
                           $count = count($dataBarangChild);
+                          $subTotal = 0;
                           foreach ($dataBarangChild as $row2) {
                             ?>
                               <tr>
@@ -191,17 +193,20 @@
                                 </th>
                                 <td><?php echo $row2['GUBA_URAIAN'] ?></td>
                                 <?php
-                                $subTotal = 0;
+                                $saldo2 = $saldo2 + $row2['GUBA_MASUK'] - $row2['GUBA_KELUAR'];
                                 if (empty($dataKategori)) {
                                   ?>
                                     <td><?php echo $row2['GUBA_MASUK'] ?></td>
                                     <td><?php echo $row2['GUBA_KELUAR'] ?></td>
-                                    <td><?php echo $row2['GUBA_SALDO'] ?></td>
+                                    <td><?=$saldo2?></td>
                                   <?php
-                                  $subTotal = $subTotal + $row2['GUBA_SALDO'];
+                                  $subTotal = $saldo2;
                                 }
                                 $r =0;
                                 $a = 0;
+                                if (!empty($dataKategori)) {
+                                  $subTotal = 0;
+                                }
                                 foreach ($dataKategori as $daka) {
                                   if(isset($saldo[$a])) 
                                      $saldo[$a] ;

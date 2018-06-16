@@ -21,11 +21,13 @@ class C_keuangan extends CI_Controller
 		}else{
 			$getSaldoAkhir = $getSaldoAkhir[0]['KEUA_SALDO'];
 		}
+		$dataPerusahaan 	= $this->m_keuangan->getPerusahaan();
 		$data = array(
-			'title'=>'Keuangan',
-			'content' => 'v_keuangan',
 			'keuangan' => $keuangan,
 			'saldoAkhir'=> $getSaldoAkhir,
+			'dataPerusahaan' => $dataPerusahaan,
+			'title'=>'Keuangan',
+			'content' => 'v_keuangan',
 			'menu'         => 'Keuangan'
 		);
 		$this->load->view('tampilan/v_combine',$data);
@@ -101,5 +103,9 @@ class C_keuangan extends CI_Controller
 	{
 		$this->db->delete('keuangan', array('KEUA_ID' => $id));
 		redirect('c_keuangan');
+	}
+	public function getPerusahaan()
+	{
+		
 	}
 }

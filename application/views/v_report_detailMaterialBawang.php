@@ -138,26 +138,21 @@
                     <tbody>
                       <?php
                         $dataBarangChild = $this->m_report->getMaterialBawangByMcbaId($row['MCBA_ID']);
-                        $saldo = array();
+                        $saldo = '0';
                         $subTotal = 0;
                         $count = count($dataBarangChild);
                         $k=0;
                         foreach ($dataBarangChild as $row2) {
+                          $saldo = $saldo + $row2['MABA_MASUK'] - $row2['MABA_KELUAR'];
                           ?>
                             <tr>
                               <?php
                               if ($_SESSION['level'] == 'SUPER ADMIN') {
-                                if (($k+1) == $count) {
                                   ?>
                                     <td class="center">
                                       <a  onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo C_report::format(date("D d M Y h:i:s", strtotime($row2['MABA_TIMESTAMP'])))?>')" href="<?php echo base_url()?>C_materialBawang/delete/<?php echo $row2['MABA_ID']?>">Delete</a>
                                     </td>
                                   <?php
-                                }else{
-                                  ?>
-                                    <td></td>
-                                  <?php
-                                }
                               }
                               ?>
                               <td><?php echo $row2['PEGA_NAME'] ?></td>
@@ -169,9 +164,9 @@
                               <td><?php echo $row2['MABA_URAIAN'] ?></td>
                               <td><?php echo $row2['MABA_MASUK'] ?></td>
                               <td><?php echo $row2['MABA_KELUAR'] ?></td>
-                              <td><?php echo $row2['MABA_SALDO'] ?></td>
+                              <td><?=$saldo?></td>
                               <?php 
-                                $subTotal = $subTotal + $row2['MABA_SALDO'];
+                                $subTotal = $saldo;
                               ?>
                                 <td><?php echo $subTotal; ?></td>
                             </tr>
