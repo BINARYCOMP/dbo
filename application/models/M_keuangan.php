@@ -12,7 +12,7 @@ class M_keuangan extends CI_Model
 
 	public function view()
 	{
-		$sql="select * from keuangan";
+		$sql="select * from keuangan, perusahaan WHERE KEUA_PERU_ID = PERU_ID";
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

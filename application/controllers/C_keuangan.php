@@ -19,16 +19,23 @@ class C_keuangan extends CI_Controller
 		if ($getSaldoAkhir == null) {
 			$getSaldoAkhir = 0;
 		}else{
-			$getSaldoAkhir = $getSaldoAkhir[0]['KEUA_SALDO'];
+			$getSaldoAkhir = $getSaldoAkhir[0]['KEUA_MASUK'];
 		}
+		$saldo = 0;
+		foreach ($keuangan as $row) {
+			$saldo = $saldo + $row['KEUA_MASUK'] - $row['KEUA_KELUAR'];
+			$pajak = $saldo * $row['KEUA_PAJAK'];
+			$saldo = $saldo - $pajak;
+		}
+		$getSaldoAkhir = $saldo;
 		$dataPerusahaan 	= $this->m_keuangan->getPerusahaan();
 		$data = array(
-			'keuangan' => $keuangan,
-			'saldoAkhir'=> $getSaldoAkhir,
-			'dataPerusahaan' => $dataPerusahaan,
-			'title'=>'Keuangan',
-			'content' => 'v_keuangan',
-			'menu'         => 'Keuangan'
+			'keuangan' 		=> $keuangan,
+			'saldoAkhir'	=> $getSaldoAkhir,
+			'dataPerusahaan'=> $dataPerusahaan,
+			'title'			=> 'Keuangan',
+			'content' 		=> 'v_keuangan',
+			'menu'         	=> 'Keuangan'
 		);
 		$this->load->view('tampilan/v_combine',$data);
 	}
@@ -55,10 +62,12 @@ class C_keuangan extends CI_Controller
 	}
 	public function simpan()
 	{
-		$tanggal	= $_POST['dtmTanggal'];
+		$tanggal	= date('Y-m-d');
+		$vendor 	= $_POST['txtPerusahaan'];
 		$uraian 	= $_POST['txtUraian'];
 		$debet 		= $_POST['txtDebet'];
 		$kredit 	= $_POST['txtKredit'];
+		$pajak 		= $_POST['cmbPajak'];
 		$saldo		= $_POST['txtSaldoAkhirAsli'];
 		$data = array(
 			'KEUA_TANGGAL' 	=>$tanggal,
@@ -66,6 +75,8 @@ class C_keuangan extends CI_Controller
 			'KEUA_MASUK'	=>$debet,
 			'KEUA_KELUAR' 	=>$kredit,
 			'KEUA_SALDO' 	=>$saldo,
+			'KEUA_PAJAK' 	=>$pajak,
+			'KEUA_PERU_ID'	=>$vendor,			
 			'KEUA_USER_ID'  => $_SESSION['USER_ID']
 			);
 		$Insert=$this->m_keuangan->Insert($data);

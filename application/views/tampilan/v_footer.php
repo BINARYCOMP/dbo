@@ -42,6 +42,10 @@
           dom:'B <"content-header" <"col-sm-2"l> f>tipH',
           buttons: [ 'excel', 'pdf' ]
         } );
+        $('#urut').dataTable( {
+          dom:'B <"content-header" <"col-sm-2"l> f>tipH',
+          buttons: [ 'excel', 'pdf' ]
+        } );
         $("#guja").dataTable({
               dom: 'Bfrtip',
               buttons: [

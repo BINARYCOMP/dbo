@@ -183,13 +183,6 @@
                         View Gudang
                       </a>
                     </li>
-                    <!-- Report -->
-                    <li class="<?php if(isset($menu)) if($menu == 'Report') echo 'active'?>">
-                      <a href="<?php echo base_url()?>c_report">
-                        <i class="fa fa-bar-chart-o"></i>
-                        Report
-                      </a>
-                    </li>
                     <?php
                   }else if ($_SESSION['level'] == 'MANAGERIAL') {
                     ?>
