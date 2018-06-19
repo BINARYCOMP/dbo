@@ -11,6 +11,7 @@ class C_stok extends CI_Controller
     $this->load->model('m_gudangJadi');
     $this->load->model('m_gudangTakJadi');
     $this->load->model('m_gudangBawang');
+    $this->load->model('m_report');
   }
   public function index()
   {
@@ -25,6 +26,8 @@ class C_stok extends CI_Controller
       $message ="";
     }
 
+      $dataBarangParent     = $this->m_report->getBarangParent();
+      $dataBarangJadiCimuning       = $this->m_report->getBarangJadiCimuning();
       $namaParent           = $this->m_gudangJadi->getBarangName();
       $namaKategori         = $this->m_gudangJadi->getKategoriName();
       $dataGudangJadi       = $this->m_gudangJadi->getDataGudang();
@@ -32,6 +35,8 @@ class C_stok extends CI_Controller
       $dataGudangTakJadi    = $this->m_gudangTakJadi->getDataGudang();
       $dataGudangBawang   = $this->m_gudangBawang->getDataGudang();
       $data = array(
+        'dataBarangParent'          => $dataBarangParent,
+        'dataBarangJadiCimuning'      => $dataBarangJadiCimuning,
         'namaParent'        => $namaParent,
         'namaKategori'      => $namaKategori,
         'dataGudangJadi'    => $dataGudangJadi,

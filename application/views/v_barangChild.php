@@ -55,6 +55,12 @@
 						</select> 
 	              </div>
 	              <div class="form-group">
+	                  <label class=" control-label">Harga Barang</label>
+	                  <div>
+	                      <input class="form-control" type="text"  name="txtHarga" required="true">  
+	                  </div>
+	              </div>
+	              <div class="form-group">
 	                <div class="row">
 	                  <div class="col-md-10">
 	                    <button type="reset" class="btn btn-default pull-right">Cancel</button>
@@ -90,6 +96,7 @@
 		 				<th>No.</th>
 						<th>Name Barang</th>
 		 				<th>Satuan Barang</th>
+		 				<th>Harga Barang</th>
 		 				<th>Barang Parent</th>
 		 				<th>Waktu</th>
 		 				<th>Action</th>
@@ -98,14 +105,22 @@
 				<tbody>
 					<?php 
 					$no=1;
+					$konfirmasi = 'Apa anda yakin akan menghapus data ini ?';
 		 				foreach ($barang_child as $row) {
 		 					echo "<tr>";
 		 					echo "<td>".$no."</td>";
 		 					echo "<td>".$row['BACH_NAME']."</td>";
 		 					echo "<td>".$row['SATU_NAME']."</td>";
+		 					echo "<td>".$row['BACH_HARGA']."</td>";
 		 					echo "<td>".$row['BAPA_NAME']."</td>";
 		 					echo "<td>".$row['BACH_TIMESTAMP']."</td>";
-		 					echo "<td><a href='".base_url()."c_barangChild/FormUpdate/".$row['BACH_ID']."'>Edit</a> | <a href='".base_url()."c_barangChild/delete/".$row['BACH_ID']."'>Delete</a></td>";
+		 					?>
+		 					<td>
+		 						<a href='".base_url()."c_barangChild/FormUpdate/".$row['BACH_ID']."'>Edit</a> | 
+		 						<a onclick='return confirm("Apa anda yakin akan menghapus data ini ?")' 
+		 						href='<?=base_url()?>c_barangChild/delete/<?=$row['BACH_ID']?>'>Delete</a>
+		 					</td>
+		 					<?php
 		 					echo "</tr>";
 		 					$no++;
 		 				}

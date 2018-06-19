@@ -75,6 +75,13 @@
 		                        </select>
 		                    </div>
 		                </div>
+		            <div class="form-group">
+	                  <label class=" control-label">Harga Barang Child</label>
+	                  <div>
+	                    <span >
+	                      <input class="form-control" type="text"  name="txtHarga" required="true" value="<?php echo($barangChild[0]['BACH_HARGA'])?>">  
+	                    </span>
+	                  </div>
 
 	                  
 	              </div>

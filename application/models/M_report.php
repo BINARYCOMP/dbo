@@ -35,6 +35,20 @@ class M_report extends CI_Model
 		$return = $query->result_array();
 		return $return;
 	}
+	public function getBarangJadiCimuningPerKategoriByBaccId($id)
+	{
+		$sql = "SELECT * FROM gudang_jadi , barang_cimuning_child, kategori WHERE GUJA_BACC_ID = BACC_ID AND GUJA_KATE_ID = KATE_ID AND BACC_ID = ".$id." GROUP BY KATE_ID";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getBarangTakJadiCimuningPerKategoriByBaccId($id)
+	{
+		$sql = "SELECT * FROM gudang_tak_jadi , barang_cimuning_child, kategori WHERE GUTA_BACC_ID = BACC_ID AND GUTA_KATE_ID = KATE_ID AND BACC_ID = ".$id." GROUP BY KATE_ID";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 	public function getMaterialCimuningParent()
 	{
 		$sql 	= "SELECT * FROM material_parent_cimuning ";
@@ -65,12 +79,18 @@ class M_report extends CI_Model
 	}
 	public function getBarangChildByBapaId($id)
 	{
-		$sql 	= "SELECT * FROM  barang_parent, barang_child, satuan WHERE BACH_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_BAPA_ID =".$id;
+		$sql 	= "SELECT * FROM  barang_parent, barang_child, satuan WHERE BACH_SATU_ID = SATU_ID AND BACH_BAPA_ID = BAPA_ID AND BACH_BAPA_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
-
+	public function getBarangChildPerKategoriByBachId($id)
+	{
+		$sql 	= "SELECT * FROM gudang_bawang , barang_child, kategori WHERE GUBA_BACH_ID = BACH_ID AND GUBA_KATE_ID = KATE_ID AND BACH_ID =".$id." GROUP BY KATE_ID";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
 	public function getBarangDetailCimuningByBaccId($id)
 	{
 		$sql 	= "SELECT * FROM gudang_jadi, barang_cimuning_child, satuan , user,pegawai WHERE USER_ID = GUJA_USER_ID AND USER_ID = GUJA_USER_ID AND USER_DAPE_ID = PEGA_ID AND  GUJA_BACC_ID = BACC_ID AND BACC_SATU_ID = SATU_ID AND GUJA_BACC_ID =".$id." AND MONTH(GUJA_TIMESTAMP) =".date('m')." AND YEAR(GUJA_TIMESTAMP) = ".date('Y');

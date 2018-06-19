@@ -32,12 +32,13 @@ class C_barangChild extends CI_Controller
 		$nama = $_POST['txtnama'];
 		$bapa = $_POST['txtbapa'];
 		$satuan = $_POST['txtsatuan'];
-
+		$harga = $_POST['txtHarga'];
 
 		$data = array(
 			'BACH_NAME' =>$nama ,
 			'BACH_BAPA_ID' =>$bapa ,
 			'BACH_SATU_ID' =>$satuan ,
+			'BACH_HARGA' => $harga
 			);
 		$child=$this->m_barangChild->Insert($data);
 		 redirect('c_barangChild');
@@ -63,11 +64,13 @@ class C_barangChild extends CI_Controller
 		$nama 	= $_POST['txtnama'];
 		$bapa 	= $_POST['txtbapa'];
 		$satuan = $_POST['txtsatuan'];
+		$harga = $_POST['txtHarga'];
 
 		$data = array(
 			'BACH_NAME' =>$nama ,
 			'BACH_BAPA_ID' =>$bapa ,
 			'BACH_SATU_ID' =>$satuan , 
+			'BACH_HARGA' => $harga
 			);
 		$child=$this->m_barangChild->UpdateData($id, $data);
 		redirect('C_barangChild');
