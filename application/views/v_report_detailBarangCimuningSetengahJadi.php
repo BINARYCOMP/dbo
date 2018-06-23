@@ -182,8 +182,10 @@
                                 ?>
                                   <td class="center">
                                     <a 
-                                    onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo C_report::format(date("D d M Y h:i:s ", strtotime($row2['GUTA_TIMESTAMP'])))?>')" 
+                                    onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo C_report::format(date("D d M Y h:i:s ", strtotime($row2['GUTA_TANGGAL'])))?>')" 
                                       href="<?php echo base_url()?>C_gudangTakJadi/delete/<?php echo $row2['GUTA_ID']?>">Delete</a>
+                                      |
+                                      <a href="<?=base_url()?>c_gudangTakJadi/form_update/<?=$row2['GUTA_ID']?>">Edit</a>
                                   </td>
                                 <?php                          
                               }
@@ -191,7 +193,7 @@
                               <td><?php echo $row2['PEGA_NAME'] ?></td>
                               <th scope="row">
                                 <?php 
-                                  echo C_report::format(date("D d M Y h:i:s", strtotime($row2['GUTA_TIMESTAMP'])));
+                                  echo C_report::format(date("D d M Y h:i:s", strtotime($row2['GUTA_TANGGAL'])));
                                 ?>
                               </th>
                               <td><?php echo $row2['GUTA_URAIAN'] ?></td>

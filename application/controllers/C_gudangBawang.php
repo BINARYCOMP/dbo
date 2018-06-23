@@ -43,6 +43,25 @@ class C_gudangBawang extends CI_Controller
 		$this->load->view('tampilan/v_combine',$data);
 	}
 
+  public function form_update($id)
+  {
+    $dataBarangParent   = $this->m_report->getBarangParent();
+    $namaParent         = $this->m_gudangBawang->getParentName();
+    $namaKategori       = $this->m_gudangBawang->getKategoriName();
+    $dataGudangBawang   = $this->m_gudangBawang->getDataGudangByGubaId($id);
+    $dataRuangan        = $this->m_gudangBawang->getRuangan();
+    $data = array(
+      'dataBarangParent'  => $dataBarangParent,
+      'namaKategori'      => $namaKategori,
+      'namaParent'        => $namaParent,
+      'guba'              => $dataGudangBawang,
+      'dataRuangan'       => $dataRuangan,
+      'content'           => 'v_gudangBawangEdit',
+      'title'             => 'Input Gudang Bawang',
+    );
+    $this->load->view('tampilan/v_combine',$data);
+  }
+
   public function view_barang_jadi()
   {
     $dataBarangParent   = $this->m_report->getBarangParent();
@@ -105,9 +124,21 @@ class C_gudangBawang extends CI_Controller
             <?php
           }
           foreach ($namaChild as $row){
-            echo "<option value='".$row['BACH_ID']."'>";
-            echo $row ['BACH_NAME'];
-           echo "</option>";
+            if (isset($_GET['edit'])) {
+              if ($row['BACH_ID'] == $_GET['edit']) {
+                echo "<option value='".$row['BACH_ID']."' selected>";
+                echo $row ['BACH_NAME'];
+                echo "</option>";
+              }else{
+                echo "<option value='".$row['BACH_ID']."'>";
+                echo $row ['BACH_NAME'];
+                echo "</option>";
+              }
+            }else{
+              echo "<option value='".$row['BACH_ID']."'>";
+              echo $row ['BACH_NAME'];
+              echo "</option>";
+            }
           }
         ?>
       </select>
@@ -224,6 +255,112 @@ class C_gudangBawang extends CI_Controller
       </div>
       <!-- /.modal-content -->
     <?php
+  }
+
+  public function modalKonfirmasiEdit($id)
+  {
+    $cmbParent     = $_GET['parent'];
+    $cmbChild      = $_GET['child'];
+    $cmbKategori   = $_GET['kategori'];
+    $txtUraian     = $_GET['keterangan'];
+    $txtMasuk      = $_GET['masuk'];
+    $txtKeluar     = $_GET['keluar'];
+    $cmbRuangan    = $_GET['ruangan'];
+    $tanggal       = $_GET['tanggal'];
+
+    $namaParentDariModel      = $this->m_gudangBawang->getParentByBapaId($cmbParent);
+    $namaChildDariModel       = $this->m_gudangBawang->getChildByBachId($cmbChild);
+    $namaKategoriDariModel    = $this->m_gudangBawang->getKategoriByKateId($cmbKategori);
+    $namaRuanganDariModel     = $this->m_gudangBawang->getRuanganByRuanId($cmbRuangan);
+
+    $namaKategoriUntukDitampilkan    = 'Tidak ada';
+    $namaParentUntukDitampilkan      = 'Tidak ada';
+    $namaChildUntukDitampilkan       = 'Tidak ada';
+    $nomorGudangUntukDitampilkan     = 'Tidak ada'; 
+    if (isset($namaKategoriDariModel[0]['KATE_NAME'])) {
+      $namaKategoriUntukDitampilkan    = $namaKategoriDariModel[0]['KATE_NAME'];
+    }
+    if (isset($namaParentDariModel[0]['BAPA_NAME'])) {
+      $namaParentUntukDitampilkan      = $namaParentDariModel[0]['BAPA_NAME'];
+    }
+    if (isset($namaChildDariModel[0]['BACH_NAME'])) {
+      $namaChildUntukDitampilkan       = $namaChildDariModel[0]['BACH_NAME'];
+    }
+    if (isset($namaRuanganDariModel[0]['RUAN_NUMBER'])) {
+      $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER']; 
+    }
+    ?>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Konfirmasi Barang</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <table class="table table-bordered">
+              <tr>
+                <th>Tanggal</th>
+                <th>Induk Barang</th>
+                <th>Anak Barang</th>
+                <th>Kategori</th>
+                <th>Ruangan</th>
+                <th>Barang Masuk</th>
+                <th>Barang Keluar</th>
+              </tr>
+              <tr>
+                <td><?php echo $tanggal ?></td>
+                <td><?php echo $namaParentUntukDitampilkan ?></td> 
+                <td><?php echo $namaChildUntukDitampilkan?></td>
+                <td><?php echo $namaKategoriUntukDitampilkan ?></td>
+                <td><?php echo $nomorGudangUntukDitampilkan ?></td>
+                <td><?php echo $txtMasuk ?></td>
+                <td><?php echo $txtKeluar ?></td>
+              </tr>
+            </table>
+            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+            <form action="<?php echo base_url()?>c_gudangBawang/update/<?=$id?>" method="POST">
+              <input type="hidden" name="cmbParent" value="<?php echo $cmbParent?>">
+              <input type="hidden" name="cmbChild" value="<?php echo $cmbChild?>">
+              <input type="hidden" name="cmbKategori" value="<?php echo $cmbKategori?>">
+              <input type="hidden" name="txtMasuk" value="<?php echo $txtMasuk?>">
+              <input type="hidden" name="txtKeluar" value="<?php echo $txtKeluar?>">
+              <input type="hidden" name="txtUraian" value="<?php echo $txtUraian?>">
+              <input type="hidden" name="cmbRuangan" value="<?php echo $cmbRuangan?>">
+              <input type="hidden" name="inputTanggal" value="<?=$tanggal?>">
+              <input type="submit" class="btn btn-outline pull-right" value="Update Data">
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    <?php
+  }
+
+  public function update($id)
+  {
+    $parent     = $_POST['cmbParent'];
+    $child      = $_POST['cmbChild'];
+    $kategori   = $_POST['cmbKategori'];
+    $uraian     = $_POST['txtUraian'];
+    $masuk      = $_POST['txtMasuk'];
+    $keluar     = $_POST['txtKeluar'];
+    $cmbRuangan = $_POST['cmbRuangan'];
+    $tanggal    = $_POST['inputTanggal'];
+    $data = array(
+      'GUBA_KATE_ID'  => $kategori,
+      'GUBA_KELUAR'   => $keluar ,
+      'GUBA_URAIAN'   => $uraian ,
+      'GUBA_MASUK'    => $masuk ,
+      'GUBA_BAPA_ID'  => $parent ,
+      'GUBA_BACH_ID'  => $child ,
+      'GUBA_RUAN_ID'  => $cmbRuangan,
+      'GUBA_USER_ID'  => $_SESSION['USER_ID'],
+      'GUBA_TANGGAL'  => $tanggal
+    );
+    $this->db->where('GUBA_ID' , $id);
+    $this->db->update('gudang_bawang', $data);
+    redirect('c_report','refresh');
   }
 
   public function modalChild()

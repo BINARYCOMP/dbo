@@ -49,7 +49,7 @@ class C_report extends CI_Controller
 	    $date = date ($date_format, $timestamp);
 	    $date = preg_replace ($pattern, $replace, $date);
 	    $date = "{$date} {$suffix}";
-	    return $date."".date(" ( h:i:s a )", strtotime($real)); 
+	    return $date; 
 	}
 
 	public function index()

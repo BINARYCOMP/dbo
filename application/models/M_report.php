@@ -65,7 +65,14 @@ class M_report extends CI_Model
 	}
 	public function getKeuangan()
 	{
-		$sql 	= "SELECT * FROM keuangan";
+		$sql 	= "SELECT * FROM keuangan, perusahaan ,  user,pegawai WHERE USER_ID = KEUA_USER_ID AND USER_DAPE_ID = PEGA_ID AND KEUA_PERU_ID = PERU_ID";
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getKeuanganFilter($awal,$akhir,$month,$year)
+	{
+		$sql 	= "SELECT * FROM keuangan, perusahaan, user,pegawai WHERE USER_ID = KEUA_USER_ID AND USER_DAPE_ID = PEGA_ID AND ( DAY(KEUA_TANGGAL) BETWEEN ".$awal." AND ".$akhir." ) AND  MONTH(KEUA_TANGGAL) = '".$month."' AND YEAR(KEUA_TANGGAL) = '".$year."' AND KEUA_PERU_ID = PERU_ID";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -93,7 +100,7 @@ class M_report extends CI_Model
 	}
 	public function getBarangDetailCimuningByBaccId($id)
 	{
-		$sql 	= "SELECT * FROM gudang_jadi, barang_cimuning_child, satuan , user,pegawai WHERE USER_ID = GUJA_USER_ID AND USER_ID = GUJA_USER_ID AND USER_DAPE_ID = PEGA_ID AND  GUJA_BACC_ID = BACC_ID AND BACC_SATU_ID = SATU_ID AND GUJA_BACC_ID =".$id." AND MONTH(GUJA_TIMESTAMP) =".date('m')." AND YEAR(GUJA_TIMESTAMP) = ".date('Y');
+		$sql 	= "SELECT * FROM gudang_jadi, barang_cimuning_child, satuan , user,pegawai WHERE USER_ID = GUJA_USER_ID AND USER_ID = GUJA_USER_ID AND USER_DAPE_ID = PEGA_ID AND  GUJA_BACC_ID = BACC_ID AND BACC_SATU_ID = SATU_ID AND GUJA_BACC_ID =".$id." AND MONTH(GUJA_TANGGAL) =".date('m')." AND YEAR(GUJA_TANGGAL) = ".date('Y');
 		
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
@@ -108,21 +115,21 @@ class M_report extends CI_Model
 	}
 	public function getBarangDetailCimuningByBaccIdFilter($id,$awal, $akhir, $month,$year)
 	{
-		$sql 	= "SELECT * FROM  gudang_jadi, barang_cimuning_child, satuan, user,pegawai WHERE USER_ID = GUJA_USER_ID AND USER_ID = GUJA_USER_ID AND USER_DAPE_ID = PEGA_ID AND ( DAY(GUJA_TIMESTAMP) BETWEEN ".$awal." AND ".$akhir." ) AND  MONTH(GUJA_TIMESTAMP) = '".$month."' AND YEAR(GUJA_TIMESTAMP) = '".$year."' AND GUJA_BACC_ID = BACC_ID AND BACC_SATU_ID = SATU_ID AND BACC_ID =".$id;
+		$sql 	= "SELECT * FROM  gudang_jadi, barang_cimuning_child, satuan, user,pegawai WHERE USER_ID = GUJA_USER_ID AND USER_ID = GUJA_USER_ID AND USER_DAPE_ID = PEGA_ID AND ( DAY(GUJA_TANGGAL) BETWEEN ".$awal." AND ".$akhir." ) AND  MONTH(GUJA_TANGGAL) = '".$month."' AND YEAR(GUJA_TANGGAL) = '".$year."' AND GUJA_BACC_ID = BACC_ID AND BACC_SATU_ID = SATU_ID AND BACC_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getBarangDetailSetengahJadiCimuningByBaccId($id)
 	{
-		$sql 	= "SELECT * FROM  gudang_tak_jadi, barang_cimuning_child, satuan, user,pegawai WHERE USER_ID = GUTA_USER_ID AND USER_DAPE_ID = PEGA_ID AND GUTA_BACC_ID = BACC_ID AND BACC_SATU_ID = SATU_ID AND BACC_ID =".$id." AND MONTH(GUTA_TIMESTAMP) =".date('m')." AND YEAR(GUTA_TIMESTAMP) = ".date('Y');
+		$sql 	= "SELECT * FROM  gudang_tak_jadi, barang_cimuning_child, satuan, user,pegawai WHERE USER_ID = GUTA_USER_ID AND USER_DAPE_ID = PEGA_ID AND GUTA_BACC_ID = BACC_ID AND BACC_SATU_ID = SATU_ID AND BACC_ID =".$id." AND MONTH(GUTA_TANGGAL) =".date('m')." AND YEAR(GUTA_TANGGAL) = ".date('Y');
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getBarangDetailSetengahJadiCimuningByBaccIdFilter($id,$awal, $akhir, $month,$year)
 	{
-		$sql 	= "SELECT * FROM  gudang_tak_jadi, barang_cimuning_child, satuan , user,pegawai WHERE USER_DAPE_ID = PEGA_ID AND USER_ID = GUTA_USER_ID AND ( DAY(GUTA_TIMESTAMP) BETWEEN ".$awal." AND ".$akhir." ) AND MONTH(GUTA_TIMESTAMP) = '".$month."' AND YEAR(GUTA_TIMESTAMP) = '".$year."' AND GUTA_BACC_ID = BACC_ID AND BACC_SATU_ID = SATU_ID AND BACC_ID =".$id;
+		$sql 	= "SELECT * FROM  gudang_tak_jadi, barang_cimuning_child, satuan , user,pegawai WHERE USER_DAPE_ID = PEGA_ID AND USER_ID = GUTA_USER_ID AND ( DAY(GUTA_TANGGAL) BETWEEN ".$awal." AND ".$akhir." ) AND MONTH(GUTA_TANGGAL) = '".$month."' AND YEAR(GUTA_TANGGAL) = '".$year."' AND GUTA_BACC_ID = BACC_ID AND BACC_SATU_ID = SATU_ID AND BACC_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -254,42 +261,42 @@ class M_report extends CI_Model
 	}
 	public function getBarangJadiByChildId($id)
 	{
-		$sql 	= "SELECT * FROM  gudang_bawang, user,pegawai, barang_parent, barang_child, satuan WHERE USER_ID = GUBA_USER_ID AND USER_DAPE_ID = PEGA_ID AND  GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_ID =".$id." AND MONTH(GUBA_TIMESTAMP) =".date('m')." AND YEAR(GUBA_TIMESTAMP) = ".date('Y');
+		$sql 	= "SELECT * FROM  gudang_bawang, user,pegawai, barang_parent, barang_child, satuan WHERE USER_ID = GUBA_USER_ID AND USER_DAPE_ID = PEGA_ID AND  GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_ID =".$id." AND MONTH(GUBA_TANGGAL) =".date('m')." AND YEAR(GUBA_TANGGAL) = ".date('Y');
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getBarangJadiByChildIdFilter($id,$awal, $akhir,  $month, $year)
 	{
-		$sql 	= "SELECT * FROM  gudang_bawang, barang_parent, barang_child, satuan , user,pegawai WHERE USER_DAPE_ID = PEGA_ID AND USER_ID = GUBA_USER_ID AND ( DAY(GUBA_TIMESTAMP) BETWEEN ".$awal." AND ".$akhir." ) AND MONTH(GUBA_TIMESTAMP) = '".$month."' AND YEAR(GUBA_TIMESTAMP) = '".$year."' AND GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_ID =".$id;
+		$sql 	= "SELECT * FROM  gudang_bawang, barang_parent, barang_child, satuan , user,pegawai WHERE USER_DAPE_ID = PEGA_ID AND USER_ID = GUBA_USER_ID AND ( DAY(GUBA_TANGGAL) BETWEEN ".$awal." AND ".$akhir." ) AND MONTH(GUBA_TANGGAL) = '".$month."' AND YEAR(GUBA_TANGGAL) = '".$year."' AND GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getMaterialBawangByMcbaId($id)
 	{
-		$sql 	= "SELECT * FROM  material_bawang, material_parent_bawang, material_child_bawang, satuan , user,pegawai WHERE USER_DAPE_ID = PEGA_ID AND USER_ID = MABA_USER_ID AND MABA_MCBA_ID = MCBA_ID AND MABA_MPBA_ID = MPBA_ID AND MCBA_SATU_ID = SATU_ID AND MCBA_ID =".$id." AND MONTH(MABA_TIMESTAMP) =".date('m')." AND YEAR(MABA_TIMESTAMP) = ".date('Y');
+		$sql 	= "SELECT * FROM  material_bawang, material_parent_bawang, material_child_bawang, satuan , user,pegawai WHERE USER_DAPE_ID = PEGA_ID AND USER_ID = MABA_USER_ID AND MABA_MCBA_ID = MCBA_ID AND MABA_MPBA_ID = MPBA_ID AND MCBA_SATU_ID = SATU_ID AND MCBA_ID =".$id." AND MONTH(MABA_TANGGAL) =".date('m')." AND YEAR(MABA_TANGGAL) = ".date('Y');
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getMaterialBawangByMcbaIdFilter($id,$awal, $akhir, $month,$year)
 	{
-		$sql 	= "SELECT * FROM  material_bawang, material_parent_bawang, material_child_bawang, satuan, user,pegawai WHERE USER_DAPE_ID = PEGA_ID AND USER_ID = MABA_USER_ID AND ( DAY(MABA_TIMESTAMP) BETWEEN ".$awal." AND ".$akhir." ) AND MONTH(MABA_TIMESTAMP) = '".$month."' AND YEAR(MABA_TIMESTAMP) = '".$year."' AND MABA_MCBA_ID = MCBA_ID AND MABA_MPBA_ID = MPBA_ID AND MCBA_SATU_ID = SATU_ID AND MCBA_ID =".$id;
+		$sql 	= "SELECT * FROM  material_bawang, material_parent_bawang, material_child_bawang, satuan, user,pegawai WHERE USER_DAPE_ID = PEGA_ID AND USER_ID = MABA_USER_ID AND ( DAY(MABA_TANGGAL) BETWEEN ".$awal." AND ".$akhir." ) AND MONTH(MABA_TANGGAL) = '".$month."' AND YEAR(MABA_TANGGAL) = '".$year."' AND MABA_MCBA_ID = MCBA_ID AND MABA_MPBA_ID = MPBA_ID AND MCBA_SATU_ID = SATU_ID AND MCBA_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getMaterialCimuningByMcciId($id)
 	{
-		$sql 	= "SELECT * FROM  material_cimuning, material_parent_cimuning, material_child_cimuning, satuan ,user,pegawai WHERE USER_DAPE_ID = PEGA_ID AND MACI_USER_ID = USER_ID AND MACI_MCCI_ID = MCCI_ID AND MACI_MPCI_ID = MPCI_ID AND MCCI_SATU_ID = SATU_ID AND MCCI_ID =".$id." AND MONTH(MACI_TIMESTAMP) =".date('m')." AND YEAR(MACI_TIMESTAMP) = ".date('Y');
+		$sql 	= "SELECT * FROM  material_cimuning, material_parent_cimuning, material_child_cimuning, satuan ,user,pegawai WHERE USER_DAPE_ID = PEGA_ID AND MACI_USER_ID = USER_ID AND MACI_MCCI_ID = MCCI_ID AND MACI_MPCI_ID = MPCI_ID AND MCCI_SATU_ID = SATU_ID AND MCCI_ID =".$id." AND MONTH(MACI_TANGGAL) =".date('m')." AND YEAR(MACI_TANGGAL) = ".date('Y');
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getMaterialCimuningByMcciIdFilter($id,$awal, $akhir, $month,$year)
 	{
-		$sql 	= "SELECT * FROM  material_cimuning, material_parent_cimuning, material_child_cimuning, satuan , user,pegawai WHERE USER_DAPE_ID = PEGA_ID AND USER_ID = MACI_USER_ID AND ( DAY(MACI_TIMESTAMP) BETWEEN ".$awal." AND ".$akhir." ) AND MONTH(MACI_TIMESTAMP) = '".$month."' AND YEAR(MACI_TIMESTAMP) = '".$year."' AND MACI_MCCI_ID = MCCI_ID AND MACI_MPCI_ID = MPCI_ID AND MCCI_SATU_ID = SATU_ID AND MCCI_ID =".$id;
+		$sql 	= "SELECT * FROM  material_cimuning, material_parent_cimuning, material_child_cimuning, satuan , user,pegawai WHERE USER_DAPE_ID = PEGA_ID AND USER_ID = MACI_USER_ID AND ( DAY(MACI_TANGGAL) BETWEEN ".$awal." AND ".$akhir." ) AND MONTH(MACI_TANGGAL) = '".$month."' AND YEAR(MACI_TANGGAL) = '".$year."' AND MACI_MCCI_ID = MCCI_ID AND MACI_MPCI_ID = MPCI_ID AND MCCI_SATU_ID = SATU_ID AND MCCI_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

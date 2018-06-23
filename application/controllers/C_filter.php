@@ -55,7 +55,7 @@ class C_filter extends CI_Controller
 	    $date = date ($date_format, $timestamp);
 	    $date = preg_replace ($pattern, $replace, $date);
 	    $date = "{$date} {$suffix}";
-	    return $date."".date(" ( h:i:s a )", strtotime($real)); 
+	    return $date; 
 	}
 
 	public function gudang_bawang($id)
@@ -233,5 +233,23 @@ class C_filter extends CI_Controller
 			'controller' => 'C_inventaris_'.$keterangan
 		);
 		$this->load->view('v_filter_inventaris',$data);
+	}
+	public function keuangan()
+	{
+		$awal 			= $this->input->post('awal');
+		$akhir 			= $this->input->post('akhir');
+		$bulan 			= $this->input->post('bulan');
+		$tahun 			= $this->input->post('tahun');
+		$dataKeuangan	= $this->report->getKeuanganFilter($awal, $akhir, $bulan, $tahun);		
+		$data = array(
+			'awal' 		=> $awal ,
+			'akhir' 	=> $akhir, 
+			'bulan' 	=> $bulan,
+			'tahun' 	=> $tahun,
+			'dataKeuangan' 	=> $dataKeuangan,
+			'menu'      => 'Report',
+			'controller' => 'C_Keuangan'
+		);
+		$this->load->view('v_filter_keuangan',$data);
 	}
 }

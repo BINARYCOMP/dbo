@@ -40,6 +40,23 @@ class C_materialCimuning extends CI_Controller
       );
       $this->load->view('tampilan/v_combine',$data);
   }
+  public function form_update($id)
+  {
+    $dataMaterialCimuningParent     = $this->m_report->getMaterialCimuningParent();
+    $namaParent       = $this->m_materialCimuning->getParentName();
+    $datamaterial     = $this->m_materialCimuning->getDataGudangByMaciId($id);
+    $dataRuangan      = $this->m_materialCimuning->getRuangan();
+    $data = array(
+      'dataMaterialCimuningParent'    => $dataMaterialCimuningParent,
+      'dataParent'      => $namaParent,
+      'maci'            => $datamaterial,
+      'dataRuangan'     => $dataRuangan,
+      'content'         => 'v_materialCimuningEdit',
+      'title'           => 'Input Material Cimuning',
+      'menu'            => 'Input Material'
+    );
+    $this->load->view('tampilan/v_combine',$data);
+  }
   public function view_material()
   {
     $dataMaterialCimuningParent     = $this->m_report->getMaterialCimuningParent();
@@ -104,9 +121,21 @@ class C_materialCimuning extends CI_Controller
             <?php
           }
           foreach ($namaChild as $row){
-            echo "<option value='".$row['MCCI_ID']."'>";
-            echo $row ['MCCI_NAME'];
-           echo "</option>";
+            if (isset($_GET['edit'])) {
+              if ($_GET['edit'] == $row['MCCI_ID']) {
+                  echo "<option value='".$row['MCCI_ID']."' selected>";
+                  echo $row ['MCCI_NAME'];
+                  echo "</option>";      
+                }else{
+                  echo "<option value='".$row['MCCI_ID']."'>";
+                  echo $row ['MCCI_NAME'];
+                  echo "</option>";
+                }
+            }else{
+              echo "<option value='".$row['MCCI_ID']."'>";
+              echo $row ['MCCI_NAME'];
+              echo "</option>";
+            }
           }
         ?>
       </select>
@@ -217,6 +246,103 @@ class C_materialCimuning extends CI_Controller
       </div>
       <!-- /.modal-content -->
     <?php
+  }
+
+  public function modalKonfirmasiEdit($id)
+  {
+    $cmbParent     = $_GET['parent'];
+    $cmbChild      = $_GET['child'];
+    $txtUraian     = $_GET['keterangan'];
+    $txtMasuk      = $_GET['masuk'];
+    $txtKeluar     = $_GET['keluar'];
+    $cmbRuangan    = $_GET['ruangan'];
+    $tanggal       = $_GET['tanggal'];
+
+    $namaParentDariModel      = $this->m_materialCimuning->getParentBympciId($cmbParent);
+    $namaChildDariModel       = $this->m_materialCimuning->getChildBymcciId($cmbChild);
+    $namaRuanganDariModel     = $this->m_materialCimuning->getRuanganByRuanId($cmbRuangan);
+    $namaParentUntukDitampilkan = 0;
+    $namaChildUntukDitampilkan = 0;
+    $nomorGudangUntukDitampilkan  = 0;
+
+    if (!empty($namaParentDariModel[0]['MPCI_NAME'])) {
+      $namaParentUntukDitampilkan      = $namaParentDariModel[0]['MPCI_NAME'];
+    }
+    if (!empty($namaChildDariModel[0]['MCCI_NAME'])) {
+      $namaChildUntukDitampilkan       = $namaChildDariModel[0]['MCCI_NAME'] ;
+    } 
+        if (!empty($namaRuanganDariModel[0]['RUAN_NUMBER'])) {
+      $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER'];
+    }
+
+
+    ?>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Input Material Setengah Jadi</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered">
+            <tr>
+              <th>Tanggal</th>
+              <th>Induk Material</th>
+              <th>Anak Material</th>
+              <th>Ruangan</th>
+              <th>Material Masuk</th>
+              <th>Material Keluar</th>
+            </tr>
+            <tr>
+              <td><?=$tanggal?></td>
+              <td><?php echo $namaParentUntukDitampilkan  ?></td>
+              <td><?php echo $namaChildUntukDitampilkan ?></td>
+              <td><?php echo $nomorGudangUntukDitampilkan ?></td>
+              <td><?php echo intval($txtMasuk) ?></td>
+              <td><?php echo intval($txtKeluar) ?></td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+          <form action="<?php echo base_url()?>C_materialCimuning/update/<?=$id?>" method="POST">
+            <input type="hidden" name="cmbParent" value="<?php echo $cmbParent?>">
+            <input type="hidden" name="cmbChild" value="<?php echo $cmbChild?>">
+            <input type="hidden" name="txtMasuk" value="<?php echo $txtMasuk?>">
+            <input type="hidden" name="txtKeluar" value="<?php echo $txtKeluar?>">
+            <input type="hidden" name="txtUraian" value="<?php echo $txtUraian?>">
+            <input type="hidden" name="cmbRuangan" value="<?php echo $cmbRuangan?>">
+            <input type="hidden" name="input_tanggal" value="<?php echo $tanggal?>">
+            <input type="submit" class="btn btn-outline" value="Simpan">
+          </form>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    <?php
+  }
+
+  public function update($id)
+  {
+    $parent     = $_POST['cmbParent'];
+    $child      = $_POST['cmbChild'];
+    $uraian     = $_POST['txtUraian'];
+    $cmbRuangan = $_POST['cmbRuangan'];
+    $masuk      = $_POST['txtMasuk'];
+    $keluar     = $_POST['txtKeluar'];
+    $tanggal    = $_POST['input_tanggal'];
+    $data = array(
+      'MACI_KELUAR'   => $keluar ,
+      'MACI_URAIAN'   => $uraian ,
+      'MACI_MASUK'    => $masuk ,
+      'MACI_MPCI_ID'  => $parent ,
+      'MACI_RUAN_ID'  => $cmbRuangan,
+      'MACI_MCCI_ID'  => $child ,
+      'MACI_USER_ID'  => $_SESSION['USER_ID'],
+      'MACI_TANGGAL'  => $tanggal
+    );
+    $this->db->where('MACI_ID', $id);
+    $this->db->update('material_cimuning', $data);
+    echo "<script> window.location='".base_url()."c_report' </script>";
   }
 
   public function modalChildJadi()

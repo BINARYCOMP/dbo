@@ -99,6 +99,13 @@
 <!-- Morris.js charts -->
 <script src="/dbo/assets/bower_components/raphael/raphael.min.js"></script>
 <script src="/dbo/assets/bower_components/morris.js/morris.min.js"></script>
-
+<script type="text/javascript">
+  Date.prototype.toDateInputValue = (function() {
+      var local = new Date(this);
+      local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+      return local.toJSON().slice(0,10);
+  });
+  document.getElementById('datePicker').value = new Date().toDateInputValue();
+</script>
 </body>
 </html>

@@ -60,6 +60,13 @@
       $return = $query->result_array();
       return $return;
     }
+    public function getDataGudangByMaciId($id)
+    {
+      $sql    = "SELECT * from material_cimuning, material_parent_cimuning where MACI_MPCI_ID = MPCI_ID AND MACI_ID = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
 
     public function getChildBympciId($id)
     {

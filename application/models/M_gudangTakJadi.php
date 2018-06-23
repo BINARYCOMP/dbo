@@ -77,6 +77,13 @@
       $return = $query->result_array();
       return $return;
     }
+    public function getDataGudangByGutaId($id)
+    {
+      $sql    = "SELECT * from gudang_tak_jadi, barang_cimuning_child where guta_BACC_ID = BACC_ID AND GUTA_ID = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
     public function getKateNameBygutaKateId($id)
     {
       $sql    = "SELECT * from kategori where kate_id = ".$id;

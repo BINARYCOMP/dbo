@@ -15,7 +15,7 @@ class m_dashboard extends CI_Model
 		$year = date('Y');
 		$sql = "
 		SELECT SUM(GUJA_MASUK) as 'masuk', SUM(GUJA_KELUAR) as 'keluar' FROM gudang_jadi WHERE
-		YEAR(GUJA_TIMESTAMP) = ".$year." AND MONTH(GUJA_TIMESTAMP) = ".$month."
+		YEAR(GUJA_TANGGAL) = ".$year." AND MONTH(GUJA_TANGGAL) = ".$month."
 		";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
@@ -26,7 +26,7 @@ class m_dashboard extends CI_Model
 		$year = date('Y');
 		$sql = "
 		SELECT SUM(GUBA_MASUK) as 'masuk', SUM(GUBA_KELUAR) as 'keluar' FROM gudang_bawang WHERE
-		YEAR(GUBA_TIMESTAMP) = ".$year." AND MONTH(GUBA_TIMESTAMP) = ".$month."
+		YEAR(GUBA_TANGGAL) = ".$year." AND MONTH(GUBA_TANGGAL) = ".$month."
 		";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
@@ -37,7 +37,7 @@ class m_dashboard extends CI_Model
 		$year = date('Y');
 		$sql = "
 		SELECT SUM(GUTA_MASUK) as 'masuk', SUM(GUTA_KELUAR) as 'keluar' FROM gudang_tak_jadi WHERE
-		YEAR(GUTA_TIMESTAMP) = ".$year." AND MONTH(GUTA_TIMESTAMP) = ".$month."
+		YEAR(GUTA_TANGGAL) = ".$year." AND MONTH(GUTA_TANGGAL) = ".$month."
 		";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();

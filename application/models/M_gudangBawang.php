@@ -70,6 +70,13 @@
       $return = $query->result_array();
       return $return;
     }
+    public function getDataGudangByGubaId($id)
+    {
+      $sql    = "SELECT * from gudang_bawang,barang_child,barang_parent where GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND GUBA_ID =".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
 
     public function getKateNameByGubaKateId($id)
     {

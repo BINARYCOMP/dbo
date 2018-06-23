@@ -37,7 +37,7 @@ class M_keuangan extends CI_Model
 	}
 	public function FormUpdate($data)
 	{
-		$sql="select * from keuangan where KEUA_ID =".$data;
+		$sql="select * from keuangan, perusahaan where KEUA_PERU_ID = PERU_ID AND KEUA_ID =".$data;
 		$query=$this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

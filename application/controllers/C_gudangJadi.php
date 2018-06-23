@@ -41,6 +41,100 @@ class C_gudangJadi extends CI_Controller
       );
       $this->load->view('tampilan/v_combine',$data);
   }
+  public function form_update($id)
+  {
+    $namaBarang       = $this->m_gudangJadi->getBarangName();
+    $dataGudangJadi   = $this->m_gudangJadi->getDataGudangByGujaId($id);
+    $dataRuangan      = $this->m_gudangJadi->getRuangan();
+    $namaKategori     = $this->m_gudangJadi->getKategoriName();
+    $dataBarangJadiCimuning       = $this->m_report->getBarangJadiCimuning();
+    $data = array(
+      'namaKategori'    => $namaKategori,
+      'dataBarangJadiCimuning'      => $dataBarangJadiCimuning,
+      'namaBarang'      => $namaBarang,
+      'guja'            => $dataGudangJadi,
+      'dataRuangan'     => $dataRuangan,
+      'title'           => 'Input Barang Jadi Gudang Cimuning ',
+      'content'         => 'v_gudangJadiEdit',
+    );
+    $this->load->view('tampilan/v_combine',$data);
+  }
+  public function modalKonfirmasiEdit($id)
+  {
+    $cmbParent     = $_GET['parent'];
+    // $cmbChild      = $_GET['child'];
+    $cmbKategori   = $_GET['kategori'];
+    $txtUraian     = $_GET['keterangan'];
+    $txtMasuk      = $_GET['masuk'];
+    $txtKeluar     = $_GET['keluar'];
+    $cmbRuangan    = $_GET['ruangan'];
+    $tanggal       = $_GET['tanggal'];
+
+
+    $namaParentDariModel      = $this->m_gudangJadi->getParentByBACCId($cmbParent);
+    // $namaChildDariModel       = $this->m_gudangJadi->getChildByBachId($cmbChild);
+    $namaKategoriDariModel    = $this->m_gudangJadi->getKategoriByKateId($cmbKategori);
+    $namaRuanganDariModel     = $this->m_gudangJadi->getRuanganByRuanId($cmbRuangan);
+    $namaParentUntukDitampilkan      = 0;
+    // $namaChildUntukDitampilkan       = 0;
+    $namaKategoriUntukDitampilkan    = 0;
+    $nomorGudangUntukDitampilkan     = 0;
+    if (!empty($namaParentDariModel[0]['BACC_NAME'])) {
+      $namaParentUntukDitampilkan      = $namaParentDariModel[0]['BACC_NAME'];
+    }
+    // if (!empty($namaChildDariModel[0]['BACH_NAME'])) {
+    //   $namaChildUntukDitampilkan       = $namaChildDariModel[0]['BACH_NAME'] ;
+    // } 
+    if (!empty($namaKategoriDariModel[0]['KATE_NAME'])) {
+       $namaKategoriUntukDitampilkan    = $namaKategoriDariModel[0]['KATE_NAME'];
+    } 
+    if (!empty($namaRuanganDariModel[0]['RUAN_NUMBER'])) {
+      $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER'];
+    } 
+    ?>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Input Barang Jadi</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered">
+            <tr>
+              <th>Tanggal</th>
+              <th>Nama Barang</th>
+              <th>Kategori</th>
+              <th>Ruangan</th>
+              <th>Barang Masuk</th>
+              <th>Barang Keluar</th>
+            </tr>
+            <tr>
+              <td><?php echo $tanggal ?></td>
+              <td><?php echo $namaParentUntukDitampilkan ?></td>
+              <td><?php echo $namaKategoriUntukDitampilkan ?></td>
+              <td><?php echo $nomorGudangUntukDitampilkan ?></td>
+              <td><?php echo $txtMasuk ?></td>
+              <td><?php echo $txtKeluar ?></td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+          <form action="<?php echo base_url()?>c_gudangJadi/update/<?=$id?>" method="POST">
+            <input type="hidden" name="cmbParent" value="<?php echo $cmbParent?>">
+            <input type="hidden" name="input_tanggal" value="<?php echo $tanggal?>">
+            <input type="hidden" name="cmbKategori" value="<?php echo $cmbKategori?>">
+            <input type="hidden" name="txtMasuk" value="<?php echo $txtMasuk?>">
+            <input type="hidden" name="txtKeluar" value="<?php echo $txtKeluar?>">
+            <input type="hidden" name="txtUraian" value="<?php echo $txtUraian?>">
+            <input type="hidden" name="cmbRuangan" value="<?php echo $cmbRuangan?>">
+            <input type="submit" class="btn btn-outline" value="Simpan">
+          </form>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    <?php
+  }
   public function view_barang_jadi()
   {
     $dataBarangJadiCimuning       = $this->m_report->getBarangJadiCimuning();
@@ -56,7 +150,6 @@ class C_gudangJadi extends CI_Controller
   public function inputStok()
   {
     $parent     = $_POST['cmbParent'];
-    // $child      = $_POST['cmbChild'];
     $kategori   = $_POST['cmbKategori'];
     $uraian     = $_POST['txtUraian'];
     $masuk      = $_POST['txtMasuk'];
@@ -69,16 +162,40 @@ class C_gudangJadi extends CI_Controller
       'GUJA_URAIAN'   => $uraian ,
       'GUJA_MASUK'    => $masuk ,
       'GUJA_BACC_ID'  => $parent ,
-      // 'GUJA_BACH_ID'  => $child ,
       'GUJA_SALDO'    => $saldoAkhir,
       'GUJA_RUAN_ID'  => $cmbRuangan,
-      'GUJA_USER_ID'  => $_SESSION['USER_ID']
+      'GUJA_USER_ID'  => $_SESSION['USER_ID'],
+      'GUJA_TANGGAL'  => date('Y-m-d')
     );
     $simpanBarang = $this->m_gudangJadi->simpanBarang($data, $saldoAkhir);
     echo "<script> window.location='".base_url()."c_gudangJadi?message=1' </script>";
   }
 
-  // nama child
+  public function update($id)
+  {
+    $parent     = $_POST['cmbParent'];
+    $kategori   = $_POST['cmbKategori'];
+    $uraian     = $_POST['txtUraian'];
+    $masuk      = $_POST['txtMasuk'];
+    $keluar     = $_POST['txtKeluar'];
+    $cmbRuangan = $_POST['cmbRuangan'];
+    $tanggal    = $_POST['input_tanggal'];
+
+    $data = array(
+      'GUJA_KATE_ID'  => $kategori,
+      'GUJA_KELUAR'   => $keluar ,
+      'GUJA_URAIAN'   => $uraian ,
+      'GUJA_MASUK'    => $masuk ,
+      'GUJA_BACC_ID'  => $parent ,
+      'GUJA_RUAN_ID'  => $cmbRuangan,
+      'GUJA_USER_ID'  => $_SESSION['USER_ID'],
+      'GUJA_TANGGAL'  => $tanggal
+    );
+    $this->db->where('GUJA_ID', $id);
+    $this->db->update('gudang_jadi', $data);
+    echo "<script> window.location='".base_url()."c_report' </script>";
+  }
+
   public function searchChild()
   {
     $str = $_GET['q'];

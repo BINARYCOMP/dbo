@@ -75,7 +75,7 @@
 			                  <label class=" control-label">Saldo</label>
 			                  <div class="row">
 			                  	<div class="col-md-6">
-		                  			<input type="text" class="form-control" readonly="true" name="txtSaldoAwal" value=" <?php echo $saldoAkhir?> " >  
+		                  			<input type="text" class="form-control" readonly="true" name="txtSaldoAwal" value=" <?php echo $saldoAkhir?>" >  
 		                  		</div>
 		                  		<div class="col-md-6">
 		                    		<input type="text" class="form-control" readonly="true" name="txtSaldoAkhir" id="saldoAkhirMuncul" >  
@@ -139,6 +139,7 @@
 			 				<th>Debet</th>
 			 				<th>Kredit</th>
 			 				<th>Pajak</th>
+			 				<th>Sub Saldo</th>
 			 				<th>Saldo</th>
 			 				<?php
 			 				if ($_SESSION['level'] == 'SUPER ADMIN' ) {
@@ -153,15 +154,10 @@
 					 <?php  
 		 			 	$saldo 	  = 0;
 		 			 	foreach($keuangan as $row){
-		 			 		if ($row['KEUA_MASUK'] != 0) {
-		 			 			$subTotal = $row['KEUA_MASUK'];
-		 			 			$pajak 	  = $subTotal * $row['KEUA_PAJAK'];
-		 			 			$subTotal = $subTotal - $pajak;
-		 			 		}else{
-		 			 			$subTotal = $row['KEUA_MASUK'] - $row['KEUA_KELUAR'] ;
-		 			 			$pajak 	  = $subTotal * $row['KEUA_PAJAK'];
-		 			 			$subTotal = $subTotal - $pajak;
-		 			 		}
+		 			 		$rumus 		= $row['KEUA_MASUK'] - $row['KEUA_KELUAR'];
+							$pajak 		= $rumus * $row['KEUA_PAJAK'];
+							$hasil 		= $rumus - $pajak;
+							$subTotal   = $hasil;
 		 			 		$saldo = $saldo + $subTotal;
 		 			 		
 		 			 		if ($row['KEUA_PAJAK'] == '0.1') {
@@ -180,12 +176,15 @@
 		 			  		<td class="right"><?php echo $row['KEUA_MASUK']; ?></td>
 		 			  		<td class="right"><?php echo $row['KEUA_KELUAR']; ?></td>
 		 			  		<td class="right"><?php echo $pajak ?></td>
+		 			  		<td class="right"><?=$subTotal?></td>
 		 			  		<td class="right"><?=$saldo?></td>
 		 			  		<?php
 			 			  		if ($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN' ) {
 				 					?>
 					 			  		<td class="center">
-					 			  			<a href="<?php echo base_url().'c_keuangan/delete/'.$row['KEUA_ID']; ?>" onclick="return confirm('Are you sure?');">Delete</a>
+					 			  			<a href="<?php echo base_url().'c_keuangan/delete/'.$row['KEUA_ID']; ?>" onclick="return confirm('Apa anda yakin ?');">Delete</a>
+					 			  			|
+					 			  			<a href="<?php echo base_url().'c_keuangan/update_form/'.$row['KEUA_ID']; ?>"> Edit</a>
 					 			  		</td>
 					 			  	<?php
 			 				}
@@ -252,9 +251,10 @@
 		keluar  = document.getElementById('keluar').value;;
 		awal 	= document.getElementById('saldoAwal').value;
 		pajak 	= document.getElementById('pajak').value;
-		rumus 	= parseInt(awal)  + parseInt(masuk) - parseInt(keluar);
+		rumus 	= parseInt(masuk) - parseInt(keluar);
 		pajak 	= rumus * pajak;
 		rumus 	= rumus - pajak;
+		rumus 	= rumus + parseInt(awal);
 		document.getElementById('saldoAkhirMuncul').value = rumus;
 		document.getElementById('saldoAkhir').value = rumus;
 		
