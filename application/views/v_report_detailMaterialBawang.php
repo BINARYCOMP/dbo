@@ -150,7 +150,9 @@
                               if ($_SESSION['level'] == 'SUPER ADMIN') {
                                   ?>
                                     <td class="center">
-                                      <a  onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo C_report::format(date("D d M Y h:i:s", strtotime($row2['MABA_TIMESTAMP'])))?>')" href="<?php echo base_url()?>C_materialBawang/delete/<?php echo $row2['MABA_ID']?>">Delete</a>
+                                      <a  onclick="return confirm('Anda yakin akan menghapus data pada hari dan tanggal <?php echo C_report::format(date("D d M Y h:i:s", strtotime($row2['MABA_TANGGAL'])))?>')" href="<?php echo base_url()?>C_materialBawang/delete/<?php echo $row2['MABA_ID']?>">Delete</a>
+                                      |
+                                      <a href="<?=base_url()?>c_materialBawang/form_update/<?=$row2['MABA_ID']?>">Edit</a>
                                     </td>
                                   <?php
                               }
@@ -158,7 +160,7 @@
                               <td><?php echo $row2['PEGA_NAME'] ?></td>
                               <th scope="row">
                                 <?php 
-                                  echo C_report::format(date("D d M Y h:i:s", strtotime($row2['MABA_TIMESTAMP'])));
+                                  echo C_report::format(date("D d M Y h:i:s", strtotime($row2['MABA_TANGGAL'])));
                                 ?>
                               </th>
                               <td><?php echo $row2['MABA_URAIAN'] ?></td>

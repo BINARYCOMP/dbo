@@ -25,7 +25,11 @@
                             <option value="0">=== Pilih Induk Inventaris ===</option>
                             <?php
                               foreach ($dataParent as $row) {
-                                echo "<option value ='".$row['INPA_ID']."'> ".$row['INPA_NAME']." </option>";
+                                if ($row['INPA_ID'] == $inve[0]['INVE_INPA_ID']) {
+                                  echo "<option value ='".$row['INPA_ID']."' selected> ".$row['INPA_NAME']." </option>";
+                                }else{
+                                  echo "<option value ='".$row['INPA_ID']."'> ".$row['INPA_NAME']." </option>";
+                                }
                               }
                             ?>
                           </select>
@@ -54,7 +58,7 @@
                           <label class=" control-label">Qty</label>
                           <div>
                             <span id="qty">
-                              <input class="form-control" type="number" required="true" id="txtQty" placeholder="Qty .." name="txtQty" required placeholder="0">  
+                              <input class="form-control" value="<?=$inve[0]['INVE_QTY']?>" type="number" id="txtQty" placeholder="Qty .." name="txtQty" required placeholder="0">  
                             </span>
                           </div>
                       </div>
@@ -63,10 +67,10 @@
                         <label>Kondisi</label>
                         <div class="row">
                           <div class="col-md-2">
-                            <input type="radio" id="rbtKondisiBaik" name="rbtKondisi" value="Baik"> Baik
+                            <input  type="radio" id="rbtKondisiBaik" <?php if($inve[0]['INVE_KEADAAN']=='Baik') echo'checked'?> name="rbtKondisi" value="Baik" > Baik
                           </div>
                           <div class="col-md-10">
-                            <input  type="radio" id="rbtKondisiBuruk" name="rbtKondisi" value="Buruk"> Buruk
+                            <input  type="radio" id="rbtKondisiBuruk" <?php if($inve[0]['INVE_KEADAAN']!='Baik') echo'checked'?> name="rbtKondisi" value="Buruk"> Buruk
                           </div>
                         </div>
                       </div>
@@ -74,16 +78,26 @@
                       <div class="form-group">
                           <label class=" control-label">Keterangan</label>
                           <div>
-                            <textarea name="txtKeterangan" class="form-control" id="txtKeterangan" rows="3" placeholder="Keterangan barang.." pla></textarea>
+                            <textarea name="txtKeterangan" class="form-control" id="txtKeterangan" rows="3" placeholder="Keterangan barang.." pla><?=$inve[0]['INVE_KETERANGAN']?></textarea>
                           </div>
                       </div>
+
+                      <div class="form-group">
+                        <label class=" control-label">Update Tanggal</label>
+                        <div>
+                          <span >
+                            <input class="form-control" type="date" id="datePicker" name="inputTanggal">  
+                          </span>
+                        </div>
+                      </div>
+
                       <div class="form-group">
                         <div class="row">
                           <div class="col-md-10">
                             <button type="reset" class="btn btn-default pull-right">Cancel</button>
                           </div>
                           <div class="col-md-2">
-                            <button type="button" class="btn btn-info pull-right" data-toggle="modal" onclick="modalInventaris()" >Input Data</button>
+                            <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal-success" onclick="modalInventaris()" >Input Data</button>
                           </div>
                         </div>
                       </div>
@@ -125,6 +139,7 @@
 <!-- SCRIPT -->
 <!-- javascript child -->
 <script>
+showChild(<?=$inve[0]['INVE_INPA_ID']?>);
   function showChild(str) {
     var xhttp;
     xhttp = new XMLHttpRequest();
@@ -133,7 +148,7 @@
         document.getElementById("txtChild").innerHTML = this.responseText;
       }
     };
-    xhttp.open("GET", "<?php echo base_url()?>c_inventaris_bawang/searchChild?q="+str, true);
+    xhttp.open("GET", "<?php echo base_url()?>c_inventaris_bawang/searchChild?q="+str+"&EDIT=<?=$inve[0]['INVE_INCH_ID']?>", true);
     xhttp.send();   
     showQty(str);
   }
@@ -151,7 +166,7 @@
   }
   function showQty() {
     var xhttp;
-    var child = '0';
+    var child = '<?=$inve[0]['INVE_INCH_ID']?>';
     var parent      = document.getElementById('cmbParent').value;
     if (document.getElementById('cmbChild').value == null) {
     }else{
@@ -166,7 +181,7 @@
     xhttp.open("GET", "<?php echo base_url()?>c_inventaris/searchQty?parent="+parent+"&child="+child, true);
     xhttp.send();   
   }
-   function modalInventaris() {
+   function modalInventaris(str) {
     var xhttp;
     var parent,child,keterangan,qty,kondisi;
     // try{
@@ -174,6 +189,7 @@
       child       = document.getElementById('cmbChild').value;
       keterangan  = document.getElementById('txtKeterangan').value;
       qty         = document.getElementById('txtQty').value;
+      tanggal     = document.getElementById('datePicker').value;
 
       if (document.getElementById('rbtKondisiBaik').checked) {
         kondisi = document.getElementById('rbtKondisiBaik').value;
@@ -184,7 +200,6 @@
         return;
       }
 
-    $('#modal-success').modal('show');
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -192,7 +207,7 @@
       }
     };
 
-    xhttp.open("GET","<?php echo base_url()?>c_inventaris_bawang/modalInventaris?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&qty="+qty+"&kondisi="+kondisi,true);
+    xhttp.open("GET","<?php echo base_url()?>c_inventaris_bawang/modalInventarisEdit/<?=$inve[0]['INVE_ID']?>?parent="+parent+"&child="+child+"&keterangan="+keterangan+"&qty="+qty+"&kondisi="+kondisi+"&tanggal="+tanggal,true);
     xhttp.send()
       
      

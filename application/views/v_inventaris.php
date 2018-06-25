@@ -83,7 +83,7 @@
                             <button type="reset" class="btn btn-default pull-right">Cancel</button>
                           </div>
                           <div class="col-md-2">
-                            <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal-success" onclick="modalInventaris()" >Input Data</button>
+                            <button type="button" class="btn btn-info pull-right" data-toggle="modal"  onclick="modalInventaris()" >Input Data</button>
                           </div>
                         </div>
                       </div>
@@ -183,6 +183,7 @@
         alert('Silahkan pilih kondisi barang');
         return;
       }
+      $('#modal-success').modal('show');
 
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

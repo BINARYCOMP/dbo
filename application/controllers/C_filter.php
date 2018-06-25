@@ -219,7 +219,7 @@ class C_filter extends CI_Controller
 		$bulan 			= $this->input->post('bulan');
 		$tahun 			= $this->input->post('tahun');
 		$keterangan  	= $this->input->post('keterangan');
-		$dataBarang		= $this->report->getInventarisParentFilter($awal, $akhir, $bulan, $tahun, $keterangan);		
+		$dataBarang		= $this->report->getInventarisParentFilter($awal, $akhir, $bulan, $tahun, $keterangan);
 		$data = array(
 			'awal' 		=> $awal ,
 			'akhir' 	=> $akhir, 

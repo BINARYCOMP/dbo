@@ -91,7 +91,8 @@ class C_materialCimuning extends CI_Controller
       'MACI_RUAN_ID'  => $cmbRuangan,
       'MACI_MCCI_ID'  => $child ,
       'MACI_SALDO'    => $saldoAkhir,
-      'MACI_USER_ID'  => $_SESSION['USER_ID']
+      'MACI_USER_ID'  => $_SESSION['USER_ID'],
+      'MACI_TANGGAL'  => date('Y-m-d')
     );
     $simpanBarang = $this->m_materialCimuning->simpanBarang($data, $saldoAkhir, $child);
     echo "<script> window.location='".base_url()."C_materialCimuning?message=1' </script>";

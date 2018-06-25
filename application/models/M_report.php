@@ -329,14 +329,14 @@ class M_report extends CI_Model
 	}
 	public function getTotalQtyCimuningByInpaId($id)
 	{
-		$sql 	= "SELECT sum(INVE_QTY) as 'Total' FROM inventaris, inventaris_child WHERE INVE_INCH_ID = INCH_ID AND INCH_INPA_ID =".$id." AND INCH_KETERANGAN='CIMUNING'";
+		$sql 	= "SELECT sum(INVE_QTY) as 'Total' FROM inventaris, inventaris_child WHERE INVE_INCH_ID = INCH_ID AND INCH_INPA_ID =".$id." AND INCH_KETERANGAN='CIMUNING' AND MONTH(INVE_TANGGAL) = '".date('m')."' AND YEAR(INVE_TANGGAL) =".date('Y');
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getTotalQtyBawangByInpaId($id)
 	{
-		$sql 	= "SELECT sum(INVE_QTY) as 'Total' FROM inventaris, inventaris_child WHERE INVE_INCH_ID = INCH_ID AND INCH_INPA_ID =".$id." AND INCH_KETERANGAN='BAWANG'";
+		$sql 	= "SELECT sum(INVE_QTY) as 'Total' FROM inventaris, inventaris_child WHERE INVE_INCH_ID = INCH_ID AND INCH_INPA_ID =".$id." AND INCH_KETERANGAN='BAWANG' AND MONTH(INVE_TANGGAL) = '".date('m')."' AND YEAR(INVE_TANGGAL) =".date('Y');
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -378,21 +378,21 @@ class M_report extends CI_Model
 	}
 	public function getInventarisParentCimuning()
 	{
-		$sql 	= "SELECT * FROM inventaris_parent WHERE inpa_keterangan ='Cimuning' AND MONTH(INPA_TIME) = '".date('m')."' AND YEAR(INPA_TIME) = '".date('Y')."'";
+		$sql 	= "SELECT * FROM inventaris_parent WHERE inpa_keterangan ='Cimuning'";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getInventarisParentBawang()
 	{
-		$sql 	= "SELECT * FROM inventaris_parent WHERE inpa_keterangan ='Bawang' AND MONTH(INPA_TIME) = '".date('m')."' AND YEAR(INPA_TIME) = '".date('Y')."'";
+		$sql 	= "SELECT * FROM inventaris_parent WHERE inpa_keterangan ='Bawang'";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getInventarisParentFilter($awal, $akhir, $bulan, $tahun, $keterangan)
 	{
-		$sql 	= "SELECT * FROM inventaris_parent WHERE inpa_keterangan ='".$keterangan."' AND ( DAY(INPA_TIME) BETWEEN '".$awal."' AND '".$akhir."' ) AND MONTH(INPA_TIME) = '".$bulan."' AND YEAR(INPA_TIME) = '".$tahun."'";
+		$sql 	= "SELECT * FROM inventaris_parent WHERE inpa_keterangan ='".$keterangan."' ";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
@@ -407,21 +407,21 @@ class M_report extends CI_Model
 
 	public function getInventarisChildCimuningByInpaId($id)
 	{
-		$sql 	= "SELECT * FROM  inventaris_parent, inventaris_child, inventaris, user,pegawai WHERE USER_ID = INVE_USER_ID AND USER_DAPE_ID = PEGA_ID AND INCH_INPA_ID = INPA_ID AND INVE_INCH_ID = INCH_ID AND INVE_INPA_ID = INPA_ID AND INPA_ID =".$id." AND INPA_KETERANGAN ='Cimuning' AND INCH_KETERANGAN = 'Cimuning' AND MONTH(INVE_TIME) =".date('m')." AND YEAR(INVE_TIME) = ".date('Y');
+		$sql 	= "SELECT * FROM  inventaris_parent, inventaris_child, inventaris, user,pegawai WHERE USER_ID = INVE_USER_ID AND USER_DAPE_ID = PEGA_ID AND INCH_INPA_ID = INPA_ID AND INVE_INCH_ID = INCH_ID AND INVE_INPA_ID = INPA_ID AND INPA_ID =".$id." AND INPA_KETERANGAN ='Cimuning' AND INCH_KETERANGAN = 'Cimuning' AND MONTH(INVE_TANGGAL) =".date('m')." AND YEAR(INVE_TANGGAL) = ".date('Y');
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
-	public function getInventarisChildGudangByInpaId($id, $keterangan)
+	public function getInventarisChildGudangByInpaId($id, $keterangan,$awal, $akhir, $bulan, $tahun)
 	{
-		$sql 	= "SELECT * FROM  inventaris_parent, inventaris_child, inventaris, user,pegawai WHERE USER_ID = INVE_USER_ID AND USER_DAPE_ID = PEGA_ID AND INCH_INPA_ID = INPA_ID AND INVE_INCH_ID = INCH_ID AND INVE_INPA_ID = INPA_ID AND INPA_ID =".$id." AND INPA_KETERANGAN ='".$keterangan."' AND INCH_KETERANGAN = '".$keterangan."'";
+		$sql 	= "SELECT * FROM  inventaris_parent, inventaris_child, inventaris, user,pegawai WHERE USER_ID = INVE_USER_ID AND USER_DAPE_ID = PEGA_ID AND INCH_INPA_ID = INPA_ID AND INVE_INCH_ID = INCH_ID AND INVE_INPA_ID = INPA_ID AND INPA_ID =".$id." AND INPA_KETERANGAN ='".$keterangan."' AND INCH_KETERANGAN = '".$keterangan."' AND  ( DAY(INVE_TANGGAL) BETWEEN ".$awal." AND ".$akhir." ) AND  MONTH(INVE_TANGGAL) = '".$bulan."' AND YEAR(INVE_TANGGAL) = '".$tahun."'";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;
 	}
 	public function getInventarisChildBawangByInpaId($id)
 	{
-		$sql 	= "SELECT * FROM  inventaris_parent, inventaris_child, inventaris , user,pegawai WHERE USER_ID = INVE_USER_ID AND USER_DAPE_ID = PEGA_ID AND INCH_INPA_ID = INPA_ID AND INVE_INCH_ID = INCH_ID AND INVE_INPA_ID = INPA_ID AND INPA_ID =".$id." AND INPA_KETERANGAN ='BAWANG' AND INCH_KETERANGAN = 'BAWANG' AND MONTH(INVE_TIME) =".date('m')." AND YEAR(INVE_TIME) = ".date('Y');
+		$sql 	= "SELECT * FROM  inventaris_parent, inventaris_child, inventaris , user,pegawai WHERE USER_ID = INVE_USER_ID AND USER_DAPE_ID = PEGA_ID AND INCH_INPA_ID = INPA_ID AND INVE_INCH_ID = INCH_ID AND INVE_INPA_ID = INPA_ID AND INPA_ID =".$id." AND INPA_KETERANGAN ='BAWANG' AND INCH_KETERANGAN = 'BAWANG' AND MONTH(INVE_TANGGAL) =".date('m')." AND YEAR(INVE_TANGGAL) = ".date('Y');
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

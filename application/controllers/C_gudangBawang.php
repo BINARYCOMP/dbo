@@ -100,7 +100,8 @@ class C_gudangBawang extends CI_Controller
       'GUBA_BACH_ID'  => $child ,
       'GUBA_SALDO'    => $saldoAkhir,
       'GUBA_RUAN_ID'  => $cmbRuangan,
-      'GUBA_USER_ID'  => $_SESSION['USER_ID']
+      'GUBA_USER_ID'  => $_SESSION['USER_ID'],
+      'GUBA_TANGGAL'  => date('Y-m-d')
     );
     $simpanBarang = $this->m_gudangBawang->simpanBarang($data, $saldoAkhir, $child);
     echo "<script> window.location='".base_url()."c_gudangBawang?message=1' </script>";

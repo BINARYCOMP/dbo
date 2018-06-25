@@ -61,6 +61,14 @@
       return $return;
     }
 
+    public function getDataGudangByMabaId($id)
+    {
+      $sql    = "SELECT * from material_bawang,material_parent_bawang where MABA_MPBA_ID = MPBA_ID AND MABA_ID = ".$id;
+      $query  = $this->db->query($sql);
+      $return = $query->result_array();
+      return $return;
+    }
+
     public function getChildBympbaId($id)
     {
 
