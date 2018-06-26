@@ -91,7 +91,7 @@
 </script>
 <section class="content">
 	<div class="callout callout-info">
-	  <h4> Grafik Database Online</h4>
+	  <h4> Grafik </h4>
 	</div>
 	<!-- /.callout -->	
 	<div class="row">
@@ -256,7 +256,7 @@
         xkey: 'y',
         lineColors: ['#f39c12','#3498db'],
         ykeys: ['a', 'b'],
-        labels: ['Total Debet', 'Total Kredit'],
+        labels: ['Total Barang Masuk', 'Total Barang Keluar'],
         xLabelFormat: function(x) { // <--- x.getMonth() returns valid index
           var month = months[x.getMonth()];
           return month;

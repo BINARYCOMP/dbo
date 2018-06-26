@@ -10,6 +10,9 @@ class C_profil extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('m_profil');
+		if (!isset($_SESSION['level'])) {
+			redirect('c_login','refresh');
+		}
 	}
 	public function Index()
 	{
@@ -19,7 +22,7 @@ class C_profil extends CI_Controller
 			'Account'	=>$akun,
 			'agamaId'	=>$agamaId, 
 			'content'	=>'v_profil',
-			'title' 	=>'Account',
+			'title' 	=>'Edit Profil',
       		'menu'      =>'Profil Account'
 		);
 		$this->load->view('tampilan/v_combine', $data);
@@ -32,7 +35,7 @@ class C_profil extends CI_Controller
 			'Password'	=>$password,
 			'content'	=>'v_editPassword',
 			'akun'  	=>$akun,
-			'title' 	=>'Account',
+			'title' 	=>'Ubah Password',
       		'menu'      =>'Ganti Password'
 		);
 		$this->load->view('tampilan/v_combine',$data);

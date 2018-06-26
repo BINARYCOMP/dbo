@@ -25,7 +25,7 @@
           <!-- /.box-header -->
           <div class="box-body">
             <?php
-              if ($model1 != 0) {
+              if ($model1 != '0') {
                 $dataKategori = $this->report->$model1($row[$bach.'_ID']); 
               }
             ?>

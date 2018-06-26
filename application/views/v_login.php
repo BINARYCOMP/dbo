@@ -26,7 +26,7 @@
     <!-- Navigation -->
     <nav id="animated" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Data Online</a>
+        <a class="navbar-brand" href="#">PT. SERAMBI GAYO SANTOSA</a>
         <div >
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -64,8 +64,6 @@
                 </div>
                 <div class="form-group">
                   <div class="row">
-                    <label for="" class="col-sm-4 offset-sm-1"> <input type="checkbox"> Remember Me</label>
-                    <label for="" class="col-sm-4 offset-sm-2 text-sm-center"> <a href="#" data-toggle="modal" id="forgot" data-target="#modalForgot"> Forgot Password? </a></label>
                   </div>
                 </div>
               </form>

@@ -568,7 +568,7 @@
                     <td class="right"><?php echo $pajak ?></td>
                     <td class="right"><?=$saldo?></td>
                     <?php
-                      if ($_SESSION['level'] == 'MANAGERIAL' || $_SESSION['level'] == 'OWNER' || $_SESSION['level'] == 'SUPER ADMIN' ) {
+                      if ($_SESSION['level'] == 'SUPER ADMIN' ) {
                       ?>
                           <td class="center">
                             <a href="<?php echo base_url().'c_keuangan/delete/'.$row['KEUA_ID']; ?>" onclick="return confirm('Are you sure?');">Delete</a>
