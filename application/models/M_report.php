@@ -261,7 +261,7 @@ class M_report extends CI_Model
 	}
 	public function getBarangJadiByChildId($id)
 	{
-		$sql 	= "SELECT * FROM  gudang_bawang, user,pegawai, barang_parent, barang_child, satuan WHERE USER_ID = GUBA_USER_ID AND USER_DAPE_ID = PEGA_ID AND  GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_ID =".$id." AND MONTH(GUBA_TANGGAL) =".date('m')." AND YEAR(GUBA_TANGGAL) = ".date('Y');
+		$sql 	= "SELECT * FROM  gudang_bawang, user,pegawai, barang_parent, barang_child, satuan WHERE USER_ID = GUBA_USER_ID AND USER_DAPE_ID = PEGA_ID AND  GUBA_BACH_ID = BACH_ID AND GUBA_BAPA_ID = BAPA_ID AND BACH_SATU_ID = SATU_ID AND BACH_ID =".$id." AND MONTH(GUBA_TANGGAL) =".date('m')." AND YEAR(GUBA_TANGGAL) = ".date('Y')." ORDER BY GUBA_ID ASC";
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

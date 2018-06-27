@@ -15,6 +15,7 @@
               <tr>
                 <th>No.</th>
                 <th>Nama</th>
+                <th>Username</th>
                 <th>Email</th>
                 <th>Alamat</th>
                 <th>No Telepon</th>
@@ -31,6 +32,7 @@
                   <tr>
                     <td><?php echo $no ?></td>
                     <td><?php echo $Account[0]['PEGA_NAME']?></td>
+                    <td><?php echo $Account[0]['USER_NAME']?></td>
                     <td><?php echo $Account[0]['PEGA_EMAIL']?></td>
                     <td><?php echo $Account[0]['PEGA_ALAMAT']?></td>
                     <td><?php echo $Account[0]['PEGA_NO_TLP']?></td>

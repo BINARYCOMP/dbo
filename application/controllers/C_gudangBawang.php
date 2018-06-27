@@ -204,10 +204,22 @@ class C_gudangBawang extends CI_Controller
     $namaKategoriDariModel    = $this->m_gudangBawang->getKategoriByKateId($cmbKategori);
     $namaRuanganDariModel     = $this->m_gudangBawang->getRuanganByRuanId($cmbRuangan);
 
-    $namaParentUntukDitampilkan      = $namaParentDariModel[0]['BAPA_NAME'];
-    $namaChildUntukDitampilkan       = $namaChildDariModel[0]['BACH_NAME'];
-    $namaKategoriUntukDitampilkan    = $namaKategoriDariModel[0]['KATE_NAME'] = 0; 
-    $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER'] = 0; 
+    $namaKategoriUntukDitampilkan    = 'Tidak ada';
+    $namaParentUntukDitampilkan      = 'Tidak ada';
+    $namaChildUntukDitampilkan       = 'Tidak ada';
+    $nomorGudangUntukDitampilkan     = 'Tidak ada'; 
+    if (isset($namaKategoriDariModel[0]['KATE_NAME'])) {
+      $namaKategoriUntukDitampilkan    = $namaKategoriDariModel[0]['KATE_NAME'];
+    }
+    if (isset($namaParentDariModel[0]['BAPA_NAME'])) {
+      $namaParentUntukDitampilkan      = $namaParentDariModel[0]['BAPA_NAME'];
+    }
+    if (isset($namaChildDariModel[0]['BACH_NAME'])) {
+      $namaChildUntukDitampilkan       = $namaChildDariModel[0]['BACH_NAME'];
+    }
+    if (isset($namaRuanganDariModel[0]['RUAN_NUMBER'])) {
+      $nomorGudangUntukDitampilkan     = $namaRuanganDariModel[0]['RUAN_NUMBER']; 
+    }
 
 
     ?>

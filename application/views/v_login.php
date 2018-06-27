@@ -46,7 +46,7 @@
               <form class="" action="<?php echo base_url() ?>c_login/login" method="post">
                 <button type="button" class="close" data-dismiss="modal">&times</button>
                 <div class="form-group text-center">
-                  <img src="/dbo/assets/dist/img/profile.png" alt="foto profile" class="rounded-circle" width="130" height="120" id="img-login">
+                  <img src="/dbo/assets/dist/img/logo.png" style="margin-left: 27px" alt="foto profile" class="rounded-circle" width="130" id="img-login">
                 </div>
                 <div class="form-group text-center">
                   <h4 class="text-info">Login Here</h4>
@@ -83,7 +83,7 @@
               <form class="" action="<?php echo base_url() ?>c_login/forgotPassword" method="post">
                 <button type="button" class="close" data-dismiss="modal">&times</button>
                 <div class="form-group text-center">
-                  <img src="/dbo/assets/dist/img/profile.png" alt="foto profile" class="rounded-circle" width="130" height="120" id="img-login">
+                  <img src="/dbo/assets/dist/img/logo.png" alt="foto profile" class="rounded-circle" width="130" height="120" id="img-login">
                 </div>
                 <div class="form-group text-center">
                   <h4 class="text-info">Forgot Your Password ?</h4>
