@@ -107,31 +107,22 @@
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
           <div class="carousel-item active">
-            <img src="/dbo/assets/dist/img/slide3.jpg" class="img-fluid" alt="" width="100%" height="500">
+            <img src="/dbo/assets/dist/img/slide33.jpg" class="img-fluid" alt="" width="100%" height="500">
             <div class="carousel-caption d-none d-md-block">
-              <h3>First Slide</h3>
-              <p>This is a description for the first slide.</p>
+              <h3>Selamat Datang</h3>
+              <p>Selamat datang di Sistem Informasi Stok.</p>
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
           <div class="carousel-item">
-              <img src="/dbo/assets/dist/img/slide2.jpg" class="img-fluid" alt="" width="100%" height="500">
+              <img src="/dbo/assets/dist/img/kresna.jpg" class="img-fluid" alt="" width="100%" height="500">
             <div class="carousel-caption d-none d-md-block">
-              <h3>Second Slide</h3>
-              <p>This is a description for the second slide.</p>
-            </div>
-          </div>
-          <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item">
-            <img src="/dbo/assets/dist/img/slide1.jpg" class="img-fluid" alt="" width="100%" height="500">
-            <div class="carousel-caption d-none d-md-block">
-              <h3>Third Slide</h3>
-              <p>This is a description for the third slide.</p>
+              <h3>Selamat Datang</h3>
+              <p>Selamat datang di Sistem Informasi Stok.</p>
             </div>
           </div>
         </div>
@@ -145,16 +136,6 @@
         </a>
       </div>
     </header>
-
-    <!-- Page Content -->
-    <section class="py-5">
-      <div class="container">
-        <h1>Corporate Database Management System</h1>
-        <p>A database is an organized collection of data. A relational database, more restrictively, is a collection of schemas, tables, queries, reports, views, and other elements.
-        </p>
-      </div>
-    </section>
-
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
