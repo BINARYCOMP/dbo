@@ -101,7 +101,13 @@ class M_report extends CI_Model
 	public function getBarangDetailCimuningByBaccId($id)
 	{
 		$sql 	= "SELECT * FROM gudang_jadi, barang_cimuning_child, satuan , user,pegawai WHERE USER_ID = GUJA_USER_ID AND USER_ID = GUJA_USER_ID AND USER_DAPE_ID = PEGA_ID AND  GUJA_BACC_ID = BACC_ID AND BACC_SATU_ID = SATU_ID AND GUJA_BACC_ID =".$id." AND MONTH(GUJA_TANGGAL) =".date('m')." AND YEAR(GUJA_TANGGAL) = ".date('Y');
-		
+		$query = $this->db->query($sql);
+		$return = $query->result_array();
+		return $return;
+	}
+	public function getBarangDetailCimuningByBaccId2($id)
+	{
+		$sql 	= "SELECT * FROM gudang_jadi, barang_cimuning_child WHERE   GUJA_BACC_ID = BACC_ID AND GUJA_BACC_ID =".$id;
 		$query = $this->db->query($sql);
 		$return = $query->result_array();
 		return $return;

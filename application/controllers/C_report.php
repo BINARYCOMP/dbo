@@ -110,7 +110,7 @@ class C_report extends CI_Controller
 	}
 	public function detailBarangCimuning($id)
 	{
-		$dataBarang		= $this->m_report->getBarangDetailCimuningByBaccId($id);
+		$dataBarang		= $this->m_report->getBarangDetailCimuningByBaccId2($id);
 		$data = array(
 			'dataBarang' 		=> $dataBarang,
 			'id' 				=> $id,
@@ -124,7 +124,7 @@ class C_report extends CI_Controller
 	{
 		$bulan 			= $_POST['bulan'];
 		$tahun 			= $_POST['tahun'];
-		$dataBarang		= $this->m_report->getBarangDetailCimuningByBaccId($id);
+		$dataBarang		= $this->m_report->getBarangDetailCimuningByBaccId2($id);
 		$data = array(
 			'dataBarang' 		=> $dataBarang,
 			'id' 				=> $id,

@@ -56,9 +56,9 @@
       $return = $query->result_array();
       return $return;
     }
-    public function getFirstStockWithoutKategori($bach_id,$BACC_id, $ruan_id)
+    public function getFirstStockWithoutKategori($BACC_id, $ruan_id)
     {
-      $sql="SELECT * from gudang_jadi, barang_cimuning_child,ruangan where guja_bach_id = bach_id and guja_BACC_id = BACC_id and guja_BACC_id = ".$BACC_id." and guja_ruan_id = ".$ruan_id." group by guja_id desc limit 1";
+      $sql="SELECT * from gudang_jadi, barang_cimuning_child,ruangan where  guja_BACC_id = BACC_id and guja_BACC_id = ".$BACC_id." and guja_ruan_id = ".$ruan_id." group by guja_id desc limit 1";
       $query=$this->db->query($sql);
       $return = $query->result_array();
       return $return;
